@@ -13,6 +13,7 @@ type PointsRewards struct {
 	Name        string `gorm:"column:name;type:varchar(255);not null;comment:奖励物品名称" json:"name"`               // 奖励物品名称
 	Integral    int64  `gorm:"column:integral;type:int;not null;comment:奖励领取所需积分" json:"integral"`              // 奖励领取所需积分
 	GoldCoins   int64  `gorm:"column:gold_coins;type:int;not null;comment:金币" json:"goldCoins"`                 // 金币
+	RealAmount  int64  `gorm:"column:real_amount;type:int;comment:实际价值" json:"realAmount"`                      // 实际价值
 	Image       string `gorm:"column:image;type:varchar(255);not null;comment:图片" json:"image"`                 // 图片
 	Status      int64  `gorm:"column:status;type:tinyint(1);not null;comment:状态: 1=开启,2=禁用" json:"status"`      // 状态: 1=开启,2=禁用
 	CreatedAt   int64  `gorm:"column:created_at;comment:创建时间" json:"createdAt"`                                 // 创建时间
