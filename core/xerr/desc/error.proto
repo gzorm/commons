@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package common;
+option go_package="./err";
+
+//      base message
+message Error {
+  int32 errCode = 1;
+  string errMsg = 2;
+}
+
+service Common {
+}
+
