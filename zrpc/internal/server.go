@@ -3,7 +3,7 @@ package internal
 import (
 	"time"
 
-	"github.com/gzorm/common/core/stat"
+	"github.com/gzorm/commons/core/stat"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health"
 	"google.golang.org/grpc/keepalive"

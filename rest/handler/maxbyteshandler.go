@@ -3,7 +3,7 @@ package handler
 import (
 	"net/http"
 
-	"github.com/gzorm/common/rest/internal"
+	"github.com/gzorm/commons/rest/internal"
 )
 
 // MaxBytesHandler returns a middleware that limit reading of http request body.

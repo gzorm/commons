@@ -9,9 +9,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gzorm/common/core/breaker"
-	"github.com/gzorm/common/core/logx/logtest"
-	"github.com/gzorm/common/core/trace/tracetest"
+	"github.com/gzorm/commons/core/breaker"
+	"github.com/gzorm/commons/core/logx/logtest"
+	"github.com/gzorm/commons/core/trace/tracetest"
 	red "github.com/redis/go-redis/v9"
 	"github.com/stretchr/testify/assert"
 	tracesdk "go.opentelemetry.io/otel/trace"

@@ -7,13 +7,13 @@ import (
 	"path"
 	"time"
 
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/rest/chain"
-	"github.com/gzorm/common/rest/handler"
-	"github.com/gzorm/common/rest/httpx"
-	"github.com/gzorm/common/rest/internal"
-	"github.com/gzorm/common/rest/internal/cors"
-	"github.com/gzorm/common/rest/router"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/rest/chain"
+	"github.com/gzorm/commons/rest/handler"
+	"github.com/gzorm/commons/rest/httpx"
+	"github.com/gzorm/commons/rest/internal"
+	"github.com/gzorm/commons/rest/internal/cors"
+	"github.com/gzorm/commons/rest/router"
 )
 
 type (

@@ -10,7 +10,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/gzorm/common/core/logx"
+	"github.com/gzorm/commons/core/logx"
 )
 
 const (

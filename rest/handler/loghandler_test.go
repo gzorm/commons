@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gzorm/common/rest/internal"
-	"github.com/gzorm/common/rest/internal/response"
+	"github.com/gzorm/commons/rest/internal"
+	"github.com/gzorm/commons/rest/internal/response"
 	"github.com/stretchr/testify/assert"
 )
 

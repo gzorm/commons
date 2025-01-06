@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/gzorm/common/core/conf"
-	"github.com/gzorm/common/core/go-queue/kq"
+	"github.com/gzorm/commons/core/conf"
+	"github.com/gzorm/commons/core/go-queue/kq"
 )
 
 func main() {

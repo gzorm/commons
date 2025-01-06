@@ -2,9 +2,9 @@ package captcha
 
 import (
 	"context"
-	"github.com/gzorm/common/core/config"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/stores/redis"
+	"github.com/gzorm/commons/core/config"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/stores/redis"
 	"github.com/mojocn/base64Captcha"
 	"time"
 )

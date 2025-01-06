@@ -1,7 +1,7 @@
 package xerr
 
 import (
-	"github.com/gzorm/common/core/xerr/types/err"
+	"github.com/gzorm/commons/core/xerr/types/err"
 )
 
 /**

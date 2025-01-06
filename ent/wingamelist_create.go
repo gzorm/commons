@@ -9,7 +9,7 @@ import (
 
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/gzorm/common/ent/wingamelist"
+	"github.com/gzorm/commons/ent/wingamelist"
 )
 
 // WinGameListCreate is the builder for creating a WinGameList entity.

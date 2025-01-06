@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/gzorm/common/core/cmdline"
-	"github.com/gzorm/common/core/go-queue/kq"
+	"github.com/gzorm/commons/core/cmdline"
+	"github.com/gzorm/commons/core/go-queue/kq"
 )
 
 type message struct {

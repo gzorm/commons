@@ -1,6 +1,6 @@
 package metric
 
-import "github.com/gzorm/common/core/prometheus"
+import "github.com/gzorm/commons/core/prometheus"
 
 // A VectorOpts is a general configuration.
 type VectorOpts struct {

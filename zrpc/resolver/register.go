@@ -1,6 +1,6 @@
 package resolver
 
-import "github.com/gzorm/common/zrpc/resolver/internal"
+import "github.com/gzorm/commons/zrpc/resolver/internal"
 
 // Register registers schemes defined zrpc.
 // Keep it in a separated package to let third party register manually.

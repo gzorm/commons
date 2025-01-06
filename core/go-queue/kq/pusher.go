@@ -2,8 +2,8 @@ package kq
 
 import (
 	"context"
-	"github.com/gzorm/common/core/executors"
-	"github.com/gzorm/common/core/logx"
+	"github.com/gzorm/commons/core/executors"
+	"github.com/gzorm/commons/core/logx"
 	"github.com/segmentio/kafka-go"
 	"strconv"
 	"time"

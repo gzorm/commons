@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/gzorm/common/core/mapping"
+	"github.com/gzorm/commons/core/mapping"
 )
 
 const tagName = "db"

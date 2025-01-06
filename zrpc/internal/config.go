@@ -1,6 +1,6 @@
 package internal
 
-import "github.com/gzorm/common/zrpc/internal/serverinterceptors"
+import "github.com/gzorm/commons/zrpc/internal/serverinterceptors"
 
 type (
 	// StatConf defines the stat config.

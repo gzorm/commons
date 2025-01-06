@@ -8,7 +8,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/gzorm/common/ent/winplatlist"
+	"github.com/gzorm/commons/ent/winplatlist"
 )
 
 // WinPlatList is the model entity for the WinPlatList schema.

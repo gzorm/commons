@@ -4,10 +4,10 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/gzorm/common/core/codec"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/rest/httpx"
-	"github.com/gzorm/common/rest/internal/security"
+	"github.com/gzorm/commons/core/codec"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/rest/httpx"
+	"github.com/gzorm/commons/rest/internal/security"
 )
 
 const contentSecurity = "X-Content-Security"

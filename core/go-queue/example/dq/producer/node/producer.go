@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/gzorm/common/core/go-queue/dq"
+	"github.com/gzorm/commons/core/go-queue/dq"
 )
 
 func main() {

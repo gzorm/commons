@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gzorm/common/core/collection"
-	"github.com/gzorm/common/core/proc"
-	"github.com/gzorm/common/core/timex"
+	"github.com/gzorm/commons/core/collection"
+	"github.com/gzorm/commons/core/proc"
+	"github.com/gzorm/commons/core/timex"
 	"github.com/stretchr/testify/assert"
 )
 

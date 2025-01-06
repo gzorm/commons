@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/gzorm/common/core/lang"
-	"github.com/gzorm/common/core/mathx"
+	"github.com/gzorm/commons/core/lang"
+	"github.com/gzorm/commons/core/mathx"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc/resolver"
 )

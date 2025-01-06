@@ -8,8 +8,8 @@ import (
 	"sync/atomic"
 	"testing"
 
-	ztrace "github.com/gzorm/common/core/trace"
-	"github.com/gzorm/common/core/trace/tracetest"
+	ztrace "github.com/gzorm/commons/core/trace"
+	"github.com/gzorm/commons/core/trace/tracetest"
 	"github.com/stretchr/testify/assert"
 	"go.opentelemetry.io/otel/attribute"
 	tcodes "go.opentelemetry.io/otel/codes"

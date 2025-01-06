@@ -3,7 +3,7 @@ package syncx
 import (
 	"errors"
 
-	"github.com/gzorm/common/core/lang"
+	"github.com/gzorm/commons/core/lang"
 )
 
 // ErrLimitReturn indicates that the more than borrowed elements were returned.

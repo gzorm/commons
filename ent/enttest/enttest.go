@@ -5,12 +5,12 @@ package enttest
 import (
 	"context"
 
-	"github.com/gzorm/common/ent"
+	"github.com/gzorm/commons/ent"
 	// required by schema hooks.
-	_ "github.com/gzorm/common/ent/runtime"
+	_ "github.com/gzorm/commons/ent/runtime"
 
 	"entgo.io/ent/dialect/sql/schema"
-	"github.com/gzorm/common/ent/migrate"
+	"github.com/gzorm/commons/ent/migrate"
 )
 
 type (

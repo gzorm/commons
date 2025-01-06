@@ -4,8 +4,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/gzorm/common/core/mathx"
-	"github.com/gzorm/common/core/stringx"
+	"github.com/gzorm/commons/core/mathx"
+	"github.com/gzorm/commons/core/stringx"
 )
 
 var replacer = stringx.NewReplacer(map[string]string{

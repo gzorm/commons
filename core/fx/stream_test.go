@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gzorm/common/core/stringx"
+	"github.com/gzorm/commons/core/stringx"
 	"github.com/stretchr/testify/assert"
 	"go.uber.org/goleak"
 )

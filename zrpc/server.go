@@ -5,13 +5,13 @@ import (
 
 	"google.golang.org/grpc"
 
-	"github.com/gzorm/common/core/load"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/stat"
-	"github.com/gzorm/common/core/stores/redis"
-	"github.com/gzorm/common/zrpc/internal"
-	"github.com/gzorm/common/zrpc/internal/auth"
-	"github.com/gzorm/common/zrpc/internal/serverinterceptors"
+	"github.com/gzorm/commons/core/load"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/stat"
+	"github.com/gzorm/commons/core/stores/redis"
+	"github.com/gzorm/commons/zrpc/internal"
+	"github.com/gzorm/commons/zrpc/internal/auth"
+	"github.com/gzorm/commons/zrpc/internal/serverinterceptors"
 )
 
 // A RpcServer is a rpc server.

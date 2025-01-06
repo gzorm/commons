@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/gzorm/common/rest/internal/header"
-	"github.com/gzorm/common/rest/pathvar"
+	"github.com/gzorm/commons/rest/internal/header"
+	"github.com/gzorm/commons/rest/pathvar"
 )
 
 func TestParseForm(t *testing.T) {

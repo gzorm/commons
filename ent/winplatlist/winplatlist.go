@@ -59,7 +59,7 @@ func ValidColumn(column string) bool {
 // package on the initialization of the application. Therefore,
 // it should be imported in the main as follows:
 //
-//	import _ "github.com/gzorm/common/ent/runtime"
+//	import _ "github.com/gzorm/commons/ent/runtime"
 var (
 	Interceptors [1]ent.Interceptor
 )

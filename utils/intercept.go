@@ -5,9 +5,9 @@ import (
 	"crypto/sha256"
 	"encoding/json"
 	"fmt"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/stores/redis"
-	"github.com/gzorm/common/ent"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/stores/redis"
+	"github.com/gzorm/commons/ent"
 	"strings"
 	"sync"
 )

@@ -1,6 +1,6 @@
 package kq
 
-import "github.com/gzorm/common/core/service"
+import "github.com/gzorm/commons/core/service"
 
 const (
 	firstOffset = "first"

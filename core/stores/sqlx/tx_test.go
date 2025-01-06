@@ -7,8 +7,8 @@ import (
 	"testing"
 
 	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/gzorm/common/core/breaker"
-	"github.com/gzorm/common/core/stores/dbtest"
+	"github.com/gzorm/commons/core/breaker"
+	"github.com/gzorm/commons/core/stores/dbtest"
 	"github.com/stretchr/testify/assert"
 )
 

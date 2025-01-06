@@ -7,7 +7,7 @@ import (
 	"entgo.io/ent/dialect/entsql"
 	"entgo.io/ent/schema"
 	"entgo.io/ent/schema/field"
-	"github.com/gzorm/common/utils"
+	"github.com/gzorm/commons/utils"
 )
 
 type WinPlatList struct {

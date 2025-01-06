@@ -2,7 +2,7 @@ package handler
 
 import (
 	"context"
-	"github.com/gzorm/common/rest/enum"
+	"github.com/gzorm/commons/rest/enum"
 	"net/http"
 )
 

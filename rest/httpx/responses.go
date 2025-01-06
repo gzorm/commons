@@ -11,10 +11,10 @@ import (
 
 	"google.golang.org/grpc/status"
 
-	"github.com/gzorm/common/core/errorx"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/rest/internal/errcode"
-	"github.com/gzorm/common/rest/internal/header"
+	"github.com/gzorm/commons/core/errorx"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/rest/internal/errcode"
+	"github.com/gzorm/commons/rest/internal/header"
 )
 
 var (

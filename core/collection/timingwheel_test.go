@@ -7,10 +7,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gzorm/common/core/lang"
-	"github.com/gzorm/common/core/stringx"
-	"github.com/gzorm/common/core/syncx"
-	"github.com/gzorm/common/core/timex"
+	"github.com/gzorm/commons/core/lang"
+	"github.com/gzorm/commons/core/stringx"
+	"github.com/gzorm/commons/core/syncx"
+	"github.com/gzorm/commons/core/timex"
 	"github.com/stretchr/testify/assert"
 )
 

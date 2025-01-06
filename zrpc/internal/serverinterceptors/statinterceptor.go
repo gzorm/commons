@@ -6,11 +6,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/gzorm/common/core/collection"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/stat"
-	"github.com/gzorm/common/core/syncx"
-	"github.com/gzorm/common/core/timex"
+	"github.com/gzorm/commons/core/collection"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/stat"
+	"github.com/gzorm/commons/core/syncx"
+	"github.com/gzorm/commons/core/timex"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/peer"
 )

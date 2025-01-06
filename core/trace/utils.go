@@ -5,7 +5,7 @@ import (
 	"net"
 	"strings"
 
-	ztrace "github.com/gzorm/common/internal/trace"
+	ztrace "github.com/gzorm/commons/internal/trace"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	semconv "go.opentelemetry.io/otel/semconv/v1.4.0"

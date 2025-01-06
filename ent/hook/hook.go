@@ -6,7 +6,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/gzorm/common/ent"
+	"github.com/gzorm/commons/ent"
 )
 
 // The CommonFunc type is an adapter to allow the use of ordinary

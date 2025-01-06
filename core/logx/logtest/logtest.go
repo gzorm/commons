@@ -6,7 +6,7 @@ import (
 	"io"
 	"testing"
 
-	"github.com/gzorm/common/core/logx"
+	"github.com/gzorm/commons/core/logx"
 )
 
 type Buffer struct {

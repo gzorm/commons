@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"net/http/httputil"
 
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/rest/internal/response"
-	"github.com/gzorm/common/rest/token"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/rest/internal/response"
+	"github.com/gzorm/commons/rest/token"
 )
 
 const (

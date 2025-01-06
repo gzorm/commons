@@ -1,8 +1,8 @@
 package config
 
 import (
-	"github.com/gzorm/common/zorm-cache/storage"
-	"github.com/gzorm/common/zorm-cache/util"
+	"github.com/gzorm/commons/zorm-cache/storage"
+	"github.com/gzorm/commons/zorm-cache/util"
 )
 
 type CacheConfig struct {

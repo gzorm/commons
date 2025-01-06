@@ -15,7 +15,7 @@
 package parse
 
 import (
-	"github.com/gzorm/common/core/logx"
+	"github.com/gzorm/commons/core/logx"
 	"golang.org/x/text/language"
 )
 

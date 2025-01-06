@@ -8,7 +8,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/gzorm/common/ent/winbetslip"
+	"github.com/gzorm/commons/ent/winbetslip"
 )
 
 // WinBetslip is the model entity for the WinBetslip schema.

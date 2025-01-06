@@ -7,7 +7,7 @@ import (
 	"encoding/base64"
 	"errors"
 
-	"github.com/gzorm/common/core/logx"
+	"github.com/gzorm/commons/core/logx"
 )
 
 // ErrPaddingSize indicates bad padding size.

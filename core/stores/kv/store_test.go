@@ -5,10 +5,10 @@ import (
 	"time"
 
 	"github.com/alicebob/miniredis/v2"
-	"github.com/gzorm/common/core/hash"
-	"github.com/gzorm/common/core/stores/cache"
-	"github.com/gzorm/common/core/stores/redis"
-	"github.com/gzorm/common/core/stringx"
+	"github.com/gzorm/commons/core/hash"
+	"github.com/gzorm/commons/core/stores/cache"
+	"github.com/gzorm/commons/core/stores/redis"
+	"github.com/gzorm/commons/core/stringx"
 	"github.com/stretchr/testify/assert"
 )
 

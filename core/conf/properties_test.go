@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/gzorm/common/core/fs"
+	"github.com/gzorm/commons/core/fs"
 	"github.com/stretchr/testify/assert"
 )
 

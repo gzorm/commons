@@ -9,8 +9,8 @@ import (
 	"net"
 	"net/http"
 
-	"github.com/gzorm/common/core/codec"
-	"github.com/gzorm/common/core/logx"
+	"github.com/gzorm/commons/core/codec"
+	"github.com/gzorm/commons/core/logx"
 )
 
 const maxBytes = 1 << 20 // 1 MiB

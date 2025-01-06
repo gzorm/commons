@@ -1,4 +1,4 @@
-module github.com/gzorm/common
+module github.com/gzorm/commons
 
 go 1.22.3
 

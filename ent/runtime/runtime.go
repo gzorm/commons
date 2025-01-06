@@ -3,10 +3,10 @@
 package runtime
 
 import (
-	"github.com/gzorm/common/ent/schema"
-	"github.com/gzorm/common/ent/winconfig"
-	"github.com/gzorm/common/ent/wingameslot"
-	"github.com/gzorm/common/ent/winplatlist"
+	"github.com/gzorm/commons/ent/schema"
+	"github.com/gzorm/commons/ent/winconfig"
+	"github.com/gzorm/commons/ent/wingameslot"
+	"github.com/gzorm/commons/ent/winplatlist"
 )
 
 // The init function reads all schema descriptors with runtime code

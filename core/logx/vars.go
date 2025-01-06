@@ -3,7 +3,7 @@ package logx
 import (
 	"errors"
 
-	"github.com/gzorm/common/core/syncx"
+	"github.com/gzorm/commons/core/syncx"
 )
 
 const (

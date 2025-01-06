@@ -5,10 +5,10 @@ import (
 	"errors"
 	"fmt"
 	"github.com/go-playground/validator/v10"
-	"github.com/gzorm/common/core/mapping"
-	"github.com/gzorm/common/encoding"
-	"github.com/gzorm/common/header"
-	"github.com/gzorm/common/rest/pathvar"
+	"github.com/gzorm/commons/core/mapping"
+	"github.com/gzorm/commons/encoding"
+	"github.com/gzorm/commons/header"
+	"github.com/gzorm/commons/rest/pathvar"
 
 	"io"
 	"net/http"
@@ -16,7 +16,7 @@ import (
 
 	"golang.org/x/text/language"
 
-	"github.com/gzorm/common/core/logx"
+	"github.com/gzorm/commons/core/logx"
 
 	enLang "github.com/go-playground/locales/en"
 	brLang "github.com/go-playground/locales/pt_BR"

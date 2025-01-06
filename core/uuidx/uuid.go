@@ -16,7 +16,7 @@ package uuidx
 
 import (
 	"github.com/gofrs/uuid/v5"
-	"github.com/gzorm/common/core/logx"
+	"github.com/gzorm/commons/core/logx"
 )
 
 // NewUUID returns a new UUID.

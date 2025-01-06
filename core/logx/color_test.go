@@ -4,7 +4,7 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"github.com/gzorm/common/core/color"
+	"github.com/gzorm/commons/core/color"
 	"github.com/stretchr/testify/assert"
 )
 

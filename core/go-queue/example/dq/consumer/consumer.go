@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/gzorm/common/core/go-queue/dq"
-	"github.com/gzorm/common/core/stores/redis"
+	"github.com/gzorm/commons/core/go-queue/dq"
+	"github.com/gzorm/commons/core/stores/redis"
 )
 
 func main() {

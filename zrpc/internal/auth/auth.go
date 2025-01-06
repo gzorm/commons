@@ -8,8 +8,8 @@ import (
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
 
-	"github.com/gzorm/common/core/collection"
-	"github.com/gzorm/common/core/stores/redis"
+	"github.com/gzorm/commons/core/collection"
+	"github.com/gzorm/commons/core/stores/redis"
 )
 
 const defaultExpiration = 5 * time.Minute

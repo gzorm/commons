@@ -5,7 +5,7 @@ import (
 
 	"google.golang.org/grpc"
 
-	"github.com/gzorm/common/zrpc/internal/auth"
+	"github.com/gzorm/commons/zrpc/internal/auth"
 )
 
 // StreamAuthorizeInterceptor returns a func that uses given authenticator in processing stream requests.

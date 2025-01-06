@@ -8,9 +8,9 @@ import (
 	"strconv"
 	"testing"
 
-	ztrace "github.com/gzorm/common/core/trace"
-	"github.com/gzorm/common/core/trace/tracetest"
-	"github.com/gzorm/common/rest/chain"
+	ztrace "github.com/gzorm/commons/core/trace"
+	"github.com/gzorm/commons/core/trace/tracetest"
+	"github.com/gzorm/commons/rest/chain"
 	"github.com/stretchr/testify/assert"
 	"go.opentelemetry.io/otel"
 	tcodes "go.opentelemetry.io/otel/codes"

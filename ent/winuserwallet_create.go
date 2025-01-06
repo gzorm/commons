@@ -9,7 +9,7 @@ import (
 
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/gzorm/common/ent/winuserwallet"
+	"github.com/gzorm/commons/ent/winuserwallet"
 )
 
 // WinUserWalletCreate is the builder for creating a WinUserWallet entity.

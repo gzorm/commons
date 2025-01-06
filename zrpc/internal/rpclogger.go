@@ -1,7 +1,7 @@
 package internal
 
 import (
-	"github.com/gzorm/common/core/logx"
+	"github.com/gzorm/commons/core/logx"
 	"google.golang.org/grpc/grpclog"
 )
 

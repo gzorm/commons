@@ -6,9 +6,9 @@ import (
 	"path"
 	"strings"
 
-	"github.com/gzorm/common/core/search"
-	"github.com/gzorm/common/rest/httpx"
-	"github.com/gzorm/common/rest/pathvar"
+	"github.com/gzorm/commons/core/search"
+	"github.com/gzorm/commons/rest/httpx"
+	"github.com/gzorm/commons/rest/pathvar"
 )
 
 const (

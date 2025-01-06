@@ -9,8 +9,8 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/gzorm/common/core/codec"
-	"github.com/gzorm/common/rest/httpx"
+	"github.com/gzorm/commons/core/codec"
+	"github.com/gzorm/commons/rest/httpx"
 	"github.com/stretchr/testify/assert"
 )
 

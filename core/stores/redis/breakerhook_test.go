@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/alicebob/miniredis/v2"
-	"github.com/gzorm/common/core/breaker"
+	"github.com/gzorm/commons/core/breaker"
 	"github.com/stretchr/testify/assert"
 )
 

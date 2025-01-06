@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/threading"
-	"github.com/gzorm/common/zrpc/resolver/internal/kube"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/threading"
+	"github.com/gzorm/commons/zrpc/resolver/internal/kube"
 	"google.golang.org/grpc/resolver"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/informers"

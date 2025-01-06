@@ -3,7 +3,7 @@ package redis
 import (
 	"fmt"
 
-	"github.com/gzorm/common/core/logx"
+	"github.com/gzorm/commons/core/logx"
 	red "github.com/redis/go-redis/v9"
 )
 

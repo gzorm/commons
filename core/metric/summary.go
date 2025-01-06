@@ -1,7 +1,7 @@
 package metric
 
 import (
-	"github.com/gzorm/common/core/proc"
+	"github.com/gzorm/commons/core/proc"
 	prom "github.com/prometheus/client_golang/prometheus"
 )
 

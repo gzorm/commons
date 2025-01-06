@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/gzorm/common/ent/predicate"
-	"github.com/gzorm/common/ent/winuserwallet"
+	"github.com/gzorm/commons/ent/predicate"
+	"github.com/gzorm/commons/ent/winuserwallet"
 )
 
 // WinUserWalletDelete is the builder for deleting a WinUserWallet entity.

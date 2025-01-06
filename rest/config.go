@@ -3,7 +3,7 @@ package rest
 import (
 	"time"
 
-	"github.com/gzorm/common/core/service"
+	"github.com/gzorm/commons/core/service"
 )
 
 type (

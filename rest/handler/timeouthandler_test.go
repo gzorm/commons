@@ -13,8 +13,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/gzorm/common/core/logx/logtest"
-	"github.com/gzorm/common/rest/internal/response"
+	"github.com/gzorm/commons/core/logx/logtest"
+	"github.com/gzorm/commons/rest/internal/response"
 )
 
 func TestTimeoutWriteFlushOutput(t *testing.T) {

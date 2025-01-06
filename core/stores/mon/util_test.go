@@ -5,8 +5,8 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/gzorm/common/core/logx/logtest"
-	"github.com/gzorm/common/core/timex"
+	"github.com/gzorm/commons/core/logx/logtest"
+	"github.com/gzorm/commons/core/timex"
 	"github.com/stretchr/testify/assert"
 )
 

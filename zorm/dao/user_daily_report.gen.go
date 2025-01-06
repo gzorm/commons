@@ -16,7 +16,7 @@ import (
 
 	"gorm.io/plugin/dbresolver"
 
-	"github.com/gzorm/common/zorm/model"
+	"github.com/gzorm/commons/zorm/model"
 )
 
 func newUserDailyReport(db *gorm.DB, opts ...gen.DOOption) userDailyReport {

@@ -3,7 +3,7 @@ package cache
 import (
 	"testing"
 
-	"github.com/gzorm/common/core/timex"
+	"github.com/gzorm/commons/core/timex"
 )
 
 func TestCacheStat_statLoop(t *testing.T) {

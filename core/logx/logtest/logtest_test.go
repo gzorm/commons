@@ -4,7 +4,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/gzorm/common/core/logx"
+	"github.com/gzorm/commons/core/logx"
 	"github.com/stretchr/testify/assert"
 )
 

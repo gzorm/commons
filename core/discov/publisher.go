@@ -3,12 +3,12 @@ package discov
 import (
 	"time"
 
-	"github.com/gzorm/common/core/discov/internal"
-	"github.com/gzorm/common/core/lang"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/proc"
-	"github.com/gzorm/common/core/syncx"
-	"github.com/gzorm/common/core/threading"
+	"github.com/gzorm/commons/core/discov/internal"
+	"github.com/gzorm/commons/core/lang"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/proc"
+	"github.com/gzorm/commons/core/syncx"
+	"github.com/gzorm/commons/core/threading"
 	clientv3 "go.etcd.io/etcd/client/v3"
 )
 

@@ -1,10 +1,10 @@
 package service
 
 import (
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/proc"
-	"github.com/gzorm/common/core/syncx"
-	"github.com/gzorm/common/core/threading"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/proc"
+	"github.com/gzorm/commons/core/syncx"
+	"github.com/gzorm/commons/core/threading"
 )
 
 type (

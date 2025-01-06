@@ -5,9 +5,9 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/gzorm/common/core/breaker"
-	"github.com/gzorm/common/core/stat"
-	rcodes "github.com/gzorm/common/zrpc/internal/codes"
+	"github.com/gzorm/commons/core/breaker"
+	"github.com/gzorm/commons/core/stat"
+	rcodes "github.com/gzorm/commons/zrpc/internal/codes"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"

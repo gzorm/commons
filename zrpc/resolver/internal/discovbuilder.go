@@ -3,9 +3,9 @@ package internal
 import (
 	"strings"
 
-	"github.com/gzorm/common/core/discov"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/zrpc/resolver/internal/targets"
+	"github.com/gzorm/commons/core/discov"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/zrpc/resolver/internal/targets"
 	"google.golang.org/grpc/resolver"
 )
 

@@ -9,7 +9,7 @@ import (
 
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/gzorm/common/ent/winbetslip"
+	"github.com/gzorm/commons/ent/winbetslip"
 )
 
 // WinBetslipCreate is the builder for creating a WinBetslip entity.

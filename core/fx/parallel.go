@@ -1,8 +1,8 @@
 package fx
 
 import (
-	"github.com/gzorm/common/core/errorx"
-	"github.com/gzorm/common/core/threading"
+	"github.com/gzorm/commons/core/errorx"
+	"github.com/gzorm/commons/core/threading"
 )
 
 // Parallel runs fns parallelly and waits for done.

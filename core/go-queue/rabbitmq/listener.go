@@ -3,8 +3,8 @@ package rabbitmq
 import (
 	"log"
 
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/queue"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/queue"
 	amqp "github.com/rabbitmq/amqp091-go"
 )
 

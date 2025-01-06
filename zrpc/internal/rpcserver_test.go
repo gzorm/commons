@@ -6,9 +6,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gzorm/common/core/proc"
-	"github.com/gzorm/common/core/stat"
-	"github.com/gzorm/common/internal/mock"
+	"github.com/gzorm/commons/core/proc"
+	"github.com/gzorm/commons/core/stat"
+	"github.com/gzorm/commons/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc"
 )

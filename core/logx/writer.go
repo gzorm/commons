@@ -13,7 +13,7 @@ import (
 
 	fatihcolor "github.com/fatih/color"
 
-	"github.com/gzorm/common/core/color"
+	"github.com/gzorm/commons/core/color"
 )
 
 type (

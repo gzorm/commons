@@ -11,11 +11,11 @@ import (
 	"time"
 
 	"github.com/alicebob/miniredis/v2"
-	"github.com/gzorm/common/core/errorx"
-	"github.com/gzorm/common/core/hash"
-	"github.com/gzorm/common/core/stores/redis"
-	"github.com/gzorm/common/core/stores/redis/redistest"
-	"github.com/gzorm/common/core/syncx"
+	"github.com/gzorm/commons/core/errorx"
+	"github.com/gzorm/commons/core/hash"
+	"github.com/gzorm/commons/core/stores/redis"
+	"github.com/gzorm/commons/core/stores/redis/redistest"
+	"github.com/gzorm/commons/core/syncx"
 	"github.com/stretchr/testify/assert"
 )
 

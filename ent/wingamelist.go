@@ -8,7 +8,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/gzorm/common/ent/wingamelist"
+	"github.com/gzorm/commons/ent/wingamelist"
 )
 
 // WinGameList is the model entity for the WinGameList schema.

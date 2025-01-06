@@ -6,10 +6,10 @@ import (
 	"errors"
 	"time"
 
-	"github.com/gzorm/common/core/breaker"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/syncx"
-	"github.com/gzorm/common/core/timex"
+	"github.com/gzorm/commons/core/breaker"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/syncx"
+	"github.com/gzorm/commons/core/timex"
 )
 
 const defaultSlowThreshold = time.Millisecond * 500

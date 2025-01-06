@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/gzorm/common/core/logx/logtest"
+	"github.com/gzorm/commons/core/logx/logtest"
 	"github.com/stretchr/testify/assert"
 )
 

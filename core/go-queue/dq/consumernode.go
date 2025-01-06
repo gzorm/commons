@@ -5,8 +5,8 @@ import (
 	"github.com/beanstalkd/go-beanstalk"
 	"time"
 
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/syncx"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/syncx"
 )
 
 type (

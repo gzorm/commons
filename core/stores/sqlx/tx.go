@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/gzorm/common/core/breaker"
+	"github.com/gzorm/commons/core/breaker"
 )
 
 type (

@@ -1,6 +1,6 @@
 package dq
 
-import "github.com/gzorm/common/core/stores/redis"
+import "github.com/gzorm/commons/core/stores/redis"
 
 type (
 	Beanstalk struct {

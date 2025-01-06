@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"sync"
 
-	"github.com/gzorm/common/core/metric"
+	"github.com/gzorm/commons/core/metric"
 	"github.com/prometheus/client_golang/prometheus"
 )
 

@@ -1,7 +1,7 @@
 package test
 
 import (
-	"github.com/gzorm/common/zorm-cache/cache"
+	"github.com/gzorm/commons/zorm-cache/cache"
 	. "github.com/smartystreets/goconvey/convey"
 	"gorm.io/gorm"
 )

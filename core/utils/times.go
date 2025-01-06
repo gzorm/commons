@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/gzorm/common/core/timex"
+	"github.com/gzorm/commons/core/timex"
 )
 
 // An ElapsedTimer is a timer to track the elapsed time.

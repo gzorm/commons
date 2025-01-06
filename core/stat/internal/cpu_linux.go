@@ -7,8 +7,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/gzorm/common/core/iox"
-	"github.com/gzorm/common/core/logx"
+	"github.com/gzorm/commons/core/iox"
+	"github.com/gzorm/commons/core/logx"
 )
 
 const (

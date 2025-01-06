@@ -16,7 +16,7 @@ import (
 
 	"gorm.io/plugin/dbresolver"
 
-	"github.com/gzorm/common/zorm/model"
+	"github.com/gzorm/commons/zorm/model"
 )
 
 func newWinCoinCommissionM2(db *gorm.DB, opts ...gen.DOOption) winCoinCommissionM2 {

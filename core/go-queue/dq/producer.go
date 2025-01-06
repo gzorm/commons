@@ -6,10 +6,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gzorm/common/core/errorx"
-	"github.com/gzorm/common/core/fx"
-	"github.com/gzorm/common/core/lang"
-	"github.com/gzorm/common/core/logx"
+	"github.com/gzorm/commons/core/errorx"
+	"github.com/gzorm/commons/core/fx"
+	"github.com/gzorm/commons/core/lang"
+	"github.com/gzorm/commons/core/logx"
 )
 
 const (

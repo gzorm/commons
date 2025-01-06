@@ -7,7 +7,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/gzorm/common/core/iox"
+	"github.com/gzorm/commons/core/iox"
 )
 
 // PropertyError represents a configuration error message.

@@ -3,8 +3,8 @@ package handler
 import (
 	"net/http"
 
-	"github.com/gzorm/common/core/stat"
-	"github.com/gzorm/common/core/timex"
+	"github.com/gzorm/commons/core/stat"
+	"github.com/gzorm/commons/core/timex"
 )
 
 // MetricHandler returns a middleware that stat the metrics.

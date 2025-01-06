@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/gzorm/common/core/lang"
-	"github.com/gzorm/common/core/threading"
-	"github.com/gzorm/common/core/timex"
+	"github.com/gzorm/commons/core/lang"
+	"github.com/gzorm/commons/core/threading"
+	"github.com/gzorm/commons/core/timex"
 )
 
 const drainWorkers = 8

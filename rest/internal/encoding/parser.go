@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"net/textproto"
 
-	"github.com/gzorm/common/core/mapping"
+	"github.com/gzorm/commons/core/mapping"
 )
 
 const headerKey = "header"

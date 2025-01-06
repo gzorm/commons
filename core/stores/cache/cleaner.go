@@ -5,12 +5,12 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/gzorm/common/core/collection"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/proc"
-	"github.com/gzorm/common/core/stat"
-	"github.com/gzorm/common/core/stringx"
-	"github.com/gzorm/common/core/threading"
+	"github.com/gzorm/commons/core/collection"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/proc"
+	"github.com/gzorm/commons/core/stat"
+	"github.com/gzorm/commons/core/stringx"
+	"github.com/gzorm/commons/core/threading"
 )
 
 const (

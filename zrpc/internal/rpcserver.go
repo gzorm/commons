@@ -7,10 +7,10 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health/grpc_health_v1"
 
-	"github.com/gzorm/common/core/proc"
-	"github.com/gzorm/common/core/stat"
-	"github.com/gzorm/common/internal/health"
-	"github.com/gzorm/common/zrpc/internal/serverinterceptors"
+	"github.com/gzorm/commons/core/proc"
+	"github.com/gzorm/commons/core/stat"
+	"github.com/gzorm/commons/internal/health"
+	"github.com/gzorm/commons/zrpc/internal/serverinterceptors"
 )
 
 const probeNamePrefix = "zrpc"

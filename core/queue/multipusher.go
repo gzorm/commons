@@ -1,6 +1,6 @@
 package queue
 
-import "github.com/gzorm/common/core/errorx"
+import "github.com/gzorm/commons/core/errorx"
 
 // A MultiPusher is a pusher that can push messages to multiple underlying pushers.
 type MultiPusher struct {

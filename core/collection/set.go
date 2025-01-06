@@ -1,8 +1,8 @@
 package collection
 
 import (
-	"github.com/gzorm/common/core/lang"
-	"github.com/gzorm/common/core/logx"
+	"github.com/gzorm/commons/core/lang"
+	"github.com/gzorm/commons/core/logx"
 )
 
 const (

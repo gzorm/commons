@@ -4,8 +4,8 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/gzorm/common/core/lang"
-	"github.com/gzorm/common/core/rescue"
+	"github.com/gzorm/commons/core/lang"
+	"github.com/gzorm/commons/core/rescue"
 )
 
 // ErrTaskRunnerBusy is the error that indicates the runner is busy.

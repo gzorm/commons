@@ -2,7 +2,7 @@ package cache
 
 import (
 	"fmt"
-	"github.com/gzorm/common/zorm-cache/config"
+	"github.com/gzorm/commons/zorm-cache/config"
 )
 
 func NewGorm2Cache(cacheConfig *config.CacheConfig) (Cache, error) {

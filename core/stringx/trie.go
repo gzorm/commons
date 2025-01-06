@@ -1,6 +1,6 @@
 package stringx
 
-import "github.com/gzorm/common/core/lang"
+import "github.com/gzorm/commons/core/lang"
 
 const defaultMask = '*'
 

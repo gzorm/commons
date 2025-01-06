@@ -12,8 +12,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/gzorm/common/core/iox"
-	"github.com/gzorm/common/core/lang"
+	"github.com/gzorm/commons/core/iox"
+	"github.com/gzorm/commons/core/lang"
 	"golang.org/x/sys/unix"
 )
 

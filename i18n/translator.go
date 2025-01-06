@@ -24,14 +24,14 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/gzorm/common/core/errorx"
-	"github.com/gzorm/common/core/logx"
+	"github.com/gzorm/commons/core/errorx"
+	"github.com/gzorm/commons/core/logx"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 	"golang.org/x/text/language"
 	"google.golang.org/grpc/status"
 
-	"github.com/gzorm/common/core/errcode"
-	"github.com/gzorm/common/core/parse"
+	"github.com/gzorm/commons/core/errcode"
+	"github.com/gzorm/commons/core/parse"
 )
 
 //go:embed locale/*.json

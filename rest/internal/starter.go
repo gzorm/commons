@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/proc"
-	"github.com/gzorm/common/internal/health"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/proc"
+	"github.com/gzorm/commons/internal/health"
 )
 
 const probeNamePrefix = "rest"

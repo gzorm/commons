@@ -4,7 +4,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/gzorm/common/core/lang"
+	"github.com/gzorm/commons/core/lang"
 )
 
 // errTimeout indicates a timeout.

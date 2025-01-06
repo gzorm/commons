@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/mapping"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/mapping"
 )
 
 var errUnbalancedEscape = errors.New("no char after escape char")

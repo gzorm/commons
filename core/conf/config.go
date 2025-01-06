@@ -8,9 +8,9 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/gzorm/common/core/jsonx"
-	"github.com/gzorm/common/core/mapping"
-	"github.com/gzorm/common/internal/encoding"
+	"github.com/gzorm/commons/core/jsonx"
+	"github.com/gzorm/commons/core/mapping"
+	"github.com/gzorm/commons/internal/encoding"
 )
 
 const (

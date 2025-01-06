@@ -5,10 +5,10 @@ import (
 	"database/sql"
 	"time"
 
-	"github.com/gzorm/common/core/stores/cache"
-	"github.com/gzorm/common/core/stores/redis"
-	"github.com/gzorm/common/core/stores/sqlx"
-	"github.com/gzorm/common/core/syncx"
+	"github.com/gzorm/commons/core/stores/cache"
+	"github.com/gzorm/commons/core/stores/redis"
+	"github.com/gzorm/commons/core/stores/sqlx"
+	"github.com/gzorm/commons/core/syncx"
 )
 
 // see doc/sql-cache.md

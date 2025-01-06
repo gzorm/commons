@@ -4,8 +4,8 @@ import (
 	"context"
 	"encoding/xml"
 	"fmt"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/rest/httpx"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/rest/httpx"
 	"net/http"
 )
 

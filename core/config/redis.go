@@ -17,7 +17,7 @@ package config
 import (
 	"context"
 	"crypto/tls"
-	"github.com/gzorm/common/core/logx"
+	"github.com/gzorm/commons/core/logx"
 	"github.com/pkg/errors"
 	"github.com/redis/go-redis/v9"
 	"strings"

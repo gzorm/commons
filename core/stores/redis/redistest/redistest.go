@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/alicebob/miniredis/v2"
-	"github.com/gzorm/common/core/stores/redis"
+	"github.com/gzorm/commons/core/stores/redis"
 )
 
 // CreateRedis returns an in process redis.Redis.

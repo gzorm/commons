@@ -3,8 +3,8 @@ package metric
 import (
 	"testing"
 
-	"github.com/gzorm/common/core/proc"
-	"github.com/gzorm/common/core/prometheus"
+	"github.com/gzorm/commons/core/proc"
+	"github.com/gzorm/commons/core/prometheus"
 	"github.com/prometheus/client_golang/prometheus/testutil"
 	"github.com/stretchr/testify/assert"
 )

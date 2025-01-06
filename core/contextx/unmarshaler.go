@@ -3,7 +3,7 @@ package contextx
 import (
 	"context"
 
-	"github.com/gzorm/common/core/mapping"
+	"github.com/gzorm/commons/core/mapping"
 )
 
 const contextTagKey = "ctx"

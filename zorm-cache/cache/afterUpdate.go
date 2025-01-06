@@ -1,8 +1,8 @@
 package cache
 
 import (
-	"github.com/gzorm/common/zorm-cache/config"
-	"github.com/gzorm/common/zorm-cache/util"
+	"github.com/gzorm/commons/zorm-cache/config"
+	"github.com/gzorm/commons/zorm-cache/util"
 	"sync"
 
 	"gorm.io/gorm"

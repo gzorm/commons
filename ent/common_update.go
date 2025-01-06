@@ -10,8 +10,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/gzorm/common/ent/common"
-	"github.com/gzorm/common/ent/predicate"
+	"github.com/gzorm/commons/ent/common"
+	"github.com/gzorm/commons/ent/predicate"
 )
 
 // CommonUpdate is the builder for updating Common entities.

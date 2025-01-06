@@ -1,7 +1,7 @@
 package zorm
 
 import (
-	"github.com/gzorm/common/zorm/dao"
+	"github.com/gzorm/commons/zorm/dao"
 	"testing"
 )
 

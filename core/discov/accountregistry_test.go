@@ -3,8 +3,8 @@ package discov
 import (
 	"testing"
 
-	"github.com/gzorm/common/core/discov/internal"
-	"github.com/gzorm/common/core/stringx"
+	"github.com/gzorm/commons/core/discov/internal"
+	"github.com/gzorm/commons/core/stringx"
 	"github.com/stretchr/testify/assert"
 )
 

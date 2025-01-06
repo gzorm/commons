@@ -4,9 +4,9 @@ import (
 	"context"
 	"errors"
 
-	"github.com/gzorm/common/core/breaker"
-	"github.com/gzorm/common/core/errorx"
-	"github.com/gzorm/common/zrpc/internal/codes"
+	"github.com/gzorm/commons/core/breaker"
+	"github.com/gzorm/commons/core/errorx"
+	"github.com/gzorm/commons/zrpc/internal/codes"
 	"google.golang.org/grpc"
 	gcodes "google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

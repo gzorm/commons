@@ -5,8 +5,8 @@ import (
 	"encoding/xml"
 	"net/http"
 
-	"github.com/gzorm/common/core/errors"
-	"github.com/gzorm/common/rest/httpx"
+	"github.com/gzorm/commons/core/errors"
+	"github.com/gzorm/commons/rest/httpx"
 	"google.golang.org/grpc/status"
 )
 

@@ -4,8 +4,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/stat"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/stat"
 )
 
 type (

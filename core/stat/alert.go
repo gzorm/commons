@@ -10,10 +10,10 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/gzorm/common/core/executors"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/proc"
-	"github.com/gzorm/common/core/sysx"
+	"github.com/gzorm/commons/core/executors"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/proc"
+	"github.com/gzorm/commons/core/sysx"
 )
 
 const (

@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/gzorm/common/core/hash"
+	"github.com/gzorm/commons/core/hash"
 )
 
 var dupErr conflictKeyError

@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"sync"
 
-	"github.com/gzorm/common/core/lang"
+	"github.com/gzorm/commons/core/lang"
 )
 
 const (

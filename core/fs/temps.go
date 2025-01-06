@@ -3,7 +3,7 @@ package fs
 import (
 	"os"
 
-	"github.com/gzorm/common/core/hash"
+	"github.com/gzorm/commons/core/hash"
 )
 
 // TempFileWithText creates the temporary file with the given content,

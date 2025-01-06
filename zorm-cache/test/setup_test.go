@@ -2,9 +2,9 @@ package test
 
 import (
 	"github.com/bluele/gcache"
-	"github.com/gzorm/common/zorm-cache/cache"
-	"github.com/gzorm/common/zorm-cache/config"
-	"github.com/gzorm/common/zorm-cache/storage"
+	"github.com/gzorm/commons/zorm-cache/cache"
+	"github.com/gzorm/commons/zorm-cache/config"
+	"github.com/gzorm/commons/zorm-cache/storage"
 	"os"
 	"testing"
 

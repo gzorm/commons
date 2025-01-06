@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 
-	"github.com/gzorm/common/core/lang"
+	"github.com/gzorm/commons/core/lang"
 	"github.com/pelletier/go-toml/v2"
 	"gopkg.in/yaml.v2"
 )

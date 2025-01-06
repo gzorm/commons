@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/gzorm/common/rest/internal/header"
+	"github.com/gzorm/commons/rest/internal/header"
 	"github.com/stretchr/testify/assert"
 )
 

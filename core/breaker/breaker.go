@@ -8,10 +8,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/gzorm/common/core/mathx"
-	"github.com/gzorm/common/core/proc"
-	"github.com/gzorm/common/core/stat"
-	"github.com/gzorm/common/core/stringx"
+	"github.com/gzorm/commons/core/mathx"
+	"github.com/gzorm/commons/core/proc"
+	"github.com/gzorm/commons/core/stat"
+	"github.com/gzorm/commons/core/stringx"
 )
 
 const (

@@ -4,9 +4,9 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/gzorm/common/core/metric"
-	"github.com/gzorm/common/core/timex"
-	"github.com/gzorm/common/rest/internal/response"
+	"github.com/gzorm/commons/core/metric"
+	"github.com/gzorm/commons/core/timex"
+	"github.com/gzorm/commons/rest/internal/response"
 )
 
 const serverNamespace = "http_server"

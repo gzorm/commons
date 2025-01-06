@@ -10,8 +10,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/gzorm/common/ent/predicate"
-	"github.com/gzorm/common/ent/winbetslipsdetail"
+	"github.com/gzorm/commons/ent/predicate"
+	"github.com/gzorm/commons/ent/winbetslipsdetail"
 )
 
 // WinBetslipsDetailUpdate is the builder for updating WinBetslipsDetail entities.

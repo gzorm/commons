@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/gzorm/common/sharding"
+	"github.com/gzorm/commons/sharding"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"

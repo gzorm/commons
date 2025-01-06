@@ -5,7 +5,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/gzorm/common/core/errorx"
+	"github.com/gzorm/commons/core/errorx"
 )
 
 const defaultRetryTimes = 3

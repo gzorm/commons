@@ -10,11 +10,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/gzorm/common/core/contextx"
-	"github.com/gzorm/common/core/lang"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/syncx"
-	"github.com/gzorm/common/core/threading"
+	"github.com/gzorm/commons/core/contextx"
+	"github.com/gzorm/commons/core/lang"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/syncx"
+	"github.com/gzorm/commons/core/threading"
 	"go.etcd.io/etcd/api/v3/v3rpc/rpctypes"
 	clientv3 "go.etcd.io/etcd/client/v3"
 )

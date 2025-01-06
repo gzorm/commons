@@ -3,8 +3,8 @@ package internal
 import (
 	"testing"
 
-	"github.com/gzorm/common/core/discov"
-	"github.com/gzorm/common/core/netx"
+	"github.com/gzorm/commons/core/discov"
+	"github.com/gzorm/commons/core/netx"
 	"github.com/stretchr/testify/assert"
 )
 

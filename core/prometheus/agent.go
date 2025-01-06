@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/syncx"
-	"github.com/gzorm/common/core/threading"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/syncx"
+	"github.com/gzorm/commons/core/threading"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 

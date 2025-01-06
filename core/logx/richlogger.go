@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/gzorm/common/core/timex"
-	"github.com/gzorm/common/internal/trace"
+	"github.com/gzorm/commons/core/timex"
+	"github.com/gzorm/commons/internal/trace"
 )
 
 // WithCallerSkip returns a Logger with given caller skip.

@@ -3,7 +3,7 @@ package sysx
 import (
 	"os"
 
-	"github.com/gzorm/common/core/stringx"
+	"github.com/gzorm/commons/core/stringx"
 )
 
 var hostname string

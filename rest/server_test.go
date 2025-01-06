@@ -14,12 +14,12 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/gzorm/common/core/conf"
-	"github.com/gzorm/common/core/logx/logtest"
-	"github.com/gzorm/common/rest/chain"
-	"github.com/gzorm/common/rest/httpx"
-	"github.com/gzorm/common/rest/internal/cors"
-	"github.com/gzorm/common/rest/router"
+	"github.com/gzorm/commons/core/conf"
+	"github.com/gzorm/commons/core/logx/logtest"
+	"github.com/gzorm/commons/rest/chain"
+	"github.com/gzorm/commons/rest/httpx"
+	"github.com/gzorm/commons/rest/internal/cors"
+	"github.com/gzorm/commons/rest/router"
 )
 
 func TestNewServer(t *testing.T) {

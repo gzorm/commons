@@ -3,9 +3,9 @@ package handler
 import (
 	"net/http"
 
-	"github.com/gzorm/common/core/collection"
-	"github.com/gzorm/common/core/trace"
-	"github.com/gzorm/common/rest/internal/response"
+	"github.com/gzorm/commons/core/collection"
+	"github.com/gzorm/commons/core/trace"
+	"github.com/gzorm/commons/rest/internal/response"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/propagation"
 	semconv "go.opentelemetry.io/otel/semconv/v1.4.0"

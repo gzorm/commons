@@ -11,10 +11,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/gzorm/common/core/jsonx"
-	"github.com/gzorm/common/core/lang"
-	"github.com/gzorm/common/core/proc"
-	"github.com/gzorm/common/core/stringx"
+	"github.com/gzorm/commons/core/jsonx"
+	"github.com/gzorm/commons/core/lang"
+	"github.com/gzorm/commons/core/proc"
+	"github.com/gzorm/commons/core/stringx"
 )
 
 const (

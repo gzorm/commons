@@ -9,8 +9,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/threading"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/threading"
 )
 
 const (

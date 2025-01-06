@@ -3,7 +3,7 @@ package mapping
 import (
 	"io"
 
-	"github.com/gzorm/common/internal/encoding"
+	"github.com/gzorm/commons/internal/encoding"
 )
 
 // UnmarshalTomlBytes unmarshals TOML bytes into the given v.

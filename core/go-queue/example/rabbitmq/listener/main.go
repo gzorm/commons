@@ -4,10 +4,10 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/gzorm/common/core/conf"
-	"github.com/gzorm/common/core/go-queue/example/rabbitmq/listener/config"
-	"github.com/gzorm/common/core/go-queue/rabbitmq"
-	"github.com/gzorm/common/core/service"
+	"github.com/gzorm/commons/core/conf"
+	"github.com/gzorm/commons/core/go-queue/example/rabbitmq/listener/config"
+	"github.com/gzorm/commons/core/go-queue/rabbitmq"
+	"github.com/gzorm/commons/core/service"
 )
 
 var configFile = flag.String("f", "listener.yaml", "Specify the config file")

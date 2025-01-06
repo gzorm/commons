@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/gzorm/common/core/mapping"
-	"github.com/gzorm/common/rest/internal/encoding"
-	"github.com/gzorm/common/rest/internal/header"
+	"github.com/gzorm/commons/core/mapping"
+	"github.com/gzorm/commons/rest/internal/encoding"
+	"github.com/gzorm/commons/rest/internal/header"
 )
 
 // Parse parses the response.

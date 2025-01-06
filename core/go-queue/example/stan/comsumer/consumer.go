@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/gzorm/common/core/go-queue/stanq"
+	"github.com/gzorm/commons/core/go-queue/stanq"
 	"github.com/nats-io/stan.go"
 )
 

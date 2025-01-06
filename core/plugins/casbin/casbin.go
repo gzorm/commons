@@ -16,15 +16,15 @@ package casbin
 
 import (
 	"github.com/casbin/casbin/v2"
-	"github.com/gzorm/common/core/config"
+	"github.com/gzorm/commons/core/config"
 	"log"
 
 	"github.com/casbin/casbin/v2/model"
 	"github.com/casbin/casbin/v2/persist"
 	entadapter "github.com/casbin/ent-adapter"
 	rediswatcher "github.com/casbin/redis-watcher/v2"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/stores/redis"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/stores/redis"
 	redis2 "github.com/redis/go-redis/v9"
 )
 

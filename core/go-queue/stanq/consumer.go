@@ -3,8 +3,8 @@ package stanq
 import (
 	"errors"
 	"fmt"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/queue"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/queue"
 	stan "github.com/nats-io/stan.go"
 	"reflect"
 	"sync"

@@ -7,9 +7,9 @@ import (
 	"testing"
 
 	"github.com/alicebob/miniredis/v2"
-	"github.com/gzorm/common/core/stores/cache"
-	"github.com/gzorm/common/core/stores/mon"
-	"github.com/gzorm/common/core/stores/redis"
+	"github.com/gzorm/commons/core/stores/cache"
+	"github.com/gzorm/commons/core/stores/mon"
+	"github.com/gzorm/commons/core/stores/redis"
 	"github.com/stretchr/testify/assert"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/integration/mtest"

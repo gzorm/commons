@@ -1,6 +1,6 @@
 package httpx
 
-import "github.com/gzorm/common/rest/internal/header"
+import "github.com/gzorm/commons/rest/internal/header"
 
 const (
 	// ContentEncoding means Content-Encoding.

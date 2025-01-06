@@ -6,11 +6,11 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/rescue"
-	"github.com/gzorm/common/core/stat"
-	"github.com/gzorm/common/core/threading"
-	"github.com/gzorm/common/core/timex"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/rescue"
+	"github.com/gzorm/commons/core/stat"
+	"github.com/gzorm/commons/core/threading"
+	"github.com/gzorm/commons/core/timex"
 )
 
 const queueName = "queue"

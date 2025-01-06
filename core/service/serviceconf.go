@@ -1,13 +1,13 @@
 package service
 
 import (
-	"github.com/gzorm/common/core/load"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/proc"
-	"github.com/gzorm/common/core/prometheus"
-	"github.com/gzorm/common/core/stat"
-	"github.com/gzorm/common/core/trace"
-	"github.com/gzorm/common/internal/devserver"
+	"github.com/gzorm/commons/core/load"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/proc"
+	"github.com/gzorm/commons/core/prometheus"
+	"github.com/gzorm/commons/core/stat"
+	"github.com/gzorm/commons/core/trace"
+	"github.com/gzorm/commons/internal/devserver"
 )
 
 const (

@@ -2,7 +2,7 @@ package zorm
 
 import (
 	"fmt"
-	"github.com/gzorm/common/sharding"
+	"github.com/gzorm/commons/sharding"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/plugin/dbresolver"

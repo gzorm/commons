@@ -12,10 +12,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gzorm/common/core/codec"
-	"github.com/gzorm/common/core/iox"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/rest/httpx"
+	"github.com/gzorm/commons/core/codec"
+	"github.com/gzorm/commons/core/iox"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/rest/httpx"
 )
 
 const (

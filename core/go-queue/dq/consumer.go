@@ -4,10 +4,10 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/gzorm/common/core/hash"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/service"
-	"github.com/gzorm/common/core/stores/redis"
+	"github.com/gzorm/commons/core/hash"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/service"
+	"github.com/gzorm/commons/core/stores/redis"
 )
 
 const (

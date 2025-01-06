@@ -1,7 +1,7 @@
 package zorm
 
 import (
-	"github.com/gzorm/common/sharding"
+	"github.com/gzorm/commons/sharding"
 	"gorm.io/gorm"
 	"gorm.io/plugin/dbresolver"
 	"gorm.io/plugin/prometheus"

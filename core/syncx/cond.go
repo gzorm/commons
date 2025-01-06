@@ -3,8 +3,8 @@ package syncx
 import (
 	"time"
 
-	"github.com/gzorm/common/core/lang"
-	"github.com/gzorm/common/core/timex"
+	"github.com/gzorm/commons/core/lang"
+	"github.com/gzorm/commons/core/timex"
 )
 
 // A Cond is used to wait for conditions.

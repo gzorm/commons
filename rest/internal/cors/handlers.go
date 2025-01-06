@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/gzorm/common/rest/internal/response"
+	"github.com/gzorm/commons/rest/internal/response"
 )
 
 const (

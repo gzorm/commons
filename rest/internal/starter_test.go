@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/gzorm/common/core/proc"
+	"github.com/gzorm/commons/core/proc"
 	"github.com/stretchr/testify/assert"
 )
 

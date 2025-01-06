@@ -4,7 +4,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/gzorm/common/core/threading"
+	"github.com/gzorm/commons/core/threading"
 )
 
 // A DelayExecutor delays a tasks on given delay interval.

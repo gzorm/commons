@@ -10,8 +10,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/gzorm/common/core/lang"
-	"github.com/gzorm/common/core/stringx"
+	"github.com/gzorm/commons/core/lang"
+	"github.com/gzorm/commons/core/stringx"
 )
 
 const (

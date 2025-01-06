@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"runtime/debug"
 
-	"github.com/gzorm/common/rest/internal"
+	"github.com/gzorm/commons/rest/internal"
 )
 
 // RecoverHandler returns a middleware that recovers if panic happens.

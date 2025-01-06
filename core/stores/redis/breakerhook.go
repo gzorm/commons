@@ -3,8 +3,8 @@ package redis
 import (
 	"context"
 
-	"github.com/gzorm/common/core/breaker"
-	"github.com/gzorm/common/core/lang"
+	"github.com/gzorm/commons/core/breaker"
+	"github.com/gzorm/commons/core/lang"
 	red "github.com/redis/go-redis/v9"
 )
 

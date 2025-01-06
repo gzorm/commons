@@ -9,7 +9,7 @@ import (
 
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/gzorm/common/ent/windictitem"
+	"github.com/gzorm/commons/ent/windictitem"
 )
 
 // WinDictItemCreate is the builder for creating a WinDictItem entity.

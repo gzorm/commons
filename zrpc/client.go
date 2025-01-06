@@ -3,11 +3,11 @@ package zrpc
 import (
 	"time"
 
-	"github.com/gzorm/common/core/conf"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/zrpc/internal"
-	"github.com/gzorm/common/zrpc/internal/auth"
-	"github.com/gzorm/common/zrpc/internal/clientinterceptors"
+	"github.com/gzorm/commons/core/conf"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/zrpc/internal"
+	"github.com/gzorm/commons/zrpc/internal/auth"
+	"github.com/gzorm/commons/zrpc/internal/clientinterceptors"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/keepalive"
 )

@@ -12,10 +12,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gzorm/common/core/conf"
-	"github.com/gzorm/common/core/fs"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/rest/router"
+	"github.com/gzorm/commons/core/conf"
+	"github.com/gzorm/commons/core/fs"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/rest/router"
 	"github.com/stretchr/testify/assert"
 )
 

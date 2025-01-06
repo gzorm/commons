@@ -6,7 +6,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/gzorm/common/core/lang"
+	"github.com/gzorm/commons/core/lang"
 	"github.com/stretchr/testify/assert"
 )
 

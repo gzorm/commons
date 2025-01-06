@@ -6,7 +6,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/gzorm/common/core/syncx"
+	"github.com/gzorm/commons/core/syncx"
 )
 
 // defaultHealthManager is global comboHealthManager.

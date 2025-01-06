@@ -8,14 +8,14 @@ import (
 	"sort"
 	"time"
 
-	"github.com/gzorm/common/core/codec"
-	"github.com/gzorm/common/core/load"
-	"github.com/gzorm/common/core/stat"
-	"github.com/gzorm/common/rest/chain"
-	"github.com/gzorm/common/rest/handler"
-	"github.com/gzorm/common/rest/httpx"
-	"github.com/gzorm/common/rest/internal"
-	"github.com/gzorm/common/rest/internal/response"
+	"github.com/gzorm/commons/core/codec"
+	"github.com/gzorm/commons/core/load"
+	"github.com/gzorm/commons/core/stat"
+	"github.com/gzorm/commons/rest/chain"
+	"github.com/gzorm/commons/rest/handler"
+	"github.com/gzorm/commons/rest/httpx"
+	"github.com/gzorm/commons/rest/internal"
+	"github.com/gzorm/commons/rest/internal/response"
 )
 
 // use 1000m to represent 100%

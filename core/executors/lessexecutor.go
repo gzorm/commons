@@ -3,8 +3,8 @@ package executors
 import (
 	"time"
 
-	"github.com/gzorm/common/core/syncx"
-	"github.com/gzorm/common/core/timex"
+	"github.com/gzorm/commons/core/syncx"
+	"github.com/gzorm/commons/core/timex"
 )
 
 // A LessExecutor is an executor to limit execution once within given time interval.

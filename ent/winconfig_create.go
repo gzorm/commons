@@ -9,7 +9,7 @@ import (
 
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/gzorm/common/ent/winconfig"
+	"github.com/gzorm/commons/ent/winconfig"
 )
 
 // WinConfigCreate is the builder for creating a WinConfig entity.

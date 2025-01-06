@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/gzorm/common/core/stores/redis/redistest"
+	"github.com/gzorm/commons/core/stores/redis/redistest"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc/metadata"
 )

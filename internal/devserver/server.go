@@ -9,10 +9,10 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/prometheus"
-	"github.com/gzorm/common/core/threading"
-	"github.com/gzorm/common/internal/health"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/prometheus"
+	"github.com/gzorm/commons/core/threading"
+	"github.com/gzorm/commons/internal/health"
 )
 
 var once sync.Once

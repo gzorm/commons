@@ -9,7 +9,7 @@ import (
 
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/gzorm/common/ent/winuser"
+	"github.com/gzorm/commons/ent/winuser"
 )
 
 // WinUserCreate is the builder for creating a WinUser entity.

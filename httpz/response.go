@@ -2,12 +2,12 @@ package httpz
 
 import (
 	"context"
-	"github.com/gzorm/common/header"
-	"github.com/gzorm/common/rest/httpx"
+	"github.com/gzorm/commons/header"
+	"github.com/gzorm/commons/rest/httpx"
 	"net/http"
 	"strings"
 
-	xhttp "github.com/gzorm/common/core/http"
+	xhttp "github.com/gzorm/commons/core/http"
 )
 
 // ErrorCtx writes err into w.

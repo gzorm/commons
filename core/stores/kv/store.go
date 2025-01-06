@@ -5,10 +5,10 @@ import (
 	"errors"
 	"log"
 
-	"github.com/gzorm/common/core/errorx"
-	"github.com/gzorm/common/core/hash"
-	"github.com/gzorm/common/core/stores/cache"
-	"github.com/gzorm/common/core/stores/redis"
+	"github.com/gzorm/commons/core/errorx"
+	"github.com/gzorm/commons/core/hash"
+	"github.com/gzorm/commons/core/stores/cache"
+	"github.com/gzorm/commons/core/stores/redis"
 )
 
 // ErrNoRedisNode is an error that indicates no redis node.

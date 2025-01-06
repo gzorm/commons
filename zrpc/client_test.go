@@ -8,9 +8,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gzorm/common/core/discov"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/internal/mock"
+	"github.com/gzorm/commons/core/discov"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"

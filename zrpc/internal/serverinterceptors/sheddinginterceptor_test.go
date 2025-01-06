@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/gzorm/common/core/load"
-	"github.com/gzorm/common/core/stat"
+	"github.com/gzorm/commons/core/load"
+	"github.com/gzorm/commons/core/stat"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"

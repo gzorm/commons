@@ -4,9 +4,9 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/gzorm/common/core/collection"
-	"github.com/gzorm/common/core/lang"
-	"github.com/gzorm/common/core/threading"
+	"github.com/gzorm/commons/core/collection"
+	"github.com/gzorm/commons/core/lang"
+	"github.com/gzorm/commons/core/threading"
 )
 
 const (

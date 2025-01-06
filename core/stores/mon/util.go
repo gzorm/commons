@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/timex"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/timex"
 )
 
 const mongoAddrSep = ","

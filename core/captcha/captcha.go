@@ -15,7 +15,7 @@
 package captcha
 
 import (
-	redis2 "github.com/gzorm/common/core/stores/redis"
+	redis2 "github.com/gzorm/commons/core/stores/redis"
 	"github.com/mojocn/base64Captcha"
 	"github.com/redis/go-redis/v9"
 	"image/color"

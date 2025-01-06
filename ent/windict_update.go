@@ -10,8 +10,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/gzorm/common/ent/predicate"
-	"github.com/gzorm/common/ent/windict"
+	"github.com/gzorm/commons/ent/predicate"
+	"github.com/gzorm/commons/ent/windict"
 )
 
 // WinDictUpdate is the builder for updating WinDict entities.

@@ -5,9 +5,9 @@ import (
 	"database/sql"
 	"errors"
 
-	"github.com/gzorm/common/core/breaker"
-	"github.com/gzorm/common/core/errorx"
-	"github.com/gzorm/common/core/logx"
+	"github.com/gzorm/commons/core/breaker"
+	"github.com/gzorm/commons/core/errorx"
+	"github.com/gzorm/commons/core/logx"
 )
 
 // spanName is used to identify the span name for the SQL execution.

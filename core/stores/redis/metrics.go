@@ -3,7 +3,7 @@ package redis
 import (
 	"sync"
 
-	"github.com/gzorm/common/core/metric"
+	"github.com/gzorm/commons/core/metric"
 	"github.com/prometheus/client_golang/prometheus"
 	red "github.com/redis/go-redis/v9"
 )

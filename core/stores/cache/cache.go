@@ -7,10 +7,10 @@ import (
 	"log"
 	"time"
 
-	"github.com/gzorm/common/core/errorx"
-	"github.com/gzorm/common/core/hash"
-	"github.com/gzorm/common/core/stores/redis"
-	"github.com/gzorm/common/core/syncx"
+	"github.com/gzorm/commons/core/errorx"
+	"github.com/gzorm/commons/core/hash"
+	"github.com/gzorm/commons/core/stores/redis"
+	"github.com/gzorm/commons/core/syncx"
 )
 
 type (

@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gzorm/common/core/timex"
+	"github.com/gzorm/commons/core/timex"
 	"github.com/stretchr/testify/assert"
 )
 

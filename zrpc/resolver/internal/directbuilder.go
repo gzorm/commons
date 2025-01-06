@@ -3,7 +3,7 @@ package internal
 import (
 	"strings"
 
-	"github.com/gzorm/common/zrpc/resolver/internal/targets"
+	"github.com/gzorm/commons/zrpc/resolver/internal/targets"
 	"google.golang.org/grpc/resolver"
 )
 

@@ -8,7 +8,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/gzorm/common/ent/winconfig"
+	"github.com/gzorm/commons/ent/winconfig"
 )
 
 // WinConfig is the model entity for the WinConfig schema.

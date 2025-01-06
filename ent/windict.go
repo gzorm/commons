@@ -8,7 +8,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/gzorm/common/ent/windict"
+	"github.com/gzorm/commons/ent/windict"
 )
 
 // WinDict is the model entity for the WinDict schema.

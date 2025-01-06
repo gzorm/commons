@@ -9,7 +9,7 @@ import (
 
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/gzorm/common/ent/winplatlist"
+	"github.com/gzorm/commons/ent/winplatlist"
 )
 
 // WinPlatListCreate is the builder for creating a WinPlatList entity.

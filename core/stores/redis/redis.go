@@ -7,11 +7,11 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/gzorm/common/core/breaker"
-	"github.com/gzorm/common/core/errorx"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/mapping"
-	"github.com/gzorm/common/core/syncx"
+	"github.com/gzorm/commons/core/breaker"
+	"github.com/gzorm/commons/core/errorx"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/mapping"
+	"github.com/gzorm/commons/core/syncx"
 	red "github.com/redis/go-redis/v9"
 )
 

@@ -8,7 +8,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/gzorm/common/ent/winuser"
+	"github.com/gzorm/commons/ent/winuser"
 )
 
 // WinUser is the model entity for the WinUser schema.

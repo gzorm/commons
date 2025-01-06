@@ -4,11 +4,11 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/gzorm/common/core/load"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/stat"
-	"github.com/gzorm/common/rest/httpx"
-	"github.com/gzorm/common/rest/internal/response"
+	"github.com/gzorm/commons/core/load"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/stat"
+	"github.com/gzorm/commons/rest/httpx"
+	"github.com/gzorm/commons/rest/internal/response"
 )
 
 const serviceType = "api"

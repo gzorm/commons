@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/gzorm/common/ent/predicate"
-	"github.com/gzorm/common/ent/winuser"
+	"github.com/gzorm/commons/ent/predicate"
+	"github.com/gzorm/commons/ent/winuser"
 )
 
 // WinUserDelete is the builder for deleting a WinUser entity.

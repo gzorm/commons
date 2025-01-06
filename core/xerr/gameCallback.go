@@ -1,7 +1,7 @@
 package xerr
 
 import (
-	gerr "github.com/gzorm/common/core/xerr/types/err"
+	gerr "github.com/gzorm/commons/core/xerr/types/err"
 	"google.golang.org/grpc/status"
 )
 

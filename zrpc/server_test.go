@@ -8,13 +8,13 @@ import (
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc"
 
-	"github.com/gzorm/common/core/discov"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/service"
-	"github.com/gzorm/common/core/stat"
-	"github.com/gzorm/common/core/stores/redis"
-	"github.com/gzorm/common/zrpc/internal"
-	"github.com/gzorm/common/zrpc/internal/serverinterceptors"
+	"github.com/gzorm/commons/core/discov"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/service"
+	"github.com/gzorm/commons/core/stat"
+	"github.com/gzorm/commons/core/stores/redis"
+	"github.com/gzorm/commons/zrpc/internal"
+	"github.com/gzorm/commons/zrpc/internal/serverinterceptors"
 )
 
 func TestServer_setupInterceptors(t *testing.T) {

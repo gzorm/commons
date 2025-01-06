@@ -3,7 +3,7 @@ package syncx
 import (
 	"sync"
 
-	"github.com/gzorm/common/core/lang"
+	"github.com/gzorm/commons/core/lang"
 )
 
 // A DoneChan is used as a channel that can be closed multiple times and wait for done.

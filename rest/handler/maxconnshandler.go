@@ -3,9 +3,9 @@ package handler
 import (
 	"net/http"
 
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/syncx"
-	"github.com/gzorm/common/rest/internal"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/syncx"
+	"github.com/gzorm/commons/rest/internal"
 )
 
 // MaxConnsHandler returns a middleware that limit the concurrent connections.

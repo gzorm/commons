@@ -3,7 +3,7 @@ package mapping
 import (
 	"io"
 
-	"github.com/gzorm/common/internal/encoding"
+	"github.com/gzorm/commons/internal/encoding"
 )
 
 // UnmarshalYamlBytes unmarshals content into v.

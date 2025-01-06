@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/gzorm/common/core/prometheus"
+	"github.com/gzorm/commons/core/prometheus"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc"
 )

@@ -13,8 +13,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/gzorm/common/core/fs"
-	"github.com/gzorm/common/core/stringx"
+	"github.com/gzorm/commons/core/fs"
+	"github.com/gzorm/commons/core/stringx"
 )
 
 func TestDailyRotateRuleMarkRotated(t *testing.T) {

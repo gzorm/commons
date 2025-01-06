@@ -4,8 +4,8 @@ import (
 	"context"
 	"strconv"
 
-	"github.com/gzorm/common/core/metric"
-	"github.com/gzorm/common/core/timex"
+	"github.com/gzorm/commons/core/metric"
+	"github.com/gzorm/commons/core/timex"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/status"
 )

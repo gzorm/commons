@@ -3,9 +3,9 @@ package zrpc
 import (
 	"testing"
 
-	"github.com/gzorm/common/core/discov"
-	"github.com/gzorm/common/core/service"
-	"github.com/gzorm/common/core/stores/redis"
+	"github.com/gzorm/commons/core/discov"
+	"github.com/gzorm/commons/core/service"
+	"github.com/gzorm/commons/core/stores/redis"
 	"github.com/stretchr/testify/assert"
 )
 

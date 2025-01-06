@@ -12,15 +12,15 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/gzorm/common/core/color"
-	"github.com/gzorm/common/core/iox"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/syncx"
-	"github.com/gzorm/common/core/timex"
-	"github.com/gzorm/common/core/utils"
-	"github.com/gzorm/common/rest/httpx"
-	"github.com/gzorm/common/rest/internal"
-	"github.com/gzorm/common/rest/internal/response"
+	"github.com/gzorm/commons/core/color"
+	"github.com/gzorm/commons/core/iox"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/syncx"
+	"github.com/gzorm/commons/core/timex"
+	"github.com/gzorm/commons/core/utils"
+	"github.com/gzorm/commons/rest/httpx"
+	"github.com/gzorm/commons/rest/internal"
+	"github.com/gzorm/commons/rest/internal/response"
 )
 
 const (

@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gzorm/common/core/conf"
-	"github.com/gzorm/common/internal/devserver"
+	"github.com/gzorm/commons/core/conf"
+	"github.com/gzorm/commons/internal/devserver"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/testutil"
 	red "github.com/redis/go-redis/v9"

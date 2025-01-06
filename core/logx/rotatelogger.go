@@ -13,8 +13,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/gzorm/common/core/fs"
-	"github.com/gzorm/common/core/lang"
+	"github.com/gzorm/commons/core/fs"
+	"github.com/gzorm/commons/core/lang"
 )
 
 const (

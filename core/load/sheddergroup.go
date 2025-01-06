@@ -3,7 +3,7 @@ package load
 import (
 	"io"
 
-	"github.com/gzorm/common/core/syncx"
+	"github.com/gzorm/commons/core/syncx"
 )
 
 // A ShedderGroup is a manager to manage key-based shedders.

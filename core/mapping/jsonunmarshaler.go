@@ -3,7 +3,7 @@ package mapping
 import (
 	"io"
 
-	"github.com/gzorm/common/core/jsonx"
+	"github.com/gzorm/commons/core/jsonx"
 )
 
 const jsonTagKey = "json"

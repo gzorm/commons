@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/gzorm/common/core/proc"
+	"github.com/gzorm/commons/core/proc"
 	"github.com/prometheus/client_golang/prometheus/testutil"
 	"github.com/stretchr/testify/assert"
 )

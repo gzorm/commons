@@ -3,8 +3,8 @@ package mon
 import (
 	"context"
 
-	"github.com/gzorm/common/core/errorx"
-	"github.com/gzorm/common/core/trace"
+	"github.com/gzorm/commons/core/errorx"
+	"github.com/gzorm/commons/core/trace"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"

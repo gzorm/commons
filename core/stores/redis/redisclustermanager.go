@@ -6,7 +6,7 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/gzorm/common/core/syncx"
+	"github.com/gzorm/commons/core/syncx"
 	red "github.com/redis/go-redis/v9"
 )
 

@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gzorm/common/core/iox"
-	"github.com/gzorm/common/core/lang"
+	"github.com/gzorm/commons/core/iox"
+	"github.com/gzorm/commons/core/lang"
 	"github.com/stretchr/testify/assert"
 )
 

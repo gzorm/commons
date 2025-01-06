@@ -3,10 +3,10 @@ package breaker
 import (
 	"time"
 
-	"github.com/gzorm/common/core/collection"
-	"github.com/gzorm/common/core/mathx"
-	"github.com/gzorm/common/core/syncx"
-	"github.com/gzorm/common/core/timex"
+	"github.com/gzorm/commons/core/collection"
+	"github.com/gzorm/commons/core/mathx"
+	"github.com/gzorm/commons/core/syncx"
+	"github.com/gzorm/commons/core/timex"
 )
 
 const (

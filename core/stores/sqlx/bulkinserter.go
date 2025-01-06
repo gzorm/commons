@@ -7,9 +7,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/gzorm/common/core/executors"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/stringx"
+	"github.com/gzorm/commons/core/executors"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/stringx"
 )
 
 const (

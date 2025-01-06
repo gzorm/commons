@@ -4,9 +4,9 @@ import (
 	"context"
 	"sync"
 
-	"github.com/gzorm/common/core/syncx"
-	"github.com/gzorm/common/zrpc/internal"
-	"github.com/gzorm/common/zrpc/internal/auth"
+	"github.com/gzorm/commons/core/syncx"
+	"github.com/gzorm/commons/zrpc/internal"
+	"github.com/gzorm/commons/zrpc/internal/auth"
 	"google.golang.org/grpc"
 )
 

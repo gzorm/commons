@@ -4,7 +4,7 @@ package windict
 
 import (
 	"entgo.io/ent/dialect/sql"
-	"github.com/gzorm/common/ent/predicate"
+	"github.com/gzorm/commons/ent/predicate"
 )
 
 // ID filters vertices based on their ID field.

@@ -8,7 +8,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/gzorm/common/ent/wingameslot"
+	"github.com/gzorm/commons/ent/wingameslot"
 )
 
 // WinGameSlot is the model entity for the WinGameSlot schema.

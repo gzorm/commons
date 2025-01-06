@@ -12,7 +12,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/gzorm/common/core/sysx"
+	"github.com/gzorm/commons/core/sysx"
 )
 
 const callerDepth = 4

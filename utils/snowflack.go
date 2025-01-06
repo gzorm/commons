@@ -6,8 +6,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/stores/redis"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/stores/redis"
 )
 
 const (

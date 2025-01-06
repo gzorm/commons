@@ -5,9 +5,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/stat/internal"
-	"github.com/gzorm/common/core/threading"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/stat/internal"
+	"github.com/gzorm/commons/core/threading"
 )
 
 const (

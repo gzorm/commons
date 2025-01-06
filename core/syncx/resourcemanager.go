@@ -4,7 +4,7 @@ import (
 	"io"
 	"sync"
 
-	"github.com/gzorm/common/core/errorx"
+	"github.com/gzorm/commons/core/errorx"
 )
 
 // A ResourceManager is a manager that used to manage resources.

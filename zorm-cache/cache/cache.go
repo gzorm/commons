@@ -2,9 +2,9 @@ package cache
 
 import (
 	"context"
-	"github.com/gzorm/common/zorm-cache/config"
-	"github.com/gzorm/common/zorm-cache/storage"
-	"github.com/gzorm/common/zorm-cache/util"
+	"github.com/gzorm/commons/zorm-cache/config"
+	"github.com/gzorm/commons/zorm-cache/storage"
+	"github.com/gzorm/commons/zorm-cache/util"
 
 	jsoniter "github.com/json-iterator/go"
 	"gorm.io/gorm"

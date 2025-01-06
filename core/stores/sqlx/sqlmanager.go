@@ -5,7 +5,7 @@ import (
 	"io"
 	"time"
 
-	"github.com/gzorm/common/core/syncx"
+	"github.com/gzorm/commons/core/syncx"
 )
 
 const (

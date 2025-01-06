@@ -3,8 +3,8 @@ package service
 import (
 	"testing"
 
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/internal/devserver"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/internal/devserver"
 	"github.com/stretchr/testify/assert"
 )
 

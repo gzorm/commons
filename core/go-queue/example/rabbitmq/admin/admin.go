@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/gzorm/common/core/go-queue/rabbitmq"
+	"github.com/gzorm/commons/core/go-queue/rabbitmq"
 )
 
 func main() {

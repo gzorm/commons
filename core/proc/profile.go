@@ -14,7 +14,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/gzorm/common/core/logx"
+	"github.com/gzorm/commons/core/logx"
 )
 
 // DefaultMemProfileRate is the default memory profiling rate.

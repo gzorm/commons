@@ -6,11 +6,11 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/gzorm/common/core/lang"
-	"github.com/gzorm/common/core/proc"
-	"github.com/gzorm/common/core/syncx"
-	"github.com/gzorm/common/core/threading"
-	"github.com/gzorm/common/core/timex"
+	"github.com/gzorm/commons/core/lang"
+	"github.com/gzorm/commons/core/proc"
+	"github.com/gzorm/commons/core/syncx"
+	"github.com/gzorm/commons/core/threading"
+	"github.com/gzorm/commons/core/timex"
 )
 
 const idleRound = 10

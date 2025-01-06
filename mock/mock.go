@@ -5,14 +5,14 @@ import (
 	"database/sql"
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/alicebob/miniredis/v2"
-	"github.com/gzorm/common/utils"
-	"github.com/gzorm/common/zorm/dao"
+	"github.com/gzorm/commons/utils"
+	"github.com/gzorm/commons/zorm/dao"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"reflect"
 	"testing"
 
-	zr "github.com/gzorm/common/core/stores/redis"
+	zr "github.com/gzorm/commons/core/stores/redis"
 )
 
 func GetPlatLogicService[T any, Ctx any](t *testing.T, gc any, constructor any) (*T, sqlmock.Sqlmock, *miniredis.Miniredis, utils.Snowflake) {

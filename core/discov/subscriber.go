@@ -4,9 +4,9 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/gzorm/common/core/discov/internal"
-	"github.com/gzorm/common/core/logx"
-	"github.com/gzorm/common/core/syncx"
+	"github.com/gzorm/commons/core/discov/internal"
+	"github.com/gzorm/commons/core/logx"
+	"github.com/gzorm/commons/core/syncx"
 )
 
 type (
