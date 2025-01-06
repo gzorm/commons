@@ -70,12 +70,12 @@ require (
 	google.golang.org/protobuf v1.34.2
 	gopkg.in/h2non/gock.v1 v1.1.2
 	gopkg.in/yaml.v2 v2.4.0
-	gorm.io/driver/mysql v1.5.6
+	gorm.io/driver/mysql v1.5.7
 	gorm.io/driver/postgres v1.5.7
 	gorm.io/gen v0.3.26
 	gorm.io/gorm v1.25.12
 	gorm.io/hints v1.1.2
-	gorm.io/plugin/dbresolver v1.5.1
+	gorm.io/plugin/dbresolver v1.5.3
 	gorm.io/plugin/prometheus v0.1.0
 	k8s.io/api v0.30.1
 	k8s.io/apimachinery v0.30.1
@@ -92,7 +92,7 @@ require (
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/casbin/govaluate v1.1.0 // indirect
 	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
-	github.com/cespare/xxhash/v2 v2.2.0 // indirect
+	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/coreos/go-semver v0.3.1 // indirect
 	github.com/coreos/go-systemd/v22 v22.5.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
