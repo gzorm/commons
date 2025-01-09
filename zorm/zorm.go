@@ -102,9 +102,9 @@ func getConn(config SchemaConfig, mode string) *gorm.DB {
 
 	db.SetMaxIdleConns(config.MaxIdelConn)
 	db.SetMaxOpenConns(config.MaxOpenConn)
-	db.SetConnMaxLifetime(5 * time.Minute)        // 设置连接的最大存活时间
-	db.SetConnMaxIdleTime(5 * time.Minute)        // 设置连接的最大空闲时间
-	db.Exec("SET innodb_lock_wait_timeout = 50;") // 设置锁等待超时
+	db.SetConnMaxLifetime(5 * time.Minute) // 设置连接的最大存活时间
+	db.SetConnMaxIdleTime(5 * time.Minute) // 设置连接的最大空闲时间
+
 	if err != nil {
 		panic(err)
 	}
