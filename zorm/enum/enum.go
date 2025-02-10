@@ -74,7 +74,7 @@ const (
 	EZUGI
 	HABA
 	JDB
-	YGG
+	FB
 	CQ9
 	JiLi
 	DS88
@@ -90,7 +90,6 @@ const (
 	AVIATRIX
 	PLAY_STAR
 	CALETA
-	FB
 	SABA
 	PB
 	RTG
@@ -99,6 +98,7 @@ const (
 	PP
 	TG
 	ELECTRON
+	TABLES
 
 	//HABANERO1
 )
@@ -117,8 +117,8 @@ func (p PLAT) String() string {
 		return "HABA"
 	case JDB:
 		return "JDB"
-	case YGG:
-		return "YGG"
+	case FB:
+		return "FB"
 	case CQ9:
 		return "CQ9"
 	case JiLi:
@@ -149,8 +149,6 @@ func (p PLAT) String() string {
 		return "PLAY_STAR"
 	case CALETA:
 		return "CALETA"
-	case FB:
-		return "FB"
 	case SABA:
 		return "Filbet_Sports"
 	case PB:
@@ -167,6 +165,8 @@ func (p PLAT) String() string {
 		return "PP"
 	case TG:
 		return "v99_100001"
+	case TABLES:
+		return "v99_100003"
 	case ELECTRON:
 		return "v99_100002"
 	}
