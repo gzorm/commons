@@ -17,37 +17,49 @@ import (
 )
 
 var (
-	Q                         = new(Query)
-	PointsUserChange          *pointsUserChange
-	WinOperationLoginfo       *winOperationLoginfo
-	WinPromotionRequirements  *winPromotionRequirements
-	WinPromotionLevel         *winPromotionLevel
-	WinPromotionKpi           *winPromotionKpi
-	WinSmsChannel             *winSmsChannel
-	WinArticleInfo            *winArticleInfo
-	WinFacebookClick          *winFacebookClick
-	WinAgentUserReport        *winAgentUserReport
-	UserDailyReport           *userDailyReport
-	WinBetslipsDateStatistics *winBetslipsDateStatistics
-	AgentCommissionDay        *agentCommissionDay
-	AgentCommissionYear       *agentCommissionYear
-	AgentCommissionLog        *agentCommissionLog
-	AgentCommission           *agentCommission
-	WinBetslips1              *winBetslips1
-	WinBetslips5              *winBetslips5
-	WinBetslips9              *winBetslips9
-	WinBetslipsDetails1       *winBetslipsDetails1
-	WinBetslipsDetails5       *winBetslipsDetails5
-	WinCoinAdminTransfer      *winCoinAdminTransfer
-	WinCoinDepositRecord      *winCoinDepositRecord
-	WinCoinLog                *winCoinLog
-	WinCoinLog5               *winCoinLog5
-	WinCoinRate               *winCoinRate
-	WinCoinReward             *winCoinRewards
-	WinUserWallet             *winUserWallet
-	WinCoinWithdrawalRecord   *winCoinWithdrawalRecord
-	WinBetslipsDetails        *winBetslipsDetails
-	WinPlatList               *winPlatList
+	Q                           = new(Query)
+	FbSportsMatchRecommendation *fbSportsMatchRecommendation
+	FbSportsMatchResults        *fbSportsMatchResults
+	FbSportsMatchResultsStats   *fbSportsMatchResultsStats
+	FbSportsMatchScores         *fbSportsMatchScores
+	FbSportsMatchStats          *fbSportsMatchStats
+	FbSportsMatchTeams          *fbSportsMatchTeams
+	FbSportsMatchRecommendPlay  *fbSportsMatchRecommendPlay
+	FbSportsMatchMarkets        *fbSportsMatchMarkets
+	FbSportsMatchMarketOptions  *fbSportsMatchMarketOptions
+	FbSportsMatchMarketGroup    *fbSportsMatchMarketGroup
+	FbSportsMatchLeagues        *fbSportsMatchLeagues
+	FbSportsMatch               *fbSportsMatch
+	PointsUserChange            *pointsUserChange
+	WinOperationLoginfo         *winOperationLoginfo
+	WinPromotionRequirements    *winPromotionRequirements
+	WinPromotionLevel           *winPromotionLevel
+	WinPromotionKpi             *winPromotionKpi
+	WinSmsChannel               *winSmsChannel
+	WinArticleInfo              *winArticleInfo
+	WinFacebookClick            *winFacebookClick
+	WinAgentUserReport          *winAgentUserReport
+	UserDailyReport             *userDailyReport
+	WinBetslipsDateStatistics   *winBetslipsDateStatistics
+	AgentCommissionDay          *agentCommissionDay
+	AgentCommissionYear         *agentCommissionYear
+	AgentCommissionLog          *agentCommissionLog
+	AgentCommission             *agentCommission
+	WinBetslips1                *winBetslips1
+	WinBetslips5                *winBetslips5
+	WinBetslips9                *winBetslips9
+	WinBetslipsDetails1         *winBetslipsDetails1
+	WinBetslipsDetails5         *winBetslipsDetails5
+	WinCoinAdminTransfer        *winCoinAdminTransfer
+	WinCoinDepositRecord        *winCoinDepositRecord
+	WinCoinLog                  *winCoinLog
+	WinCoinLog5                 *winCoinLog5
+	WinCoinRate                 *winCoinRate
+	WinCoinReward               *winCoinRewards
+	WinUserWallet               *winUserWallet
+	WinCoinWithdrawalRecord     *winCoinWithdrawalRecord
+	WinBetslipsDetails          *winBetslipsDetails
+	WinPlatList                 *winPlatList
 
 	WinUserStatistics             *winUserStatistics
 	WinCustomer                   *winCustomer
@@ -170,6 +182,18 @@ var (
 
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	*Q = *Use(db, opts...)
+	FbSportsMatchRecommendation = &Q.FbSportsMatchRecommendation
+	FbSportsMatchResults = &Q.FbSportsMatchResults
+	FbSportsMatchResultsStats = &Q.FbSportsMatchResultsStats
+	FbSportsMatchScores = &Q.FbSportsMatchScores
+	FbSportsMatchStats = &Q.FbSportsMatchStats
+	FbSportsMatchTeams = &Q.FbSportsMatchTeams
+	FbSportsMatchRecommendPlay = &Q.FbSportsMatchRecommendPlay
+	FbSportsMatchMarkets = &Q.FbSportsMatchMarkets
+	FbSportsMatchMarketOptions = &Q.FbSportsMatchMarketOptions
+	FbSportsMatchMarketGroup = &Q.FbSportsMatchMarketGroup
+	FbSportsMatchLeagues = &Q.FbSportsMatchLeagues
+	FbSportsMatch = &Q.FbSportsMatch
 	PointsUserChange = &Q.PointsUserChange
 	WinOperationLoginfo = &Q.WinOperationLoginfo
 	WinPromotionRequirements = &Q.WinPromotionRequirements
@@ -323,37 +347,49 @@ func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 
 func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 	return &Query{
-		db:                        db,
-		PointsUserChange:          newPointsUserChange(db, opts...),
-		WinOperationLoginfo:       newWinOperationLoginfo(db, opts...),
-		WinPromotionRequirements:  newWinPromotionRequirements(db, opts...),
-		WinPromotionLevel:         newWinPromotionLevel(db, opts...),
-		WinPromotionKpi:           newWinPromotionKpi(db, opts...),
-		WinSmsChannel:             newWinSmsChannel(db, opts...),
-		WinArticleInfo:            newWinArticleInfo(db, opts...),
-		WinFacebookClick:          newWinFacebookClick(db, opts...),
-		WinAgentUserReport:        newWinAgentUserReport(db, opts...),
-		UserDailyReport:           newUserDailyReport(db, opts...),
-		WinBetslipsDateStatistics: newWinBetslipsDateStatistics(db, opts...),
-		AgentCommissionDay:        newAgentCommissionDay(db, opts...),
-		AgentCommissionYear:       newAgentCommissionYear(db, opts...),
-		AgentCommissionLog:        newAgentCommissionLog(db, opts...),
-		AgentCommission:           newAgentCommission(db, opts...),
-		WinUserStatistics:         newWinUserStatistics(db, opts...),
-		WinBetslips1:              newWinBetslips1(db, opts...),
-		WinBetslips5:              newWinBetslips5(db, opts...),
-		WinBetslips9:              newWinBetslips9(db, opts...),
-		WinBetslipsDetails1:       newWinBetslipsDetails1(db, opts...),
-		WinBetslipsDetails5:       newWinBetslipsDetails5(db, opts...),
-		WinCoinAdminTransfer:      newWinCoinAdminTransfer(db, opts...),
-		WinCoinDepositRecord:      newWinCoinDepositRecord(db, opts...),
-		WinCoinLog:                newWinCoinLog(db, opts...),
-		WinCoinLog5:               newWinCoinLog5(db, opts...),
-		WinCoinRate:               newWinCoinRate(db, opts...),
-		WinCoinReward:             newWinCoinRewards(db, opts...),
-		WinUserWallet:             newWinUserWallet(db, opts...),
-		WinCoinWithdrawalRecord:   newWinCoinWithdrawalRecord(db, opts...),
-		WinBetslipsDetails:        newWinBetslipsDetails(db, opts...),
+		db:                          db,
+		FbSportsMatchRecommendation: newFbSportsMatchRecommendation(db, opts...),
+		FbSportsMatchResults:        newFbSportsMatchResults(db, opts...),
+		FbSportsMatchResultsStats:   newFbSportsMatchResultsStats(db, opts...),
+		FbSportsMatchScores:         newFbSportsMatchScores(db, opts...),
+		FbSportsMatchStats:          newFbSportsMatchStats(db, opts...),
+		FbSportsMatchTeams:          newFbSportsMatchTeams(db, opts...),
+		FbSportsMatchRecommendPlay:  newFbSportsMatchRecommendPlay(db, opts...),
+		FbSportsMatchMarkets:        newFbSportsMatchMarkets(db, opts...),
+		FbSportsMatchMarketOptions:  newFbSportsMatchMarketOptions(db, opts...),
+		FbSportsMatchMarketGroup:    newFbSportsMatchMarketGroup(db, opts...),
+		FbSportsMatchLeagues:        newFbSportsMatchLeagues(db, opts...),
+		FbSportsMatch:               newFbSportsMatch(db, opts...),
+		PointsUserChange:            newPointsUserChange(db, opts...),
+		WinOperationLoginfo:         newWinOperationLoginfo(db, opts...),
+		WinPromotionRequirements:    newWinPromotionRequirements(db, opts...),
+		WinPromotionLevel:           newWinPromotionLevel(db, opts...),
+		WinPromotionKpi:             newWinPromotionKpi(db, opts...),
+		WinSmsChannel:               newWinSmsChannel(db, opts...),
+		WinArticleInfo:              newWinArticleInfo(db, opts...),
+		WinFacebookClick:            newWinFacebookClick(db, opts...),
+		WinAgentUserReport:          newWinAgentUserReport(db, opts...),
+		UserDailyReport:             newUserDailyReport(db, opts...),
+		WinBetslipsDateStatistics:   newWinBetslipsDateStatistics(db, opts...),
+		AgentCommissionDay:          newAgentCommissionDay(db, opts...),
+		AgentCommissionYear:         newAgentCommissionYear(db, opts...),
+		AgentCommissionLog:          newAgentCommissionLog(db, opts...),
+		AgentCommission:             newAgentCommission(db, opts...),
+		WinUserStatistics:           newWinUserStatistics(db, opts...),
+		WinBetslips1:                newWinBetslips1(db, opts...),
+		WinBetslips5:                newWinBetslips5(db, opts...),
+		WinBetslips9:                newWinBetslips9(db, opts...),
+		WinBetslipsDetails1:         newWinBetslipsDetails1(db, opts...),
+		WinBetslipsDetails5:         newWinBetslipsDetails5(db, opts...),
+		WinCoinAdminTransfer:        newWinCoinAdminTransfer(db, opts...),
+		WinCoinDepositRecord:        newWinCoinDepositRecord(db, opts...),
+		WinCoinLog:                  newWinCoinLog(db, opts...),
+		WinCoinLog5:                 newWinCoinLog5(db, opts...),
+		WinCoinRate:                 newWinCoinRate(db, opts...),
+		WinCoinReward:               newWinCoinRewards(db, opts...),
+		WinUserWallet:               newWinUserWallet(db, opts...),
+		WinCoinWithdrawalRecord:     newWinCoinWithdrawalRecord(db, opts...),
+		WinBetslipsDetails:          newWinBetslipsDetails(db, opts...),
 
 		WinCustomer:                   newWinCustomer(db, opts...),
 		WinGameSlot:                   newWinGameSlot(db, opts...),
@@ -476,37 +512,49 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 }
 
 type Query struct {
-	db                        *gorm.DB
-	PointsUserChange          pointsUserChange
-	WinOperationLoginfo       winOperationLoginfo
-	WinPromotionRequirements  winPromotionRequirements
-	WinPromotionLevel         winPromotionLevel
-	WinPromotionKpi           winPromotionKpi
-	WinSmsChannel             winSmsChannel
-	WinArticleInfo            winArticleInfo
-	WinFacebookClick          winFacebookClick
-	WinAgentUserReport        winAgentUserReport
-	UserDailyReport           userDailyReport
-	WinBetslipsDateStatistics winBetslipsDateStatistics
-	AgentCommissionDay        agentCommissionDay
-	AgentCommissionYear       agentCommissionYear
-	AgentCommissionLog        agentCommissionLog
-	AgentCommission           agentCommission
-	WinUserStatistics         winUserStatistics
-	WinBetslips1              winBetslips1
-	WinBetslips5              winBetslips5
-	WinBetslips9              winBetslips9
-	WinBetslipsDetails1       winBetslipsDetails1
-	WinBetslipsDetails5       winBetslipsDetails5
-	WinCoinAdminTransfer      winCoinAdminTransfer
-	WinCoinDepositRecord      winCoinDepositRecord
-	WinCoinLog                winCoinLog
-	WinCoinLog5               winCoinLog5
-	WinCoinRate               winCoinRate
-	WinCoinReward             winCoinRewards
-	WinUserWallet             winUserWallet
-	WinCoinWithdrawalRecord   winCoinWithdrawalRecord
-	WinBetslipsDetails        winBetslipsDetails
+	db                          *gorm.DB
+	FbSportsMatchRecommendation fbSportsMatchRecommendation
+	FbSportsMatchResults        fbSportsMatchResults
+	FbSportsMatchResultsStats   fbSportsMatchResultsStats
+	FbSportsMatchScores         fbSportsMatchScores
+	FbSportsMatchStats          fbSportsMatchStats
+	FbSportsMatchTeams          fbSportsMatchTeams
+	FbSportsMatchRecommendPlay  fbSportsMatchRecommendPlay
+	FbSportsMatchMarkets        fbSportsMatchMarkets
+	FbSportsMatchMarketOptions  fbSportsMatchMarketOptions
+	FbSportsMatchMarketGroup    fbSportsMatchMarketGroup
+	FbSportsMatchLeagues        fbSportsMatchLeagues
+	FbSportsMatch               fbSportsMatch
+	PointsUserChange            pointsUserChange
+	WinOperationLoginfo         winOperationLoginfo
+	WinPromotionRequirements    winPromotionRequirements
+	WinPromotionLevel           winPromotionLevel
+	WinPromotionKpi             winPromotionKpi
+	WinSmsChannel               winSmsChannel
+	WinArticleInfo              winArticleInfo
+	WinFacebookClick            winFacebookClick
+	WinAgentUserReport          winAgentUserReport
+	UserDailyReport             userDailyReport
+	WinBetslipsDateStatistics   winBetslipsDateStatistics
+	AgentCommissionDay          agentCommissionDay
+	AgentCommissionYear         agentCommissionYear
+	AgentCommissionLog          agentCommissionLog
+	AgentCommission             agentCommission
+	WinUserStatistics           winUserStatistics
+	WinBetslips1                winBetslips1
+	WinBetslips5                winBetslips5
+	WinBetslips9                winBetslips9
+	WinBetslipsDetails1         winBetslipsDetails1
+	WinBetslipsDetails5         winBetslipsDetails5
+	WinCoinAdminTransfer        winCoinAdminTransfer
+	WinCoinDepositRecord        winCoinDepositRecord
+	WinCoinLog                  winCoinLog
+	WinCoinLog5                 winCoinLog5
+	WinCoinRate                 winCoinRate
+	WinCoinReward               winCoinRewards
+	WinUserWallet               winUserWallet
+	WinCoinWithdrawalRecord     winCoinWithdrawalRecord
+	WinBetslipsDetails          winBetslipsDetails
 
 	WinCustomer                   winCustomer
 	WinGameSlot                   winGameSlot
@@ -631,37 +679,49 @@ func (q *Query) Available() bool { return q.db != nil }
 
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
-		db:                        db,
-		PointsUserChange:          q.PointsUserChange.clone(db),
-		WinOperationLoginfo:       q.WinOperationLoginfo.clone(db),
-		WinPromotionRequirements:  q.WinPromotionRequirements.clone(db),
-		WinPromotionLevel:         q.WinPromotionLevel.clone(db),
-		WinPromotionKpi:           q.WinPromotionKpi.clone(db),
-		WinSmsChannel:             q.WinSmsChannel.clone(db),
-		WinArticleInfo:            q.WinArticleInfo.clone(db),
-		WinFacebookClick:          q.WinFacebookClick.clone(db),
-		WinAgentUserReport:        q.WinAgentUserReport.clone(db),
-		UserDailyReport:           q.UserDailyReport.clone(db),
-		WinBetslipsDateStatistics: q.WinBetslipsDateStatistics.clone(db),
-		AgentCommissionDay:        q.AgentCommissionDay.clone(db),
-		AgentCommissionYear:       q.AgentCommissionYear.clone(db),
-		AgentCommissionLog:        q.AgentCommissionLog.clone(db),
-		AgentCommission:           q.AgentCommission.clone(db),
-		WinUserStatistics:         q.WinUserStatistics.clone(db),
-		WinBetslips1:              q.WinBetslips1.clone(db),
-		WinBetslips5:              q.WinBetslips5.clone(db),
-		WinBetslips9:              q.WinBetslips9.clone(db),
-		WinBetslipsDetails1:       q.WinBetslipsDetails1.clone(db),
-		WinBetslipsDetails5:       q.WinBetslipsDetails5.clone(db),
-		WinCoinAdminTransfer:      q.WinCoinAdminTransfer.clone(db),
-		WinCoinDepositRecord:      q.WinCoinDepositRecord.clone(db),
-		WinCoinLog:                q.WinCoinLog.clone(db),
-		WinCoinLog5:               q.WinCoinLog5.clone(db),
-		WinCoinRate:               q.WinCoinRate.clone(db),
-		WinCoinReward:             q.WinCoinReward.clone(db),
-		WinUserWallet:             q.WinUserWallet.clone(db),
-		WinCoinWithdrawalRecord:   q.WinCoinWithdrawalRecord.clone(db),
-		WinBetslipsDetails:        q.WinBetslipsDetails.clone(db),
+		db:                          db,
+		FbSportsMatchRecommendation: q.FbSportsMatchRecommendation.clone(db),
+		FbSportsMatchResults:        q.FbSportsMatchResults.clone(db),
+		FbSportsMatchResultsStats:   q.FbSportsMatchResultsStats.clone(db),
+		FbSportsMatchScores:         q.FbSportsMatchScores.clone(db),
+		FbSportsMatchStats:          q.FbSportsMatchStats.clone(db),
+		FbSportsMatchTeams:          q.FbSportsMatchTeams.clone(db),
+		FbSportsMatchRecommendPlay:  q.FbSportsMatchRecommendPlay.clone(db),
+		FbSportsMatchMarkets:        q.FbSportsMatchMarkets.clone(db),
+		FbSportsMatchMarketOptions:  q.FbSportsMatchMarketOptions.clone(db),
+		FbSportsMatchMarketGroup:    q.FbSportsMatchMarketGroup.clone(db),
+		FbSportsMatchLeagues:        q.FbSportsMatchLeagues.clone(db),
+		FbSportsMatch:               q.FbSportsMatch.clone(db),
+		PointsUserChange:            q.PointsUserChange.clone(db),
+		WinOperationLoginfo:         q.WinOperationLoginfo.clone(db),
+		WinPromotionRequirements:    q.WinPromotionRequirements.clone(db),
+		WinPromotionLevel:           q.WinPromotionLevel.clone(db),
+		WinPromotionKpi:             q.WinPromotionKpi.clone(db),
+		WinSmsChannel:               q.WinSmsChannel.clone(db),
+		WinArticleInfo:              q.WinArticleInfo.clone(db),
+		WinFacebookClick:            q.WinFacebookClick.clone(db),
+		WinAgentUserReport:          q.WinAgentUserReport.clone(db),
+		UserDailyReport:             q.UserDailyReport.clone(db),
+		WinBetslipsDateStatistics:   q.WinBetslipsDateStatistics.clone(db),
+		AgentCommissionDay:          q.AgentCommissionDay.clone(db),
+		AgentCommissionYear:         q.AgentCommissionYear.clone(db),
+		AgentCommissionLog:          q.AgentCommissionLog.clone(db),
+		AgentCommission:             q.AgentCommission.clone(db),
+		WinUserStatistics:           q.WinUserStatistics.clone(db),
+		WinBetslips1:                q.WinBetslips1.clone(db),
+		WinBetslips5:                q.WinBetslips5.clone(db),
+		WinBetslips9:                q.WinBetslips9.clone(db),
+		WinBetslipsDetails1:         q.WinBetslipsDetails1.clone(db),
+		WinBetslipsDetails5:         q.WinBetslipsDetails5.clone(db),
+		WinCoinAdminTransfer:        q.WinCoinAdminTransfer.clone(db),
+		WinCoinDepositRecord:        q.WinCoinDepositRecord.clone(db),
+		WinCoinLog:                  q.WinCoinLog.clone(db),
+		WinCoinLog5:                 q.WinCoinLog5.clone(db),
+		WinCoinRate:                 q.WinCoinRate.clone(db),
+		WinCoinReward:               q.WinCoinReward.clone(db),
+		WinUserWallet:               q.WinUserWallet.clone(db),
+		WinCoinWithdrawalRecord:     q.WinCoinWithdrawalRecord.clone(db),
+		WinBetslipsDetails:          q.WinBetslipsDetails.clone(db),
 
 		WinCustomer:                   q.WinCustomer.clone(db),
 		WinGameSlot:                   q.WinGameSlot.clone(db),
@@ -793,37 +853,49 @@ func (q *Query) WriteDB() *Query {
 
 func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 	return &Query{
-		db:                        db,
-		PointsUserChange:          q.PointsUserChange.replaceDB(db),
-		WinOperationLoginfo:       q.WinOperationLoginfo.replaceDB(db),
-		WinPromotionRequirements:  q.WinPromotionRequirements.replaceDB(db),
-		WinPromotionLevel:         q.WinPromotionLevel.replaceDB(db),
-		WinPromotionKpi:           q.WinPromotionKpi.replaceDB(db),
-		WinSmsChannel:             q.WinSmsChannel.replaceDB(db),
-		WinArticleInfo:            q.WinArticleInfo.replaceDB(db),
-		WinFacebookClick:          q.WinFacebookClick.replaceDB(db),
-		WinAgentUserReport:        q.WinAgentUserReport.replaceDB(db),
-		UserDailyReport:           q.UserDailyReport.replaceDB(db),
-		WinBetslipsDateStatistics: q.WinBetslipsDateStatistics.replaceDB(db),
-		AgentCommissionDay:        q.AgentCommissionDay.replaceDB(db),
-		AgentCommissionYear:       q.AgentCommissionYear.replaceDB(db),
-		AgentCommissionLog:        q.AgentCommissionLog.replaceDB(db),
-		AgentCommission:           q.AgentCommission.replaceDB(db),
-		WinUserStatistics:         q.WinUserStatistics.replaceDB(db),
-		WinBetslips1:              q.WinBetslips1.replaceDB(db),
-		WinBetslips5:              q.WinBetslips5.replaceDB(db),
-		WinBetslips9:              q.WinBetslips9.replaceDB(db),
-		WinBetslipsDetails1:       q.WinBetslipsDetails1.replaceDB(db),
-		WinBetslipsDetails5:       q.WinBetslipsDetails5.replaceDB(db),
-		WinCoinAdminTransfer:      q.WinCoinAdminTransfer.replaceDB(db),
-		WinCoinDepositRecord:      q.WinCoinDepositRecord.replaceDB(db),
-		WinCoinLog:                q.WinCoinLog.replaceDB(db),
-		WinCoinLog5:               q.WinCoinLog5.replaceDB(db),
-		WinCoinRate:               q.WinCoinRate.replaceDB(db),
-		WinCoinReward:             q.WinCoinReward.replaceDB(db),
-		WinUserWallet:             q.WinUserWallet.replaceDB(db),
-		WinCoinWithdrawalRecord:   q.WinCoinWithdrawalRecord.replaceDB(db),
-		WinBetslipsDetails:        q.WinBetslipsDetails.replaceDB(db),
+		db:                          db,
+		FbSportsMatchRecommendation: q.FbSportsMatchRecommendation.replaceDB(db),
+		FbSportsMatchResults:        q.FbSportsMatchResults.replaceDB(db),
+		FbSportsMatchResultsStats:   q.FbSportsMatchResultsStats.replaceDB(db),
+		FbSportsMatchScores:         q.FbSportsMatchScores.replaceDB(db),
+		FbSportsMatchStats:          q.FbSportsMatchStats.replaceDB(db),
+		FbSportsMatchTeams:          q.FbSportsMatchTeams.replaceDB(db),
+		FbSportsMatchRecommendPlay:  q.FbSportsMatchRecommendPlay.replaceDB(db),
+		FbSportsMatchMarkets:        q.FbSportsMatchMarkets.replaceDB(db),
+		FbSportsMatchMarketOptions:  q.FbSportsMatchMarketOptions.replaceDB(db),
+		FbSportsMatchMarketGroup:    q.FbSportsMatchMarketGroup.replaceDB(db),
+		FbSportsMatchLeagues:        q.FbSportsMatchLeagues.replaceDB(db),
+		FbSportsMatch:               q.FbSportsMatch.replaceDB(db),
+		PointsUserChange:            q.PointsUserChange.replaceDB(db),
+		WinOperationLoginfo:         q.WinOperationLoginfo.replaceDB(db),
+		WinPromotionRequirements:    q.WinPromotionRequirements.replaceDB(db),
+		WinPromotionLevel:           q.WinPromotionLevel.replaceDB(db),
+		WinPromotionKpi:             q.WinPromotionKpi.replaceDB(db),
+		WinSmsChannel:               q.WinSmsChannel.replaceDB(db),
+		WinArticleInfo:              q.WinArticleInfo.replaceDB(db),
+		WinFacebookClick:            q.WinFacebookClick.replaceDB(db),
+		WinAgentUserReport:          q.WinAgentUserReport.replaceDB(db),
+		UserDailyReport:             q.UserDailyReport.replaceDB(db),
+		WinBetslipsDateStatistics:   q.WinBetslipsDateStatistics.replaceDB(db),
+		AgentCommissionDay:          q.AgentCommissionDay.replaceDB(db),
+		AgentCommissionYear:         q.AgentCommissionYear.replaceDB(db),
+		AgentCommissionLog:          q.AgentCommissionLog.replaceDB(db),
+		AgentCommission:             q.AgentCommission.replaceDB(db),
+		WinUserStatistics:           q.WinUserStatistics.replaceDB(db),
+		WinBetslips1:                q.WinBetslips1.replaceDB(db),
+		WinBetslips5:                q.WinBetslips5.replaceDB(db),
+		WinBetslips9:                q.WinBetslips9.replaceDB(db),
+		WinBetslipsDetails1:         q.WinBetslipsDetails1.replaceDB(db),
+		WinBetslipsDetails5:         q.WinBetslipsDetails5.replaceDB(db),
+		WinCoinAdminTransfer:        q.WinCoinAdminTransfer.replaceDB(db),
+		WinCoinDepositRecord:        q.WinCoinDepositRecord.replaceDB(db),
+		WinCoinLog:                  q.WinCoinLog.replaceDB(db),
+		WinCoinLog5:                 q.WinCoinLog5.replaceDB(db),
+		WinCoinRate:                 q.WinCoinRate.replaceDB(db),
+		WinCoinReward:               q.WinCoinReward.replaceDB(db),
+		WinUserWallet:               q.WinUserWallet.replaceDB(db),
+		WinCoinWithdrawalRecord:     q.WinCoinWithdrawalRecord.replaceDB(db),
+		WinBetslipsDetails:          q.WinBetslipsDetails.replaceDB(db),
 
 		WinCustomer:                   q.WinCustomer.replaceDB(db),
 		WinGameSlot:                   q.WinGameSlot.replaceDB(db),
@@ -946,36 +1018,48 @@ func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 }
 
 type queryCtx struct {
-	PointsUserChange          IPointsUserChangeDo
-	WinOperationLoginfo       IWinOperationLoginfoDo
-	WinPromotionRequirements  IWinPromotionRequirementsDo
-	WinPromotionLevel         IWinPromotionLevelDo
-	WinPromotionKpi           IWinPromotionKpiDo
-	WinSmsChannel             IWinSmsChannelDo
-	WinArticleInfo            IWinArticleInfoDo
-	WinFacebookClick          IWinFacebookClickDo
-	WinAgentUserReport        IWinAgentUserReportDo
-	UserDailyReport           IUserDailyReportDo
-	WinBetslipsDateStatistics IWinBetslipsDateStatisticsDo
-	AgentCommissionDay        IAgentCommissionDayDo
-	AgentCommissionYear       IAgentCommissionYearDo
-	AgentCommissionLog        IAgentCommissionLogDo
-	AgentCommission           IAgentCommissionDo
-	WinUserStatistics         IWinUserStatisticsDo
-	WinBetslips1              IWinBetslips1Do
-	WinBetslips5              IWinBetslips5Do
-	WinBetslips9              IWinBetslips9Do
-	WinBetslipsDetails1       IWinBetslipsDetails1Do
-	WinBetslipsDetails5       IWinBetslipsDetails5Do
-	WinCoinAdminTransfer      IWinCoinAdminTransferDo
-	WinCoinDepositRecord      IWinCoinDepositRecordDo
-	WinCoinLog                IWinCoinLogDo
-	WinCoinLog5               IWinCoinLog5Do
-	WinCoinRate               IWinCoinRateDo
-	WinCoinReward             IWinCoinRewardsDo
-	WinUserWallet             IWinUserWalletDo
-	WinCoinWithdrawalRecord   IWinCoinWithdrawalRecordDo
-	WinBetslipsDetails        IWinBetslipsDetailsDo
+	FbSportsMatchRecommendation IFbSportsMatchRecommendationDo
+	FbSportsMatchResults        IFbSportsMatchResultsDo
+	FbSportsMatchResultsStats   IFbSportsMatchResultsStatsDo
+	FbSportsMatchScores         IFbSportsMatchScoresDo
+	FbSportsMatchStats          IFbSportsMatchStatsDo
+	FbSportsMatchTeams          IFbSportsMatchTeamsDo
+	FbSportsMatchRecommendPlay  IFbSportsMatchRecommendPlayDo
+	FbSportsMatchMarkets        IFbSportsMatchMarketsDo
+	FbSportsMatchMarketOptions  IFbSportsMatchMarketOptionsDo
+	FbSportsMatchMarketGroup    IFbSportsMatchMarketGroupDo
+	FbSportsMatchLeagues        IFbSportsMatchLeaguesDo
+	FbSportsMatch               IFbSportsMatchDo
+	PointsUserChange            IPointsUserChangeDo
+	WinOperationLoginfo         IWinOperationLoginfoDo
+	WinPromotionRequirements    IWinPromotionRequirementsDo
+	WinPromotionLevel           IWinPromotionLevelDo
+	WinPromotionKpi             IWinPromotionKpiDo
+	WinSmsChannel               IWinSmsChannelDo
+	WinArticleInfo              IWinArticleInfoDo
+	WinFacebookClick            IWinFacebookClickDo
+	WinAgentUserReport          IWinAgentUserReportDo
+	UserDailyReport             IUserDailyReportDo
+	WinBetslipsDateStatistics   IWinBetslipsDateStatisticsDo
+	AgentCommissionDay          IAgentCommissionDayDo
+	AgentCommissionYear         IAgentCommissionYearDo
+	AgentCommissionLog          IAgentCommissionLogDo
+	AgentCommission             IAgentCommissionDo
+	WinUserStatistics           IWinUserStatisticsDo
+	WinBetslips1                IWinBetslips1Do
+	WinBetslips5                IWinBetslips5Do
+	WinBetslips9                IWinBetslips9Do
+	WinBetslipsDetails1         IWinBetslipsDetails1Do
+	WinBetslipsDetails5         IWinBetslipsDetails5Do
+	WinCoinAdminTransfer        IWinCoinAdminTransferDo
+	WinCoinDepositRecord        IWinCoinDepositRecordDo
+	WinCoinLog                  IWinCoinLogDo
+	WinCoinLog5                 IWinCoinLog5Do
+	WinCoinRate                 IWinCoinRateDo
+	WinCoinReward               IWinCoinRewardsDo
+	WinUserWallet               IWinUserWalletDo
+	WinCoinWithdrawalRecord     IWinCoinWithdrawalRecordDo
+	WinBetslipsDetails          IWinBetslipsDetailsDo
 
 	WinCustomer                   IWinCustomerDo
 	WinGameSlot                   IWinGameSlotDo
@@ -1098,38 +1182,50 @@ type queryCtx struct {
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
-		PointsUserChange:          q.PointsUserChange.WithContext(ctx),
-		WinOperationLoginfo:       q.WinOperationLoginfo.WithContext(ctx),
-		WinPromotionRequirements:  q.WinPromotionRequirements.WithContext(ctx),
-		WinPromotionLevel:         q.WinPromotionLevel.WithContext(ctx),
-		WinPromotionKpi:           q.WinPromotionKpi.WithContext(ctx),
-		WinSmsChannel:             q.WinSmsChannel.WithContext(ctx),
-		WinArticleInfo:            q.WinArticleInfo.WithContext(ctx),
-		WinFacebookClick:          q.WinFacebookClick.WithContext(ctx),
-		WinAgentUserReport:        q.WinAgentUserReport.WithContext(ctx),
-		UserDailyReport:           q.UserDailyReport.WithContext(ctx),
-		WinBetslipsDateStatistics: q.WinBetslipsDateStatistics.WithContext(ctx),
-		AgentCommissionDay:        q.AgentCommissionDay.WithContext(ctx),
-		AgentCommissionYear:       q.AgentCommissionYear.WithContext(ctx),
-		AgentCommissionLog:        q.AgentCommissionLog.WithContext(ctx),
-		AgentCommission:           q.AgentCommission.WithContext(ctx),
-		WinUserStatistics:         q.WinUserStatistics.WithContext(ctx),
-		WinBetslips1:              q.WinBetslips1.WithContext(ctx),
-		WinBetslips5:              q.WinBetslips5.WithContext(ctx),
-		WinBetslips9:              q.WinBetslips9.WithContext(ctx),
-		WinBetslipsDetails1:       q.WinBetslipsDetails1.WithContext(ctx),
-		WinBetslipsDetails5:       q.WinBetslipsDetails5.WithContext(ctx),
-		WinCoinAdminTransfer:      q.WinCoinAdminTransfer.WithContext(ctx),
-		WinCoinDepositRecord:      q.WinCoinDepositRecord.WithContext(ctx),
-		WinCoinLog:                q.WinCoinLog.WithContext(ctx),
-		WinCoinLog5:               q.WinCoinLog5.WithContext(ctx),
-		WinCoinRate:               q.WinCoinRate.WithContext(ctx),
-		WinCoinReward:             q.WinCoinReward.WithContext(ctx),
-		WinUserWallet:             q.WinUserWallet.WithContext(ctx),
-		WinCoinWithdrawalRecord:   q.WinCoinWithdrawalRecord.WithContext(ctx),
-		WinBetslipsDetails:        q.WinBetslipsDetails.WithContext(ctx),
-		WinPlatList:               q.WinPlatList.WithContext(ctx),
-		WinGameSlot:               q.WinGameSlot.WithContext(ctx),
+		FbSportsMatchRecommendation: q.FbSportsMatchRecommendation.WithContext(ctx),
+		FbSportsMatchResults:        q.FbSportsMatchResults.WithContext(ctx),
+		FbSportsMatchResultsStats:   q.FbSportsMatchResultsStats.WithContext(ctx),
+		FbSportsMatchScores:         q.FbSportsMatchScores.WithContext(ctx),
+		FbSportsMatchStats:          q.FbSportsMatchStats.WithContext(ctx),
+		FbSportsMatchTeams:          q.FbSportsMatchTeams.WithContext(ctx),
+		FbSportsMatchRecommendPlay:  q.FbSportsMatchRecommendPlay.WithContext(ctx),
+		FbSportsMatchMarkets:        q.FbSportsMatchMarkets.WithContext(ctx),
+		FbSportsMatchMarketOptions:  q.FbSportsMatchMarketOptions.WithContext(ctx),
+		FbSportsMatchMarketGroup:    q.FbSportsMatchMarketGroup.WithContext(ctx),
+		FbSportsMatchLeagues:        q.FbSportsMatchLeagues.WithContext(ctx),
+		FbSportsMatch:               q.FbSportsMatch.WithContext(ctx),
+		PointsUserChange:            q.PointsUserChange.WithContext(ctx),
+		WinOperationLoginfo:         q.WinOperationLoginfo.WithContext(ctx),
+		WinPromotionRequirements:    q.WinPromotionRequirements.WithContext(ctx),
+		WinPromotionLevel:           q.WinPromotionLevel.WithContext(ctx),
+		WinPromotionKpi:             q.WinPromotionKpi.WithContext(ctx),
+		WinSmsChannel:               q.WinSmsChannel.WithContext(ctx),
+		WinArticleInfo:              q.WinArticleInfo.WithContext(ctx),
+		WinFacebookClick:            q.WinFacebookClick.WithContext(ctx),
+		WinAgentUserReport:          q.WinAgentUserReport.WithContext(ctx),
+		UserDailyReport:             q.UserDailyReport.WithContext(ctx),
+		WinBetslipsDateStatistics:   q.WinBetslipsDateStatistics.WithContext(ctx),
+		AgentCommissionDay:          q.AgentCommissionDay.WithContext(ctx),
+		AgentCommissionYear:         q.AgentCommissionYear.WithContext(ctx),
+		AgentCommissionLog:          q.AgentCommissionLog.WithContext(ctx),
+		AgentCommission:             q.AgentCommission.WithContext(ctx),
+		WinUserStatistics:           q.WinUserStatistics.WithContext(ctx),
+		WinBetslips1:                q.WinBetslips1.WithContext(ctx),
+		WinBetslips5:                q.WinBetslips5.WithContext(ctx),
+		WinBetslips9:                q.WinBetslips9.WithContext(ctx),
+		WinBetslipsDetails1:         q.WinBetslipsDetails1.WithContext(ctx),
+		WinBetslipsDetails5:         q.WinBetslipsDetails5.WithContext(ctx),
+		WinCoinAdminTransfer:        q.WinCoinAdminTransfer.WithContext(ctx),
+		WinCoinDepositRecord:        q.WinCoinDepositRecord.WithContext(ctx),
+		WinCoinLog:                  q.WinCoinLog.WithContext(ctx),
+		WinCoinLog5:                 q.WinCoinLog5.WithContext(ctx),
+		WinCoinRate:                 q.WinCoinRate.WithContext(ctx),
+		WinCoinReward:               q.WinCoinReward.WithContext(ctx),
+		WinUserWallet:               q.WinUserWallet.WithContext(ctx),
+		WinCoinWithdrawalRecord:     q.WinCoinWithdrawalRecord.WithContext(ctx),
+		WinBetslipsDetails:          q.WinBetslipsDetails.WithContext(ctx),
+		WinPlatList:                 q.WinPlatList.WithContext(ctx),
+		WinGameSlot:                 q.WinGameSlot.WithContext(ctx),
 
 		WinCustomer:                   q.WinCustomer.WithContext(ctx),
 		ActivityAlertLog:              q.ActivityAlertLog.WithContext(ctx),
