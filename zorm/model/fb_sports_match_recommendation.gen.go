@@ -4,52 +4,57 @@
 
 package model
 
-import (
-	"time"
-)
+import "github.com/shopspring/decimal"
 
 const TableNameFbSportsMatchRecommendation = "fb_sports_match_recommendation"
 
 // FbSportsMatchRecommendation 赛事推荐表
 type FbSportsMatchRecommendation struct {
-	ID            int64     `gorm:"column:id;type:int;primaryKey;autoIncrement:true;comment:主键ID" json:"id,string"`                        // 主键ID
-	MatchID       int64     `gorm:"column:match_id;type:int;not null;comment:赛事ID" json:"matchId"`                                         // 赛事ID
-	MatchName     string    `gorm:"column:match_name;type:varchar(255);comment:赛事名称" json:"matchName"`                                     // 赛事名称
-	LeagueID      int64     `gorm:"column:league_id;type:int;comment:联赛ID" json:"leagueId"`                                                // 联赛ID
-	LeagueName    string    `gorm:"column:league_name;type:varchar(255);comment:联赛名称" json:"leagueName"`                                   // 联赛名称
-	SportID       int64     `gorm:"column:sport_id;type:int;comment:运动种类ID" json:"sportId"`                                                // 运动种类ID
-	MatchStatus   int64     `gorm:"column:match_status;type:int;comment:赛事进行状态" json:"matchStatus"`                                        // 赛事进行状态
-	StartTime     time.Time `gorm:"column:start_time;type:datetime;comment:开赛时间" json:"startTime"`                                         // 开赛时间
-	Neutral       int64     `gorm:"column:neutral;type:tinyint(1);comment:是否为中立场（0 否，1 是）" json:"neutral"`                                 // 是否为中立场（0 否，1 是）
-	MarketCount   int64     `gorm:"column:market_count;type:int;comment:单个赛事玩法总数" json:"marketCount"`                                      // 单个赛事玩法总数
-	SellingStatus int64     `gorm:"column:selling_status;type:int;comment:销售状态（1 开售，2 暂停）" json:"sellingStatus"`                           // 销售状态（1 开售，2 暂停）
-	OddsType      int64     `gorm:"column:odds_type;type:int;comment:赔率类型（odt 字段，支持搜索）" json:"oddsType"`                                   // 赔率类型（odt 字段，支持搜索）
-	MarketType    int64     `gorm:"column:market_type;type:int;comment:玩法类型" json:"marketType"`                                            // 玩法类型
-	PlayStage     int64     `gorm:"column:play_stage;type:int;comment:玩法阶段" json:"playStage"`                                              // 玩法阶段
-	BetOption     string    `gorm:"column:bet_option;type:varchar(255);comment:投注选项名称" json:"betOption"`                                   // 投注选项名称
-	BetShortname  string    `gorm:"column:bet_shortname;type:varchar(255);comment:投注选项简称" json:"betShortname"`                             // 投注选项简称
-	TeamID        int64     `gorm:"column:team_id;type:int;comment:球队ID" json:"teamId"`                                                    // 球队ID
-	SelectionType int64     `gorm:"column:selection_type;type:int;comment:选项类型（主、客、大、小等）" json:"selectionType"`                            // 选项类型（主、客、大、小等）
-	EuropeanOdds  float32   `gorm:"column:european_odds;type:float;comment:欧洲盘赔率" json:"europeanOdds"`                                     // 欧洲盘赔率
-	BackupOdds    float32   `gorm:"column:backup_odds;type:float;comment:备用赔率" json:"backupOdds"`                                          // 备用赔率
-	SettleResult  int64     `gorm:"column:settle_result;type:int;comment:选项结算结果" json:"settleResult"`                                      // 选项结算结果
-	MarketStatus  int64     `gorm:"column:market_status;type:int;comment:玩法销售状态（0 暂停，1 开售，-1 未开售）" json:"marketStatus"`                    // 玩法销售状态（0 暂停，1 开售，-1 未开售）
-	IsParlay      int64     `gorm:"column:is_parlay;type:tinyint(1);comment:是否支持串关（0 否，1 是）" json:"isParlay"`                              // 是否支持串关（0 否，1 是）
-	IsBestLine    int64     `gorm:"column:is_best_line;type:tinyint(1);comment:是否为最优线（0 否，1 是）" json:"isBestLine"`                         // 是否为最优线（0 否，1 是）
-	LineValue     string    `gorm:"column:line_value;type:varchar(50);comment:带线玩法的线值（如大小球2.5线）" json:"lineValue"`                         // 带线玩法的线值（如大小球2.5线）
-	LeagueLevel   int64     `gorm:"column:league_level;type:int;comment:联赛等级（值越小，级别越高）" json:"leagueLevel"`                                // 联赛等级（值越小，级别越高）
-	RegionID      int64     `gorm:"column:region_id;type:int;comment:区域ID" json:"regionId"`                                                // 区域ID
-	RegionName    string    `gorm:"column:region_name;type:varchar(255);comment:区域名称" json:"regionName"`                                   // 区域名称
-	LeagueLogo    string    `gorm:"column:league_logo;type:varchar(255);comment:联赛LOGO地址" json:"leagueLogo"`                               // 联赛LOGO地址
-	TeamLogo      string    `gorm:"column:team_logo;type:varchar(255);comment:球队LOGO地址" json:"teamLogo"`                                   // 球队LOGO地址
-	LiveUrls      string    `gorm:"column:live_urls;type:text;comment:动画直播地址集合" json:"liveUrls"`                                           // 动画直播地址集合
-	MarketTags    string    `gorm:"column:market_tags;type:text;comment:盘口组标签集合（如热门、角球等）" json:"marketTags"`                               // 盘口组标签集合（如热门、角球等）
-	MatchPhase    string    `gorm:"column:match_phase;type:varchar(50);comment:赛事阶段（如附加赛、季前赛等）" json:"matchPhase"`                         // 赛事阶段（如附加赛、季前赛等）
-	SubMatchType  int64     `gorm:"column:sub_match_type;type:int;comment:滚球赛事当前阶段标识（常规时间、加时赛、点球大战等）" json:"subMatchType"`                 // 滚球赛事当前阶段标识（常规时间、加时赛、点球大战等）
-	MatchType     int64     `gorm:"column:match_type;type:int;comment:赛事类型（1:冠军投注赛事, 2:正常赛事）" json:"matchType"`                            // 赛事类型（1:冠军投注赛事, 2:正常赛事）
-	Season        string    `gorm:"column:season;type:varchar(50);comment:冠军赛事赛季（如2019年）" json:"season"`                                   // 冠军赛事赛季（如2019年）
-	CreateTime    time.Time `gorm:"column:create_time;type:timestamp;not null;default:CURRENT_TIMESTAMP;comment:记录创建时间" json:"createTime"` // 记录创建时间
-	UpdateTime    time.Time `gorm:"column:update_time;type:timestamp;not null;default:CURRENT_TIMESTAMP;comment:记录更新时间" json:"updateTime"` // 记录更新时间
+	ID            int64           `gorm:"column:id;type:int;primaryKey;autoIncrement:true;comment:主键ID" json:"id,string"`        // 主键ID
+	MatchID       int64           `gorm:"column:match_id;type:int;not null;comment:赛事ID" json:"matchId"`                         // 赛事ID
+	MatchName     string          `gorm:"column:match_name;type:varchar(255);comment:赛事名称" json:"matchName"`                     // 赛事名称
+	LeagueID      int64           `gorm:"column:league_id;type:int;comment:联赛ID" json:"leagueId"`                                // 联赛ID
+	LeagueName    string          `gorm:"column:league_name;type:varchar(255);comment:联赛名称" json:"leagueName"`                   // 联赛名称
+	SportID       int64           `gorm:"column:sport_id;type:int;comment:运动种类ID" json:"sportId"`                                // 运动种类ID
+	MatchStatus   int64           `gorm:"column:match_status;type:int;comment:赛事进行状态" json:"matchStatus"`                        // 赛事进行状态
+	StartTime     int64           `gorm:"column:start_time;type:bigint;comment:开赛时间" json:"startTime"`                           // 开赛时间
+	MarketCount   int64           `gorm:"column:market_count;type:int;comment:单个赛事玩法总数" json:"marketCount"`                      // 单个赛事玩法总数
+	Neutral       int64           `gorm:"column:neutral;type:tinyint(1);comment:是否为中立场（0 否，1 是）" json:"neutral"`                 // 是否为中立场（0 否，1 是）
+	ScoreList     string          `gorm:"column:score_list;type:text;comment:比分列表（原 nsg）" json:"scoreList"`                      // 比分列表（原 nsg）
+	OddsList      string          `gorm:"column:odds_list;type:text;comment:赔率列表（原 mg）" json:"oddsList"`                         // 赔率列表（原 mg）
+	LeagueInfo    string          `gorm:"column:league_info;type:text;comment:联赛信息（原 lg）" json:"leagueInfo"`                     // 联赛信息（原 lg）
+	TeamInfo      string          `gorm:"column:team_info;type:text;comment:球队信息，第一个是主队，第二个是客队（原 ts）" json:"teamInfo"`           // 球队信息，第一个是主队，第二个是客队（原 ts）
+	MatchClock    string          `gorm:"column:match_clock;type:text;comment:比赛时钟信息，滚球走表信息（原 mc）" json:"matchClock"`            // 比赛时钟信息，滚球走表信息（原 mc）
+	MatchFormatID int64           `gorm:"column:match_format_id;type:int;comment:赛制的场次、局数、节数（原 fid）" json:"matchFormatId"`       // 赛制的场次、局数、节数（原 fid）
+	MatchFormat   int64           `gorm:"column:match_format;type:int;comment:赛制（原 fmt）" json:"matchFormat"`                     // 赛制（原 fmt）
+	LiveUrls      string          `gorm:"column:live_urls;type:text;comment:动画直播地址集合" json:"liveUrls"`                           // 动画直播地址集合
+	ServingSide   int64           `gorm:"column:serving_side;type:int;comment:主/客发球，1主队发球，2客队发球" json:"servingSide"`             // 主/客发球，1主队发球，2客队发球
+	MatchPhase    string          `gorm:"column:match_phase;type:varchar(50);comment:赛事阶段（如附加赛、季前赛等）" json:"matchPhase"`         // 赛事阶段（如附加赛、季前赛等）
+	SubMatchType  int64           `gorm:"column:sub_match_type;type:int;comment:滚球赛事当前阶段标识（常规时间、加时赛、点球大战等）" json:"subMatchType"` // 滚球赛事当前阶段标识（常规时间、加时赛、点球大战等）
+	MatchType     int64           `gorm:"column:match_type;type:int;comment:赛事类型（1:冠军投注赛事, 2:正常赛事）" json:"matchType"`            // 赛事类型（1:冠军投注赛事, 2:正常赛事）
+	Season        string          `gorm:"column:season;type:varchar(50);comment:冠军赛事赛季（如2019年）" json:"season"`                   // 冠军赛事赛季（如2019年）
+	Scoreboard    string          `gorm:"column:scoreboard;type:text;comment:比分板（原 sb）" json:"scoreboard"`                       // 比分板（原 sb）
+	MarketTags    string          `gorm:"column:market_tags;type:text;comment:盘口组标签集合（如热门、角球等）" json:"marketTags"`               // 盘口组标签集合（如热门、角球等）
+	SellingStatus int64           `gorm:"column:selling_status;type:int;comment:销售状态（1 开售，2 暂停）" json:"sellingStatus"`           // 销售状态（1 开售，2 暂停）
+	OddsType      int64           `gorm:"column:odds_type;type:int;comment:赔率类型（支持搜索）" json:"oddsType"`                          // 赔率类型（支持搜索）
+	MarketType    int64           `gorm:"column:market_type;type:int;comment:玩法类型" json:"marketType"`                            // 玩法类型
+	PlayStage     int64           `gorm:"column:play_stage;type:int;comment:玩法阶段" json:"playStage"`                              // 玩法阶段
+	BetOption     string          `gorm:"column:bet_option;type:varchar(255);comment:投注选项名称" json:"betOption"`                   // 投注选项名称
+	BetShortname  string          `gorm:"column:bet_shortname;type:varchar(255);comment:投注选项简称" json:"betShortname"`             // 投注选项简称
+	SelectionType int64           `gorm:"column:selection_type;type:int;comment:选项类型（主、客、大、小等）" json:"selectionType"`            // 选项类型（主、客、大、小等）
+	EuropeanOdds  decimal.Decimal `gorm:"column:european_odds;type:decimal(18,2);comment:欧洲盘赔率" json:"europeanOdds"`             // 欧洲盘赔率
+	BackupOdds    decimal.Decimal `gorm:"column:backup_odds;type:decimal(18,2);comment:备用赔率" json:"backupOdds"`                  // 备用赔率
+	SettleResult  int64           `gorm:"column:settle_result;type:int;comment:选项结算结果" json:"settleResult"`                      // 选项结算结果
+	MarketStatus  int64           `gorm:"column:market_status;type:int;comment:玩法销售状态（0 暂停，1 开售，-1 未开售）" json:"marketStatus"`    // 玩法销售状态（0 暂停，1 开售，-1 未开售）
+	IsParlay      int64           `gorm:"column:is_parlay;type:tinyint(1);comment:是否支持串关（0 否，1 是）" json:"isParlay"`              // 是否支持串关（0 否，1 是）
+	IsBestLine    int64           `gorm:"column:is_best_line;type:tinyint(1);comment:是否为最优线（0 否，1 是）" json:"isBestLine"`         // 是否为最优线（0 否，1 是）
+	LineValue     string          `gorm:"column:line_value;type:varchar(50);comment:带线玩法的线值（如大小球2.5线）" json:"lineValue"`         // 带线玩法的线值（如大小球2.5线）
+	LeagueLevel   int64           `gorm:"column:league_level;type:int;comment:联赛等级（值越小，级别越高）" json:"leagueLevel"`                // 联赛等级（值越小，级别越高）
+	RegionID      int64           `gorm:"column:region_id;type:int;comment:区域ID" json:"regionId"`                                // 区域ID
+	RegionName    string          `gorm:"column:region_name;type:varchar(255);comment:区域名称" json:"regionName"`                   // 区域名称
+	LeagueLogo    string          `gorm:"column:league_logo;type:varchar(255);comment:联赛LOGO地址" json:"leagueLogo"`               // 联赛LOGO地址
+	CreateTime    int64           `gorm:"column:create_time;type:bigint;not null;comment:记录创建时间" json:"createTime"`              // 记录创建时间
+	UpdateTime    int64           `gorm:"column:update_time;type:bigint;not null;comment:记录更新时间" json:"updateTime"`              // 记录更新时间
 }
 
 // TableName FbSportsMatchRecommendation's table name

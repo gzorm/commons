@@ -4,49 +4,25 @@
 
 package model
 
-import (
-	"time"
-)
-
 const TableNameFbSportsMatchResults = "fb_sports_match_results"
 
-// FbSportsMatchResults 赛事赛果表
+// FbSportsMatchResults 赛事结果记录表
 type FbSportsMatchResults struct {
-	ID               int64     `gorm:"column:id;type:bigint;primaryKey;autoIncrement:true;comment:赛事ID" json:"id,string"`          // 赛事ID
-	Bt               int64     `gorm:"column:bt;type:bigint;not null;comment:赛事开赛时间 (时间戳)" json:"bt"`                              // 赛事开赛时间 (时间戳)
-	Ms               int64     `gorm:"column:ms;type:int;not null;comment:赛事进行状态" json:"ms"`                                       // 赛事进行状态
-	Fid              int64     `gorm:"column:fid;type:int;not null;comment:赛制的场次、局数、节数" json:"fid"`                                // 赛制的场次、局数、节数
-	Fmt              int64     `gorm:"column:fmt;type:int;not null;comment:赛制" json:"fmt"`                                         // 赛制
-	Ne               int64     `gorm:"column:ne;type:tinyint;not null;comment:是否为中立场 (0: 否, 1: 是)" json:"ne"`                      // 是否为中立场 (0: 否, 1: 是)
-	Sid              int64     `gorm:"column:sid;type:int;not null;comment:运动种类ID" json:"sid"`                                     // 运动种类ID
-	MatchType        int64     `gorm:"column:match_type;type:tinyint;not null;comment:赛事类型 (1 或 2)" json:"matchType"`              // 赛事类型 (1 或 2)
-	LeagueID         int64     `gorm:"column:league_id;type:int;not null;comment:联赛ID" json:"leagueId"`                            // 联赛ID
-	LeagueName       string    `gorm:"column:league_name;type:varchar(255);not null;comment:联赛名称" json:"leagueName"`               // 联赛名称
-	LeagueLevel      int64     `gorm:"column:league_level;type:int;not null;comment:联赛等级" json:"leagueLevel"`                      // 联赛等级
-	LeagueLogo       string    `gorm:"column:league_logo;type:varchar(500);not null;comment:联赛图标地址" json:"leagueLogo"`             // 联赛图标地址
-	RegionID         int64     `gorm:"column:region_id;type:int;not null;comment:区域ID" json:"regionId"`                            // 区域ID
-	RegionName       string    `gorm:"column:region_name;type:varchar(255);not null;comment:区域名称" json:"regionName"`               // 区域名称
-	RegionLogo       string    `gorm:"column:region_logo;type:varchar(500);not null;comment:区域Logo" json:"regionLogo"`             // 区域Logo
-	IsHot            int64     `gorm:"column:is_hot;type:tinyint(1);not null;comment:是否热门联赛" json:"isHot"`                         // 是否热门联赛
-	LeagueGroupID    int64     `gorm:"column:league_group_id;type:int;not null;comment:联赛分组ID" json:"leagueGroupId"`               // 联赛分组ID
-	HomeTeamID       int64     `gorm:"column:home_team_id;type:int;not null;comment:主队ID" json:"homeTeamId"`                       // 主队ID
-	HomeTeamName     string    `gorm:"column:home_team_name;type:varchar(255);not null;comment:主队名称" json:"homeTeamName"`          // 主队名称
-	HomeTeamLogo     string    `gorm:"column:home_team_logo;type:varchar(500);not null;comment:主队图标地址" json:"homeTeamLogo"`        // 主队图标地址
-	AwayTeamID       int64     `gorm:"column:away_team_id;type:int;not null;comment:客队ID" json:"awayTeamId"`                       // 客队ID
-	AwayTeamName     string    `gorm:"column:away_team_name;type:varchar(255);not null;comment:客队名称" json:"awayTeamName"`          // 客队名称
-	AwayTeamLogo     string    `gorm:"column:away_team_logo;type:varchar(500);not null;comment:客队图标地址" json:"awayTeamLogo"`        // 客队图标地址
-	ScorePhase       int64     `gorm:"column:score_phase;type:int;not null;comment:赛事阶段" json:"scorePhase"`                        // 赛事阶段
-	ScoreType        int64     `gorm:"column:score_type;type:int;not null;comment:比分类型" json:"scoreType"`                          // 比分类型
-	HomeScore        int64     `gorm:"column:home_score;type:int;not null;comment:主队得分" json:"homeScore"`                          // 主队得分
-	AwayScore        int64     `gorm:"column:away_score;type:int;not null;comment:客队得分" json:"awayScore"`                          // 客队得分
-	MarketPhase      int64     `gorm:"column:market_phase;type:int;not null;comment:盘口阶段" json:"marketPhase"`                      // 盘口阶段
-	MarketType       int64     `gorm:"column:market_type;type:int;not null;comment:盘口类型" json:"marketType"`                        // 盘口类型
-	MarketGroup      string    `gorm:"column:market_group;type:varchar(255);not null;comment:盘口组名" json:"marketGroup"`             // 盘口组名
-	MarketID         int64     `gorm:"column:market_id;type:int;not null;comment:盘口ID" json:"marketId"`                            // 盘口ID
-	MarketOptionType int64     `gorm:"column:market_option_type;type:int;not null;comment:盘口选项类型" json:"marketOptionType"`         // 盘口选项类型
-	MarketOptionName string    `gorm:"column:market_option_name;type:varchar(255);not null;comment:盘口选项名" json:"marketOptionName"` // 盘口选项名
-	CreatedAt        time.Time `gorm:"column:created_at;comment:创建时间" json:"createdAt"`                                            // 创建时间
-	UpdatedAt        time.Time `gorm:"column:updated_at;comment:更新时间" json:"updatedAt"`                                            // 更新时间
+	ID            int64  `gorm:"column:id;type:bigint;primaryKey;autoIncrement:true;comment:主键" json:"id,string"`            // 主键
+	MatchID       int64  `gorm:"column:match_id;type:bigint;not null;comment:赛事ID" json:"matchId"`                           // 赛事ID
+	MatchType     int64  `gorm:"column:match_type;type:tinyint;not null;comment:赛事类型，1或2，关联 match_type 枚举" json:"matchType"` // 赛事类型，1或2，关联 match_type 枚举
+	StartTime     int64  `gorm:"column:start_time;type:bigint;not null;comment:赛事开赛时间，13位时间戳" json:"startTime"`              // 赛事开赛时间，13位时间戳
+	MatchStatus   int64  `gorm:"column:match_status;type:int;comment:赛事进行状态，关联 match_status 枚举" json:"matchStatus"`          // 赛事进行状态，关联 match_status 枚举
+	GameStage     int64  `gorm:"column:game_stage;type:int;comment:赛制的场次/局数/节数" json:"gameStage"`                            // 赛制的场次/局数/节数
+	GameFormat    int64  `gorm:"column:game_format;type:int;comment:赛制类型，关联 match_format 枚举" json:"gameFormat"`              // 赛制类型，关联 match_format 枚举
+	IsNeutral     int64  `gorm:"column:is_neutral;type:tinyint(1);comment:中立场标识，1表示中立场，0表示非中立场" json:"isNeutral"`            // 中立场标识，1表示中立场，0表示非中立场
+	SportID       int64  `gorm:"column:sport_id;type:int;not null;comment:运动ID，关联 sports 枚举" json:"sportId"`                 // 运动ID，关联 sports 枚举
+	LeagueData    string `gorm:"column:league_data;type:text;comment:联赛数据，JSON格式存储" json:"leagueData"`                       // 联赛数据，JSON格式存储
+	TeamData      string `gorm:"column:team_data;type:text;comment:比赛球队数据，JSON格式存储" json:"teamData"`                         // 比赛球队数据，JSON格式存储
+	Scores        string `gorm:"column:scores;type:text;comment:比分或赛果，JSON格式存储" json:"scores"`                               // 比分或赛果，JSON格式存储
+	MarketResults string `gorm:"column:market_results;type:text;comment:盘口结算结果集合，JSON格式存储" json:"marketResults"`             // 盘口结算结果集合，JSON格式存储
+	CreatedAt     int64  `gorm:"column:created_at;comment:创建时间" json:"createdAt"`                                            // 记录创建时间（时间戳）
+	UpdatedAt     int64  `gorm:"column:updated_at;comment:更新时间" json:"updatedAt"`                                            // 记录更新时间（时间戳）
 }
 
 // TableName FbSportsMatchResults's table name

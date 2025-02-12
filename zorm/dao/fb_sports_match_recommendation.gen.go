@@ -34,19 +34,33 @@ func newFbSportsMatchRecommendation(db *gorm.DB, opts ...gen.DOOption) fbSportsM
 	_fbSportsMatchRecommendation.LeagueName = field.NewString(tableName, "league_name")
 	_fbSportsMatchRecommendation.SportID = field.NewInt64(tableName, "sport_id")
 	_fbSportsMatchRecommendation.MatchStatus = field.NewInt64(tableName, "match_status")
-	_fbSportsMatchRecommendation.StartTime = field.NewTime(tableName, "start_time")
-	_fbSportsMatchRecommendation.Neutral = field.NewInt64(tableName, "neutral")
+	_fbSportsMatchRecommendation.StartTime = field.NewInt64(tableName, "start_time")
 	_fbSportsMatchRecommendation.MarketCount = field.NewInt64(tableName, "market_count")
+	_fbSportsMatchRecommendation.Neutral = field.NewInt64(tableName, "neutral")
+	_fbSportsMatchRecommendation.ScoreList = field.NewString(tableName, "score_list")
+	_fbSportsMatchRecommendation.OddsList = field.NewString(tableName, "odds_list")
+	_fbSportsMatchRecommendation.LeagueInfo = field.NewString(tableName, "league_info")
+	_fbSportsMatchRecommendation.TeamInfo = field.NewString(tableName, "team_info")
+	_fbSportsMatchRecommendation.MatchClock = field.NewString(tableName, "match_clock")
+	_fbSportsMatchRecommendation.MatchFormatID = field.NewInt64(tableName, "match_format_id")
+	_fbSportsMatchRecommendation.MatchFormat = field.NewInt64(tableName, "match_format")
+	_fbSportsMatchRecommendation.LiveUrls = field.NewString(tableName, "live_urls")
+	_fbSportsMatchRecommendation.ServingSide = field.NewInt64(tableName, "serving_side")
+	_fbSportsMatchRecommendation.MatchPhase = field.NewString(tableName, "match_phase")
+	_fbSportsMatchRecommendation.SubMatchType = field.NewInt64(tableName, "sub_match_type")
+	_fbSportsMatchRecommendation.MatchType = field.NewInt64(tableName, "match_type")
+	_fbSportsMatchRecommendation.Season = field.NewString(tableName, "season")
+	_fbSportsMatchRecommendation.Scoreboard = field.NewString(tableName, "scoreboard")
+	_fbSportsMatchRecommendation.MarketTags = field.NewString(tableName, "market_tags")
 	_fbSportsMatchRecommendation.SellingStatus = field.NewInt64(tableName, "selling_status")
 	_fbSportsMatchRecommendation.OddsType = field.NewInt64(tableName, "odds_type")
 	_fbSportsMatchRecommendation.MarketType = field.NewInt64(tableName, "market_type")
 	_fbSportsMatchRecommendation.PlayStage = field.NewInt64(tableName, "play_stage")
 	_fbSportsMatchRecommendation.BetOption = field.NewString(tableName, "bet_option")
 	_fbSportsMatchRecommendation.BetShortname = field.NewString(tableName, "bet_shortname")
-	_fbSportsMatchRecommendation.TeamID = field.NewInt64(tableName, "team_id")
 	_fbSportsMatchRecommendation.SelectionType = field.NewInt64(tableName, "selection_type")
-	_fbSportsMatchRecommendation.EuropeanOdds = field.NewFloat32(tableName, "european_odds")
-	_fbSportsMatchRecommendation.BackupOdds = field.NewFloat32(tableName, "backup_odds")
+	_fbSportsMatchRecommendation.EuropeanOdds = field.NewField(tableName, "european_odds")
+	_fbSportsMatchRecommendation.BackupOdds = field.NewField(tableName, "backup_odds")
 	_fbSportsMatchRecommendation.SettleResult = field.NewInt64(tableName, "settle_result")
 	_fbSportsMatchRecommendation.MarketStatus = field.NewInt64(tableName, "market_status")
 	_fbSportsMatchRecommendation.IsParlay = field.NewInt64(tableName, "is_parlay")
@@ -56,15 +70,8 @@ func newFbSportsMatchRecommendation(db *gorm.DB, opts ...gen.DOOption) fbSportsM
 	_fbSportsMatchRecommendation.RegionID = field.NewInt64(tableName, "region_id")
 	_fbSportsMatchRecommendation.RegionName = field.NewString(tableName, "region_name")
 	_fbSportsMatchRecommendation.LeagueLogo = field.NewString(tableName, "league_logo")
-	_fbSportsMatchRecommendation.TeamLogo = field.NewString(tableName, "team_logo")
-	_fbSportsMatchRecommendation.LiveUrls = field.NewString(tableName, "live_urls")
-	_fbSportsMatchRecommendation.MarketTags = field.NewString(tableName, "market_tags")
-	_fbSportsMatchRecommendation.MatchPhase = field.NewString(tableName, "match_phase")
-	_fbSportsMatchRecommendation.SubMatchType = field.NewInt64(tableName, "sub_match_type")
-	_fbSportsMatchRecommendation.MatchType = field.NewInt64(tableName, "match_type")
-	_fbSportsMatchRecommendation.Season = field.NewString(tableName, "season")
-	_fbSportsMatchRecommendation.CreateTime = field.NewTime(tableName, "create_time")
-	_fbSportsMatchRecommendation.UpdateTime = field.NewTime(tableName, "update_time")
+	_fbSportsMatchRecommendation.CreateTime = field.NewInt64(tableName, "create_time")
+	_fbSportsMatchRecommendation.UpdateTime = field.NewInt64(tableName, "update_time")
 
 	_fbSportsMatchRecommendation.fillFieldMap()
 
@@ -76,44 +83,51 @@ type fbSportsMatchRecommendation struct {
 	fbSportsMatchRecommendationDo
 
 	ALL           field.Asterisk
-	ID            field.Int64   // 主键ID
-	MatchID       field.Int64   // 赛事ID
-	MatchName     field.String  // 赛事名称
-	LeagueID      field.Int64   // 联赛ID
-	LeagueName    field.String  // 联赛名称
-	SportID       field.Int64   // 运动种类ID
-	MatchStatus   field.Int64   // 赛事进行状态
-	StartTime     field.Time    // 开赛时间
-	Neutral       field.Int64   // 是否为中立场（0 否，1 是）
-	MarketCount   field.Int64   // 单个赛事玩法总数
-	SellingStatus field.Int64   // 销售状态（1 开售，2 暂停）
-	OddsType      field.Int64   // 赔率类型（odt 字段，支持搜索）
-	MarketType    field.Int64   // 玩法类型
-	PlayStage     field.Int64   // 玩法阶段
-	BetOption     field.String  // 投注选项名称
-	BetShortname  field.String  // 投注选项简称
-	TeamID        field.Int64   // 球队ID
-	SelectionType field.Int64   // 选项类型（主、客、大、小等）
-	EuropeanOdds  field.Float32 // 欧洲盘赔率
-	BackupOdds    field.Float32 // 备用赔率
-	SettleResult  field.Int64   // 选项结算结果
-	MarketStatus  field.Int64   // 玩法销售状态（0 暂停，1 开售，-1 未开售）
-	IsParlay      field.Int64   // 是否支持串关（0 否，1 是）
-	IsBestLine    field.Int64   // 是否为最优线（0 否，1 是）
-	LineValue     field.String  // 带线玩法的线值（如大小球2.5线）
-	LeagueLevel   field.Int64   // 联赛等级（值越小，级别越高）
-	RegionID      field.Int64   // 区域ID
-	RegionName    field.String  // 区域名称
-	LeagueLogo    field.String  // 联赛LOGO地址
-	TeamLogo      field.String  // 球队LOGO地址
-	LiveUrls      field.String  // 动画直播地址集合
-	MarketTags    field.String  // 盘口组标签集合（如热门、角球等）
-	MatchPhase    field.String  // 赛事阶段（如附加赛、季前赛等）
-	SubMatchType  field.Int64   // 滚球赛事当前阶段标识（常规时间、加时赛、点球大战等）
-	MatchType     field.Int64   // 赛事类型（1:冠军投注赛事, 2:正常赛事）
-	Season        field.String  // 冠军赛事赛季（如2019年）
-	CreateTime    field.Time    // 记录创建时间
-	UpdateTime    field.Time    // 记录更新时间
+	ID            field.Int64  // 主键ID
+	MatchID       field.Int64  // 赛事ID
+	MatchName     field.String // 赛事名称
+	LeagueID      field.Int64  // 联赛ID
+	LeagueName    field.String // 联赛名称
+	SportID       field.Int64  // 运动种类ID
+	MatchStatus   field.Int64  // 赛事进行状态
+	StartTime     field.Int64  // 开赛时间
+	MarketCount   field.Int64  // 单个赛事玩法总数
+	Neutral       field.Int64  // 是否为中立场（0 否，1 是）
+	ScoreList     field.String // 比分列表（原 nsg）
+	OddsList      field.String // 赔率列表（原 mg）
+	LeagueInfo    field.String // 联赛信息（原 lg）
+	TeamInfo      field.String // 球队信息，第一个是主队，第二个是客队（原 ts）
+	MatchClock    field.String // 比赛时钟信息，滚球走表信息（原 mc）
+	MatchFormatID field.Int64  // 赛制的场次、局数、节数（原 fid）
+	MatchFormat   field.Int64  // 赛制（原 fmt）
+	LiveUrls      field.String // 动画直播地址集合
+	ServingSide   field.Int64  // 主/客发球，1主队发球，2客队发球
+	MatchPhase    field.String // 赛事阶段（如附加赛、季前赛等）
+	SubMatchType  field.Int64  // 滚球赛事当前阶段标识（常规时间、加时赛、点球大战等）
+	MatchType     field.Int64  // 赛事类型（1:冠军投注赛事, 2:正常赛事）
+	Season        field.String // 冠军赛事赛季（如2019年）
+	Scoreboard    field.String // 比分板（原 sb）
+	MarketTags    field.String // 盘口组标签集合（如热门、角球等）
+	SellingStatus field.Int64  // 销售状态（1 开售，2 暂停）
+	OddsType      field.Int64  // 赔率类型（支持搜索）
+	MarketType    field.Int64  // 玩法类型
+	PlayStage     field.Int64  // 玩法阶段
+	BetOption     field.String // 投注选项名称
+	BetShortname  field.String // 投注选项简称
+	SelectionType field.Int64  // 选项类型（主、客、大、小等）
+	EuropeanOdds  field.Field  // 欧洲盘赔率
+	BackupOdds    field.Field  // 备用赔率
+	SettleResult  field.Int64  // 选项结算结果
+	MarketStatus  field.Int64  // 玩法销售状态（0 暂停，1 开售，-1 未开售）
+	IsParlay      field.Int64  // 是否支持串关（0 否，1 是）
+	IsBestLine    field.Int64  // 是否为最优线（0 否，1 是）
+	LineValue     field.String // 带线玩法的线值（如大小球2.5线）
+	LeagueLevel   field.Int64  // 联赛等级（值越小，级别越高）
+	RegionID      field.Int64  // 区域ID
+	RegionName    field.String // 区域名称
+	LeagueLogo    field.String // 联赛LOGO地址
+	CreateTime    field.Int64  // 记录创建时间
+	UpdateTime    field.Int64  // 记录更新时间
 
 	fieldMap map[string]field.Expr
 }
@@ -137,19 +151,33 @@ func (f *fbSportsMatchRecommendation) updateTableName(table string) *fbSportsMat
 	f.LeagueName = field.NewString(table, "league_name")
 	f.SportID = field.NewInt64(table, "sport_id")
 	f.MatchStatus = field.NewInt64(table, "match_status")
-	f.StartTime = field.NewTime(table, "start_time")
-	f.Neutral = field.NewInt64(table, "neutral")
+	f.StartTime = field.NewInt64(table, "start_time")
 	f.MarketCount = field.NewInt64(table, "market_count")
+	f.Neutral = field.NewInt64(table, "neutral")
+	f.ScoreList = field.NewString(table, "score_list")
+	f.OddsList = field.NewString(table, "odds_list")
+	f.LeagueInfo = field.NewString(table, "league_info")
+	f.TeamInfo = field.NewString(table, "team_info")
+	f.MatchClock = field.NewString(table, "match_clock")
+	f.MatchFormatID = field.NewInt64(table, "match_format_id")
+	f.MatchFormat = field.NewInt64(table, "match_format")
+	f.LiveUrls = field.NewString(table, "live_urls")
+	f.ServingSide = field.NewInt64(table, "serving_side")
+	f.MatchPhase = field.NewString(table, "match_phase")
+	f.SubMatchType = field.NewInt64(table, "sub_match_type")
+	f.MatchType = field.NewInt64(table, "match_type")
+	f.Season = field.NewString(table, "season")
+	f.Scoreboard = field.NewString(table, "scoreboard")
+	f.MarketTags = field.NewString(table, "market_tags")
 	f.SellingStatus = field.NewInt64(table, "selling_status")
 	f.OddsType = field.NewInt64(table, "odds_type")
 	f.MarketType = field.NewInt64(table, "market_type")
 	f.PlayStage = field.NewInt64(table, "play_stage")
 	f.BetOption = field.NewString(table, "bet_option")
 	f.BetShortname = field.NewString(table, "bet_shortname")
-	f.TeamID = field.NewInt64(table, "team_id")
 	f.SelectionType = field.NewInt64(table, "selection_type")
-	f.EuropeanOdds = field.NewFloat32(table, "european_odds")
-	f.BackupOdds = field.NewFloat32(table, "backup_odds")
+	f.EuropeanOdds = field.NewField(table, "european_odds")
+	f.BackupOdds = field.NewField(table, "backup_odds")
 	f.SettleResult = field.NewInt64(table, "settle_result")
 	f.MarketStatus = field.NewInt64(table, "market_status")
 	f.IsParlay = field.NewInt64(table, "is_parlay")
@@ -159,15 +187,8 @@ func (f *fbSportsMatchRecommendation) updateTableName(table string) *fbSportsMat
 	f.RegionID = field.NewInt64(table, "region_id")
 	f.RegionName = field.NewString(table, "region_name")
 	f.LeagueLogo = field.NewString(table, "league_logo")
-	f.TeamLogo = field.NewString(table, "team_logo")
-	f.LiveUrls = field.NewString(table, "live_urls")
-	f.MarketTags = field.NewString(table, "market_tags")
-	f.MatchPhase = field.NewString(table, "match_phase")
-	f.SubMatchType = field.NewInt64(table, "sub_match_type")
-	f.MatchType = field.NewInt64(table, "match_type")
-	f.Season = field.NewString(table, "season")
-	f.CreateTime = field.NewTime(table, "create_time")
-	f.UpdateTime = field.NewTime(table, "update_time")
+	f.CreateTime = field.NewInt64(table, "create_time")
+	f.UpdateTime = field.NewInt64(table, "update_time")
 
 	f.fillFieldMap()
 
@@ -184,7 +205,7 @@ func (f *fbSportsMatchRecommendation) GetFieldByName(fieldName string) (field.Or
 }
 
 func (f *fbSportsMatchRecommendation) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 38)
+	f.fieldMap = make(map[string]field.Expr, 45)
 	f.fieldMap["id"] = f.ID
 	f.fieldMap["match_id"] = f.MatchID
 	f.fieldMap["match_name"] = f.MatchName
@@ -193,15 +214,29 @@ func (f *fbSportsMatchRecommendation) fillFieldMap() {
 	f.fieldMap["sport_id"] = f.SportID
 	f.fieldMap["match_status"] = f.MatchStatus
 	f.fieldMap["start_time"] = f.StartTime
-	f.fieldMap["neutral"] = f.Neutral
 	f.fieldMap["market_count"] = f.MarketCount
+	f.fieldMap["neutral"] = f.Neutral
+	f.fieldMap["score_list"] = f.ScoreList
+	f.fieldMap["odds_list"] = f.OddsList
+	f.fieldMap["league_info"] = f.LeagueInfo
+	f.fieldMap["team_info"] = f.TeamInfo
+	f.fieldMap["match_clock"] = f.MatchClock
+	f.fieldMap["match_format_id"] = f.MatchFormatID
+	f.fieldMap["match_format"] = f.MatchFormat
+	f.fieldMap["live_urls"] = f.LiveUrls
+	f.fieldMap["serving_side"] = f.ServingSide
+	f.fieldMap["match_phase"] = f.MatchPhase
+	f.fieldMap["sub_match_type"] = f.SubMatchType
+	f.fieldMap["match_type"] = f.MatchType
+	f.fieldMap["season"] = f.Season
+	f.fieldMap["scoreboard"] = f.Scoreboard
+	f.fieldMap["market_tags"] = f.MarketTags
 	f.fieldMap["selling_status"] = f.SellingStatus
 	f.fieldMap["odds_type"] = f.OddsType
 	f.fieldMap["market_type"] = f.MarketType
 	f.fieldMap["play_stage"] = f.PlayStage
 	f.fieldMap["bet_option"] = f.BetOption
 	f.fieldMap["bet_shortname"] = f.BetShortname
-	f.fieldMap["team_id"] = f.TeamID
 	f.fieldMap["selection_type"] = f.SelectionType
 	f.fieldMap["european_odds"] = f.EuropeanOdds
 	f.fieldMap["backup_odds"] = f.BackupOdds
@@ -214,13 +249,6 @@ func (f *fbSportsMatchRecommendation) fillFieldMap() {
 	f.fieldMap["region_id"] = f.RegionID
 	f.fieldMap["region_name"] = f.RegionName
 	f.fieldMap["league_logo"] = f.LeagueLogo
-	f.fieldMap["team_logo"] = f.TeamLogo
-	f.fieldMap["live_urls"] = f.LiveUrls
-	f.fieldMap["market_tags"] = f.MarketTags
-	f.fieldMap["match_phase"] = f.MatchPhase
-	f.fieldMap["sub_match_type"] = f.SubMatchType
-	f.fieldMap["match_type"] = f.MatchType
-	f.fieldMap["season"] = f.Season
 	f.fieldMap["create_time"] = f.CreateTime
 	f.fieldMap["update_time"] = f.UpdateTime
 }

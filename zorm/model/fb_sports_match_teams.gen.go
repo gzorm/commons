@@ -8,9 +8,12 @@ const TableNameFbSportsMatchTeams = "fb_sports_match_teams"
 
 // FbSportsMatchTeams 球队表
 type FbSportsMatchTeams struct {
-	ID   int64  `gorm:"column:id;type:int;primaryKey;comment:球队ID" json:"id,string"` // 球队ID
-	Na   string `gorm:"column:na;type:varchar(100);not null;comment:球队名称" json:"na"` // 球队名称
-	Lurl string `gorm:"column:lurl;type:varchar(255);comment:球队图标地址" json:"lurl"`    // 球队图标地址
+	ID          int64  `gorm:"column:id;type:int;primaryKey;autoIncrement:true;comment:主键" json:"id,string"` // 主键
+	TeamID      int64  `gorm:"column:team_id;type:bigint;comment:球队ID" json:"teamId"`                        // 球队ID
+	TeamName    string `gorm:"column:team_name;type:varchar(100);not null;comment:球队名称" json:"teamName"`     // 球队名称
+	TeamIconURL string `gorm:"column:team_icon_url;type:varchar(255);comment:球队图标地址" json:"teamIconUrl"`     // 球队图标地址
+	CreatedAt   int64  `gorm:"column:created_at;comment:创建时间" json:"createdAt"`                              // 记录创建时间（时间戳）
+	UpdatedAt   int64  `gorm:"column:updated_at;comment:更新时间" json:"updatedAt"`                              // 记录更新时间（时间戳）
 }
 
 // TableName FbSportsMatchTeams's table name

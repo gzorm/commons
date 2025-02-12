@@ -28,36 +28,46 @@ func newFbSportsMatchLeagues(db *gorm.DB, opts ...gen.DOOption) fbSportsMatchLea
 	tableName := _fbSportsMatchLeagues.fbSportsMatchLeaguesDo.TableName()
 	_fbSportsMatchLeagues.ALL = field.NewAsterisk(tableName)
 	_fbSportsMatchLeagues.ID = field.NewInt64(tableName, "id")
-	_fbSportsMatchLeagues.Sid = field.NewInt64(tableName, "sid")
-	_fbSportsMatchLeagues.Na = field.NewString(tableName, "na")
-	_fbSportsMatchLeagues.Level = field.NewInt64(tableName, "level")
-	_fbSportsMatchLeagues.Lurl = field.NewString(tableName, "lurl")
-	_fbSportsMatchLeagues.Rid = field.NewInt64(tableName, "rid")
-	_fbSportsMatchLeagues.Rnm = field.NewString(tableName, "rnm")
-	_fbSportsMatchLeagues.Rlg = field.NewString(tableName, "rlg")
-	_fbSportsMatchLeagues.Hot = field.NewInt64(tableName, "hot")
-	_fbSportsMatchLeagues.Slid = field.NewInt64(tableName, "slid")
+	_fbSportsMatchLeagues.LeagueID = field.NewInt64(tableName, "league_id")
+	_fbSportsMatchLeagues.LeagueType = field.NewInt64(tableName, "league_type")
+	_fbSportsMatchLeagues.MatchCount = field.NewInt64(tableName, "match_count")
+	_fbSportsMatchLeagues.LeagueName = field.NewString(tableName, "league_name")
+	_fbSportsMatchLeagues.LeagueLevel = field.NewInt64(tableName, "league_level")
+	_fbSportsMatchLeagues.SportID = field.NewInt64(tableName, "sport_id")
+	_fbSportsMatchLeagues.LeagueIconURL = field.NewString(tableName, "league_icon_url")
+	_fbSportsMatchLeagues.RegionID = field.NewInt64(tableName, "region_id")
+	_fbSportsMatchLeagues.RegionName = field.NewString(tableName, "region_name")
+	_fbSportsMatchLeagues.RegionLogoURL = field.NewString(tableName, "region_logo_url")
+	_fbSportsMatchLeagues.IsHot = field.NewInt64(tableName, "is_hot")
+	_fbSportsMatchLeagues.LeagueGroupID = field.NewInt64(tableName, "league_group_id")
+	_fbSportsMatchLeagues.CreatedAt = field.NewInt64(tableName, "created_at")
+	_fbSportsMatchLeagues.UpdatedAt = field.NewInt64(tableName, "updated_at")
 
 	_fbSportsMatchLeagues.fillFieldMap()
 
 	return _fbSportsMatchLeagues
 }
 
-// fbSportsMatchLeagues 联赛表
+// fbSportsMatchLeagues 联赛统计表
 type fbSportsMatchLeagues struct {
 	fbSportsMatchLeaguesDo
 
-	ALL   field.Asterisk
-	ID    field.Int64  // 联赛ID
-	Sid   field.Int64  // 运动种类ID
-	Na    field.String // 联赛名称
-	Level field.Int64  // 联赛等级 or
-	Lurl  field.String // 联赛图标
-	Rid   field.Int64  // 区域ID
-	Rnm   field.String // 区域名称
-	Rlg   field.String // 区域LOGO
-	Hot   field.Int64  // 是否热门
-	Slid  field.Int64  // 联赛分组
+	ALL           field.Asterisk
+	ID            field.Int64  // 主键 ID
+	LeagueID      field.Int64  // 联赛 ID
+	LeagueType    field.Int64  // 类表分类类型，如滚球、今日、早盘等
+	MatchCount    field.Int64  // 该联赛开售的赛事数量
+	LeagueName    field.String // 联赛名称
+	LeagueLevel   field.Int64  // 联赛等级
+	SportID       field.Int64  // 运动种类 ID
+	LeagueIconURL field.String // 联赛图标 URL
+	RegionID      field.Int64  // 区域 ID
+	RegionName    field.String // 区域名称
+	RegionLogoURL field.String // 区域 LOGO URL
+	IsHot         field.Int64  // 是否热门联赛，1 表示热门，0 表示非热门
+	LeagueGroupID field.Int64  // 联赛分组 ID
+	CreatedAt     field.Int64  // 记录创建时间（时间戳）
+	UpdatedAt     field.Int64  // 记录更新时间（时间戳）
 
 	fieldMap map[string]field.Expr
 }
@@ -75,15 +85,20 @@ func (f fbSportsMatchLeagues) As(alias string) *fbSportsMatchLeagues {
 func (f *fbSportsMatchLeagues) updateTableName(table string) *fbSportsMatchLeagues {
 	f.ALL = field.NewAsterisk(table)
 	f.ID = field.NewInt64(table, "id")
-	f.Sid = field.NewInt64(table, "sid")
-	f.Na = field.NewString(table, "na")
-	f.Level = field.NewInt64(table, "level")
-	f.Lurl = field.NewString(table, "lurl")
-	f.Rid = field.NewInt64(table, "rid")
-	f.Rnm = field.NewString(table, "rnm")
-	f.Rlg = field.NewString(table, "rlg")
-	f.Hot = field.NewInt64(table, "hot")
-	f.Slid = field.NewInt64(table, "slid")
+	f.LeagueID = field.NewInt64(table, "league_id")
+	f.LeagueType = field.NewInt64(table, "league_type")
+	f.MatchCount = field.NewInt64(table, "match_count")
+	f.LeagueName = field.NewString(table, "league_name")
+	f.LeagueLevel = field.NewInt64(table, "league_level")
+	f.SportID = field.NewInt64(table, "sport_id")
+	f.LeagueIconURL = field.NewString(table, "league_icon_url")
+	f.RegionID = field.NewInt64(table, "region_id")
+	f.RegionName = field.NewString(table, "region_name")
+	f.RegionLogoURL = field.NewString(table, "region_logo_url")
+	f.IsHot = field.NewInt64(table, "is_hot")
+	f.LeagueGroupID = field.NewInt64(table, "league_group_id")
+	f.CreatedAt = field.NewInt64(table, "created_at")
+	f.UpdatedAt = field.NewInt64(table, "updated_at")
 
 	f.fillFieldMap()
 
@@ -100,17 +115,22 @@ func (f *fbSportsMatchLeagues) GetFieldByName(fieldName string) (field.OrderExpr
 }
 
 func (f *fbSportsMatchLeagues) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 10)
+	f.fieldMap = make(map[string]field.Expr, 15)
 	f.fieldMap["id"] = f.ID
-	f.fieldMap["sid"] = f.Sid
-	f.fieldMap["na"] = f.Na
-	f.fieldMap["level"] = f.Level
-	f.fieldMap["lurl"] = f.Lurl
-	f.fieldMap["rid"] = f.Rid
-	f.fieldMap["rnm"] = f.Rnm
-	f.fieldMap["rlg"] = f.Rlg
-	f.fieldMap["hot"] = f.Hot
-	f.fieldMap["slid"] = f.Slid
+	f.fieldMap["league_id"] = f.LeagueID
+	f.fieldMap["league_type"] = f.LeagueType
+	f.fieldMap["match_count"] = f.MatchCount
+	f.fieldMap["league_name"] = f.LeagueName
+	f.fieldMap["league_level"] = f.LeagueLevel
+	f.fieldMap["sport_id"] = f.SportID
+	f.fieldMap["league_icon_url"] = f.LeagueIconURL
+	f.fieldMap["region_id"] = f.RegionID
+	f.fieldMap["region_name"] = f.RegionName
+	f.fieldMap["region_logo_url"] = f.RegionLogoURL
+	f.fieldMap["is_hot"] = f.IsHot
+	f.fieldMap["league_group_id"] = f.LeagueGroupID
+	f.fieldMap["created_at"] = f.CreatedAt
+	f.fieldMap["updated_at"] = f.UpdatedAt
 }
 
 func (f fbSportsMatchLeagues) clone(db *gorm.DB) fbSportsMatchLeagues {

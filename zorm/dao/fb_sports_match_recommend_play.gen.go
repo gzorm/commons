@@ -28,33 +28,16 @@ func newFbSportsMatchRecommendPlay(db *gorm.DB, opts ...gen.DOOption) fbSportsMa
 	tableName := _fbSportsMatchRecommendPlay.fbSportsMatchRecommendPlayDo.TableName()
 	_fbSportsMatchRecommendPlay.ALL = field.NewAsterisk(tableName)
 	_fbSportsMatchRecommendPlay.ID = field.NewInt64(tableName, "id")
-	_fbSportsMatchRecommendPlay.Mid = field.NewInt64(tableName, "mid")
-	_fbSportsMatchRecommendPlay.Bt = field.NewInt64(tableName, "bt")
-	_fbSportsMatchRecommendPlay.Ms = field.NewInt64(tableName, "ms")
-	_fbSportsMatchRecommendPlay.DescText = field.NewString(tableName, "desc_text")
-	_fbSportsMatchRecommendPlay.Nm = field.NewString(tableName, "nm")
-	_fbSportsMatchRecommendPlay.PlayID = field.NewInt64(tableName, "play_id")
-	_fbSportsMatchRecommendPlay.Ss = field.NewInt64(tableName, "ss")
-	_fbSportsMatchRecommendPlay.Au = field.NewInt64(tableName, "au")
-	_fbSportsMatchRecommendPlay.Mbl = field.NewInt64(tableName, "mbl")
-	_fbSportsMatchRecommendPlay.Li = field.NewString(tableName, "li")
-	_fbSportsMatchRecommendPlay.Mty = field.NewInt64(tableName, "mty")
-	_fbSportsMatchRecommendPlay.Na = field.NewString(tableName, "na")
-	_fbSportsMatchRecommendPlay.NmShort = field.NewString(tableName, "nm_short")
-	_fbSportsMatchRecommendPlay.Tid = field.NewInt64(tableName, "tid")
-	_fbSportsMatchRecommendPlay.Ty = field.NewInt64(tableName, "ty")
-	_fbSportsMatchRecommendPlay.Od = field.NewField(tableName, "od")
-	_fbSportsMatchRecommendPlay.Bod = field.NewField(tableName, "bod")
-	_fbSportsMatchRecommendPlay.Odt = field.NewInt64(tableName, "odt")
-	_fbSportsMatchRecommendPlay.Otcm = field.NewInt64(tableName, "otcm")
-	_fbSportsMatchRecommendPlay.LiOld = field.NewString(tableName, "li_old")
-	_fbSportsMatchRecommendPlay.LgNa = field.NewString(tableName, "lg_na")
-	_fbSportsMatchRecommendPlay.LgID = field.NewInt64(tableName, "lg_id")
-	_fbSportsMatchRecommendPlay.TsNa = field.NewString(tableName, "ts_na")
-	_fbSportsMatchRecommendPlay.TsID = field.NewInt64(tableName, "ts_id")
-	_fbSportsMatchRecommendPlay.TsLurl = field.NewString(tableName, "ts_lurl")
-	_fbSportsMatchRecommendPlay.CreatedAt = field.NewTime(tableName, "created_at")
-	_fbSportsMatchRecommendPlay.UpdatedAt = field.NewTime(tableName, "updated_at")
+	_fbSportsMatchRecommendPlay.MatchID = field.NewInt64(tableName, "match_id")
+	_fbSportsMatchRecommendPlay.Options = field.NewString(tableName, "options")
+	_fbSportsMatchRecommendPlay.TeamInfo = field.NewString(tableName, "team_info")
+	_fbSportsMatchRecommendPlay.StartTime = field.NewInt64(tableName, "start_time")
+	_fbSportsMatchRecommendPlay.MatchStatus = field.NewInt64(tableName, "match_status")
+	_fbSportsMatchRecommendPlay.MarketType = field.NewInt64(tableName, "market_type")
+	_fbSportsMatchRecommendPlay.LeagueName = field.NewString(tableName, "league_name")
+	_fbSportsMatchRecommendPlay.LeagueID = field.NewInt64(tableName, "league_id")
+	_fbSportsMatchRecommendPlay.CreatedAt = field.NewInt64(tableName, "created_at")
+	_fbSportsMatchRecommendPlay.UpdatedAt = field.NewInt64(tableName, "updated_at")
 
 	_fbSportsMatchRecommendPlay.fillFieldMap()
 
@@ -65,35 +48,18 @@ func newFbSportsMatchRecommendPlay(db *gorm.DB, opts ...gen.DOOption) fbSportsMa
 type fbSportsMatchRecommendPlay struct {
 	fbSportsMatchRecommendPlayDo
 
-	ALL       field.Asterisk
-	ID        field.Int64  // 主键ID
-	Mid       field.Int64  // 赛事ID
-	Bt        field.Int64  // 赛事开赛时间
-	Ms        field.Int64  // 赛事进行状态
-	DescText  field.String // 推荐原因
-	Nm        field.String // 盘口组名
-	PlayID    field.Int64  // 玩法ID
-	Ss        field.Int64  // 玩法销售状态 (0: 暂停, 1: 开售, -1: 未开售)
-	Au        field.Int64  // 是否支持串关 (0: 不可串关, 1: 可串关)
-	Mbl       field.Int64  // 是否为最优线 (用于带线玩法排序)
-	Li        field.String // line值，例如大小球2.5线
-	Mty       field.Int64  // 玩法类型，如亚盘、大小球等
-	Na        field.String // 选项全称 (投注框展示)
-	NmShort   field.String // 选项简称 (赔率列表展示)
-	Tid       field.Int64  // 球员玩法球队ID
-	Ty        field.Int64  // 选项类型 (主、客、大、小等)
-	Od        field.Field  // 欧盘赔率 (小于0代表锁盘)
-	Bod       field.Field  // 赔率，返回对应类型赔率
-	Odt       field.Int64  // 赔率类型
-	Otcm      field.Int64  // 选项结算结果 (仅虚拟体育展示)
-	LiOld     field.String // 带线玩法的线 (老版本兼容字段)
-	LgNa      field.String // 联赛名称
-	LgID      field.Int64  // 联赛ID
-	TsNa      field.String // 球队名称
-	TsID      field.Int64  // 球队ID
-	TsLurl    field.String // 球队图标地址
-	CreatedAt field.Time   // 创建时间
-	UpdatedAt field.Time   // 更新时间
+	ALL         field.Asterisk
+	ID          field.Int64  // 主键ID
+	MatchID     field.Int64  // 赛事ID（原 mid）
+	Options     field.String // 选项集合（原 ops）
+	TeamInfo    field.String // 球队信息，第一个是主队，第二个是客队（原 ts）
+	StartTime   field.Int64  // 赛事开赛时间（原 bt）
+	MatchStatus field.Int64  // 赛事进行状态（原 ms）
+	MarketType  field.Int64  // 玩法类型，如亚盘、大小球等（原 mty）
+	LeagueName  field.String // 联赛名称（原 lg_na）
+	LeagueID    field.Int64  // 联赛ID（原 lg_id）
+	CreatedAt   field.Int64  // 创建时间
+	UpdatedAt   field.Int64  // 更新时间
 
 	fieldMap map[string]field.Expr
 }
@@ -111,33 +77,16 @@ func (f fbSportsMatchRecommendPlay) As(alias string) *fbSportsMatchRecommendPlay
 func (f *fbSportsMatchRecommendPlay) updateTableName(table string) *fbSportsMatchRecommendPlay {
 	f.ALL = field.NewAsterisk(table)
 	f.ID = field.NewInt64(table, "id")
-	f.Mid = field.NewInt64(table, "mid")
-	f.Bt = field.NewInt64(table, "bt")
-	f.Ms = field.NewInt64(table, "ms")
-	f.DescText = field.NewString(table, "desc_text")
-	f.Nm = field.NewString(table, "nm")
-	f.PlayID = field.NewInt64(table, "play_id")
-	f.Ss = field.NewInt64(table, "ss")
-	f.Au = field.NewInt64(table, "au")
-	f.Mbl = field.NewInt64(table, "mbl")
-	f.Li = field.NewString(table, "li")
-	f.Mty = field.NewInt64(table, "mty")
-	f.Na = field.NewString(table, "na")
-	f.NmShort = field.NewString(table, "nm_short")
-	f.Tid = field.NewInt64(table, "tid")
-	f.Ty = field.NewInt64(table, "ty")
-	f.Od = field.NewField(table, "od")
-	f.Bod = field.NewField(table, "bod")
-	f.Odt = field.NewInt64(table, "odt")
-	f.Otcm = field.NewInt64(table, "otcm")
-	f.LiOld = field.NewString(table, "li_old")
-	f.LgNa = field.NewString(table, "lg_na")
-	f.LgID = field.NewInt64(table, "lg_id")
-	f.TsNa = field.NewString(table, "ts_na")
-	f.TsID = field.NewInt64(table, "ts_id")
-	f.TsLurl = field.NewString(table, "ts_lurl")
-	f.CreatedAt = field.NewTime(table, "created_at")
-	f.UpdatedAt = field.NewTime(table, "updated_at")
+	f.MatchID = field.NewInt64(table, "match_id")
+	f.Options = field.NewString(table, "options")
+	f.TeamInfo = field.NewString(table, "team_info")
+	f.StartTime = field.NewInt64(table, "start_time")
+	f.MatchStatus = field.NewInt64(table, "match_status")
+	f.MarketType = field.NewInt64(table, "market_type")
+	f.LeagueName = field.NewString(table, "league_name")
+	f.LeagueID = field.NewInt64(table, "league_id")
+	f.CreatedAt = field.NewInt64(table, "created_at")
+	f.UpdatedAt = field.NewInt64(table, "updated_at")
 
 	f.fillFieldMap()
 
@@ -154,33 +103,16 @@ func (f *fbSportsMatchRecommendPlay) GetFieldByName(fieldName string) (field.Ord
 }
 
 func (f *fbSportsMatchRecommendPlay) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 28)
+	f.fieldMap = make(map[string]field.Expr, 11)
 	f.fieldMap["id"] = f.ID
-	f.fieldMap["mid"] = f.Mid
-	f.fieldMap["bt"] = f.Bt
-	f.fieldMap["ms"] = f.Ms
-	f.fieldMap["desc_text"] = f.DescText
-	f.fieldMap["nm"] = f.Nm
-	f.fieldMap["play_id"] = f.PlayID
-	f.fieldMap["ss"] = f.Ss
-	f.fieldMap["au"] = f.Au
-	f.fieldMap["mbl"] = f.Mbl
-	f.fieldMap["li"] = f.Li
-	f.fieldMap["mty"] = f.Mty
-	f.fieldMap["na"] = f.Na
-	f.fieldMap["nm_short"] = f.NmShort
-	f.fieldMap["tid"] = f.Tid
-	f.fieldMap["ty"] = f.Ty
-	f.fieldMap["od"] = f.Od
-	f.fieldMap["bod"] = f.Bod
-	f.fieldMap["odt"] = f.Odt
-	f.fieldMap["otcm"] = f.Otcm
-	f.fieldMap["li_old"] = f.LiOld
-	f.fieldMap["lg_na"] = f.LgNa
-	f.fieldMap["lg_id"] = f.LgID
-	f.fieldMap["ts_na"] = f.TsNa
-	f.fieldMap["ts_id"] = f.TsID
-	f.fieldMap["ts_lurl"] = f.TsLurl
+	f.fieldMap["match_id"] = f.MatchID
+	f.fieldMap["options"] = f.Options
+	f.fieldMap["team_info"] = f.TeamInfo
+	f.fieldMap["start_time"] = f.StartTime
+	f.fieldMap["match_status"] = f.MatchStatus
+	f.fieldMap["market_type"] = f.MarketType
+	f.fieldMap["league_name"] = f.LeagueName
+	f.fieldMap["league_id"] = f.LeagueID
 	f.fieldMap["created_at"] = f.CreatedAt
 	f.fieldMap["updated_at"] = f.UpdatedAt
 }

@@ -4,36 +4,20 @@
 
 package model
 
-import (
-	"time"
-
-	"github.com/shopspring/decimal"
-)
-
 const TableNameFbSportsMatchMarketGroup = "fb_sports_match_market_group"
 
 // FbSportsMatchMarketGroup 赛事盘口组集合表
 type FbSportsMatchMarketGroup struct {
-	ID        int64           `gorm:"column:id;type:bigint;primaryKey;autoIncrement:true;comment:主键ID" json:"id,string"` // 主键ID
-	MatchID   int64           `gorm:"column:match_id;type:bigint;not null;comment:赛事ID" json:"matchId"`                  // 赛事ID
-	Tag       string          `gorm:"column:tag;type:varchar(50);not null;comment:盘口组标签" json:"tag"`                     // 盘口组标签
-	Mty       int64           `gorm:"column:mty;type:int;not null;comment:玩法类型，如亚盘、大小球等" json:"mty"`                     // 玩法类型，如亚盘、大小球等
-	Pe        int64           `gorm:"column:pe;type:int;not null;comment:玩法阶段，如上半场、全场等" json:"pe"`                       // 玩法阶段，如上半场、全场等
-	MarketID  int64           `gorm:"column:market_id;type:int;not null;comment:玩法ID" json:"marketId"`                   // 玩法ID
-	Ss        int64           `gorm:"column:ss;type:int;not null;comment:玩法销售状态 (0: 暂停, 1: 开售, -1: 未开售)" json:"ss"`      // 玩法销售状态 (0: 暂停, 1: 开售, -1: 未开售)
-	Au        int64           `gorm:"column:au;type:int;not null;comment:是否支持串关 (0: 不可串关, 1: 可串关)" json:"au"`            // 是否支持串关 (0: 不可串关, 1: 可串关)
-	Mbl       int64           `gorm:"column:mbl;type:int;not null;comment:是否为最优线 (用于带线玩法排序)" json:"mbl"`                 // 是否为最优线 (用于带线玩法排序)
-	Li        string          `gorm:"column:li;type:varchar(50);comment:line值，带线玩法的线" json:"li"`                         // line值，带线玩法的线
-	Na        string          `gorm:"column:na;type:varchar(100);not null;comment:选项全称 (投注框展示)" json:"na"`               // 选项全称 (投注框展示)
-	Nm        string          `gorm:"column:nm;type:varchar(50);not null;comment:选项简称 (赔率列表展示)" json:"nm"`               // 选项简称 (赔率列表展示)
-	Tid       int64           `gorm:"column:tid;type:int;not null;comment:球员玩法球队ID" json:"tid"`                          // 球员玩法球队ID
-	Ty        int64           `gorm:"column:ty;type:int;not null;comment:选项类型 (主、客、大、小等)" json:"ty"`                     // 选项类型 (主、客、大、小等)
-	Od        decimal.Decimal `gorm:"column:od;type:decimal(18,2);not null;comment:欧盘赔率 (小于0代表锁盘)" json:"od"`            // 欧盘赔率 (小于0代表锁盘)
-	Bod       decimal.Decimal `gorm:"column:bod;type:decimal(18,2);not null;comment:赔率，返回对应类型赔率" json:"bod"`             // 赔率，返回对应类型赔率
-	Odt       int64           `gorm:"column:odt;type:int;not null;comment:赔率类型" json:"odt"`                              // 赔率类型
-	Otcm      int64           `gorm:"column:otcm;type:int;not null;comment:选项结算结果 (仅虚拟体育展示)" json:"otcm"`                // 选项结算结果 (仅虚拟体育展示)
-	CreatedAt time.Time       `gorm:"column:created_at;comment:创建时间" json:"createdAt"`                                   // 创建时间
-	UpdatedAt time.Time       `gorm:"column:updated_at;comment:更新时间" json:"updatedAt"`                                   // 更新时间
+	ID        int64  `gorm:"column:id;type:bigint;primaryKey;autoIncrement:true;comment:主键ID" json:"id,string"`             // 主键ID
+	MatchID   int64  `gorm:"column:match_id;type:bigint;not null;comment:赛事ID" json:"matchId"`                              // 赛事ID
+	Mty       int64  `gorm:"column:mty;type:int;not null;comment:玩法类型，如亚盘、大小球等" json:"mty"`                                 // 玩法类型，如亚盘、大小球等
+	Pe        int64  `gorm:"column:pe;type:int;not null;comment:玩法阶段，如上半场、全场等" json:"pe"`                                   // 玩法阶段，如上半场、全场等
+	Tag       string `gorm:"column:tag;type:varchar(50);not null;comment:盘口组标签" json:"tag"`                                 // 盘口组标签
+	Mks       string `gorm:"column:mks;type:text;comment:玩法赔率集合，带线玩法，数组里是多个，或者一个玩法，不带线玩法，数组就是一条数据" json:"mks"`              // 玩法赔率集合，带线玩法，数组里是多个，或者一个玩法，不带线玩法，数组就是一条数据
+	Tps       string `gorm:"column:tps;type:text;comment:玩法展示分类数组， 如：热门、角球、波胆等，返回英文字母简称 , see enum: market_tag" json:"tps"` // 玩法展示分类数组， 如：热门、角球、波胆等，返回英文字母简称 , see enum: market_tag
+	Nm        string `gorm:"column:nm;type:varchar(50);not null;comment:玩法名称" json:"nm"`                                    // 玩法名称
+	CreatedAt int64  `gorm:"column:created_at;comment:创建时间" json:"createdAt"`                                               // 创建时间
+	UpdatedAt int64  `gorm:"column:updated_at;comment:更新时间" json:"updatedAt"`                                               // 更新时间
 }
 
 // TableName FbSportsMatchMarketGroup's table name

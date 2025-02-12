@@ -28,86 +28,46 @@ func newFbSportsMatchResults(db *gorm.DB, opts ...gen.DOOption) fbSportsMatchRes
 	tableName := _fbSportsMatchResults.fbSportsMatchResultsDo.TableName()
 	_fbSportsMatchResults.ALL = field.NewAsterisk(tableName)
 	_fbSportsMatchResults.ID = field.NewInt64(tableName, "id")
-	_fbSportsMatchResults.Bt = field.NewInt64(tableName, "bt")
-	_fbSportsMatchResults.Ms = field.NewInt64(tableName, "ms")
-	_fbSportsMatchResults.Fid = field.NewInt64(tableName, "fid")
-	_fbSportsMatchResults.Fmt = field.NewInt64(tableName, "fmt")
-	_fbSportsMatchResults.Ne = field.NewInt64(tableName, "ne")
-	_fbSportsMatchResults.Sid = field.NewInt64(tableName, "sid")
+	_fbSportsMatchResults.MatchID = field.NewInt64(tableName, "match_id")
 	_fbSportsMatchResults.MatchType = field.NewInt64(tableName, "match_type")
-	_fbSportsMatchResults.LeagueID = field.NewInt64(tableName, "league_id")
-	_fbSportsMatchResults.LeagueName = field.NewString(tableName, "league_name")
-	_fbSportsMatchResults.LeagueLevel = field.NewInt64(tableName, "league_level")
-	_fbSportsMatchResults.LeagueLogo = field.NewString(tableName, "league_logo")
-	_fbSportsMatchResults.RegionID = field.NewInt64(tableName, "region_id")
-	_fbSportsMatchResults.RegionName = field.NewString(tableName, "region_name")
-	_fbSportsMatchResults.RegionLogo = field.NewString(tableName, "region_logo")
-	_fbSportsMatchResults.IsHot = field.NewInt64(tableName, "is_hot")
-	_fbSportsMatchResults.LeagueGroupID = field.NewInt64(tableName, "league_group_id")
-	_fbSportsMatchResults.HomeTeamID = field.NewInt64(tableName, "home_team_id")
-	_fbSportsMatchResults.HomeTeamName = field.NewString(tableName, "home_team_name")
-	_fbSportsMatchResults.HomeTeamLogo = field.NewString(tableName, "home_team_logo")
-	_fbSportsMatchResults.AwayTeamID = field.NewInt64(tableName, "away_team_id")
-	_fbSportsMatchResults.AwayTeamName = field.NewString(tableName, "away_team_name")
-	_fbSportsMatchResults.AwayTeamLogo = field.NewString(tableName, "away_team_logo")
-	_fbSportsMatchResults.ScorePhase = field.NewInt64(tableName, "score_phase")
-	_fbSportsMatchResults.ScoreType = field.NewInt64(tableName, "score_type")
-	_fbSportsMatchResults.HomeScore = field.NewInt64(tableName, "home_score")
-	_fbSportsMatchResults.AwayScore = field.NewInt64(tableName, "away_score")
-	_fbSportsMatchResults.MarketPhase = field.NewInt64(tableName, "market_phase")
-	_fbSportsMatchResults.MarketType = field.NewInt64(tableName, "market_type")
-	_fbSportsMatchResults.MarketGroup = field.NewString(tableName, "market_group")
-	_fbSportsMatchResults.MarketID = field.NewInt64(tableName, "market_id")
-	_fbSportsMatchResults.MarketOptionType = field.NewInt64(tableName, "market_option_type")
-	_fbSportsMatchResults.MarketOptionName = field.NewString(tableName, "market_option_name")
-	_fbSportsMatchResults.CreatedAt = field.NewTime(tableName, "created_at")
-	_fbSportsMatchResults.UpdatedAt = field.NewTime(tableName, "updated_at")
+	_fbSportsMatchResults.StartTime = field.NewInt64(tableName, "start_time")
+	_fbSportsMatchResults.MatchStatus = field.NewInt64(tableName, "match_status")
+	_fbSportsMatchResults.GameStage = field.NewInt64(tableName, "game_stage")
+	_fbSportsMatchResults.GameFormat = field.NewInt64(tableName, "game_format")
+	_fbSportsMatchResults.IsNeutral = field.NewInt64(tableName, "is_neutral")
+	_fbSportsMatchResults.SportID = field.NewInt64(tableName, "sport_id")
+	_fbSportsMatchResults.LeagueData = field.NewString(tableName, "league_data")
+	_fbSportsMatchResults.TeamData = field.NewString(tableName, "team_data")
+	_fbSportsMatchResults.Scores = field.NewString(tableName, "scores")
+	_fbSportsMatchResults.MarketResults = field.NewString(tableName, "market_results")
+	_fbSportsMatchResults.CreatedAt = field.NewInt64(tableName, "created_at")
+	_fbSportsMatchResults.UpdatedAt = field.NewInt64(tableName, "updated_at")
 
 	_fbSportsMatchResults.fillFieldMap()
 
 	return _fbSportsMatchResults
 }
 
-// fbSportsMatchResults 赛事赛果表
+// fbSportsMatchResults 赛事结果记录表
 type fbSportsMatchResults struct {
 	fbSportsMatchResultsDo
 
-	ALL              field.Asterisk
-	ID               field.Int64  // 赛事ID
-	Bt               field.Int64  // 赛事开赛时间 (时间戳)
-	Ms               field.Int64  // 赛事进行状态
-	Fid              field.Int64  // 赛制的场次、局数、节数
-	Fmt              field.Int64  // 赛制
-	Ne               field.Int64  // 是否为中立场 (0: 否, 1: 是)
-	Sid              field.Int64  // 运动种类ID
-	MatchType        field.Int64  // 赛事类型 (1 或 2)
-	LeagueID         field.Int64  // 联赛ID
-	LeagueName       field.String // 联赛名称
-	LeagueLevel      field.Int64  // 联赛等级
-	LeagueLogo       field.String // 联赛图标地址
-	RegionID         field.Int64  // 区域ID
-	RegionName       field.String // 区域名称
-	RegionLogo       field.String // 区域Logo
-	IsHot            field.Int64  // 是否热门联赛
-	LeagueGroupID    field.Int64  // 联赛分组ID
-	HomeTeamID       field.Int64  // 主队ID
-	HomeTeamName     field.String // 主队名称
-	HomeTeamLogo     field.String // 主队图标地址
-	AwayTeamID       field.Int64  // 客队ID
-	AwayTeamName     field.String // 客队名称
-	AwayTeamLogo     field.String // 客队图标地址
-	ScorePhase       field.Int64  // 赛事阶段
-	ScoreType        field.Int64  // 比分类型
-	HomeScore        field.Int64  // 主队得分
-	AwayScore        field.Int64  // 客队得分
-	MarketPhase      field.Int64  // 盘口阶段
-	MarketType       field.Int64  // 盘口类型
-	MarketGroup      field.String // 盘口组名
-	MarketID         field.Int64  // 盘口ID
-	MarketOptionType field.Int64  // 盘口选项类型
-	MarketOptionName field.String // 盘口选项名
-	CreatedAt        field.Time   // 创建时间
-	UpdatedAt        field.Time   // 更新时间
+	ALL           field.Asterisk
+	ID            field.Int64  // 主键
+	MatchID       field.Int64  // 赛事ID
+	MatchType     field.Int64  // 赛事类型，1或2，关联 match_type 枚举
+	StartTime     field.Int64  // 赛事开赛时间，13位时间戳
+	MatchStatus   field.Int64  // 赛事进行状态，关联 match_status 枚举
+	GameStage     field.Int64  // 赛制的场次/局数/节数
+	GameFormat    field.Int64  // 赛制类型，关联 match_format 枚举
+	IsNeutral     field.Int64  // 中立场标识，1表示中立场，0表示非中立场
+	SportID       field.Int64  // 运动ID，关联 sports 枚举
+	LeagueData    field.String // 联赛数据，JSON格式存储
+	TeamData      field.String // 比赛球队数据，JSON格式存储
+	Scores        field.String // 比分或赛果，JSON格式存储
+	MarketResults field.String // 盘口结算结果集合，JSON格式存储
+	CreatedAt     field.Int64  // 记录创建时间（时间戳）
+	UpdatedAt     field.Int64  // 记录更新时间（时间戳）
 
 	fieldMap map[string]field.Expr
 }
@@ -125,40 +85,20 @@ func (f fbSportsMatchResults) As(alias string) *fbSportsMatchResults {
 func (f *fbSportsMatchResults) updateTableName(table string) *fbSportsMatchResults {
 	f.ALL = field.NewAsterisk(table)
 	f.ID = field.NewInt64(table, "id")
-	f.Bt = field.NewInt64(table, "bt")
-	f.Ms = field.NewInt64(table, "ms")
-	f.Fid = field.NewInt64(table, "fid")
-	f.Fmt = field.NewInt64(table, "fmt")
-	f.Ne = field.NewInt64(table, "ne")
-	f.Sid = field.NewInt64(table, "sid")
+	f.MatchID = field.NewInt64(table, "match_id")
 	f.MatchType = field.NewInt64(table, "match_type")
-	f.LeagueID = field.NewInt64(table, "league_id")
-	f.LeagueName = field.NewString(table, "league_name")
-	f.LeagueLevel = field.NewInt64(table, "league_level")
-	f.LeagueLogo = field.NewString(table, "league_logo")
-	f.RegionID = field.NewInt64(table, "region_id")
-	f.RegionName = field.NewString(table, "region_name")
-	f.RegionLogo = field.NewString(table, "region_logo")
-	f.IsHot = field.NewInt64(table, "is_hot")
-	f.LeagueGroupID = field.NewInt64(table, "league_group_id")
-	f.HomeTeamID = field.NewInt64(table, "home_team_id")
-	f.HomeTeamName = field.NewString(table, "home_team_name")
-	f.HomeTeamLogo = field.NewString(table, "home_team_logo")
-	f.AwayTeamID = field.NewInt64(table, "away_team_id")
-	f.AwayTeamName = field.NewString(table, "away_team_name")
-	f.AwayTeamLogo = field.NewString(table, "away_team_logo")
-	f.ScorePhase = field.NewInt64(table, "score_phase")
-	f.ScoreType = field.NewInt64(table, "score_type")
-	f.HomeScore = field.NewInt64(table, "home_score")
-	f.AwayScore = field.NewInt64(table, "away_score")
-	f.MarketPhase = field.NewInt64(table, "market_phase")
-	f.MarketType = field.NewInt64(table, "market_type")
-	f.MarketGroup = field.NewString(table, "market_group")
-	f.MarketID = field.NewInt64(table, "market_id")
-	f.MarketOptionType = field.NewInt64(table, "market_option_type")
-	f.MarketOptionName = field.NewString(table, "market_option_name")
-	f.CreatedAt = field.NewTime(table, "created_at")
-	f.UpdatedAt = field.NewTime(table, "updated_at")
+	f.StartTime = field.NewInt64(table, "start_time")
+	f.MatchStatus = field.NewInt64(table, "match_status")
+	f.GameStage = field.NewInt64(table, "game_stage")
+	f.GameFormat = field.NewInt64(table, "game_format")
+	f.IsNeutral = field.NewInt64(table, "is_neutral")
+	f.SportID = field.NewInt64(table, "sport_id")
+	f.LeagueData = field.NewString(table, "league_data")
+	f.TeamData = field.NewString(table, "team_data")
+	f.Scores = field.NewString(table, "scores")
+	f.MarketResults = field.NewString(table, "market_results")
+	f.CreatedAt = field.NewInt64(table, "created_at")
+	f.UpdatedAt = field.NewInt64(table, "updated_at")
 
 	f.fillFieldMap()
 
@@ -175,40 +115,20 @@ func (f *fbSportsMatchResults) GetFieldByName(fieldName string) (field.OrderExpr
 }
 
 func (f *fbSportsMatchResults) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 35)
+	f.fieldMap = make(map[string]field.Expr, 15)
 	f.fieldMap["id"] = f.ID
-	f.fieldMap["bt"] = f.Bt
-	f.fieldMap["ms"] = f.Ms
-	f.fieldMap["fid"] = f.Fid
-	f.fieldMap["fmt"] = f.Fmt
-	f.fieldMap["ne"] = f.Ne
-	f.fieldMap["sid"] = f.Sid
+	f.fieldMap["match_id"] = f.MatchID
 	f.fieldMap["match_type"] = f.MatchType
-	f.fieldMap["league_id"] = f.LeagueID
-	f.fieldMap["league_name"] = f.LeagueName
-	f.fieldMap["league_level"] = f.LeagueLevel
-	f.fieldMap["league_logo"] = f.LeagueLogo
-	f.fieldMap["region_id"] = f.RegionID
-	f.fieldMap["region_name"] = f.RegionName
-	f.fieldMap["region_logo"] = f.RegionLogo
-	f.fieldMap["is_hot"] = f.IsHot
-	f.fieldMap["league_group_id"] = f.LeagueGroupID
-	f.fieldMap["home_team_id"] = f.HomeTeamID
-	f.fieldMap["home_team_name"] = f.HomeTeamName
-	f.fieldMap["home_team_logo"] = f.HomeTeamLogo
-	f.fieldMap["away_team_id"] = f.AwayTeamID
-	f.fieldMap["away_team_name"] = f.AwayTeamName
-	f.fieldMap["away_team_logo"] = f.AwayTeamLogo
-	f.fieldMap["score_phase"] = f.ScorePhase
-	f.fieldMap["score_type"] = f.ScoreType
-	f.fieldMap["home_score"] = f.HomeScore
-	f.fieldMap["away_score"] = f.AwayScore
-	f.fieldMap["market_phase"] = f.MarketPhase
-	f.fieldMap["market_type"] = f.MarketType
-	f.fieldMap["market_group"] = f.MarketGroup
-	f.fieldMap["market_id"] = f.MarketID
-	f.fieldMap["market_option_type"] = f.MarketOptionType
-	f.fieldMap["market_option_name"] = f.MarketOptionName
+	f.fieldMap["start_time"] = f.StartTime
+	f.fieldMap["match_status"] = f.MatchStatus
+	f.fieldMap["game_stage"] = f.GameStage
+	f.fieldMap["game_format"] = f.GameFormat
+	f.fieldMap["is_neutral"] = f.IsNeutral
+	f.fieldMap["sport_id"] = f.SportID
+	f.fieldMap["league_data"] = f.LeagueData
+	f.fieldMap["team_data"] = f.TeamData
+	f.fieldMap["scores"] = f.Scores
+	f.fieldMap["market_results"] = f.MarketResults
 	f.fieldMap["created_at"] = f.CreatedAt
 	f.fieldMap["updated_at"] = f.UpdatedAt
 }

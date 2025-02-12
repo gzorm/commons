@@ -29,24 +29,14 @@ func newFbSportsMatchMarketGroup(db *gorm.DB, opts ...gen.DOOption) fbSportsMatc
 	_fbSportsMatchMarketGroup.ALL = field.NewAsterisk(tableName)
 	_fbSportsMatchMarketGroup.ID = field.NewInt64(tableName, "id")
 	_fbSportsMatchMarketGroup.MatchID = field.NewInt64(tableName, "match_id")
-	_fbSportsMatchMarketGroup.Tag = field.NewString(tableName, "tag")
 	_fbSportsMatchMarketGroup.Mty = field.NewInt64(tableName, "mty")
 	_fbSportsMatchMarketGroup.Pe = field.NewInt64(tableName, "pe")
-	_fbSportsMatchMarketGroup.MarketID = field.NewInt64(tableName, "market_id")
-	_fbSportsMatchMarketGroup.Ss = field.NewInt64(tableName, "ss")
-	_fbSportsMatchMarketGroup.Au = field.NewInt64(tableName, "au")
-	_fbSportsMatchMarketGroup.Mbl = field.NewInt64(tableName, "mbl")
-	_fbSportsMatchMarketGroup.Li = field.NewString(tableName, "li")
-	_fbSportsMatchMarketGroup.Na = field.NewString(tableName, "na")
+	_fbSportsMatchMarketGroup.Tag = field.NewString(tableName, "tag")
+	_fbSportsMatchMarketGroup.Mks = field.NewString(tableName, "mks")
+	_fbSportsMatchMarketGroup.Tps = field.NewString(tableName, "tps")
 	_fbSportsMatchMarketGroup.Nm = field.NewString(tableName, "nm")
-	_fbSportsMatchMarketGroup.Tid = field.NewInt64(tableName, "tid")
-	_fbSportsMatchMarketGroup.Ty = field.NewInt64(tableName, "ty")
-	_fbSportsMatchMarketGroup.Od = field.NewField(tableName, "od")
-	_fbSportsMatchMarketGroup.Bod = field.NewField(tableName, "bod")
-	_fbSportsMatchMarketGroup.Odt = field.NewInt64(tableName, "odt")
-	_fbSportsMatchMarketGroup.Otcm = field.NewInt64(tableName, "otcm")
-	_fbSportsMatchMarketGroup.CreatedAt = field.NewTime(tableName, "created_at")
-	_fbSportsMatchMarketGroup.UpdatedAt = field.NewTime(tableName, "updated_at")
+	_fbSportsMatchMarketGroup.CreatedAt = field.NewInt64(tableName, "created_at")
+	_fbSportsMatchMarketGroup.UpdatedAt = field.NewInt64(tableName, "updated_at")
 
 	_fbSportsMatchMarketGroup.fillFieldMap()
 
@@ -60,24 +50,14 @@ type fbSportsMatchMarketGroup struct {
 	ALL       field.Asterisk
 	ID        field.Int64  // 主键ID
 	MatchID   field.Int64  // 赛事ID
-	Tag       field.String // 盘口组标签
 	Mty       field.Int64  // 玩法类型，如亚盘、大小球等
 	Pe        field.Int64  // 玩法阶段，如上半场、全场等
-	MarketID  field.Int64  // 玩法ID
-	Ss        field.Int64  // 玩法销售状态 (0: 暂停, 1: 开售, -1: 未开售)
-	Au        field.Int64  // 是否支持串关 (0: 不可串关, 1: 可串关)
-	Mbl       field.Int64  // 是否为最优线 (用于带线玩法排序)
-	Li        field.String // line值，带线玩法的线
-	Na        field.String // 选项全称 (投注框展示)
-	Nm        field.String // 选项简称 (赔率列表展示)
-	Tid       field.Int64  // 球员玩法球队ID
-	Ty        field.Int64  // 选项类型 (主、客、大、小等)
-	Od        field.Field  // 欧盘赔率 (小于0代表锁盘)
-	Bod       field.Field  // 赔率，返回对应类型赔率
-	Odt       field.Int64  // 赔率类型
-	Otcm      field.Int64  // 选项结算结果 (仅虚拟体育展示)
-	CreatedAt field.Time   // 创建时间
-	UpdatedAt field.Time   // 更新时间
+	Tag       field.String // 盘口组标签
+	Mks       field.String // 玩法赔率集合，带线玩法，数组里是多个，或者一个玩法，不带线玩法，数组就是一条数据
+	Tps       field.String // 玩法展示分类数组， 如：热门、角球、波胆等，返回英文字母简称 , see enum: market_tag
+	Nm        field.String // 玩法名称
+	CreatedAt field.Int64  // 创建时间
+	UpdatedAt field.Int64  // 更新时间
 
 	fieldMap map[string]field.Expr
 }
@@ -96,24 +76,14 @@ func (f *fbSportsMatchMarketGroup) updateTableName(table string) *fbSportsMatchM
 	f.ALL = field.NewAsterisk(table)
 	f.ID = field.NewInt64(table, "id")
 	f.MatchID = field.NewInt64(table, "match_id")
-	f.Tag = field.NewString(table, "tag")
 	f.Mty = field.NewInt64(table, "mty")
 	f.Pe = field.NewInt64(table, "pe")
-	f.MarketID = field.NewInt64(table, "market_id")
-	f.Ss = field.NewInt64(table, "ss")
-	f.Au = field.NewInt64(table, "au")
-	f.Mbl = field.NewInt64(table, "mbl")
-	f.Li = field.NewString(table, "li")
-	f.Na = field.NewString(table, "na")
+	f.Tag = field.NewString(table, "tag")
+	f.Mks = field.NewString(table, "mks")
+	f.Tps = field.NewString(table, "tps")
 	f.Nm = field.NewString(table, "nm")
-	f.Tid = field.NewInt64(table, "tid")
-	f.Ty = field.NewInt64(table, "ty")
-	f.Od = field.NewField(table, "od")
-	f.Bod = field.NewField(table, "bod")
-	f.Odt = field.NewInt64(table, "odt")
-	f.Otcm = field.NewInt64(table, "otcm")
-	f.CreatedAt = field.NewTime(table, "created_at")
-	f.UpdatedAt = field.NewTime(table, "updated_at")
+	f.CreatedAt = field.NewInt64(table, "created_at")
+	f.UpdatedAt = field.NewInt64(table, "updated_at")
 
 	f.fillFieldMap()
 
@@ -130,25 +100,15 @@ func (f *fbSportsMatchMarketGroup) GetFieldByName(fieldName string) (field.Order
 }
 
 func (f *fbSportsMatchMarketGroup) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 20)
+	f.fieldMap = make(map[string]field.Expr, 10)
 	f.fieldMap["id"] = f.ID
 	f.fieldMap["match_id"] = f.MatchID
-	f.fieldMap["tag"] = f.Tag
 	f.fieldMap["mty"] = f.Mty
 	f.fieldMap["pe"] = f.Pe
-	f.fieldMap["market_id"] = f.MarketID
-	f.fieldMap["ss"] = f.Ss
-	f.fieldMap["au"] = f.Au
-	f.fieldMap["mbl"] = f.Mbl
-	f.fieldMap["li"] = f.Li
-	f.fieldMap["na"] = f.Na
+	f.fieldMap["tag"] = f.Tag
+	f.fieldMap["mks"] = f.Mks
+	f.fieldMap["tps"] = f.Tps
 	f.fieldMap["nm"] = f.Nm
-	f.fieldMap["tid"] = f.Tid
-	f.fieldMap["ty"] = f.Ty
-	f.fieldMap["od"] = f.Od
-	f.fieldMap["bod"] = f.Bod
-	f.fieldMap["odt"] = f.Odt
-	f.fieldMap["otcm"] = f.Otcm
 	f.fieldMap["created_at"] = f.CreatedAt
 	f.fieldMap["updated_at"] = f.UpdatedAt
 }

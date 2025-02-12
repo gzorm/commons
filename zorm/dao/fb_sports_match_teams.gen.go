@@ -28,8 +28,11 @@ func newFbSportsMatchTeams(db *gorm.DB, opts ...gen.DOOption) fbSportsMatchTeams
 	tableName := _fbSportsMatchTeams.fbSportsMatchTeamsDo.TableName()
 	_fbSportsMatchTeams.ALL = field.NewAsterisk(tableName)
 	_fbSportsMatchTeams.ID = field.NewInt64(tableName, "id")
-	_fbSportsMatchTeams.Na = field.NewString(tableName, "na")
-	_fbSportsMatchTeams.Lurl = field.NewString(tableName, "lurl")
+	_fbSportsMatchTeams.TeamID = field.NewInt64(tableName, "team_id")
+	_fbSportsMatchTeams.TeamName = field.NewString(tableName, "team_name")
+	_fbSportsMatchTeams.TeamIconURL = field.NewString(tableName, "team_icon_url")
+	_fbSportsMatchTeams.CreatedAt = field.NewInt64(tableName, "created_at")
+	_fbSportsMatchTeams.UpdatedAt = field.NewInt64(tableName, "updated_at")
 
 	_fbSportsMatchTeams.fillFieldMap()
 
@@ -40,10 +43,13 @@ func newFbSportsMatchTeams(db *gorm.DB, opts ...gen.DOOption) fbSportsMatchTeams
 type fbSportsMatchTeams struct {
 	fbSportsMatchTeamsDo
 
-	ALL  field.Asterisk
-	ID   field.Int64  // 球队ID
-	Na   field.String // 球队名称
-	Lurl field.String // 球队图标地址
+	ALL         field.Asterisk
+	ID          field.Int64  // 主键
+	TeamID      field.Int64  // 球队ID
+	TeamName    field.String // 球队名称
+	TeamIconURL field.String // 球队图标地址
+	CreatedAt   field.Int64  // 记录创建时间（时间戳）
+	UpdatedAt   field.Int64  // 记录更新时间（时间戳）
 
 	fieldMap map[string]field.Expr
 }
@@ -61,8 +67,11 @@ func (f fbSportsMatchTeams) As(alias string) *fbSportsMatchTeams {
 func (f *fbSportsMatchTeams) updateTableName(table string) *fbSportsMatchTeams {
 	f.ALL = field.NewAsterisk(table)
 	f.ID = field.NewInt64(table, "id")
-	f.Na = field.NewString(table, "na")
-	f.Lurl = field.NewString(table, "lurl")
+	f.TeamID = field.NewInt64(table, "team_id")
+	f.TeamName = field.NewString(table, "team_name")
+	f.TeamIconURL = field.NewString(table, "team_icon_url")
+	f.CreatedAt = field.NewInt64(table, "created_at")
+	f.UpdatedAt = field.NewInt64(table, "updated_at")
 
 	f.fillFieldMap()
 
@@ -79,10 +88,13 @@ func (f *fbSportsMatchTeams) GetFieldByName(fieldName string) (field.OrderExpr, 
 }
 
 func (f *fbSportsMatchTeams) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 3)
+	f.fieldMap = make(map[string]field.Expr, 6)
 	f.fieldMap["id"] = f.ID
-	f.fieldMap["na"] = f.Na
-	f.fieldMap["lurl"] = f.Lurl
+	f.fieldMap["team_id"] = f.TeamID
+	f.fieldMap["team_name"] = f.TeamName
+	f.fieldMap["team_icon_url"] = f.TeamIconURL
+	f.fieldMap["created_at"] = f.CreatedAt
+	f.fieldMap["updated_at"] = f.UpdatedAt
 }
 
 func (f fbSportsMatchTeams) clone(db *gorm.DB) fbSportsMatchTeams {
