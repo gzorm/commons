@@ -6,10 +6,10 @@ package model
 
 import "github.com/shopspring/decimal"
 
-const TableNameFbSportsMatchMarketGroupSelection = "fb_sports_match_market_group_selection"
+const TableNameFbSportsMatchMarketOptions = "fb_sports_match_market_options"
 
-// FbSportsMatchMarketGroupSelection 赛事盘口玩法选项表
-type FbSportsMatchMarketGroupSelection struct {
+// FbSportsMatchMarketOptions 玩法选项表
+type FbSportsMatchMarketOptions struct {
 	ID                 int64           `gorm:"column:id;type:int;primaryKey;autoIncrement:true;comment:主键ID" json:"id,string"`                                              // 主键ID
 	MatchID            int64           `gorm:"column:match_id;type:bigint;comment:赛事ID" json:"matchId"`                                                                     // 赛事ID
 	MarketID           int64           `gorm:"column:market_id;type:int;not null;comment:玩法ID，关联到具体的玩法" json:"marketId"`                                                    // 玩法ID，关联到具体的玩法
@@ -30,7 +30,7 @@ type FbSportsMatchMarketGroupSelection struct {
 	UpdatedAt          int64           `gorm:"column:updated_at;comment:更新时间" json:"updatedAt"`                                                                             // 更新时间
 }
 
-// TableName FbSportsMatchMarketGroupSelection's table name
-func (*FbSportsMatchMarketGroupSelection) TableName() string {
-	return TableNameFbSportsMatchMarketGroupSelection
+// TableName FbSportsMatchMarketOptions's table name
+func (*FbSportsMatchMarketOptions) TableName() string {
+	return TableNameFbSportsMatchMarketOptions
 }

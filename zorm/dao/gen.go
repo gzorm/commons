@@ -18,11 +18,10 @@ import (
 
 var (
 	Q                                    = new(Query)
+	FbSportsMatchMarketOptions           *fbSportsMatchMarketOptions
 	FbSportsMatch                        *fbSportsMatch
 	FbSportsMatchFutureCount             *fbSportsMatchFutureCount
 	FbSportsMatchLeagues                 *fbSportsMatchLeagues
-	FbSportsMatchMarketGroup             *fbSportsMatchMarketGroup
-	FbSportsMatchMarketGroupSelection    *fbSportsMatchMarketGroupSelection
 	FbSportsMatchRecommendPlay           *fbSportsMatchRecommendPlay
 	FbSportsMatchRecommendPlayOptions    *fbSportsMatchRecommendPlayOptions
 	FbSportsMatchRecommendation          *fbSportsMatchRecommendation
@@ -185,11 +184,10 @@ var (
 
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	*Q = *Use(db, opts...)
+	FbSportsMatchMarketOptions = &Q.FbSportsMatchMarketOptions
 	FbSportsMatch = &Q.FbSportsMatch
 	FbSportsMatchFutureCount = &Q.FbSportsMatchFutureCount
 	FbSportsMatchLeagues = &Q.FbSportsMatchLeagues
-	FbSportsMatchMarketGroup = &Q.FbSportsMatchMarketGroup
-	FbSportsMatchMarketGroupSelection = &Q.FbSportsMatchMarketGroupSelection
 	FbSportsMatchRecommendPlay = &Q.FbSportsMatchRecommendPlay
 	FbSportsMatchRecommendPlayOptions = &Q.FbSportsMatchRecommendPlayOptions
 	FbSportsMatchRecommendation = &Q.FbSportsMatchRecommendation
@@ -354,11 +352,10 @@ func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 	return &Query{
 		db:                                   db,
+		FbSportsMatchMarketOptions:           newFbSportsMatchMarketOptions(db, opts...),
 		FbSportsMatch:                        newFbSportsMatch(db, opts...),
 		FbSportsMatchFutureCount:             newFbSportsMatchFutureCount(db, opts...),
 		FbSportsMatchLeagues:                 newFbSportsMatchLeagues(db, opts...),
-		FbSportsMatchMarketGroup:             newFbSportsMatchMarketGroup(db, opts...),
-		FbSportsMatchMarketGroupSelection:    newFbSportsMatchMarketGroupSelection(db, opts...),
 		FbSportsMatchRecommendPlay:           newFbSportsMatchRecommendPlay(db, opts...),
 		FbSportsMatchRecommendPlayOptions:    newFbSportsMatchRecommendPlayOptions(db, opts...),
 		FbSportsMatchRecommendation:          newFbSportsMatchRecommendation(db, opts...),
@@ -522,11 +519,10 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 
 type Query struct {
 	db                                   *gorm.DB
+	FbSportsMatchMarketOptions           fbSportsMatchMarketOptions
 	FbSportsMatch                        fbSportsMatch
 	FbSportsMatchFutureCount             fbSportsMatchFutureCount
 	FbSportsMatchLeagues                 fbSportsMatchLeagues
-	FbSportsMatchMarketGroup             fbSportsMatchMarketGroup
-	FbSportsMatchMarketGroupSelection    fbSportsMatchMarketGroupSelection
 	FbSportsMatchRecommendPlay           fbSportsMatchRecommendPlay
 	FbSportsMatchRecommendPlayOptions    fbSportsMatchRecommendPlayOptions
 	FbSportsMatchRecommendation          fbSportsMatchRecommendation
@@ -692,11 +688,10 @@ func (q *Query) Available() bool { return q.db != nil }
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
 		db:                                   db,
+		FbSportsMatchMarketOptions:           q.FbSportsMatchMarketOptions.clone(db),
 		FbSportsMatch:                        q.FbSportsMatch.clone(db),
 		FbSportsMatchFutureCount:             q.FbSportsMatchFutureCount.clone(db),
 		FbSportsMatchLeagues:                 q.FbSportsMatchLeagues.clone(db),
-		FbSportsMatchMarketGroup:             q.FbSportsMatchMarketGroup.clone(db),
-		FbSportsMatchMarketGroupSelection:    q.FbSportsMatchMarketGroupSelection.clone(db),
 		FbSportsMatchRecommendPlay:           q.FbSportsMatchRecommendPlay.clone(db),
 		FbSportsMatchRecommendPlayOptions:    q.FbSportsMatchRecommendPlayOptions.clone(db),
 		FbSportsMatchRecommendation:          q.FbSportsMatchRecommendation.clone(db),
@@ -869,11 +864,10 @@ func (q *Query) WriteDB() *Query {
 func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 	return &Query{
 		db:                                   db,
+		FbSportsMatchMarketOptions:           q.FbSportsMatchMarketOptions.replaceDB(db),
 		FbSportsMatch:                        q.FbSportsMatch.replaceDB(db),
 		FbSportsMatchFutureCount:             q.FbSportsMatchFutureCount.replaceDB(db),
 		FbSportsMatchLeagues:                 q.FbSportsMatchLeagues.replaceDB(db),
-		FbSportsMatchMarketGroup:             q.FbSportsMatchMarketGroup.replaceDB(db),
-		FbSportsMatchMarketGroupSelection:    q.FbSportsMatchMarketGroupSelection.replaceDB(db),
 		FbSportsMatchRecommendPlay:           q.FbSportsMatchRecommendPlay.replaceDB(db),
 		FbSportsMatchRecommendPlayOptions:    q.FbSportsMatchRecommendPlayOptions.replaceDB(db),
 		FbSportsMatchRecommendation:          q.FbSportsMatchRecommendation.replaceDB(db),
@@ -1036,11 +1030,10 @@ func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 }
 
 type queryCtx struct {
+	FbSportsMatchMarketOptions           IFbSportsMatchMarketOptionsDo
 	FbSportsMatch                        IFbSportsMatchDo
 	FbSportsMatchFutureCount             IFbSportsMatchFutureCountDo
 	FbSportsMatchLeagues                 IFbSportsMatchLeaguesDo
-	FbSportsMatchMarketGroup             IFbSportsMatchMarketGroupDo
-	FbSportsMatchMarketGroupSelection    IFbSportsMatchMarketGroupSelectionDo
 	FbSportsMatchRecommendPlay           IFbSportsMatchRecommendPlayDo
 	FbSportsMatchRecommendPlayOptions    IFbSportsMatchRecommendPlayOptionsDo
 	FbSportsMatchRecommendation          IFbSportsMatchRecommendationDo
@@ -1203,11 +1196,10 @@ type queryCtx struct {
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
+		FbSportsMatchMarketOptions:           q.FbSportsMatchMarketOptions.WithContext(ctx),
 		FbSportsMatch:                        q.FbSportsMatch.WithContext(ctx),
 		FbSportsMatchFutureCount:             q.FbSportsMatchFutureCount.WithContext(ctx),
 		FbSportsMatchLeagues:                 q.FbSportsMatchLeagues.WithContext(ctx),
-		FbSportsMatchMarketGroup:             q.FbSportsMatchMarketGroup.WithContext(ctx),
-		FbSportsMatchMarketGroupSelection:    q.FbSportsMatchMarketGroupSelection.WithContext(ctx),
 		FbSportsMatchRecommendPlay:           q.FbSportsMatchRecommendPlay.WithContext(ctx),
 		FbSportsMatchRecommendPlayOptions:    q.FbSportsMatchRecommendPlayOptions.WithContext(ctx),
 		FbSportsMatchRecommendation:          q.FbSportsMatchRecommendation.WithContext(ctx),
