@@ -28,8 +28,9 @@ func newFbSportsMatchMarketOddsMarkets(db *gorm.DB, opts ...gen.DOOption) fbSpor
 	tableName := _fbSportsMatchMarketOddsMarkets.fbSportsMatchMarketOddsMarketsDo.TableName()
 	_fbSportsMatchMarketOddsMarkets.ALL = field.NewAsterisk(tableName)
 	_fbSportsMatchMarketOddsMarkets.ID = field.NewInt64(tableName, "id")
+	_fbSportsMatchMarketOddsMarkets.MatchID = field.NewInt64(tableName, "match_id")
 	_fbSportsMatchMarketOddsMarkets.OddsID = field.NewInt64(tableName, "odds_id")
-	_fbSportsMatchMarketOddsMarkets.MarketID = field.NewInt64(tableName, "market_id")
+	_fbSportsMatchMarketOddsMarkets.PlayID = field.NewInt64(tableName, "play_id")
 	_fbSportsMatchMarketOddsMarkets.Op = field.NewString(tableName, "op")
 	_fbSportsMatchMarketOddsMarkets.Line = field.NewString(tableName, "line")
 	_fbSportsMatchMarketOddsMarkets.IsBestLine = field.NewInt64(tableName, "is_best_line")
@@ -49,8 +50,9 @@ type fbSportsMatchMarketOddsMarkets struct {
 
 	ALL        field.Asterisk
 	ID         field.Int64  // 主键，自增 ID
+	MatchID    field.Int64  // 赛事ID
 	OddsID     field.Int64  // 外键，对应赔率表的 ID
-	MarketID   field.Int64  // 玩法 ID
+	PlayID     field.Int64  // 玩法 ID
 	Op         field.String // 玩法选项
 	Line       field.String // 带线玩法的线，例如大小球 2.5
 	IsBestLine field.Int64  // 是否为最优线
@@ -75,8 +77,9 @@ func (f fbSportsMatchMarketOddsMarkets) As(alias string) *fbSportsMatchMarketOdd
 func (f *fbSportsMatchMarketOddsMarkets) updateTableName(table string) *fbSportsMatchMarketOddsMarkets {
 	f.ALL = field.NewAsterisk(table)
 	f.ID = field.NewInt64(table, "id")
+	f.MatchID = field.NewInt64(table, "match_id")
 	f.OddsID = field.NewInt64(table, "odds_id")
-	f.MarketID = field.NewInt64(table, "market_id")
+	f.PlayID = field.NewInt64(table, "play_id")
 	f.Op = field.NewString(table, "op")
 	f.Line = field.NewString(table, "line")
 	f.IsBestLine = field.NewInt64(table, "is_best_line")
@@ -100,10 +103,11 @@ func (f *fbSportsMatchMarketOddsMarkets) GetFieldByName(fieldName string) (field
 }
 
 func (f *fbSportsMatchMarketOddsMarkets) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 10)
+	f.fieldMap = make(map[string]field.Expr, 11)
 	f.fieldMap["id"] = f.ID
+	f.fieldMap["match_id"] = f.MatchID
 	f.fieldMap["odds_id"] = f.OddsID
-	f.fieldMap["market_id"] = f.MarketID
+	f.fieldMap["play_id"] = f.PlayID
 	f.fieldMap["op"] = f.Op
 	f.fieldMap["line"] = f.Line
 	f.fieldMap["is_best_line"] = f.IsBestLine

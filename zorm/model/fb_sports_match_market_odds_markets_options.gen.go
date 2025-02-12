@@ -12,6 +12,7 @@ const TableNameFbSportsMatchMarketOddsMarketsOptions = "fb_sports_match_market_o
 type FbSportsMatchMarketOddsMarketsOptions struct {
 	ID        int64           `gorm:"column:id;type:bigint;primaryKey;autoIncrement:true;comment:主键，自增 ID" json:"id,string"` // 主键，自增 ID
 	MarketID  int64           `gorm:"column:market_id;type:bigint;not null;comment:外键，对应玩法表的 ID" json:"marketId"`            // 外键，对应玩法表的 ID
+	MatchID   int64           `gorm:"column:match_id;type:bigint;comment:赛事ID" json:"matchId"`                               // 赛事ID
 	NameFull  string          `gorm:"column:name_full;type:varchar(100);not null;comment:选项全称" json:"nameFull"`              // 选项全称
 	NameShort string          `gorm:"column:name_short;type:varchar(50);not null;comment:选项简称" json:"nameShort"`             // 选项简称
 	TeamID    int64           `gorm:"column:team_id;type:bigint;comment:球员或球队 ID" json:"teamId"`                             // 球员或球队 ID

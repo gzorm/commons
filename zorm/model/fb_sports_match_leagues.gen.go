@@ -9,6 +9,7 @@ const TableNameFbSportsMatchLeagues = "fb_sports_match_leagues"
 // FbSportsMatchLeagues 联赛统计表
 type FbSportsMatchLeagues struct {
 	ID            int64  `gorm:"column:id;type:bigint;primaryKey;autoIncrement:true;comment:主键 ID" json:"id,string"` // 主键 ID
+	MatchID       int64  `gorm:"column:match_id;type:bigint;comment:赛事ID" json:"matchId"`                            // 赛事ID
 	LeagueID      int64  `gorm:"column:league_id;type:bigint;comment:联赛 ID" json:"leagueId"`                         // 联赛 ID
 	LeagueType    int64  `gorm:"column:league_type;type:int;comment:类表分类类型，如滚球、今日、早盘等" json:"leagueType"`            // 类表分类类型，如滚球、今日、早盘等
 	MatchCount    int64  `gorm:"column:match_count;type:int;comment:该联赛开售的赛事数量" json:"matchCount"`                   // 该联赛开售的赛事数量

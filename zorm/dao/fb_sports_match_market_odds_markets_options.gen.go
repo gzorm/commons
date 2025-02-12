@@ -29,6 +29,7 @@ func newFbSportsMatchMarketOddsMarketsOptions(db *gorm.DB, opts ...gen.DOOption)
 	_fbSportsMatchMarketOddsMarketsOptions.ALL = field.NewAsterisk(tableName)
 	_fbSportsMatchMarketOddsMarketsOptions.ID = field.NewInt64(tableName, "id")
 	_fbSportsMatchMarketOddsMarketsOptions.MarketID = field.NewInt64(tableName, "market_id")
+	_fbSportsMatchMarketOddsMarketsOptions.MatchID = field.NewInt64(tableName, "match_id")
 	_fbSportsMatchMarketOddsMarketsOptions.NameFull = field.NewString(tableName, "name_full")
 	_fbSportsMatchMarketOddsMarketsOptions.NameShort = field.NewString(tableName, "name_short")
 	_fbSportsMatchMarketOddsMarketsOptions.TeamID = field.NewInt64(tableName, "team_id")
@@ -52,6 +53,7 @@ type fbSportsMatchMarketOddsMarketsOptions struct {
 	ALL       field.Asterisk
 	ID        field.Int64  // 主键，自增 ID
 	MarketID  field.Int64  // 外键，对应玩法表的 ID
+	MatchID   field.Int64  // 赛事ID
 	NameFull  field.String // 选项全称
 	NameShort field.String // 选项简称
 	TeamID    field.Int64  // 球员或球队 ID
@@ -80,6 +82,7 @@ func (f *fbSportsMatchMarketOddsMarketsOptions) updateTableName(table string) *f
 	f.ALL = field.NewAsterisk(table)
 	f.ID = field.NewInt64(table, "id")
 	f.MarketID = field.NewInt64(table, "market_id")
+	f.MatchID = field.NewInt64(table, "match_id")
 	f.NameFull = field.NewString(table, "name_full")
 	f.NameShort = field.NewString(table, "name_short")
 	f.TeamID = field.NewInt64(table, "team_id")
@@ -106,9 +109,10 @@ func (f *fbSportsMatchMarketOddsMarketsOptions) GetFieldByName(fieldName string)
 }
 
 func (f *fbSportsMatchMarketOddsMarketsOptions) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 12)
+	f.fieldMap = make(map[string]field.Expr, 13)
 	f.fieldMap["id"] = f.ID
 	f.fieldMap["market_id"] = f.MarketID
+	f.fieldMap["match_id"] = f.MatchID
 	f.fieldMap["name_full"] = f.NameFull
 	f.fieldMap["name_short"] = f.NameShort
 	f.fieldMap["team_id"] = f.TeamID

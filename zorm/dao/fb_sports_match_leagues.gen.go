@@ -28,6 +28,7 @@ func newFbSportsMatchLeagues(db *gorm.DB, opts ...gen.DOOption) fbSportsMatchLea
 	tableName := _fbSportsMatchLeagues.fbSportsMatchLeaguesDo.TableName()
 	_fbSportsMatchLeagues.ALL = field.NewAsterisk(tableName)
 	_fbSportsMatchLeagues.ID = field.NewInt64(tableName, "id")
+	_fbSportsMatchLeagues.MatchID = field.NewInt64(tableName, "match_id")
 	_fbSportsMatchLeagues.LeagueID = field.NewInt64(tableName, "league_id")
 	_fbSportsMatchLeagues.LeagueType = field.NewInt64(tableName, "league_type")
 	_fbSportsMatchLeagues.MatchCount = field.NewInt64(tableName, "match_count")
@@ -54,6 +55,7 @@ type fbSportsMatchLeagues struct {
 
 	ALL           field.Asterisk
 	ID            field.Int64  // 主键 ID
+	MatchID       field.Int64  // 赛事ID
 	LeagueID      field.Int64  // 联赛 ID
 	LeagueType    field.Int64  // 类表分类类型，如滚球、今日、早盘等
 	MatchCount    field.Int64  // 该联赛开售的赛事数量
@@ -85,6 +87,7 @@ func (f fbSportsMatchLeagues) As(alias string) *fbSportsMatchLeagues {
 func (f *fbSportsMatchLeagues) updateTableName(table string) *fbSportsMatchLeagues {
 	f.ALL = field.NewAsterisk(table)
 	f.ID = field.NewInt64(table, "id")
+	f.MatchID = field.NewInt64(table, "match_id")
 	f.LeagueID = field.NewInt64(table, "league_id")
 	f.LeagueType = field.NewInt64(table, "league_type")
 	f.MatchCount = field.NewInt64(table, "match_count")
@@ -115,8 +118,9 @@ func (f *fbSportsMatchLeagues) GetFieldByName(fieldName string) (field.OrderExpr
 }
 
 func (f *fbSportsMatchLeagues) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 15)
+	f.fieldMap = make(map[string]field.Expr, 16)
 	f.fieldMap["id"] = f.ID
+	f.fieldMap["match_id"] = f.MatchID
 	f.fieldMap["league_id"] = f.LeagueID
 	f.fieldMap["league_type"] = f.LeagueType
 	f.fieldMap["match_count"] = f.MatchCount

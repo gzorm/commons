@@ -9,8 +9,9 @@ const TableNameFbSportsMatchMarketOddsMarkets = "fb_sports_match_market_odds_mar
 // FbSportsMatchMarketOddsMarkets 玩法表
 type FbSportsMatchMarketOddsMarkets struct {
 	ID         int64  `gorm:"column:id;type:bigint;primaryKey;autoIncrement:true;comment:主键，自增 ID" json:"id,string"` // 主键，自增 ID
+	MatchID    int64  `gorm:"column:match_id;type:bigint;comment:赛事ID" json:"matchId"`                               // 赛事ID
 	OddsID     int64  `gorm:"column:odds_id;type:bigint;not null;comment:外键，对应赔率表的 ID" json:"oddsId"`                // 外键，对应赔率表的 ID
-	MarketID   int64  `gorm:"column:market_id;type:bigint;not null;comment:玩法 ID" json:"marketId"`                   // 玩法 ID
+	PlayID     int64  `gorm:"column:play_id;type:bigint;not null;comment:玩法 ID" json:"playId"`                       // 玩法 ID
 	Op         string `gorm:"column:op;type:text;comment:玩法选项" json:"op"`                                            // 玩法选项
 	Line       string `gorm:"column:line;type:varchar(50);comment:带线玩法的线，例如大小球 2.5" json:"line"`                     // 带线玩法的线，例如大小球 2.5
 	IsBestLine int64  `gorm:"column:is_best_line;type:tinyint(1);not null;comment:是否为最优线" json:"isBestLine"`         // 是否为最优线
