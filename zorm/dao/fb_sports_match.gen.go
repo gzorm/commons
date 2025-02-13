@@ -28,36 +28,34 @@ func newFbSportsMatch(db *gorm.DB, opts ...gen.DOOption) fbSportsMatch {
 	tableName := _fbSportsMatch.fbSportsMatchDo.TableName()
 	_fbSportsMatch.ALL = field.NewAsterisk(tableName)
 	_fbSportsMatch.ID = field.NewInt64(tableName, "id")
-	_fbSportsMatch.FbID = field.NewInt64(tableName, "fb_id")
 	_fbSportsMatch.LanguageType = field.NewString(tableName, "language_type")
+	_fbSportsMatch.MatchID = field.NewInt64(tableName, "match_id")
+	_fbSportsMatch.MatchName = field.NewString(tableName, "match_name")
+	_fbSportsMatch.SportID = field.NewInt64(tableName, "sport_id")
+	_fbSportsMatch.MatchStatus = field.NewInt64(tableName, "match_status")
+	_fbSportsMatch.StartTime = field.NewInt64(tableName, "start_time")
+	_fbSportsMatch.MarketCount = field.NewInt64(tableName, "market_count")
+	_fbSportsMatch.Neutral = field.NewInt64(tableName, "neutral")
 	_fbSportsMatch.ScoreList = field.NewString(tableName, "score_list")
 	_fbSportsMatch.OddsList = field.NewString(tableName, "odds_list")
-	_fbSportsMatch.MarketCount = field.NewInt64(tableName, "market_count")
-	_fbSportsMatch.MarketTags = field.NewString(tableName, "market_tags")
 	_fbSportsMatch.LeagueInfo = field.NewString(tableName, "league_info")
 	_fbSportsMatch.TeamInfo = field.NewString(tableName, "team_info")
 	_fbSportsMatch.MatchClock = field.NewString(tableName, "match_clock")
-	_fbSportsMatch.StartTime = field.NewInt64(tableName, "start_time")
-	_fbSportsMatch.MatchStatus = field.NewInt64(tableName, "match_status")
+	_fbSportsMatch.MarketTags = field.NewString(tableName, "market_tags")
 	_fbSportsMatch.MatchFormatID = field.NewInt64(tableName, "match_format_id")
 	_fbSportsMatch.MatchFormat = field.NewInt64(tableName, "match_format")
-	_fbSportsMatch.SellingStatus = field.NewInt64(tableName, "selling_status")
-	_fbSportsMatch.Neutral = field.NewInt64(tableName, "neutral")
 	_fbSportsMatch.LiveUrls = field.NewString(tableName, "live_urls")
-	_fbSportsMatch.SportID = field.NewInt64(tableName, "sport_id")
 	_fbSportsMatch.ServingSide = field.NewInt64(tableName, "serving_side")
 	_fbSportsMatch.MatchPhase = field.NewString(tableName, "match_phase")
+	_fbSportsMatch.SellingStatus = field.NewInt64(tableName, "selling_status")
 	_fbSportsMatch.SubMatchType = field.NewInt64(tableName, "sub_match_type")
 	_fbSportsMatch.MatchType = field.NewInt64(tableName, "match_type")
 	_fbSportsMatch.Season = field.NewString(tableName, "season")
-	_fbSportsMatch.MatchName = field.NewString(tableName, "match_name")
 	_fbSportsMatch.Scoreboard = field.NewString(tableName, "scoreboard")
 	_fbSportsMatch.IsInPlay = field.NewInt64(tableName, "is_in_play")
-	_fbSportsMatch.LeagueID = field.NewInt64(tableName, "league_id")
+	_fbSportsMatch.IsRecommend = field.NewInt64(tableName, "is_recommend")
 	_fbSportsMatch.CreatedAt = field.NewInt64(tableName, "created_at")
 	_fbSportsMatch.UpdatedAt = field.NewInt64(tableName, "updated_at")
-	_fbSportsMatch.MarketType = field.NewInt64(tableName, "market_type")
-	_fbSportsMatch.OddsType = field.NewInt64(tableName, "odds_type")
 
 	_fbSportsMatch.fillFieldMap()
 
@@ -70,36 +68,34 @@ type fbSportsMatch struct {
 
 	ALL           field.Asterisk
 	ID            field.Int64  // 主键ID
-	FbID          field.Int64  // 赛事ID
 	LanguageType  field.String // 语言类型
+	MatchID       field.Int64  // 赛事ID
+	MatchName     field.String // 冠军赛赛事名称，用于展示（原 nm）
+	SportID       field.Int64  // 运动ID（原 sid）
+	MatchStatus   field.Int64  // 赛事进行状态（原 ms）
+	StartTime     field.Int64  // 开赛时间（原 bt）
+	MarketCount   field.Int64  // 单个赛事玩法总数（原 tms）
+	Neutral       field.Int64  // 中立场标记 0 非中立场 ，1 中立场（原 ne）
 	ScoreList     field.String // 比分列表，提供各个赛事阶段的比分（原 nsg）
 	OddsList      field.String // 赔率列表（原 mg）
-	MarketCount   field.Int64  // 单个赛事玩法总数（原 tms）
-	MarketTags    field.String // 盘口组标签集合（原 tps）
 	LeagueInfo    field.String // 联赛信息（原 lg）
 	TeamInfo      field.String // 球队信息，包含主队和客队（原 ts）
 	MatchClock    field.String // 比赛时钟信息（原 mc）
-	StartTime     field.Int64  // 开赛时间（原 bt）
-	MatchStatus   field.Int64  // 赛事进行状态（原 ms）
+	MarketTags    field.String // 盘口组标签集合（原 tps）
 	MatchFormatID field.Int64  // 赛制的场次、局数、节数（原 fid）
 	MatchFormat   field.Int64  // 赛制（原 fmt）
-	SellingStatus field.Int64  // 销售状态 1 开售，2 暂停，其他状态都不展示（原 ss）
-	Neutral       field.Int64  // 中立场标记 0 非中立场 ，1 中立场（原 ne）
 	LiveUrls      field.String // 动画直播地址集合（原 as）
-	SportID       field.Int64  // 运动ID（原 sid）
 	ServingSide   field.Int64  // 主/客发球 1主队发球 2客队发球（原 ssi）
 	MatchPhase    field.String // 赛事辅助标记，如附加赛、季前赛等（原 mp）
+	SellingStatus field.Int64  // 销售状态 1 开售，2 暂停，其他状态都不展示（原 ss）
 	SubMatchType  field.Int64  // 滚球赛事当前阶段标识：常规时间，加时赛，点球大战等（原 smt）
 	MatchType     field.Int64  // 赛事类型 1 冠军投注赛事，2 正常赛事（原 ty）
 	Season        field.String // 冠军赛事联赛赛季，如：2019年（原 ye）
-	MatchName     field.String // 冠军赛赛事名称，用于展示（原 nm）
 	Scoreboard    field.String // 比分板（原 sb）
 	IsInPlay      field.Int64  // 是否可以开售滚球盘口 0 否，1 是（原 pl）
-	LeagueID      field.Int64  // 联赛ID（原 leagueId）
+	IsRecommend   field.Int64  // 是否推荐  1==否 3==是
 	CreatedAt     field.Int64  // 创建时间
 	UpdatedAt     field.Int64  // 更新时间
-	MarketType    field.Int64
-	OddsType      field.Int64
 
 	fieldMap map[string]field.Expr
 }
@@ -117,36 +113,34 @@ func (f fbSportsMatch) As(alias string) *fbSportsMatch {
 func (f *fbSportsMatch) updateTableName(table string) *fbSportsMatch {
 	f.ALL = field.NewAsterisk(table)
 	f.ID = field.NewInt64(table, "id")
-	f.FbID = field.NewInt64(table, "fb_id")
 	f.LanguageType = field.NewString(table, "language_type")
+	f.MatchID = field.NewInt64(table, "match_id")
+	f.MatchName = field.NewString(table, "match_name")
+	f.SportID = field.NewInt64(table, "sport_id")
+	f.MatchStatus = field.NewInt64(table, "match_status")
+	f.StartTime = field.NewInt64(table, "start_time")
+	f.MarketCount = field.NewInt64(table, "market_count")
+	f.Neutral = field.NewInt64(table, "neutral")
 	f.ScoreList = field.NewString(table, "score_list")
 	f.OddsList = field.NewString(table, "odds_list")
-	f.MarketCount = field.NewInt64(table, "market_count")
-	f.MarketTags = field.NewString(table, "market_tags")
 	f.LeagueInfo = field.NewString(table, "league_info")
 	f.TeamInfo = field.NewString(table, "team_info")
 	f.MatchClock = field.NewString(table, "match_clock")
-	f.StartTime = field.NewInt64(table, "start_time")
-	f.MatchStatus = field.NewInt64(table, "match_status")
+	f.MarketTags = field.NewString(table, "market_tags")
 	f.MatchFormatID = field.NewInt64(table, "match_format_id")
 	f.MatchFormat = field.NewInt64(table, "match_format")
-	f.SellingStatus = field.NewInt64(table, "selling_status")
-	f.Neutral = field.NewInt64(table, "neutral")
 	f.LiveUrls = field.NewString(table, "live_urls")
-	f.SportID = field.NewInt64(table, "sport_id")
 	f.ServingSide = field.NewInt64(table, "serving_side")
 	f.MatchPhase = field.NewString(table, "match_phase")
+	f.SellingStatus = field.NewInt64(table, "selling_status")
 	f.SubMatchType = field.NewInt64(table, "sub_match_type")
 	f.MatchType = field.NewInt64(table, "match_type")
 	f.Season = field.NewString(table, "season")
-	f.MatchName = field.NewString(table, "match_name")
 	f.Scoreboard = field.NewString(table, "scoreboard")
 	f.IsInPlay = field.NewInt64(table, "is_in_play")
-	f.LeagueID = field.NewInt64(table, "league_id")
+	f.IsRecommend = field.NewInt64(table, "is_recommend")
 	f.CreatedAt = field.NewInt64(table, "created_at")
 	f.UpdatedAt = field.NewInt64(table, "updated_at")
-	f.MarketType = field.NewInt64(table, "market_type")
-	f.OddsType = field.NewInt64(table, "odds_type")
 
 	f.fillFieldMap()
 
@@ -163,38 +157,36 @@ func (f *fbSportsMatch) GetFieldByName(fieldName string) (field.OrderExpr, bool)
 }
 
 func (f *fbSportsMatch) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 31)
+	f.fieldMap = make(map[string]field.Expr, 29)
 	f.fieldMap["id"] = f.ID
-	f.fieldMap["fb_id"] = f.FbID
 	f.fieldMap["language_type"] = f.LanguageType
+	f.fieldMap["match_id"] = f.MatchID
+	f.fieldMap["match_name"] = f.MatchName
+	f.fieldMap["sport_id"] = f.SportID
+	f.fieldMap["match_status"] = f.MatchStatus
+	f.fieldMap["start_time"] = f.StartTime
+	f.fieldMap["market_count"] = f.MarketCount
+	f.fieldMap["neutral"] = f.Neutral
 	f.fieldMap["score_list"] = f.ScoreList
 	f.fieldMap["odds_list"] = f.OddsList
-	f.fieldMap["market_count"] = f.MarketCount
-	f.fieldMap["market_tags"] = f.MarketTags
 	f.fieldMap["league_info"] = f.LeagueInfo
 	f.fieldMap["team_info"] = f.TeamInfo
 	f.fieldMap["match_clock"] = f.MatchClock
-	f.fieldMap["start_time"] = f.StartTime
-	f.fieldMap["match_status"] = f.MatchStatus
+	f.fieldMap["market_tags"] = f.MarketTags
 	f.fieldMap["match_format_id"] = f.MatchFormatID
 	f.fieldMap["match_format"] = f.MatchFormat
-	f.fieldMap["selling_status"] = f.SellingStatus
-	f.fieldMap["neutral"] = f.Neutral
 	f.fieldMap["live_urls"] = f.LiveUrls
-	f.fieldMap["sport_id"] = f.SportID
 	f.fieldMap["serving_side"] = f.ServingSide
 	f.fieldMap["match_phase"] = f.MatchPhase
+	f.fieldMap["selling_status"] = f.SellingStatus
 	f.fieldMap["sub_match_type"] = f.SubMatchType
 	f.fieldMap["match_type"] = f.MatchType
 	f.fieldMap["season"] = f.Season
-	f.fieldMap["match_name"] = f.MatchName
 	f.fieldMap["scoreboard"] = f.Scoreboard
 	f.fieldMap["is_in_play"] = f.IsInPlay
-	f.fieldMap["league_id"] = f.LeagueID
+	f.fieldMap["is_recommend"] = f.IsRecommend
 	f.fieldMap["created_at"] = f.CreatedAt
 	f.fieldMap["updated_at"] = f.UpdatedAt
-	f.fieldMap["market_type"] = f.MarketType
-	f.fieldMap["odds_type"] = f.OddsType
 }
 
 func (f fbSportsMatch) clone(db *gorm.DB) fbSportsMatch {

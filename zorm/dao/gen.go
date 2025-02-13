@@ -27,7 +27,6 @@ var (
 	FbSportsMatchLeagues                  *fbSportsMatchLeagues
 	FbSportsMatchRecommendPlay            *fbSportsMatchRecommendPlay
 	FbSportsMatchRecommendPlayOptions     *fbSportsMatchRecommendPlayOptions
-	FbSportsMatchRecommendation           *fbSportsMatchRecommendation
 	FbSportsMatchResults                  *fbSportsMatchResults
 	FbSportsMatchResultsStatistics        *fbSportsMatchResultsStatistics
 	FbSportsMatchStatisticsHotLeague      *fbSportsMatchStatisticsHotLeague
@@ -65,124 +64,123 @@ var (
 	WinCoinWithdrawalRecord               *winCoinWithdrawalRecord
 	WinBetslipsDetails                    *winBetslipsDetails
 	WinPlatList                           *winPlatList
-
-	WinUserStatistics             *winUserStatistics
-	WinCustomer                   *winCustomer
-	WinGameSlot                   *winGameSlot
-	ActivityAlertLog              *activityAlertLog
-	ActivityAlertUserConfig       *activityAlertUserConfig
-	ActivityBase                  *activityBase
-	ActivityBlackInfo             *activityBlackInfo
-	ActivityChristmasHelpInfo     *activityChristmasHelpInfo
-	ActivityCondition             *activityCondition
-	ActivityConditionChristma     *activityConditionChristma
-	ActivityImage                 *activityImage
-	ActivityLaunchHelp            *activityLaunchHelp
-	ActivityTakeRecord            *activityTakeRecord
-	AgentCommissionRate           *agentCommissionRate
-	AgentConfig                   *agentConfig
-	AgentDailyReport              *agentDailyReport
-	AgentPromoteCode              *agentPromoteCode
-	AgentRankReport               *agentRankReport
-	AgentReportConfigHistory      *agentReportConfigHistory
-	ChristmasNewUserSupportRule   *christmasNewUserSupportRule
-	GameList                      *gameList
-	GameListTmp                   *gameListTmp
-	GamePagcor                    *gamePagcor
-	GameProvider                  *gameProvider
-	GameProviderSubtype           *gameProviderSubtype
-	GameRankReport                *gameRankReport
-	GameType                      *gameType
-	LevelFreeGame                 *levelFreeGame
-	OrderSettle                   *orderSettle
-	Pet                           *pet
-	PromotionsConfig              *promotionsConfig
-	User                          *user
-	UserRankReport                *userRankReport
-	WinAdmin                      *winAdmin
-	WinAdminExportFileTask        *winAdminExportFileTask
-	WinAdminLoginLog              *winAdminLoginLog
-	WinAgentCommissionRate        *winAgentCommissionRate
-	WinAgentLink                  *winAgentLink
-	WinAuthAdminGroup             *winAuthAdminGroup
-	WinAuthGroup                  *winAuthGroup
-	WinAuthGroupAccess            *winAuthGroupAccess
-	WinAuthRule                   *winAuthRule
-	WinAuthRuleMap                *winAuthRuleMap
-	WinBanner                     *winBanner
-	WinBetSlipsException          *winBetSlipsException
-	WinBetslip                    *winBetslips
-	WinBlog                       *winBlog
-	WinCheckInRecord              *winCheckInRecord
-	WinCheckInRule                *winCheckInRule
-	WinCityItem                   *winCityItem
-	WinCodeAudit                  *winCodeAudit
-	WinCodeRecord                 *winCodeRecord
-	WinCoinAdminTransferM2        *winCoinAdminTransferM2
-	WinCoinCommission             *winCoinCommission
-	WinCoinCommissionLog          *winCoinCommissionLog
-	WinCoinCommissionM2           *winCoinCommissionM2
-	WinCoinDepositRecordM2        *winCoinDepositRecordM2
-	WinCoinRateM2                 *winCoinRateM2
-	WinCoinRebateM2               *winCoinRebateM2
-	WinCoinRewardsM2              *winCoinRewardsM2
-	WinCoinWithdrawalRecordM2     *winCoinWithdrawalRecordM2
-	WinConfig                     *winConfig
-	WinDailyTax                   *winDailyTax
-	WinDict                       *winDict
-	WinDictItem                   *winDictItem
-	WinFbOrderLog                 *winFbOrderLog
-	WinFreeGameList               *winFreeGameList
-	WinFreeGameRecord             *winFreeGameRecord
-	WinFrontGameBigCategoryBanner *winFrontGameBigCategoryBanner
-	WinFrontGameClassifyCms       *winFrontGameClassifyCms
-	WinFrontGameClassifyInfoCm    *winFrontGameClassifyInfoCm
-	WinGameSlotFavorite           *winGameSlotFavorite
-	WinHelpInfo                   *winHelpInfo
-	WinHelpType                   *winHelpType
-	WinMerchant                   *winMerchant
-	WinMonthlyTax                 *winMonthlyTax
-	WinMqError                    *winMqError
-	WinNotice                     *winNotice
-	WinNoticeStatus               *winNoticeStatus
-	WinOperationLog               *winOperationLog
-	WinPayChannel                 *winPayChannel
-	WinPayPlatConfig              *winPayPlatConfig
-	WinPromotions                 *winPromotions
-	WinPromotionsInfo             *winPromotionsInfo
-	WinSendSmsReq                 *winSendSmsReq
-	WinSetting                    *winSetting
-	WinSmsRecord                  *winSmsRecord
-	WinUser                       *winUser
-	WinUserBankList               *winUserBankList
-	WinUserExt                    *winUserExt
-	WinUserFacebookLogin          *winUserFacebookLogin
-	WinUserFlag                   *winUserFlag
-	WinUserGoogleCode             *winUserGoogleCode
-	WinUserGoogleLogin            *winUserGoogleLogin
-	WinUserJoinFlag               *winUserJoinFlag
-	WinUserKyc                    *winUserKyc
-	WinUserKycBac                 *winUserKycBac
-	WinUserKycHi                  *winUserKycHi
-	WinUserKycHisBac              *winUserKycHisBac
-	WinUserLevel                  *winUserLevel
-	WinUserLevelRebate            *winUserLevelRebate
-	WinUserLevelRebateTmp         *winUserLevelRebateTmp
-	WinUserLevelReward            *winUserLevelReward
-	WinUserLevelTmp               *winUserLevelTmp
-	WinUserLoginLog               *winUserLoginLog
-	XxlJobGroup                   *xxlJobGroup
-	XxlJobInfo                    *xxlJobInfo
-	XxlJobLock                    *xxlJobLock
-	XxlJobLog                     *xxlJobLog
-	XxlJobLogReport               *xxlJobLogReport
-	XxlJobLogglue                 *xxlJobLogglue
-	XxlJobRegistry                *xxlJobRegistry
-	XxlJobUser                    *xxlJobUser
-	GameOperationUrl              *gameOperationUrl
-	CompetitionRankingRewards     *competitionRankingRewards
-	PointsRewards                 *pointsRewards
-	PointsCollectionRecord        *pointsCollectionRecord
+	WinUserStatistics                     *winUserStatistics
+	WinCustomer                           *winCustomer
+	WinGameSlot                           *winGameSlot
+	ActivityAlertLog                      *activityAlertLog
+	ActivityAlertUserConfig               *activityAlertUserConfig
+	ActivityBase                          *activityBase
+	ActivityBlackInfo                     *activityBlackInfo
+	ActivityChristmasHelpInfo             *activityChristmasHelpInfo
+	ActivityCondition                     *activityCondition
+	ActivityConditionChristma             *activityConditionChristma
+	ActivityImage                         *activityImage
+	ActivityLaunchHelp                    *activityLaunchHelp
+	ActivityTakeRecord                    *activityTakeRecord
+	AgentCommissionRate                   *agentCommissionRate
+	AgentConfig                           *agentConfig
+	AgentDailyReport                      *agentDailyReport
+	AgentPromoteCode                      *agentPromoteCode
+	AgentRankReport                       *agentRankReport
+	AgentReportConfigHistory              *agentReportConfigHistory
+	ChristmasNewUserSupportRule           *christmasNewUserSupportRule
+	GameList                              *gameList
+	GameListTmp                           *gameListTmp
+	GamePagcor                            *gamePagcor
+	GameProvider                          *gameProvider
+	GameProviderSubtype                   *gameProviderSubtype
+	GameRankReport                        *gameRankReport
+	GameType                              *gameType
+	LevelFreeGame                         *levelFreeGame
+	OrderSettle                           *orderSettle
+	Pet                                   *pet
+	PromotionsConfig                      *promotionsConfig
+	User                                  *user
+	UserRankReport                        *userRankReport
+	WinAdmin                              *winAdmin
+	WinAdminExportFileTask                *winAdminExportFileTask
+	WinAdminLoginLog                      *winAdminLoginLog
+	WinAgentCommissionRate                *winAgentCommissionRate
+	WinAgentLink                          *winAgentLink
+	WinAuthAdminGroup                     *winAuthAdminGroup
+	WinAuthGroup                          *winAuthGroup
+	WinAuthGroupAccess                    *winAuthGroupAccess
+	WinAuthRule                           *winAuthRule
+	WinAuthRuleMap                        *winAuthRuleMap
+	WinBanner                             *winBanner
+	WinBetSlipsException                  *winBetSlipsException
+	WinBetslip                            *winBetslips
+	WinBlog                               *winBlog
+	WinCheckInRecord                      *winCheckInRecord
+	WinCheckInRule                        *winCheckInRule
+	WinCityItem                           *winCityItem
+	WinCodeAudit                          *winCodeAudit
+	WinCodeRecord                         *winCodeRecord
+	WinCoinAdminTransferM2                *winCoinAdminTransferM2
+	WinCoinCommission                     *winCoinCommission
+	WinCoinCommissionLog                  *winCoinCommissionLog
+	WinCoinCommissionM2                   *winCoinCommissionM2
+	WinCoinDepositRecordM2                *winCoinDepositRecordM2
+	WinCoinRateM2                         *winCoinRateM2
+	WinCoinRebateM2                       *winCoinRebateM2
+	WinCoinRewardsM2                      *winCoinRewardsM2
+	WinCoinWithdrawalRecordM2             *winCoinWithdrawalRecordM2
+	WinConfig                             *winConfig
+	WinDailyTax                           *winDailyTax
+	WinDict                               *winDict
+	WinDictItem                           *winDictItem
+	WinFbOrderLog                         *winFbOrderLog
+	WinFreeGameList                       *winFreeGameList
+	WinFreeGameRecord                     *winFreeGameRecord
+	WinFrontGameBigCategoryBanner         *winFrontGameBigCategoryBanner
+	WinFrontGameClassifyCms               *winFrontGameClassifyCms
+	WinFrontGameClassifyInfoCm            *winFrontGameClassifyInfoCm
+	WinGameSlotFavorite                   *winGameSlotFavorite
+	WinHelpInfo                           *winHelpInfo
+	WinHelpType                           *winHelpType
+	WinMerchant                           *winMerchant
+	WinMonthlyTax                         *winMonthlyTax
+	WinMqError                            *winMqError
+	WinNotice                             *winNotice
+	WinNoticeStatus                       *winNoticeStatus
+	WinOperationLog                       *winOperationLog
+	WinPayChannel                         *winPayChannel
+	WinPayPlatConfig                      *winPayPlatConfig
+	WinPromotions                         *winPromotions
+	WinPromotionsInfo                     *winPromotionsInfo
+	WinSendSmsReq                         *winSendSmsReq
+	WinSetting                            *winSetting
+	WinSmsRecord                          *winSmsRecord
+	WinUser                               *winUser
+	WinUserBankList                       *winUserBankList
+	WinUserExt                            *winUserExt
+	WinUserFacebookLogin                  *winUserFacebookLogin
+	WinUserFlag                           *winUserFlag
+	WinUserGoogleCode                     *winUserGoogleCode
+	WinUserGoogleLogin                    *winUserGoogleLogin
+	WinUserJoinFlag                       *winUserJoinFlag
+	WinUserKyc                            *winUserKyc
+	WinUserKycBac                         *winUserKycBac
+	WinUserKycHi                          *winUserKycHi
+	WinUserKycHisBac                      *winUserKycHisBac
+	WinUserLevel                          *winUserLevel
+	WinUserLevelRebate                    *winUserLevelRebate
+	WinUserLevelRebateTmp                 *winUserLevelRebateTmp
+	WinUserLevelReward                    *winUserLevelReward
+	WinUserLevelTmp                       *winUserLevelTmp
+	WinUserLoginLog                       *winUserLoginLog
+	XxlJobGroup                           *xxlJobGroup
+	XxlJobInfo                            *xxlJobInfo
+	XxlJobLock                            *xxlJobLock
+	XxlJobLog                             *xxlJobLog
+	XxlJobLogReport                       *xxlJobLogReport
+	XxlJobLogglue                         *xxlJobLogglue
+	XxlJobRegistry                        *xxlJobRegistry
+	XxlJobUser                            *xxlJobUser
+	GameOperationUrl                      *gameOperationUrl
+	CompetitionRankingRewards             *competitionRankingRewards
+	PointsRewards                         *pointsRewards
+	PointsCollectionRecord                *pointsCollectionRecord
 )
 
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
@@ -196,7 +194,6 @@ func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	FbSportsMatchLeagues = &Q.FbSportsMatchLeagues
 	FbSportsMatchRecommendPlay = &Q.FbSportsMatchRecommendPlay
 	FbSportsMatchRecommendPlayOptions = &Q.FbSportsMatchRecommendPlayOptions
-	FbSportsMatchRecommendation = &Q.FbSportsMatchRecommendation
 	FbSportsMatchResults = &Q.FbSportsMatchResults
 	FbSportsMatchResultsStatistics = &Q.FbSportsMatchResultsStatistics
 	FbSportsMatchStatisticsHotLeague = &Q.FbSportsMatchStatisticsHotLeague
@@ -234,7 +231,6 @@ func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	WinUserWallet = &Q.WinUserWallet
 	WinCoinWithdrawalRecord = &Q.WinCoinWithdrawalRecord
 	WinBetslipsDetails = &Q.WinBetslipsDetails
-
 	WinCustomer = &Q.WinCustomer
 	WinGameSlot = &Q.WinGameSlot
 	WinPlatList = &Q.WinPlatList
@@ -367,7 +363,6 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 		FbSportsMatchLeagues:                  newFbSportsMatchLeagues(db, opts...),
 		FbSportsMatchRecommendPlay:            newFbSportsMatchRecommendPlay(db, opts...),
 		FbSportsMatchRecommendPlayOptions:     newFbSportsMatchRecommendPlayOptions(db, opts...),
-		FbSportsMatchRecommendation:           newFbSportsMatchRecommendation(db, opts...),
 		FbSportsMatchResults:                  newFbSportsMatchResults(db, opts...),
 		FbSportsMatchResultsStatistics:        newFbSportsMatchResultsStatistics(db, opts...),
 		FbSportsMatchStatisticsHotLeague:      newFbSportsMatchStatisticsHotLeague(db, opts...),
@@ -405,124 +400,123 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 		WinUserWallet:                         newWinUserWallet(db, opts...),
 		WinCoinWithdrawalRecord:               newWinCoinWithdrawalRecord(db, opts...),
 		WinBetslipsDetails:                    newWinBetslipsDetails(db, opts...),
-
-		WinCustomer:                   newWinCustomer(db, opts...),
-		WinGameSlot:                   newWinGameSlot(db, opts...),
-		WinPlatList:                   newWinPlatList(db, opts...),
-		ActivityAlertLog:              newActivityAlertLog(db, opts...),
-		ActivityAlertUserConfig:       newActivityAlertUserConfig(db, opts...),
-		ActivityBase:                  newActivityBase(db, opts...),
-		ActivityBlackInfo:             newActivityBlackInfo(db, opts...),
-		ActivityChristmasHelpInfo:     newActivityChristmasHelpInfo(db, opts...),
-		ActivityCondition:             newActivityCondition(db, opts...),
-		ActivityConditionChristma:     newActivityConditionChristma(db, opts...),
-		ActivityImage:                 newActivityImage(db, opts...),
-		ActivityLaunchHelp:            newActivityLaunchHelp(db, opts...),
-		ActivityTakeRecord:            newActivityTakeRecord(db, opts...),
-		AgentCommissionRate:           newAgentCommissionRate(db, opts...),
-		AgentConfig:                   newAgentConfig(db, opts...),
-		AgentDailyReport:              newAgentDailyReport(db, opts...),
-		AgentPromoteCode:              newAgentPromoteCode(db, opts...),
-		AgentRankReport:               newAgentRankReport(db, opts...),
-		AgentReportConfigHistory:      newAgentReportConfigHistory(db, opts...),
-		ChristmasNewUserSupportRule:   newChristmasNewUserSupportRule(db, opts...),
-		GameList:                      newGameList(db, opts...),
-		GameListTmp:                   newGameListTmp(db, opts...),
-		GamePagcor:                    newGamePagcor(db, opts...),
-		GameProvider:                  newGameProvider(db, opts...),
-		GameProviderSubtype:           newGameProviderSubtype(db, opts...),
-		GameRankReport:                newGameRankReport(db, opts...),
-		GameType:                      newGameType(db, opts...),
-		LevelFreeGame:                 newLevelFreeGame(db, opts...),
-		OrderSettle:                   newOrderSettle(db, opts...),
-		Pet:                           newPet(db, opts...),
-		PromotionsConfig:              newPromotionsConfig(db, opts...),
-		User:                          newUser(db, opts...),
-		UserRankReport:                newUserRankReport(db, opts...),
-		WinAdmin:                      newWinAdmin(db, opts...),
-		WinAdminExportFileTask:        newWinAdminExportFileTask(db, opts...),
-		WinAdminLoginLog:              newWinAdminLoginLog(db, opts...),
-		WinAgentCommissionRate:        newWinAgentCommissionRate(db, opts...),
-		WinAgentLink:                  newWinAgentLink(db, opts...),
-		WinAuthAdminGroup:             newWinAuthAdminGroup(db, opts...),
-		WinAuthGroup:                  newWinAuthGroup(db, opts...),
-		WinAuthGroupAccess:            newWinAuthGroupAccess(db, opts...),
-		WinAuthRule:                   newWinAuthRule(db, opts...),
-		WinAuthRuleMap:                newWinAuthRuleMap(db, opts...),
-		WinBanner:                     newWinBanner(db, opts...),
-		WinBetSlipsException:          newWinBetSlipsException(db, opts...),
-		WinBetslip:                    newWinBetslips(db, opts...),
-		WinBlog:                       newWinBlog(db, opts...),
-		WinCheckInRecord:              newWinCheckInRecord(db, opts...),
-		WinCheckInRule:                newWinCheckInRule(db, opts...),
-		WinCityItem:                   newWinCityItem(db, opts...),
-		WinCodeAudit:                  newWinCodeAudit(db, opts...),
-		WinCodeRecord:                 newWinCodeRecord(db, opts...),
-		WinCoinAdminTransferM2:        newWinCoinAdminTransferM2(db, opts...),
-		WinCoinCommission:             newWinCoinCommission(db, opts...),
-		WinCoinCommissionLog:          newWinCoinCommissionLog(db, opts...),
-		WinCoinCommissionM2:           newWinCoinCommissionM2(db, opts...),
-		WinCoinDepositRecordM2:        newWinCoinDepositRecordM2(db, opts...),
-		WinCoinRateM2:                 newWinCoinRateM2(db, opts...),
-		WinCoinRebateM2:               newWinCoinRebateM2(db, opts...),
-		WinCoinRewardsM2:              newWinCoinRewardsM2(db, opts...),
-		WinCoinWithdrawalRecordM2:     newWinCoinWithdrawalRecordM2(db, opts...),
-		WinConfig:                     newWinConfig(db, opts...),
-		WinDailyTax:                   newWinDailyTax(db, opts...),
-		WinDict:                       newWinDict(db, opts...),
-		WinDictItem:                   newWinDictItem(db, opts...),
-		WinFbOrderLog:                 newWinFbOrderLog(db, opts...),
-		WinFreeGameList:               newWinFreeGameList(db, opts...),
-		WinFreeGameRecord:             newWinFreeGameRecord(db, opts...),
-		WinFrontGameBigCategoryBanner: newWinFrontGameBigCategoryBanner(db, opts...),
-		WinFrontGameClassifyCms:       newWinFrontGameClassifyCms(db, opts...),
-		WinFrontGameClassifyInfoCm:    newWinFrontGameClassifyInfoCm(db, opts...),
-		WinGameSlotFavorite:           newWinGameSlotFavorite(db, opts...),
-		WinHelpInfo:                   newWinHelpInfo(db, opts...),
-		WinHelpType:                   newWinHelpType(db, opts...),
-		WinMerchant:                   newWinMerchant(db, opts...),
-		WinMonthlyTax:                 newWinMonthlyTax(db, opts...),
-		WinMqError:                    newWinMqError(db, opts...),
-		WinNotice:                     newWinNotice(db, opts...),
-		WinNoticeStatus:               newWinNoticeStatus(db, opts...),
-		WinOperationLog:               newWinOperationLog(db, opts...),
-		WinPayChannel:                 newWinPayChannel(db, opts...),
-		WinPayPlatConfig:              newWinPayPlatConfig(db, opts...),
-		WinPromotions:                 newWinPromotions(db, opts...),
-		WinPromotionsInfo:             newWinPromotionsInfo(db, opts...),
-		WinSendSmsReq:                 newWinSendSmsReq(db, opts...),
-		WinSetting:                    newWinSetting(db, opts...),
-		WinSmsRecord:                  newWinSmsRecord(db, opts...),
-		WinUser:                       newWinUser(db, opts...),
-		WinUserBankList:               newWinUserBankList(db, opts...),
-		WinUserExt:                    newWinUserExt(db, opts...),
-		WinUserFacebookLogin:          newWinUserFacebookLogin(db, opts...),
-		WinUserFlag:                   newWinUserFlag(db, opts...),
-		WinUserGoogleCode:             newWinUserGoogleCode(db, opts...),
-		WinUserGoogleLogin:            newWinUserGoogleLogin(db, opts...),
-		WinUserJoinFlag:               newWinUserJoinFlag(db, opts...),
-		WinUserKyc:                    newWinUserKyc(db, opts...),
-		WinUserKycBac:                 newWinUserKycBac(db, opts...),
-		WinUserKycHi:                  newWinUserKycHi(db, opts...),
-		WinUserKycHisBac:              newWinUserKycHisBac(db, opts...),
-		WinUserLevel:                  newWinUserLevel(db, opts...),
-		WinUserLevelRebate:            newWinUserLevelRebate(db, opts...),
-		WinUserLevelRebateTmp:         newWinUserLevelRebateTmp(db, opts...),
-		WinUserLevelReward:            newWinUserLevelReward(db, opts...),
-		WinUserLevelTmp:               newWinUserLevelTmp(db, opts...),
-		WinUserLoginLog:               newWinUserLoginLog(db, opts...),
-		XxlJobGroup:                   newXxlJobGroup(db, opts...),
-		XxlJobInfo:                    newXxlJobInfo(db, opts...),
-		XxlJobLock:                    newXxlJobLock(db, opts...),
-		XxlJobLog:                     newXxlJobLog(db, opts...),
-		XxlJobLogReport:               newXxlJobLogReport(db, opts...),
-		XxlJobLogglue:                 newXxlJobLogglue(db, opts...),
-		XxlJobRegistry:                newXxlJobRegistry(db, opts...),
-		XxlJobUser:                    newXxlJobUser(db, opts...),
-		GameOperationUrl:              newGameOperationUrl(db, opts...),
-		CompetitionRankingRewards:     newCompetitionRankingRewards(db, opts...),
-		PointsRewards:                 newPointsRewards(db, opts...),
-		PointsCollectionRecord:        newPointsCollectionRecord(db, opts...),
+		WinCustomer:                           newWinCustomer(db, opts...),
+		WinGameSlot:                           newWinGameSlot(db, opts...),
+		WinPlatList:                           newWinPlatList(db, opts...),
+		ActivityAlertLog:                      newActivityAlertLog(db, opts...),
+		ActivityAlertUserConfig:               newActivityAlertUserConfig(db, opts...),
+		ActivityBase:                          newActivityBase(db, opts...),
+		ActivityBlackInfo:                     newActivityBlackInfo(db, opts...),
+		ActivityChristmasHelpInfo:             newActivityChristmasHelpInfo(db, opts...),
+		ActivityCondition:                     newActivityCondition(db, opts...),
+		ActivityConditionChristma:             newActivityConditionChristma(db, opts...),
+		ActivityImage:                         newActivityImage(db, opts...),
+		ActivityLaunchHelp:                    newActivityLaunchHelp(db, opts...),
+		ActivityTakeRecord:                    newActivityTakeRecord(db, opts...),
+		AgentCommissionRate:                   newAgentCommissionRate(db, opts...),
+		AgentConfig:                           newAgentConfig(db, opts...),
+		AgentDailyReport:                      newAgentDailyReport(db, opts...),
+		AgentPromoteCode:                      newAgentPromoteCode(db, opts...),
+		AgentRankReport:                       newAgentRankReport(db, opts...),
+		AgentReportConfigHistory:              newAgentReportConfigHistory(db, opts...),
+		ChristmasNewUserSupportRule:           newChristmasNewUserSupportRule(db, opts...),
+		GameList:                              newGameList(db, opts...),
+		GameListTmp:                           newGameListTmp(db, opts...),
+		GamePagcor:                            newGamePagcor(db, opts...),
+		GameProvider:                          newGameProvider(db, opts...),
+		GameProviderSubtype:                   newGameProviderSubtype(db, opts...),
+		GameRankReport:                        newGameRankReport(db, opts...),
+		GameType:                              newGameType(db, opts...),
+		LevelFreeGame:                         newLevelFreeGame(db, opts...),
+		OrderSettle:                           newOrderSettle(db, opts...),
+		Pet:                                   newPet(db, opts...),
+		PromotionsConfig:                      newPromotionsConfig(db, opts...),
+		User:                                  newUser(db, opts...),
+		UserRankReport:                        newUserRankReport(db, opts...),
+		WinAdmin:                              newWinAdmin(db, opts...),
+		WinAdminExportFileTask:                newWinAdminExportFileTask(db, opts...),
+		WinAdminLoginLog:                      newWinAdminLoginLog(db, opts...),
+		WinAgentCommissionRate:                newWinAgentCommissionRate(db, opts...),
+		WinAgentLink:                          newWinAgentLink(db, opts...),
+		WinAuthAdminGroup:                     newWinAuthAdminGroup(db, opts...),
+		WinAuthGroup:                          newWinAuthGroup(db, opts...),
+		WinAuthGroupAccess:                    newWinAuthGroupAccess(db, opts...),
+		WinAuthRule:                           newWinAuthRule(db, opts...),
+		WinAuthRuleMap:                        newWinAuthRuleMap(db, opts...),
+		WinBanner:                             newWinBanner(db, opts...),
+		WinBetSlipsException:                  newWinBetSlipsException(db, opts...),
+		WinBetslip:                            newWinBetslips(db, opts...),
+		WinBlog:                               newWinBlog(db, opts...),
+		WinCheckInRecord:                      newWinCheckInRecord(db, opts...),
+		WinCheckInRule:                        newWinCheckInRule(db, opts...),
+		WinCityItem:                           newWinCityItem(db, opts...),
+		WinCodeAudit:                          newWinCodeAudit(db, opts...),
+		WinCodeRecord:                         newWinCodeRecord(db, opts...),
+		WinCoinAdminTransferM2:                newWinCoinAdminTransferM2(db, opts...),
+		WinCoinCommission:                     newWinCoinCommission(db, opts...),
+		WinCoinCommissionLog:                  newWinCoinCommissionLog(db, opts...),
+		WinCoinCommissionM2:                   newWinCoinCommissionM2(db, opts...),
+		WinCoinDepositRecordM2:                newWinCoinDepositRecordM2(db, opts...),
+		WinCoinRateM2:                         newWinCoinRateM2(db, opts...),
+		WinCoinRebateM2:                       newWinCoinRebateM2(db, opts...),
+		WinCoinRewardsM2:                      newWinCoinRewardsM2(db, opts...),
+		WinCoinWithdrawalRecordM2:             newWinCoinWithdrawalRecordM2(db, opts...),
+		WinConfig:                             newWinConfig(db, opts...),
+		WinDailyTax:                           newWinDailyTax(db, opts...),
+		WinDict:                               newWinDict(db, opts...),
+		WinDictItem:                           newWinDictItem(db, opts...),
+		WinFbOrderLog:                         newWinFbOrderLog(db, opts...),
+		WinFreeGameList:                       newWinFreeGameList(db, opts...),
+		WinFreeGameRecord:                     newWinFreeGameRecord(db, opts...),
+		WinFrontGameBigCategoryBanner:         newWinFrontGameBigCategoryBanner(db, opts...),
+		WinFrontGameClassifyCms:               newWinFrontGameClassifyCms(db, opts...),
+		WinFrontGameClassifyInfoCm:            newWinFrontGameClassifyInfoCm(db, opts...),
+		WinGameSlotFavorite:                   newWinGameSlotFavorite(db, opts...),
+		WinHelpInfo:                           newWinHelpInfo(db, opts...),
+		WinHelpType:                           newWinHelpType(db, opts...),
+		WinMerchant:                           newWinMerchant(db, opts...),
+		WinMonthlyTax:                         newWinMonthlyTax(db, opts...),
+		WinMqError:                            newWinMqError(db, opts...),
+		WinNotice:                             newWinNotice(db, opts...),
+		WinNoticeStatus:                       newWinNoticeStatus(db, opts...),
+		WinOperationLog:                       newWinOperationLog(db, opts...),
+		WinPayChannel:                         newWinPayChannel(db, opts...),
+		WinPayPlatConfig:                      newWinPayPlatConfig(db, opts...),
+		WinPromotions:                         newWinPromotions(db, opts...),
+		WinPromotionsInfo:                     newWinPromotionsInfo(db, opts...),
+		WinSendSmsReq:                         newWinSendSmsReq(db, opts...),
+		WinSetting:                            newWinSetting(db, opts...),
+		WinSmsRecord:                          newWinSmsRecord(db, opts...),
+		WinUser:                               newWinUser(db, opts...),
+		WinUserBankList:                       newWinUserBankList(db, opts...),
+		WinUserExt:                            newWinUserExt(db, opts...),
+		WinUserFacebookLogin:                  newWinUserFacebookLogin(db, opts...),
+		WinUserFlag:                           newWinUserFlag(db, opts...),
+		WinUserGoogleCode:                     newWinUserGoogleCode(db, opts...),
+		WinUserGoogleLogin:                    newWinUserGoogleLogin(db, opts...),
+		WinUserJoinFlag:                       newWinUserJoinFlag(db, opts...),
+		WinUserKyc:                            newWinUserKyc(db, opts...),
+		WinUserKycBac:                         newWinUserKycBac(db, opts...),
+		WinUserKycHi:                          newWinUserKycHi(db, opts...),
+		WinUserKycHisBac:                      newWinUserKycHisBac(db, opts...),
+		WinUserLevel:                          newWinUserLevel(db, opts...),
+		WinUserLevelRebate:                    newWinUserLevelRebate(db, opts...),
+		WinUserLevelRebateTmp:                 newWinUserLevelRebateTmp(db, opts...),
+		WinUserLevelReward:                    newWinUserLevelReward(db, opts...),
+		WinUserLevelTmp:                       newWinUserLevelTmp(db, opts...),
+		WinUserLoginLog:                       newWinUserLoginLog(db, opts...),
+		XxlJobGroup:                           newXxlJobGroup(db, opts...),
+		XxlJobInfo:                            newXxlJobInfo(db, opts...),
+		XxlJobLock:                            newXxlJobLock(db, opts...),
+		XxlJobLog:                             newXxlJobLog(db, opts...),
+		XxlJobLogReport:                       newXxlJobLogReport(db, opts...),
+		XxlJobLogglue:                         newXxlJobLogglue(db, opts...),
+		XxlJobRegistry:                        newXxlJobRegistry(db, opts...),
+		XxlJobUser:                            newXxlJobUser(db, opts...),
+		GameOperationUrl:                      newGameOperationUrl(db, opts...),
+		CompetitionRankingRewards:             newCompetitionRankingRewards(db, opts...),
+		PointsRewards:                         newPointsRewards(db, opts...),
+		PointsCollectionRecord:                newPointsCollectionRecord(db, opts...),
 	}
 }
 
@@ -537,7 +531,6 @@ type Query struct {
 	FbSportsMatchLeagues                  fbSportsMatchLeagues
 	FbSportsMatchRecommendPlay            fbSportsMatchRecommendPlay
 	FbSportsMatchRecommendPlayOptions     fbSportsMatchRecommendPlayOptions
-	FbSportsMatchRecommendation           fbSportsMatchRecommendation
 	FbSportsMatchResults                  fbSportsMatchResults
 	FbSportsMatchResultsStatistics        fbSportsMatchResultsStatistics
 	FbSportsMatchStatisticsHotLeague      fbSportsMatchStatisticsHotLeague
@@ -575,124 +568,123 @@ type Query struct {
 	WinUserWallet                         winUserWallet
 	WinCoinWithdrawalRecord               winCoinWithdrawalRecord
 	WinBetslipsDetails                    winBetslipsDetails
-
-	WinCustomer                   winCustomer
-	WinGameSlot                   winGameSlot
-	WinPlatList                   winPlatList
-	ActivityAlertLog              activityAlertLog
-	ActivityAlertUserConfig       activityAlertUserConfig
-	ActivityBase                  activityBase
-	ActivityBlackInfo             activityBlackInfo
-	ActivityChristmasHelpInfo     activityChristmasHelpInfo
-	ActivityCondition             activityCondition
-	ActivityConditionChristma     activityConditionChristma
-	ActivityImage                 activityImage
-	ActivityLaunchHelp            activityLaunchHelp
-	ActivityTakeRecord            activityTakeRecord
-	AgentCommissionRate           agentCommissionRate
-	AgentConfig                   agentConfig
-	AgentDailyReport              agentDailyReport
-	AgentPromoteCode              agentPromoteCode
-	AgentRankReport               agentRankReport
-	AgentReportConfigHistory      agentReportConfigHistory
-	ChristmasNewUserSupportRule   christmasNewUserSupportRule
-	GameList                      gameList
-	GameListTmp                   gameListTmp
-	GamePagcor                    gamePagcor
-	GameProvider                  gameProvider
-	GameProviderSubtype           gameProviderSubtype
-	GameRankReport                gameRankReport
-	GameType                      gameType
-	LevelFreeGame                 levelFreeGame
-	OrderSettle                   orderSettle
-	Pet                           pet
-	PromotionsConfig              promotionsConfig
-	User                          user
-	UserRankReport                userRankReport
-	WinAdmin                      winAdmin
-	WinAdminExportFileTask        winAdminExportFileTask
-	WinAdminLoginLog              winAdminLoginLog
-	WinAgentCommissionRate        winAgentCommissionRate
-	WinAgentLink                  winAgentLink
-	WinAuthAdminGroup             winAuthAdminGroup
-	WinAuthGroup                  winAuthGroup
-	WinAuthGroupAccess            winAuthGroupAccess
-	WinAuthRule                   winAuthRule
-	WinAuthRuleMap                winAuthRuleMap
-	WinBanner                     winBanner
-	WinBetSlipsException          winBetSlipsException
-	WinBetslip                    winBetslips
-	WinBlog                       winBlog
-	WinCheckInRecord              winCheckInRecord
-	WinCheckInRule                winCheckInRule
-	WinCityItem                   winCityItem
-	WinCodeAudit                  winCodeAudit
-	WinCodeRecord                 winCodeRecord
-	WinCoinAdminTransferM2        winCoinAdminTransferM2
-	WinCoinCommission             winCoinCommission
-	WinCoinCommissionLog          winCoinCommissionLog
-	WinCoinCommissionM2           winCoinCommissionM2
-	WinCoinDepositRecordM2        winCoinDepositRecordM2
-	WinCoinRateM2                 winCoinRateM2
-	WinCoinRebateM2               winCoinRebateM2
-	WinCoinRewardsM2              winCoinRewardsM2
-	WinCoinWithdrawalRecordM2     winCoinWithdrawalRecordM2
-	WinConfig                     winConfig
-	WinDailyTax                   winDailyTax
-	WinDict                       winDict
-	WinDictItem                   winDictItem
-	WinFbOrderLog                 winFbOrderLog
-	WinFreeGameList               winFreeGameList
-	WinFreeGameRecord             winFreeGameRecord
-	WinFrontGameBigCategoryBanner winFrontGameBigCategoryBanner
-	WinFrontGameClassifyCms       winFrontGameClassifyCms
-	WinFrontGameClassifyInfoCm    winFrontGameClassifyInfoCm
-	WinGameSlotFavorite           winGameSlotFavorite
-	WinHelpInfo                   winHelpInfo
-	WinHelpType                   winHelpType
-	WinMerchant                   winMerchant
-	WinMonthlyTax                 winMonthlyTax
-	WinMqError                    winMqError
-	WinNotice                     winNotice
-	WinNoticeStatus               winNoticeStatus
-	WinOperationLog               winOperationLog
-	WinPayChannel                 winPayChannel
-	WinPayPlatConfig              winPayPlatConfig
-	WinPromotions                 winPromotions
-	WinPromotionsInfo             winPromotionsInfo
-	WinSendSmsReq                 winSendSmsReq
-	WinSetting                    winSetting
-	WinSmsRecord                  winSmsRecord
-	WinUser                       winUser
-	WinUserBankList               winUserBankList
-	WinUserExt                    winUserExt
-	WinUserFacebookLogin          winUserFacebookLogin
-	WinUserFlag                   winUserFlag
-	WinUserGoogleCode             winUserGoogleCode
-	WinUserGoogleLogin            winUserGoogleLogin
-	WinUserJoinFlag               winUserJoinFlag
-	WinUserKyc                    winUserKyc
-	WinUserKycBac                 winUserKycBac
-	WinUserKycHi                  winUserKycHi
-	WinUserKycHisBac              winUserKycHisBac
-	WinUserLevel                  winUserLevel
-	WinUserLevelRebate            winUserLevelRebate
-	WinUserLevelRebateTmp         winUserLevelRebateTmp
-	WinUserLevelReward            winUserLevelReward
-	WinUserLevelTmp               winUserLevelTmp
-	WinUserLoginLog               winUserLoginLog
-	XxlJobGroup                   xxlJobGroup
-	XxlJobInfo                    xxlJobInfo
-	XxlJobLock                    xxlJobLock
-	XxlJobLog                     xxlJobLog
-	XxlJobLogReport               xxlJobLogReport
-	XxlJobLogglue                 xxlJobLogglue
-	XxlJobRegistry                xxlJobRegistry
-	XxlJobUser                    xxlJobUser
-	GameOperationUrl              gameOperationUrl
-	CompetitionRankingRewards     competitionRankingRewards
-	PointsRewards                 pointsRewards
-	PointsCollectionRecord        pointsCollectionRecord
+	WinCustomer                           winCustomer
+	WinGameSlot                           winGameSlot
+	WinPlatList                           winPlatList
+	ActivityAlertLog                      activityAlertLog
+	ActivityAlertUserConfig               activityAlertUserConfig
+	ActivityBase                          activityBase
+	ActivityBlackInfo                     activityBlackInfo
+	ActivityChristmasHelpInfo             activityChristmasHelpInfo
+	ActivityCondition                     activityCondition
+	ActivityConditionChristma             activityConditionChristma
+	ActivityImage                         activityImage
+	ActivityLaunchHelp                    activityLaunchHelp
+	ActivityTakeRecord                    activityTakeRecord
+	AgentCommissionRate                   agentCommissionRate
+	AgentConfig                           agentConfig
+	AgentDailyReport                      agentDailyReport
+	AgentPromoteCode                      agentPromoteCode
+	AgentRankReport                       agentRankReport
+	AgentReportConfigHistory              agentReportConfigHistory
+	ChristmasNewUserSupportRule           christmasNewUserSupportRule
+	GameList                              gameList
+	GameListTmp                           gameListTmp
+	GamePagcor                            gamePagcor
+	GameProvider                          gameProvider
+	GameProviderSubtype                   gameProviderSubtype
+	GameRankReport                        gameRankReport
+	GameType                              gameType
+	LevelFreeGame                         levelFreeGame
+	OrderSettle                           orderSettle
+	Pet                                   pet
+	PromotionsConfig                      promotionsConfig
+	User                                  user
+	UserRankReport                        userRankReport
+	WinAdmin                              winAdmin
+	WinAdminExportFileTask                winAdminExportFileTask
+	WinAdminLoginLog                      winAdminLoginLog
+	WinAgentCommissionRate                winAgentCommissionRate
+	WinAgentLink                          winAgentLink
+	WinAuthAdminGroup                     winAuthAdminGroup
+	WinAuthGroup                          winAuthGroup
+	WinAuthGroupAccess                    winAuthGroupAccess
+	WinAuthRule                           winAuthRule
+	WinAuthRuleMap                        winAuthRuleMap
+	WinBanner                             winBanner
+	WinBetSlipsException                  winBetSlipsException
+	WinBetslip                            winBetslips
+	WinBlog                               winBlog
+	WinCheckInRecord                      winCheckInRecord
+	WinCheckInRule                        winCheckInRule
+	WinCityItem                           winCityItem
+	WinCodeAudit                          winCodeAudit
+	WinCodeRecord                         winCodeRecord
+	WinCoinAdminTransferM2                winCoinAdminTransferM2
+	WinCoinCommission                     winCoinCommission
+	WinCoinCommissionLog                  winCoinCommissionLog
+	WinCoinCommissionM2                   winCoinCommissionM2
+	WinCoinDepositRecordM2                winCoinDepositRecordM2
+	WinCoinRateM2                         winCoinRateM2
+	WinCoinRebateM2                       winCoinRebateM2
+	WinCoinRewardsM2                      winCoinRewardsM2
+	WinCoinWithdrawalRecordM2             winCoinWithdrawalRecordM2
+	WinConfig                             winConfig
+	WinDailyTax                           winDailyTax
+	WinDict                               winDict
+	WinDictItem                           winDictItem
+	WinFbOrderLog                         winFbOrderLog
+	WinFreeGameList                       winFreeGameList
+	WinFreeGameRecord                     winFreeGameRecord
+	WinFrontGameBigCategoryBanner         winFrontGameBigCategoryBanner
+	WinFrontGameClassifyCms               winFrontGameClassifyCms
+	WinFrontGameClassifyInfoCm            winFrontGameClassifyInfoCm
+	WinGameSlotFavorite                   winGameSlotFavorite
+	WinHelpInfo                           winHelpInfo
+	WinHelpType                           winHelpType
+	WinMerchant                           winMerchant
+	WinMonthlyTax                         winMonthlyTax
+	WinMqError                            winMqError
+	WinNotice                             winNotice
+	WinNoticeStatus                       winNoticeStatus
+	WinOperationLog                       winOperationLog
+	WinPayChannel                         winPayChannel
+	WinPayPlatConfig                      winPayPlatConfig
+	WinPromotions                         winPromotions
+	WinPromotionsInfo                     winPromotionsInfo
+	WinSendSmsReq                         winSendSmsReq
+	WinSetting                            winSetting
+	WinSmsRecord                          winSmsRecord
+	WinUser                               winUser
+	WinUserBankList                       winUserBankList
+	WinUserExt                            winUserExt
+	WinUserFacebookLogin                  winUserFacebookLogin
+	WinUserFlag                           winUserFlag
+	WinUserGoogleCode                     winUserGoogleCode
+	WinUserGoogleLogin                    winUserGoogleLogin
+	WinUserJoinFlag                       winUserJoinFlag
+	WinUserKyc                            winUserKyc
+	WinUserKycBac                         winUserKycBac
+	WinUserKycHi                          winUserKycHi
+	WinUserKycHisBac                      winUserKycHisBac
+	WinUserLevel                          winUserLevel
+	WinUserLevelRebate                    winUserLevelRebate
+	WinUserLevelRebateTmp                 winUserLevelRebateTmp
+	WinUserLevelReward                    winUserLevelReward
+	WinUserLevelTmp                       winUserLevelTmp
+	WinUserLoginLog                       winUserLoginLog
+	XxlJobGroup                           xxlJobGroup
+	XxlJobInfo                            xxlJobInfo
+	XxlJobLock                            xxlJobLock
+	XxlJobLog                             xxlJobLog
+	XxlJobLogReport                       xxlJobLogReport
+	XxlJobLogglue                         xxlJobLogglue
+	XxlJobRegistry                        xxlJobRegistry
+	XxlJobUser                            xxlJobUser
+	GameOperationUrl                      gameOperationUrl
+	CompetitionRankingRewards             competitionRankingRewards
+	PointsRewards                         pointsRewards
+	PointsCollectionRecord                pointsCollectionRecord
 }
 
 func (q *Query) Available() bool { return q.db != nil }
@@ -709,7 +701,6 @@ func (q *Query) clone(db *gorm.DB) *Query {
 		FbSportsMatchLeagues:                  q.FbSportsMatchLeagues.clone(db),
 		FbSportsMatchRecommendPlay:            q.FbSportsMatchRecommendPlay.clone(db),
 		FbSportsMatchRecommendPlayOptions:     q.FbSportsMatchRecommendPlayOptions.clone(db),
-		FbSportsMatchRecommendation:           q.FbSportsMatchRecommendation.clone(db),
 		FbSportsMatchResults:                  q.FbSportsMatchResults.clone(db),
 		FbSportsMatchResultsStatistics:        q.FbSportsMatchResultsStatistics.clone(db),
 		FbSportsMatchStatisticsHotLeague:      q.FbSportsMatchStatisticsHotLeague.clone(db),
@@ -747,124 +738,123 @@ func (q *Query) clone(db *gorm.DB) *Query {
 		WinUserWallet:                         q.WinUserWallet.clone(db),
 		WinCoinWithdrawalRecord:               q.WinCoinWithdrawalRecord.clone(db),
 		WinBetslipsDetails:                    q.WinBetslipsDetails.clone(db),
-
-		WinCustomer:                   q.WinCustomer.clone(db),
-		WinGameSlot:                   q.WinGameSlot.clone(db),
-		WinPlatList:                   q.WinPlatList.clone(db),
-		ActivityAlertLog:              q.ActivityAlertLog.clone(db),
-		ActivityAlertUserConfig:       q.ActivityAlertUserConfig.clone(db),
-		ActivityBase:                  q.ActivityBase.clone(db),
-		ActivityBlackInfo:             q.ActivityBlackInfo.clone(db),
-		ActivityChristmasHelpInfo:     q.ActivityChristmasHelpInfo.clone(db),
-		ActivityCondition:             q.ActivityCondition.clone(db),
-		ActivityConditionChristma:     q.ActivityConditionChristma.clone(db),
-		ActivityImage:                 q.ActivityImage.clone(db),
-		ActivityLaunchHelp:            q.ActivityLaunchHelp.clone(db),
-		ActivityTakeRecord:            q.ActivityTakeRecord.clone(db),
-		AgentCommissionRate:           q.AgentCommissionRate.clone(db),
-		AgentConfig:                   q.AgentConfig.clone(db),
-		AgentDailyReport:              q.AgentDailyReport.clone(db),
-		AgentPromoteCode:              q.AgentPromoteCode.clone(db),
-		AgentRankReport:               q.AgentRankReport.clone(db),
-		AgentReportConfigHistory:      q.AgentReportConfigHistory.clone(db),
-		ChristmasNewUserSupportRule:   q.ChristmasNewUserSupportRule.clone(db),
-		GameList:                      q.GameList.clone(db),
-		GameListTmp:                   q.GameListTmp.clone(db),
-		GamePagcor:                    q.GamePagcor.clone(db),
-		GameProvider:                  q.GameProvider.clone(db),
-		GameProviderSubtype:           q.GameProviderSubtype.clone(db),
-		GameRankReport:                q.GameRankReport.clone(db),
-		GameType:                      q.GameType.clone(db),
-		LevelFreeGame:                 q.LevelFreeGame.clone(db),
-		OrderSettle:                   q.OrderSettle.clone(db),
-		Pet:                           q.Pet.clone(db),
-		PromotionsConfig:              q.PromotionsConfig.clone(db),
-		User:                          q.User.clone(db),
-		UserRankReport:                q.UserRankReport.clone(db),
-		WinAdmin:                      q.WinAdmin.clone(db),
-		WinAdminExportFileTask:        q.WinAdminExportFileTask.clone(db),
-		WinAdminLoginLog:              q.WinAdminLoginLog.clone(db),
-		WinAgentCommissionRate:        q.WinAgentCommissionRate.clone(db),
-		WinAgentLink:                  q.WinAgentLink.clone(db),
-		WinAuthAdminGroup:             q.WinAuthAdminGroup.clone(db),
-		WinAuthGroup:                  q.WinAuthGroup.clone(db),
-		WinAuthGroupAccess:            q.WinAuthGroupAccess.clone(db),
-		WinAuthRule:                   q.WinAuthRule.clone(db),
-		WinAuthRuleMap:                q.WinAuthRuleMap.clone(db),
-		WinBanner:                     q.WinBanner.clone(db),
-		WinBetSlipsException:          q.WinBetSlipsException.clone(db),
-		WinBetslip:                    q.WinBetslip.clone(db),
-		WinBlog:                       q.WinBlog.clone(db),
-		WinCheckInRecord:              q.WinCheckInRecord.clone(db),
-		WinCheckInRule:                q.WinCheckInRule.clone(db),
-		WinCityItem:                   q.WinCityItem.clone(db),
-		WinCodeAudit:                  q.WinCodeAudit.clone(db),
-		WinCodeRecord:                 q.WinCodeRecord.clone(db),
-		WinCoinAdminTransferM2:        q.WinCoinAdminTransferM2.clone(db),
-		WinCoinCommission:             q.WinCoinCommission.clone(db),
-		WinCoinCommissionLog:          q.WinCoinCommissionLog.clone(db),
-		WinCoinCommissionM2:           q.WinCoinCommissionM2.clone(db),
-		WinCoinDepositRecordM2:        q.WinCoinDepositRecordM2.clone(db),
-		WinCoinRateM2:                 q.WinCoinRateM2.clone(db),
-		WinCoinRebateM2:               q.WinCoinRebateM2.clone(db),
-		WinCoinRewardsM2:              q.WinCoinRewardsM2.clone(db),
-		WinCoinWithdrawalRecordM2:     q.WinCoinWithdrawalRecordM2.clone(db),
-		WinConfig:                     q.WinConfig.clone(db),
-		WinDailyTax:                   q.WinDailyTax.clone(db),
-		WinDict:                       q.WinDict.clone(db),
-		WinDictItem:                   q.WinDictItem.clone(db),
-		WinFbOrderLog:                 q.WinFbOrderLog.clone(db),
-		WinFreeGameList:               q.WinFreeGameList.clone(db),
-		WinFreeGameRecord:             q.WinFreeGameRecord.clone(db),
-		WinFrontGameBigCategoryBanner: q.WinFrontGameBigCategoryBanner.clone(db),
-		WinFrontGameClassifyCms:       q.WinFrontGameClassifyCms.clone(db),
-		WinFrontGameClassifyInfoCm:    q.WinFrontGameClassifyInfoCm.clone(db),
-		WinGameSlotFavorite:           q.WinGameSlotFavorite.clone(db),
-		WinHelpInfo:                   q.WinHelpInfo.clone(db),
-		WinHelpType:                   q.WinHelpType.clone(db),
-		WinMerchant:                   q.WinMerchant.clone(db),
-		WinMonthlyTax:                 q.WinMonthlyTax.clone(db),
-		WinMqError:                    q.WinMqError.clone(db),
-		WinNotice:                     q.WinNotice.clone(db),
-		WinNoticeStatus:               q.WinNoticeStatus.clone(db),
-		WinOperationLog:               q.WinOperationLog.clone(db),
-		WinPayChannel:                 q.WinPayChannel.clone(db),
-		WinPayPlatConfig:              q.WinPayPlatConfig.clone(db),
-		WinPromotions:                 q.WinPromotions.clone(db),
-		WinPromotionsInfo:             q.WinPromotionsInfo.clone(db),
-		WinSendSmsReq:                 q.WinSendSmsReq.clone(db),
-		WinSetting:                    q.WinSetting.clone(db),
-		WinSmsRecord:                  q.WinSmsRecord.clone(db),
-		WinUser:                       q.WinUser.clone(db),
-		WinUserBankList:               q.WinUserBankList.clone(db),
-		WinUserExt:                    q.WinUserExt.clone(db),
-		WinUserFacebookLogin:          q.WinUserFacebookLogin.clone(db),
-		WinUserFlag:                   q.WinUserFlag.clone(db),
-		WinUserGoogleCode:             q.WinUserGoogleCode.clone(db),
-		WinUserGoogleLogin:            q.WinUserGoogleLogin.clone(db),
-		WinUserJoinFlag:               q.WinUserJoinFlag.clone(db),
-		WinUserKyc:                    q.WinUserKyc.clone(db),
-		WinUserKycBac:                 q.WinUserKycBac.clone(db),
-		WinUserKycHi:                  q.WinUserKycHi.clone(db),
-		WinUserKycHisBac:              q.WinUserKycHisBac.clone(db),
-		WinUserLevel:                  q.WinUserLevel.clone(db),
-		WinUserLevelRebate:            q.WinUserLevelRebate.clone(db),
-		WinUserLevelRebateTmp:         q.WinUserLevelRebateTmp.clone(db),
-		WinUserLevelReward:            q.WinUserLevelReward.clone(db),
-		WinUserLevelTmp:               q.WinUserLevelTmp.clone(db),
-		WinUserLoginLog:               q.WinUserLoginLog.clone(db),
-		XxlJobGroup:                   q.XxlJobGroup.clone(db),
-		XxlJobInfo:                    q.XxlJobInfo.clone(db),
-		XxlJobLock:                    q.XxlJobLock.clone(db),
-		XxlJobLog:                     q.XxlJobLog.clone(db),
-		XxlJobLogReport:               q.XxlJobLogReport.clone(db),
-		XxlJobLogglue:                 q.XxlJobLogglue.clone(db),
-		XxlJobRegistry:                q.XxlJobRegistry.clone(db),
-		XxlJobUser:                    q.XxlJobUser.clone(db),
-		GameOperationUrl:              q.GameOperationUrl.clone(db),
-		CompetitionRankingRewards:     q.CompetitionRankingRewards.clone(db),
-		PointsRewards:                 q.PointsRewards.clone(db),
-		PointsCollectionRecord:        q.PointsCollectionRecord.clone(db),
+		WinCustomer:                           q.WinCustomer.clone(db),
+		WinGameSlot:                           q.WinGameSlot.clone(db),
+		WinPlatList:                           q.WinPlatList.clone(db),
+		ActivityAlertLog:                      q.ActivityAlertLog.clone(db),
+		ActivityAlertUserConfig:               q.ActivityAlertUserConfig.clone(db),
+		ActivityBase:                          q.ActivityBase.clone(db),
+		ActivityBlackInfo:                     q.ActivityBlackInfo.clone(db),
+		ActivityChristmasHelpInfo:             q.ActivityChristmasHelpInfo.clone(db),
+		ActivityCondition:                     q.ActivityCondition.clone(db),
+		ActivityConditionChristma:             q.ActivityConditionChristma.clone(db),
+		ActivityImage:                         q.ActivityImage.clone(db),
+		ActivityLaunchHelp:                    q.ActivityLaunchHelp.clone(db),
+		ActivityTakeRecord:                    q.ActivityTakeRecord.clone(db),
+		AgentCommissionRate:                   q.AgentCommissionRate.clone(db),
+		AgentConfig:                           q.AgentConfig.clone(db),
+		AgentDailyReport:                      q.AgentDailyReport.clone(db),
+		AgentPromoteCode:                      q.AgentPromoteCode.clone(db),
+		AgentRankReport:                       q.AgentRankReport.clone(db),
+		AgentReportConfigHistory:              q.AgentReportConfigHistory.clone(db),
+		ChristmasNewUserSupportRule:           q.ChristmasNewUserSupportRule.clone(db),
+		GameList:                              q.GameList.clone(db),
+		GameListTmp:                           q.GameListTmp.clone(db),
+		GamePagcor:                            q.GamePagcor.clone(db),
+		GameProvider:                          q.GameProvider.clone(db),
+		GameProviderSubtype:                   q.GameProviderSubtype.clone(db),
+		GameRankReport:                        q.GameRankReport.clone(db),
+		GameType:                              q.GameType.clone(db),
+		LevelFreeGame:                         q.LevelFreeGame.clone(db),
+		OrderSettle:                           q.OrderSettle.clone(db),
+		Pet:                                   q.Pet.clone(db),
+		PromotionsConfig:                      q.PromotionsConfig.clone(db),
+		User:                                  q.User.clone(db),
+		UserRankReport:                        q.UserRankReport.clone(db),
+		WinAdmin:                              q.WinAdmin.clone(db),
+		WinAdminExportFileTask:                q.WinAdminExportFileTask.clone(db),
+		WinAdminLoginLog:                      q.WinAdminLoginLog.clone(db),
+		WinAgentCommissionRate:                q.WinAgentCommissionRate.clone(db),
+		WinAgentLink:                          q.WinAgentLink.clone(db),
+		WinAuthAdminGroup:                     q.WinAuthAdminGroup.clone(db),
+		WinAuthGroup:                          q.WinAuthGroup.clone(db),
+		WinAuthGroupAccess:                    q.WinAuthGroupAccess.clone(db),
+		WinAuthRule:                           q.WinAuthRule.clone(db),
+		WinAuthRuleMap:                        q.WinAuthRuleMap.clone(db),
+		WinBanner:                             q.WinBanner.clone(db),
+		WinBetSlipsException:                  q.WinBetSlipsException.clone(db),
+		WinBetslip:                            q.WinBetslip.clone(db),
+		WinBlog:                               q.WinBlog.clone(db),
+		WinCheckInRecord:                      q.WinCheckInRecord.clone(db),
+		WinCheckInRule:                        q.WinCheckInRule.clone(db),
+		WinCityItem:                           q.WinCityItem.clone(db),
+		WinCodeAudit:                          q.WinCodeAudit.clone(db),
+		WinCodeRecord:                         q.WinCodeRecord.clone(db),
+		WinCoinAdminTransferM2:                q.WinCoinAdminTransferM2.clone(db),
+		WinCoinCommission:                     q.WinCoinCommission.clone(db),
+		WinCoinCommissionLog:                  q.WinCoinCommissionLog.clone(db),
+		WinCoinCommissionM2:                   q.WinCoinCommissionM2.clone(db),
+		WinCoinDepositRecordM2:                q.WinCoinDepositRecordM2.clone(db),
+		WinCoinRateM2:                         q.WinCoinRateM2.clone(db),
+		WinCoinRebateM2:                       q.WinCoinRebateM2.clone(db),
+		WinCoinRewardsM2:                      q.WinCoinRewardsM2.clone(db),
+		WinCoinWithdrawalRecordM2:             q.WinCoinWithdrawalRecordM2.clone(db),
+		WinConfig:                             q.WinConfig.clone(db),
+		WinDailyTax:                           q.WinDailyTax.clone(db),
+		WinDict:                               q.WinDict.clone(db),
+		WinDictItem:                           q.WinDictItem.clone(db),
+		WinFbOrderLog:                         q.WinFbOrderLog.clone(db),
+		WinFreeGameList:                       q.WinFreeGameList.clone(db),
+		WinFreeGameRecord:                     q.WinFreeGameRecord.clone(db),
+		WinFrontGameBigCategoryBanner:         q.WinFrontGameBigCategoryBanner.clone(db),
+		WinFrontGameClassifyCms:               q.WinFrontGameClassifyCms.clone(db),
+		WinFrontGameClassifyInfoCm:            q.WinFrontGameClassifyInfoCm.clone(db),
+		WinGameSlotFavorite:                   q.WinGameSlotFavorite.clone(db),
+		WinHelpInfo:                           q.WinHelpInfo.clone(db),
+		WinHelpType:                           q.WinHelpType.clone(db),
+		WinMerchant:                           q.WinMerchant.clone(db),
+		WinMonthlyTax:                         q.WinMonthlyTax.clone(db),
+		WinMqError:                            q.WinMqError.clone(db),
+		WinNotice:                             q.WinNotice.clone(db),
+		WinNoticeStatus:                       q.WinNoticeStatus.clone(db),
+		WinOperationLog:                       q.WinOperationLog.clone(db),
+		WinPayChannel:                         q.WinPayChannel.clone(db),
+		WinPayPlatConfig:                      q.WinPayPlatConfig.clone(db),
+		WinPromotions:                         q.WinPromotions.clone(db),
+		WinPromotionsInfo:                     q.WinPromotionsInfo.clone(db),
+		WinSendSmsReq:                         q.WinSendSmsReq.clone(db),
+		WinSetting:                            q.WinSetting.clone(db),
+		WinSmsRecord:                          q.WinSmsRecord.clone(db),
+		WinUser:                               q.WinUser.clone(db),
+		WinUserBankList:                       q.WinUserBankList.clone(db),
+		WinUserExt:                            q.WinUserExt.clone(db),
+		WinUserFacebookLogin:                  q.WinUserFacebookLogin.clone(db),
+		WinUserFlag:                           q.WinUserFlag.clone(db),
+		WinUserGoogleCode:                     q.WinUserGoogleCode.clone(db),
+		WinUserGoogleLogin:                    q.WinUserGoogleLogin.clone(db),
+		WinUserJoinFlag:                       q.WinUserJoinFlag.clone(db),
+		WinUserKyc:                            q.WinUserKyc.clone(db),
+		WinUserKycBac:                         q.WinUserKycBac.clone(db),
+		WinUserKycHi:                          q.WinUserKycHi.clone(db),
+		WinUserKycHisBac:                      q.WinUserKycHisBac.clone(db),
+		WinUserLevel:                          q.WinUserLevel.clone(db),
+		WinUserLevelRebate:                    q.WinUserLevelRebate.clone(db),
+		WinUserLevelRebateTmp:                 q.WinUserLevelRebateTmp.clone(db),
+		WinUserLevelReward:                    q.WinUserLevelReward.clone(db),
+		WinUserLevelTmp:                       q.WinUserLevelTmp.clone(db),
+		WinUserLoginLog:                       q.WinUserLoginLog.clone(db),
+		XxlJobGroup:                           q.XxlJobGroup.clone(db),
+		XxlJobInfo:                            q.XxlJobInfo.clone(db),
+		XxlJobLock:                            q.XxlJobLock.clone(db),
+		XxlJobLog:                             q.XxlJobLog.clone(db),
+		XxlJobLogReport:                       q.XxlJobLogReport.clone(db),
+		XxlJobLogglue:                         q.XxlJobLogglue.clone(db),
+		XxlJobRegistry:                        q.XxlJobRegistry.clone(db),
+		XxlJobUser:                            q.XxlJobUser.clone(db),
+		GameOperationUrl:                      q.GameOperationUrl.clone(db),
+		CompetitionRankingRewards:             q.CompetitionRankingRewards.clone(db),
+		PointsRewards:                         q.PointsRewards.clone(db),
+		PointsCollectionRecord:                q.PointsCollectionRecord.clone(db),
 	}
 }
 
@@ -888,7 +878,6 @@ func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 		FbSportsMatchLeagues:                  q.FbSportsMatchLeagues.replaceDB(db),
 		FbSportsMatchRecommendPlay:            q.FbSportsMatchRecommendPlay.replaceDB(db),
 		FbSportsMatchRecommendPlayOptions:     q.FbSportsMatchRecommendPlayOptions.replaceDB(db),
-		FbSportsMatchRecommendation:           q.FbSportsMatchRecommendation.replaceDB(db),
 		FbSportsMatchResults:                  q.FbSportsMatchResults.replaceDB(db),
 		FbSportsMatchResultsStatistics:        q.FbSportsMatchResultsStatistics.replaceDB(db),
 		FbSportsMatchStatisticsHotLeague:      q.FbSportsMatchStatisticsHotLeague.replaceDB(db),
@@ -926,124 +915,123 @@ func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 		WinUserWallet:                         q.WinUserWallet.replaceDB(db),
 		WinCoinWithdrawalRecord:               q.WinCoinWithdrawalRecord.replaceDB(db),
 		WinBetslipsDetails:                    q.WinBetslipsDetails.replaceDB(db),
-
-		WinCustomer:                   q.WinCustomer.replaceDB(db),
-		WinGameSlot:                   q.WinGameSlot.replaceDB(db),
-		WinPlatList:                   q.WinPlatList.replaceDB(db),
-		ActivityAlertLog:              q.ActivityAlertLog.replaceDB(db),
-		ActivityAlertUserConfig:       q.ActivityAlertUserConfig.replaceDB(db),
-		ActivityBase:                  q.ActivityBase.replaceDB(db),
-		ActivityBlackInfo:             q.ActivityBlackInfo.replaceDB(db),
-		ActivityChristmasHelpInfo:     q.ActivityChristmasHelpInfo.replaceDB(db),
-		ActivityCondition:             q.ActivityCondition.replaceDB(db),
-		ActivityConditionChristma:     q.ActivityConditionChristma.replaceDB(db),
-		ActivityImage:                 q.ActivityImage.replaceDB(db),
-		ActivityLaunchHelp:            q.ActivityLaunchHelp.replaceDB(db),
-		ActivityTakeRecord:            q.ActivityTakeRecord.replaceDB(db),
-		AgentCommissionRate:           q.AgentCommissionRate.replaceDB(db),
-		AgentConfig:                   q.AgentConfig.replaceDB(db),
-		AgentDailyReport:              q.AgentDailyReport.replaceDB(db),
-		AgentPromoteCode:              q.AgentPromoteCode.replaceDB(db),
-		AgentRankReport:               q.AgentRankReport.replaceDB(db),
-		AgentReportConfigHistory:      q.AgentReportConfigHistory.replaceDB(db),
-		ChristmasNewUserSupportRule:   q.ChristmasNewUserSupportRule.replaceDB(db),
-		GameList:                      q.GameList.replaceDB(db),
-		GameListTmp:                   q.GameListTmp.replaceDB(db),
-		GamePagcor:                    q.GamePagcor.replaceDB(db),
-		GameProvider:                  q.GameProvider.replaceDB(db),
-		GameProviderSubtype:           q.GameProviderSubtype.replaceDB(db),
-		GameRankReport:                q.GameRankReport.replaceDB(db),
-		GameType:                      q.GameType.replaceDB(db),
-		LevelFreeGame:                 q.LevelFreeGame.replaceDB(db),
-		OrderSettle:                   q.OrderSettle.replaceDB(db),
-		Pet:                           q.Pet.replaceDB(db),
-		PromotionsConfig:              q.PromotionsConfig.replaceDB(db),
-		User:                          q.User.replaceDB(db),
-		UserRankReport:                q.UserRankReport.replaceDB(db),
-		WinAdmin:                      q.WinAdmin.replaceDB(db),
-		WinAdminExportFileTask:        q.WinAdminExportFileTask.replaceDB(db),
-		WinAdminLoginLog:              q.WinAdminLoginLog.replaceDB(db),
-		WinAgentCommissionRate:        q.WinAgentCommissionRate.replaceDB(db),
-		WinAgentLink:                  q.WinAgentLink.replaceDB(db),
-		WinAuthAdminGroup:             q.WinAuthAdminGroup.replaceDB(db),
-		WinAuthGroup:                  q.WinAuthGroup.replaceDB(db),
-		WinAuthGroupAccess:            q.WinAuthGroupAccess.replaceDB(db),
-		WinAuthRule:                   q.WinAuthRule.replaceDB(db),
-		WinAuthRuleMap:                q.WinAuthRuleMap.replaceDB(db),
-		WinBanner:                     q.WinBanner.replaceDB(db),
-		WinBetSlipsException:          q.WinBetSlipsException.replaceDB(db),
-		WinBetslip:                    q.WinBetslip.replaceDB(db),
-		WinBlog:                       q.WinBlog.replaceDB(db),
-		WinCheckInRecord:              q.WinCheckInRecord.replaceDB(db),
-		WinCheckInRule:                q.WinCheckInRule.replaceDB(db),
-		WinCityItem:                   q.WinCityItem.replaceDB(db),
-		WinCodeAudit:                  q.WinCodeAudit.replaceDB(db),
-		WinCodeRecord:                 q.WinCodeRecord.replaceDB(db),
-		WinCoinAdminTransferM2:        q.WinCoinAdminTransferM2.replaceDB(db),
-		WinCoinCommission:             q.WinCoinCommission.replaceDB(db),
-		WinCoinCommissionLog:          q.WinCoinCommissionLog.replaceDB(db),
-		WinCoinCommissionM2:           q.WinCoinCommissionM2.replaceDB(db),
-		WinCoinDepositRecordM2:        q.WinCoinDepositRecordM2.replaceDB(db),
-		WinCoinRateM2:                 q.WinCoinRateM2.replaceDB(db),
-		WinCoinRebateM2:               q.WinCoinRebateM2.replaceDB(db),
-		WinCoinRewardsM2:              q.WinCoinRewardsM2.replaceDB(db),
-		WinCoinWithdrawalRecordM2:     q.WinCoinWithdrawalRecordM2.replaceDB(db),
-		WinConfig:                     q.WinConfig.replaceDB(db),
-		WinDailyTax:                   q.WinDailyTax.replaceDB(db),
-		WinDict:                       q.WinDict.replaceDB(db),
-		WinDictItem:                   q.WinDictItem.replaceDB(db),
-		WinFbOrderLog:                 q.WinFbOrderLog.replaceDB(db),
-		WinFreeGameList:               q.WinFreeGameList.replaceDB(db),
-		WinFreeGameRecord:             q.WinFreeGameRecord.replaceDB(db),
-		WinFrontGameBigCategoryBanner: q.WinFrontGameBigCategoryBanner.replaceDB(db),
-		WinFrontGameClassifyCms:       q.WinFrontGameClassifyCms.replaceDB(db),
-		WinFrontGameClassifyInfoCm:    q.WinFrontGameClassifyInfoCm.replaceDB(db),
-		WinGameSlotFavorite:           q.WinGameSlotFavorite.replaceDB(db),
-		WinHelpInfo:                   q.WinHelpInfo.replaceDB(db),
-		WinHelpType:                   q.WinHelpType.replaceDB(db),
-		WinMerchant:                   q.WinMerchant.replaceDB(db),
-		WinMonthlyTax:                 q.WinMonthlyTax.replaceDB(db),
-		WinMqError:                    q.WinMqError.replaceDB(db),
-		WinNotice:                     q.WinNotice.replaceDB(db),
-		WinNoticeStatus:               q.WinNoticeStatus.replaceDB(db),
-		WinOperationLog:               q.WinOperationLog.replaceDB(db),
-		WinPayChannel:                 q.WinPayChannel.replaceDB(db),
-		WinPayPlatConfig:              q.WinPayPlatConfig.replaceDB(db),
-		WinPromotions:                 q.WinPromotions.replaceDB(db),
-		WinPromotionsInfo:             q.WinPromotionsInfo.replaceDB(db),
-		WinSendSmsReq:                 q.WinSendSmsReq.replaceDB(db),
-		WinSetting:                    q.WinSetting.replaceDB(db),
-		WinSmsRecord:                  q.WinSmsRecord.replaceDB(db),
-		WinUser:                       q.WinUser.replaceDB(db),
-		WinUserBankList:               q.WinUserBankList.replaceDB(db),
-		WinUserExt:                    q.WinUserExt.replaceDB(db),
-		WinUserFacebookLogin:          q.WinUserFacebookLogin.replaceDB(db),
-		WinUserFlag:                   q.WinUserFlag.replaceDB(db),
-		WinUserGoogleCode:             q.WinUserGoogleCode.replaceDB(db),
-		WinUserGoogleLogin:            q.WinUserGoogleLogin.replaceDB(db),
-		WinUserJoinFlag:               q.WinUserJoinFlag.replaceDB(db),
-		WinUserKyc:                    q.WinUserKyc.replaceDB(db),
-		WinUserKycBac:                 q.WinUserKycBac.replaceDB(db),
-		WinUserKycHi:                  q.WinUserKycHi.replaceDB(db),
-		WinUserKycHisBac:              q.WinUserKycHisBac.replaceDB(db),
-		WinUserLevel:                  q.WinUserLevel.replaceDB(db),
-		WinUserLevelRebate:            q.WinUserLevelRebate.replaceDB(db),
-		WinUserLevelRebateTmp:         q.WinUserLevelRebateTmp.replaceDB(db),
-		WinUserLevelReward:            q.WinUserLevelReward.replaceDB(db),
-		WinUserLevelTmp:               q.WinUserLevelTmp.replaceDB(db),
-		WinUserLoginLog:               q.WinUserLoginLog.replaceDB(db),
-		XxlJobGroup:                   q.XxlJobGroup.replaceDB(db),
-		XxlJobInfo:                    q.XxlJobInfo.replaceDB(db),
-		XxlJobLock:                    q.XxlJobLock.replaceDB(db),
-		XxlJobLog:                     q.XxlJobLog.replaceDB(db),
-		XxlJobLogReport:               q.XxlJobLogReport.replaceDB(db),
-		XxlJobLogglue:                 q.XxlJobLogglue.replaceDB(db),
-		XxlJobRegistry:                q.XxlJobRegistry.replaceDB(db),
-		XxlJobUser:                    q.XxlJobUser.replaceDB(db),
-		GameOperationUrl:              q.GameOperationUrl.replaceDB(db),
-		CompetitionRankingRewards:     q.CompetitionRankingRewards.replaceDB(db),
-		PointsRewards:                 q.PointsRewards.replaceDB(db),
-		PointsCollectionRecord:        q.PointsCollectionRecord.replaceDB(db),
+		WinCustomer:                           q.WinCustomer.replaceDB(db),
+		WinGameSlot:                           q.WinGameSlot.replaceDB(db),
+		WinPlatList:                           q.WinPlatList.replaceDB(db),
+		ActivityAlertLog:                      q.ActivityAlertLog.replaceDB(db),
+		ActivityAlertUserConfig:               q.ActivityAlertUserConfig.replaceDB(db),
+		ActivityBase:                          q.ActivityBase.replaceDB(db),
+		ActivityBlackInfo:                     q.ActivityBlackInfo.replaceDB(db),
+		ActivityChristmasHelpInfo:             q.ActivityChristmasHelpInfo.replaceDB(db),
+		ActivityCondition:                     q.ActivityCondition.replaceDB(db),
+		ActivityConditionChristma:             q.ActivityConditionChristma.replaceDB(db),
+		ActivityImage:                         q.ActivityImage.replaceDB(db),
+		ActivityLaunchHelp:                    q.ActivityLaunchHelp.replaceDB(db),
+		ActivityTakeRecord:                    q.ActivityTakeRecord.replaceDB(db),
+		AgentCommissionRate:                   q.AgentCommissionRate.replaceDB(db),
+		AgentConfig:                           q.AgentConfig.replaceDB(db),
+		AgentDailyReport:                      q.AgentDailyReport.replaceDB(db),
+		AgentPromoteCode:                      q.AgentPromoteCode.replaceDB(db),
+		AgentRankReport:                       q.AgentRankReport.replaceDB(db),
+		AgentReportConfigHistory:              q.AgentReportConfigHistory.replaceDB(db),
+		ChristmasNewUserSupportRule:           q.ChristmasNewUserSupportRule.replaceDB(db),
+		GameList:                              q.GameList.replaceDB(db),
+		GameListTmp:                           q.GameListTmp.replaceDB(db),
+		GamePagcor:                            q.GamePagcor.replaceDB(db),
+		GameProvider:                          q.GameProvider.replaceDB(db),
+		GameProviderSubtype:                   q.GameProviderSubtype.replaceDB(db),
+		GameRankReport:                        q.GameRankReport.replaceDB(db),
+		GameType:                              q.GameType.replaceDB(db),
+		LevelFreeGame:                         q.LevelFreeGame.replaceDB(db),
+		OrderSettle:                           q.OrderSettle.replaceDB(db),
+		Pet:                                   q.Pet.replaceDB(db),
+		PromotionsConfig:                      q.PromotionsConfig.replaceDB(db),
+		User:                                  q.User.replaceDB(db),
+		UserRankReport:                        q.UserRankReport.replaceDB(db),
+		WinAdmin:                              q.WinAdmin.replaceDB(db),
+		WinAdminExportFileTask:                q.WinAdminExportFileTask.replaceDB(db),
+		WinAdminLoginLog:                      q.WinAdminLoginLog.replaceDB(db),
+		WinAgentCommissionRate:                q.WinAgentCommissionRate.replaceDB(db),
+		WinAgentLink:                          q.WinAgentLink.replaceDB(db),
+		WinAuthAdminGroup:                     q.WinAuthAdminGroup.replaceDB(db),
+		WinAuthGroup:                          q.WinAuthGroup.replaceDB(db),
+		WinAuthGroupAccess:                    q.WinAuthGroupAccess.replaceDB(db),
+		WinAuthRule:                           q.WinAuthRule.replaceDB(db),
+		WinAuthRuleMap:                        q.WinAuthRuleMap.replaceDB(db),
+		WinBanner:                             q.WinBanner.replaceDB(db),
+		WinBetSlipsException:                  q.WinBetSlipsException.replaceDB(db),
+		WinBetslip:                            q.WinBetslip.replaceDB(db),
+		WinBlog:                               q.WinBlog.replaceDB(db),
+		WinCheckInRecord:                      q.WinCheckInRecord.replaceDB(db),
+		WinCheckInRule:                        q.WinCheckInRule.replaceDB(db),
+		WinCityItem:                           q.WinCityItem.replaceDB(db),
+		WinCodeAudit:                          q.WinCodeAudit.replaceDB(db),
+		WinCodeRecord:                         q.WinCodeRecord.replaceDB(db),
+		WinCoinAdminTransferM2:                q.WinCoinAdminTransferM2.replaceDB(db),
+		WinCoinCommission:                     q.WinCoinCommission.replaceDB(db),
+		WinCoinCommissionLog:                  q.WinCoinCommissionLog.replaceDB(db),
+		WinCoinCommissionM2:                   q.WinCoinCommissionM2.replaceDB(db),
+		WinCoinDepositRecordM2:                q.WinCoinDepositRecordM2.replaceDB(db),
+		WinCoinRateM2:                         q.WinCoinRateM2.replaceDB(db),
+		WinCoinRebateM2:                       q.WinCoinRebateM2.replaceDB(db),
+		WinCoinRewardsM2:                      q.WinCoinRewardsM2.replaceDB(db),
+		WinCoinWithdrawalRecordM2:             q.WinCoinWithdrawalRecordM2.replaceDB(db),
+		WinConfig:                             q.WinConfig.replaceDB(db),
+		WinDailyTax:                           q.WinDailyTax.replaceDB(db),
+		WinDict:                               q.WinDict.replaceDB(db),
+		WinDictItem:                           q.WinDictItem.replaceDB(db),
+		WinFbOrderLog:                         q.WinFbOrderLog.replaceDB(db),
+		WinFreeGameList:                       q.WinFreeGameList.replaceDB(db),
+		WinFreeGameRecord:                     q.WinFreeGameRecord.replaceDB(db),
+		WinFrontGameBigCategoryBanner:         q.WinFrontGameBigCategoryBanner.replaceDB(db),
+		WinFrontGameClassifyCms:               q.WinFrontGameClassifyCms.replaceDB(db),
+		WinFrontGameClassifyInfoCm:            q.WinFrontGameClassifyInfoCm.replaceDB(db),
+		WinGameSlotFavorite:                   q.WinGameSlotFavorite.replaceDB(db),
+		WinHelpInfo:                           q.WinHelpInfo.replaceDB(db),
+		WinHelpType:                           q.WinHelpType.replaceDB(db),
+		WinMerchant:                           q.WinMerchant.replaceDB(db),
+		WinMonthlyTax:                         q.WinMonthlyTax.replaceDB(db),
+		WinMqError:                            q.WinMqError.replaceDB(db),
+		WinNotice:                             q.WinNotice.replaceDB(db),
+		WinNoticeStatus:                       q.WinNoticeStatus.replaceDB(db),
+		WinOperationLog:                       q.WinOperationLog.replaceDB(db),
+		WinPayChannel:                         q.WinPayChannel.replaceDB(db),
+		WinPayPlatConfig:                      q.WinPayPlatConfig.replaceDB(db),
+		WinPromotions:                         q.WinPromotions.replaceDB(db),
+		WinPromotionsInfo:                     q.WinPromotionsInfo.replaceDB(db),
+		WinSendSmsReq:                         q.WinSendSmsReq.replaceDB(db),
+		WinSetting:                            q.WinSetting.replaceDB(db),
+		WinSmsRecord:                          q.WinSmsRecord.replaceDB(db),
+		WinUser:                               q.WinUser.replaceDB(db),
+		WinUserBankList:                       q.WinUserBankList.replaceDB(db),
+		WinUserExt:                            q.WinUserExt.replaceDB(db),
+		WinUserFacebookLogin:                  q.WinUserFacebookLogin.replaceDB(db),
+		WinUserFlag:                           q.WinUserFlag.replaceDB(db),
+		WinUserGoogleCode:                     q.WinUserGoogleCode.replaceDB(db),
+		WinUserGoogleLogin:                    q.WinUserGoogleLogin.replaceDB(db),
+		WinUserJoinFlag:                       q.WinUserJoinFlag.replaceDB(db),
+		WinUserKyc:                            q.WinUserKyc.replaceDB(db),
+		WinUserKycBac:                         q.WinUserKycBac.replaceDB(db),
+		WinUserKycHi:                          q.WinUserKycHi.replaceDB(db),
+		WinUserKycHisBac:                      q.WinUserKycHisBac.replaceDB(db),
+		WinUserLevel:                          q.WinUserLevel.replaceDB(db),
+		WinUserLevelRebate:                    q.WinUserLevelRebate.replaceDB(db),
+		WinUserLevelRebateTmp:                 q.WinUserLevelRebateTmp.replaceDB(db),
+		WinUserLevelReward:                    q.WinUserLevelReward.replaceDB(db),
+		WinUserLevelTmp:                       q.WinUserLevelTmp.replaceDB(db),
+		WinUserLoginLog:                       q.WinUserLoginLog.replaceDB(db),
+		XxlJobGroup:                           q.XxlJobGroup.replaceDB(db),
+		XxlJobInfo:                            q.XxlJobInfo.replaceDB(db),
+		XxlJobLock:                            q.XxlJobLock.replaceDB(db),
+		XxlJobLog:                             q.XxlJobLog.replaceDB(db),
+		XxlJobLogReport:                       q.XxlJobLogReport.replaceDB(db),
+		XxlJobLogglue:                         q.XxlJobLogglue.replaceDB(db),
+		XxlJobRegistry:                        q.XxlJobRegistry.replaceDB(db),
+		XxlJobUser:                            q.XxlJobUser.replaceDB(db),
+		GameOperationUrl:                      q.GameOperationUrl.replaceDB(db),
+		CompetitionRankingRewards:             q.CompetitionRankingRewards.replaceDB(db),
+		PointsRewards:                         q.PointsRewards.replaceDB(db),
+		PointsCollectionRecord:                q.PointsCollectionRecord.replaceDB(db),
 	}
 }
 
@@ -1057,7 +1045,6 @@ type queryCtx struct {
 	FbSportsMatchLeagues                  IFbSportsMatchLeaguesDo
 	FbSportsMatchRecommendPlay            IFbSportsMatchRecommendPlayDo
 	FbSportsMatchRecommendPlayOptions     IFbSportsMatchRecommendPlayOptionsDo
-	FbSportsMatchRecommendation           IFbSportsMatchRecommendationDo
 	FbSportsMatchResults                  IFbSportsMatchResultsDo
 	FbSportsMatchResultsStatistics        IFbSportsMatchResultsStatisticsDo
 	FbSportsMatchStatisticsHotLeague      IFbSportsMatchStatisticsHotLeagueDo
@@ -1095,124 +1082,123 @@ type queryCtx struct {
 	WinUserWallet                         IWinUserWalletDo
 	WinCoinWithdrawalRecord               IWinCoinWithdrawalRecordDo
 	WinBetslipsDetails                    IWinBetslipsDetailsDo
-
-	WinCustomer                   IWinCustomerDo
-	WinGameSlot                   IWinGameSlotDo
-	WinPlatList                   IWinPlatListDo
-	ActivityAlertLog              IActivityAlertLogDo
-	ActivityAlertUserConfig       IActivityAlertUserConfigDo
-	ActivityBase                  IActivityBaseDo
-	ActivityBlackInfo             IActivityBlackInfoDo
-	ActivityChristmasHelpInfo     IActivityChristmasHelpInfoDo
-	ActivityCondition             IActivityConditionDo
-	ActivityConditionChristma     IActivityConditionChristmaDo
-	ActivityImage                 IActivityImageDo
-	ActivityLaunchHelp            IActivityLaunchHelpDo
-	ActivityTakeRecord            IActivityTakeRecordDo
-	AgentCommissionRate           IAgentCommissionRateDo
-	AgentConfig                   IAgentConfigDo
-	AgentDailyReport              IAgentDailyReportDo
-	AgentPromoteCode              IAgentPromoteCodeDo
-	AgentRankReport               IAgentRankReportDo
-	AgentReportConfigHistory      IAgentReportConfigHistoryDo
-	ChristmasNewUserSupportRule   IChristmasNewUserSupportRuleDo
-	GameList                      IGameListDo
-	GameListTmp                   IGameListTmpDo
-	GamePagcor                    IGamePagcorDo
-	GameProvider                  IGameProviderDo
-	GameProviderSubtype           IGameProviderSubtypeDo
-	GameRankReport                IGameRankReportDo
-	GameType                      IGameTypeDo
-	LevelFreeGame                 ILevelFreeGameDo
-	OrderSettle                   IOrderSettleDo
-	Pet                           IPetDo
-	PromotionsConfig              IPromotionsConfigDo
-	User                          IUserDo
-	UserRankReport                IUserRankReportDo
-	WinAdmin                      IWinAdminDo
-	WinAdminExportFileTask        IWinAdminExportFileTaskDo
-	WinAdminLoginLog              IWinAdminLoginLogDo
-	WinAgentCommissionRate        IWinAgentCommissionRateDo
-	WinAgentLink                  IWinAgentLinkDo
-	WinAuthAdminGroup             IWinAuthAdminGroupDo
-	WinAuthGroup                  IWinAuthGroupDo
-	WinAuthGroupAccess            IWinAuthGroupAccessDo
-	WinAuthRule                   IWinAuthRuleDo
-	WinAuthRuleMap                IWinAuthRuleMapDo
-	WinBanner                     IWinBannerDo
-	WinBetSlipsException          IWinBetSlipsExceptionDo
-	WinBetslip                    IWinBetslipsDo
-	WinBlog                       IWinBlogDo
-	WinCheckInRecord              IWinCheckInRecordDo
-	WinCheckInRule                IWinCheckInRuleDo
-	WinCityItem                   IWinCityItemDo
-	WinCodeAudit                  IWinCodeAuditDo
-	WinCodeRecord                 IWinCodeRecordDo
-	WinCoinCommission             IWinCoinCommissionDo
-	WinCoinCommissionLog          IWinCoinCommissionLogDo
-	WinCoinAdminTransferM2        IWinCoinAdminTransferM2Do
-	WinCoinCommissionM2           IWinCoinCommissionM2Do
-	WinCoinDepositRecordM2        IWinCoinDepositRecordM2Do
-	WinCoinRateM2                 IWinCoinRateM2Do
-	WinCoinRebateM2               IWinCoinRebateM2Do
-	WinCoinRewardsM2              IWinCoinRewardsM2Do
-	WinCoinWithdrawalRecordM2     IWinCoinWithdrawalRecordM2Do
-	WinConfig                     IWinConfigDo
-	WinDailyTax                   IWinDailyTaxDo
-	WinDict                       IWinDictDo
-	WinDictItem                   IWinDictItemDo
-	WinFbOrderLog                 IWinFbOrderLogDo
-	WinFreeGameList               IWinFreeGameListDo
-	WinFreeGameRecord             IWinFreeGameRecordDo
-	WinFrontGameBigCategoryBanner IWinFrontGameBigCategoryBannerDo
-	WinFrontGameClassifyCms       IWinFrontGameClassifyCmsDo
-	WinFrontGameClassifyInfoCm    IWinFrontGameClassifyInfoCmDo
-	WinGameSlotFavorite           IWinGameSlotFavoriteDo
-	WinHelpInfo                   IWinHelpInfoDo
-	WinHelpType                   IWinHelpTypeDo
-	WinMerchant                   IWinMerchantDo
-	WinMonthlyTax                 IWinMonthlyTaxDo
-	WinMqError                    IWinMqErrorDo
-	WinNotice                     IWinNoticeDo
-	WinNoticeStatus               IWinNoticeStatusDo
-	WinOperationLog               IWinOperationLogDo
-	WinPayChannel                 IWinPayChannelDo
-	WinPayPlatConfig              IWinPayPlatConfigDo
-	WinPromotions                 IWinPromotionsDo
-	WinPromotionsInfo             IWinPromotionsInfoDo
-	WinSendSmsReq                 IWinSendSmsReqDo
-	WinSetting                    IWinSettingDo
-	WinSmsRecord                  IWinSmsRecordDo
-	WinUser                       IWinUserDo
-	WinUserBankList               IWinUserBankListDo
-	WinUserExt                    IWinUserExtDo
-	WinUserFacebookLogin          IWinUserFacebookLoginDo
-	WinUserFlag                   IWinUserFlagDo
-	WinUserGoogleCode             IWinUserGoogleCodeDo
-	WinUserGoogleLogin            IWinUserGoogleLoginDo
-	WinUserJoinFlag               IWinUserJoinFlagDo
-	WinUserKyc                    IWinUserKycDo
-	WinUserKycBac                 IWinUserKycBacDo
-	WinUserKycHi                  IWinUserKycHiDo
-	WinUserKycHisBac              IWinUserKycHisBacDo
-	WinUserLevel                  IWinUserLevelDo
-	WinUserLevelRebate            IWinUserLevelRebateDo
-	WinUserLevelRebateTmp         IWinUserLevelRebateTmpDo
-	WinUserLevelReward            IWinUserLevelRewardDo
-	WinUserLevelTmp               IWinUserLevelTmpDo
-	WinUserLoginLog               IWinUserLoginLogDo
-	XxlJobGroup                   IXxlJobGroupDo
-	XxlJobInfo                    IXxlJobInfoDo
-	XxlJobLock                    IXxlJobLockDo
-	XxlJobLog                     IXxlJobLogDo
-	XxlJobLogReport               IXxlJobLogReportDo
-	XxlJobLogglue                 IXxlJobLogglueDo
-	XxlJobRegistry                IXxlJobRegistryDo
-	XxlJobUser                    IXxlJobUserDo
-	GameOperationUrl              IGameOperationUrlDo
-	CompetitionRankingRewards     ICompetitionRankingRewardsDo
-	PointsRewards                 IPointsRewardsDo
-	PointsCollectionRecord        IPointsCollectionRecordDo
+	WinCustomer                           IWinCustomerDo
+	WinGameSlot                           IWinGameSlotDo
+	WinPlatList                           IWinPlatListDo
+	ActivityAlertLog                      IActivityAlertLogDo
+	ActivityAlertUserConfig               IActivityAlertUserConfigDo
+	ActivityBase                          IActivityBaseDo
+	ActivityBlackInfo                     IActivityBlackInfoDo
+	ActivityChristmasHelpInfo             IActivityChristmasHelpInfoDo
+	ActivityCondition                     IActivityConditionDo
+	ActivityConditionChristma             IActivityConditionChristmaDo
+	ActivityImage                         IActivityImageDo
+	ActivityLaunchHelp                    IActivityLaunchHelpDo
+	ActivityTakeRecord                    IActivityTakeRecordDo
+	AgentCommissionRate                   IAgentCommissionRateDo
+	AgentConfig                           IAgentConfigDo
+	AgentDailyReport                      IAgentDailyReportDo
+	AgentPromoteCode                      IAgentPromoteCodeDo
+	AgentRankReport                       IAgentRankReportDo
+	AgentReportConfigHistory              IAgentReportConfigHistoryDo
+	ChristmasNewUserSupportRule           IChristmasNewUserSupportRuleDo
+	GameList                              IGameListDo
+	GameListTmp                           IGameListTmpDo
+	GamePagcor                            IGamePagcorDo
+	GameProvider                          IGameProviderDo
+	GameProviderSubtype                   IGameProviderSubtypeDo
+	GameRankReport                        IGameRankReportDo
+	GameType                              IGameTypeDo
+	LevelFreeGame                         ILevelFreeGameDo
+	OrderSettle                           IOrderSettleDo
+	Pet                                   IPetDo
+	PromotionsConfig                      IPromotionsConfigDo
+	User                                  IUserDo
+	UserRankReport                        IUserRankReportDo
+	WinAdmin                              IWinAdminDo
+	WinAdminExportFileTask                IWinAdminExportFileTaskDo
+	WinAdminLoginLog                      IWinAdminLoginLogDo
+	WinAgentCommissionRate                IWinAgentCommissionRateDo
+	WinAgentLink                          IWinAgentLinkDo
+	WinAuthAdminGroup                     IWinAuthAdminGroupDo
+	WinAuthGroup                          IWinAuthGroupDo
+	WinAuthGroupAccess                    IWinAuthGroupAccessDo
+	WinAuthRule                           IWinAuthRuleDo
+	WinAuthRuleMap                        IWinAuthRuleMapDo
+	WinBanner                             IWinBannerDo
+	WinBetSlipsException                  IWinBetSlipsExceptionDo
+	WinBetslip                            IWinBetslipsDo
+	WinBlog                               IWinBlogDo
+	WinCheckInRecord                      IWinCheckInRecordDo
+	WinCheckInRule                        IWinCheckInRuleDo
+	WinCityItem                           IWinCityItemDo
+	WinCodeAudit                          IWinCodeAuditDo
+	WinCodeRecord                         IWinCodeRecordDo
+	WinCoinCommission                     IWinCoinCommissionDo
+	WinCoinCommissionLog                  IWinCoinCommissionLogDo
+	WinCoinAdminTransferM2                IWinCoinAdminTransferM2Do
+	WinCoinCommissionM2                   IWinCoinCommissionM2Do
+	WinCoinDepositRecordM2                IWinCoinDepositRecordM2Do
+	WinCoinRateM2                         IWinCoinRateM2Do
+	WinCoinRebateM2                       IWinCoinRebateM2Do
+	WinCoinRewardsM2                      IWinCoinRewardsM2Do
+	WinCoinWithdrawalRecordM2             IWinCoinWithdrawalRecordM2Do
+	WinConfig                             IWinConfigDo
+	WinDailyTax                           IWinDailyTaxDo
+	WinDict                               IWinDictDo
+	WinDictItem                           IWinDictItemDo
+	WinFbOrderLog                         IWinFbOrderLogDo
+	WinFreeGameList                       IWinFreeGameListDo
+	WinFreeGameRecord                     IWinFreeGameRecordDo
+	WinFrontGameBigCategoryBanner         IWinFrontGameBigCategoryBannerDo
+	WinFrontGameClassifyCms               IWinFrontGameClassifyCmsDo
+	WinFrontGameClassifyInfoCm            IWinFrontGameClassifyInfoCmDo
+	WinGameSlotFavorite                   IWinGameSlotFavoriteDo
+	WinHelpInfo                           IWinHelpInfoDo
+	WinHelpType                           IWinHelpTypeDo
+	WinMerchant                           IWinMerchantDo
+	WinMonthlyTax                         IWinMonthlyTaxDo
+	WinMqError                            IWinMqErrorDo
+	WinNotice                             IWinNoticeDo
+	WinNoticeStatus                       IWinNoticeStatusDo
+	WinOperationLog                       IWinOperationLogDo
+	WinPayChannel                         IWinPayChannelDo
+	WinPayPlatConfig                      IWinPayPlatConfigDo
+	WinPromotions                         IWinPromotionsDo
+	WinPromotionsInfo                     IWinPromotionsInfoDo
+	WinSendSmsReq                         IWinSendSmsReqDo
+	WinSetting                            IWinSettingDo
+	WinSmsRecord                          IWinSmsRecordDo
+	WinUser                               IWinUserDo
+	WinUserBankList                       IWinUserBankListDo
+	WinUserExt                            IWinUserExtDo
+	WinUserFacebookLogin                  IWinUserFacebookLoginDo
+	WinUserFlag                           IWinUserFlagDo
+	WinUserGoogleCode                     IWinUserGoogleCodeDo
+	WinUserGoogleLogin                    IWinUserGoogleLoginDo
+	WinUserJoinFlag                       IWinUserJoinFlagDo
+	WinUserKyc                            IWinUserKycDo
+	WinUserKycBac                         IWinUserKycBacDo
+	WinUserKycHi                          IWinUserKycHiDo
+	WinUserKycHisBac                      IWinUserKycHisBacDo
+	WinUserLevel                          IWinUserLevelDo
+	WinUserLevelRebate                    IWinUserLevelRebateDo
+	WinUserLevelRebateTmp                 IWinUserLevelRebateTmpDo
+	WinUserLevelReward                    IWinUserLevelRewardDo
+	WinUserLevelTmp                       IWinUserLevelTmpDo
+	WinUserLoginLog                       IWinUserLoginLogDo
+	XxlJobGroup                           IXxlJobGroupDo
+	XxlJobInfo                            IXxlJobInfoDo
+	XxlJobLock                            IXxlJobLockDo
+	XxlJobLog                             IXxlJobLogDo
+	XxlJobLogReport                       IXxlJobLogReportDo
+	XxlJobLogglue                         IXxlJobLogglueDo
+	XxlJobRegistry                        IXxlJobRegistryDo
+	XxlJobUser                            IXxlJobUserDo
+	GameOperationUrl                      IGameOperationUrlDo
+	CompetitionRankingRewards             ICompetitionRankingRewardsDo
+	PointsRewards                         IPointsRewardsDo
+	PointsCollectionRecord                IPointsCollectionRecordDo
 }
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
@@ -1226,7 +1212,6 @@ func (q *Query) WithContext(ctx context.Context) *queryCtx {
 		FbSportsMatchLeagues:                  q.FbSportsMatchLeagues.WithContext(ctx),
 		FbSportsMatchRecommendPlay:            q.FbSportsMatchRecommendPlay.WithContext(ctx),
 		FbSportsMatchRecommendPlayOptions:     q.FbSportsMatchRecommendPlayOptions.WithContext(ctx),
-		FbSportsMatchRecommendation:           q.FbSportsMatchRecommendation.WithContext(ctx),
 		FbSportsMatchResults:                  q.FbSportsMatchResults.WithContext(ctx),
 		FbSportsMatchResultsStatistics:        q.FbSportsMatchResultsStatistics.WithContext(ctx),
 		FbSportsMatchStatisticsHotLeague:      q.FbSportsMatchStatisticsHotLeague.WithContext(ctx),
@@ -1266,122 +1251,121 @@ func (q *Query) WithContext(ctx context.Context) *queryCtx {
 		WinBetslipsDetails:                    q.WinBetslipsDetails.WithContext(ctx),
 		WinPlatList:                           q.WinPlatList.WithContext(ctx),
 		WinGameSlot:                           q.WinGameSlot.WithContext(ctx),
-
-		WinCustomer:                   q.WinCustomer.WithContext(ctx),
-		ActivityAlertLog:              q.ActivityAlertLog.WithContext(ctx),
-		ActivityAlertUserConfig:       q.ActivityAlertUserConfig.WithContext(ctx),
-		ActivityBase:                  q.ActivityBase.WithContext(ctx),
-		ActivityBlackInfo:             q.ActivityBlackInfo.WithContext(ctx),
-		ActivityChristmasHelpInfo:     q.ActivityChristmasHelpInfo.WithContext(ctx),
-		ActivityCondition:             q.ActivityCondition.WithContext(ctx),
-		ActivityConditionChristma:     q.ActivityConditionChristma.WithContext(ctx),
-		ActivityImage:                 q.ActivityImage.WithContext(ctx),
-		ActivityLaunchHelp:            q.ActivityLaunchHelp.WithContext(ctx),
-		ActivityTakeRecord:            q.ActivityTakeRecord.WithContext(ctx),
-		AgentCommissionRate:           q.AgentCommissionRate.WithContext(ctx),
-		AgentConfig:                   q.AgentConfig.WithContext(ctx),
-		AgentDailyReport:              q.AgentDailyReport.WithContext(ctx),
-		AgentPromoteCode:              q.AgentPromoteCode.WithContext(ctx),
-		AgentRankReport:               q.AgentRankReport.WithContext(ctx),
-		AgentReportConfigHistory:      q.AgentReportConfigHistory.WithContext(ctx),
-		ChristmasNewUserSupportRule:   q.ChristmasNewUserSupportRule.WithContext(ctx),
-		GameList:                      q.GameList.WithContext(ctx),
-		GameListTmp:                   q.GameListTmp.WithContext(ctx),
-		GamePagcor:                    q.GamePagcor.WithContext(ctx),
-		GameProvider:                  q.GameProvider.WithContext(ctx),
-		GameProviderSubtype:           q.GameProviderSubtype.WithContext(ctx),
-		GameRankReport:                q.GameRankReport.WithContext(ctx),
-		GameType:                      q.GameType.WithContext(ctx),
-		LevelFreeGame:                 q.LevelFreeGame.WithContext(ctx),
-		OrderSettle:                   q.OrderSettle.WithContext(ctx),
-		Pet:                           q.Pet.WithContext(ctx),
-		PromotionsConfig:              q.PromotionsConfig.WithContext(ctx),
-		User:                          q.User.WithContext(ctx),
-		UserRankReport:                q.UserRankReport.WithContext(ctx),
-		WinAdmin:                      q.WinAdmin.WithContext(ctx),
-		WinAdminExportFileTask:        q.WinAdminExportFileTask.WithContext(ctx),
-		WinAdminLoginLog:              q.WinAdminLoginLog.WithContext(ctx),
-		WinAgentCommissionRate:        q.WinAgentCommissionRate.WithContext(ctx),
-		WinAgentLink:                  q.WinAgentLink.WithContext(ctx),
-		WinAuthAdminGroup:             q.WinAuthAdminGroup.WithContext(ctx),
-		WinAuthGroup:                  q.WinAuthGroup.WithContext(ctx),
-		WinAuthGroupAccess:            q.WinAuthGroupAccess.WithContext(ctx),
-		WinAuthRule:                   q.WinAuthRule.WithContext(ctx),
-		WinAuthRuleMap:                q.WinAuthRuleMap.WithContext(ctx),
-		WinBanner:                     q.WinBanner.WithContext(ctx),
-		WinBetSlipsException:          q.WinBetSlipsException.WithContext(ctx),
-		WinBetslip:                    q.WinBetslip.WithContext(ctx),
-		WinBlog:                       q.WinBlog.WithContext(ctx),
-		WinCheckInRecord:              q.WinCheckInRecord.WithContext(ctx),
-		WinCheckInRule:                q.WinCheckInRule.WithContext(ctx),
-		WinCityItem:                   q.WinCityItem.WithContext(ctx),
-		WinCodeAudit:                  q.WinCodeAudit.WithContext(ctx),
-		WinCodeRecord:                 q.WinCodeRecord.WithContext(ctx),
-		WinCoinAdminTransferM2:        q.WinCoinAdminTransferM2.WithContext(ctx),
-		WinCoinCommission:             q.WinCoinCommission.WithContext(ctx),
-		WinCoinCommissionLog:          q.WinCoinCommissionLog.WithContext(ctx),
-		WinCoinCommissionM2:           q.WinCoinCommissionM2.WithContext(ctx),
-		WinCoinDepositRecordM2:        q.WinCoinDepositRecordM2.WithContext(ctx),
-		WinCoinRateM2:                 q.WinCoinRateM2.WithContext(ctx),
-		WinCoinRebateM2:               q.WinCoinRebateM2.WithContext(ctx),
-		WinCoinRewardsM2:              q.WinCoinRewardsM2.WithContext(ctx),
-		WinCoinWithdrawalRecordM2:     q.WinCoinWithdrawalRecordM2.WithContext(ctx),
-		WinConfig:                     q.WinConfig.WithContext(ctx),
-		WinDailyTax:                   q.WinDailyTax.WithContext(ctx),
-		WinDict:                       q.WinDict.WithContext(ctx),
-		WinDictItem:                   q.WinDictItem.WithContext(ctx),
-		WinFbOrderLog:                 q.WinFbOrderLog.WithContext(ctx),
-		WinFreeGameList:               q.WinFreeGameList.WithContext(ctx),
-		WinFreeGameRecord:             q.WinFreeGameRecord.WithContext(ctx),
-		WinFrontGameBigCategoryBanner: q.WinFrontGameBigCategoryBanner.WithContext(ctx),
-		WinFrontGameClassifyCms:       q.WinFrontGameClassifyCms.WithContext(ctx),
-		WinFrontGameClassifyInfoCm:    q.WinFrontGameClassifyInfoCm.WithContext(ctx),
-		WinGameSlotFavorite:           q.WinGameSlotFavorite.WithContext(ctx),
-		WinHelpInfo:                   q.WinHelpInfo.WithContext(ctx),
-		WinHelpType:                   q.WinHelpType.WithContext(ctx),
-		WinMerchant:                   q.WinMerchant.WithContext(ctx),
-		WinMonthlyTax:                 q.WinMonthlyTax.WithContext(ctx),
-		WinMqError:                    q.WinMqError.WithContext(ctx),
-		WinNotice:                     q.WinNotice.WithContext(ctx),
-		WinNoticeStatus:               q.WinNoticeStatus.WithContext(ctx),
-		WinOperationLog:               q.WinOperationLog.WithContext(ctx),
-		WinPayChannel:                 q.WinPayChannel.WithContext(ctx),
-		WinPayPlatConfig:              q.WinPayPlatConfig.WithContext(ctx),
-		WinPromotions:                 q.WinPromotions.WithContext(ctx),
-		WinPromotionsInfo:             q.WinPromotionsInfo.WithContext(ctx),
-		WinSendSmsReq:                 q.WinSendSmsReq.WithContext(ctx),
-		WinSetting:                    q.WinSetting.WithContext(ctx),
-		WinSmsRecord:                  q.WinSmsRecord.WithContext(ctx),
-		WinUser:                       q.WinUser.WithContext(ctx),
-		WinUserBankList:               q.WinUserBankList.WithContext(ctx),
-		WinUserExt:                    q.WinUserExt.WithContext(ctx),
-		WinUserFacebookLogin:          q.WinUserFacebookLogin.WithContext(ctx),
-		WinUserFlag:                   q.WinUserFlag.WithContext(ctx),
-		WinUserGoogleCode:             q.WinUserGoogleCode.WithContext(ctx),
-		WinUserGoogleLogin:            q.WinUserGoogleLogin.WithContext(ctx),
-		WinUserJoinFlag:               q.WinUserJoinFlag.WithContext(ctx),
-		WinUserKyc:                    q.WinUserKyc.WithContext(ctx),
-		WinUserKycBac:                 q.WinUserKycBac.WithContext(ctx),
-		WinUserKycHi:                  q.WinUserKycHi.WithContext(ctx),
-		WinUserKycHisBac:              q.WinUserKycHisBac.WithContext(ctx),
-		WinUserLevel:                  q.WinUserLevel.WithContext(ctx),
-		WinUserLevelRebate:            q.WinUserLevelRebate.WithContext(ctx),
-		WinUserLevelRebateTmp:         q.WinUserLevelRebateTmp.WithContext(ctx),
-		WinUserLevelReward:            q.WinUserLevelReward.WithContext(ctx),
-		WinUserLevelTmp:               q.WinUserLevelTmp.WithContext(ctx),
-		WinUserLoginLog:               q.WinUserLoginLog.WithContext(ctx),
-		XxlJobGroup:                   q.XxlJobGroup.WithContext(ctx),
-		XxlJobInfo:                    q.XxlJobInfo.WithContext(ctx),
-		XxlJobLock:                    q.XxlJobLock.WithContext(ctx),
-		XxlJobLog:                     q.XxlJobLog.WithContext(ctx),
-		XxlJobLogReport:               q.XxlJobLogReport.WithContext(ctx),
-		XxlJobLogglue:                 q.XxlJobLogglue.WithContext(ctx),
-		XxlJobRegistry:                q.XxlJobRegistry.WithContext(ctx),
-		XxlJobUser:                    q.XxlJobUser.WithContext(ctx),
-		GameOperationUrl:              q.GameOperationUrl.WithContext(ctx),
-		CompetitionRankingRewards:     q.CompetitionRankingRewards.WithContext(ctx),
-		PointsRewards:                 q.PointsRewards.WithContext(ctx),
-		PointsCollectionRecord:        q.PointsCollectionRecord.WithContext(ctx),
+		WinCustomer:                           q.WinCustomer.WithContext(ctx),
+		ActivityAlertLog:                      q.ActivityAlertLog.WithContext(ctx),
+		ActivityAlertUserConfig:               q.ActivityAlertUserConfig.WithContext(ctx),
+		ActivityBase:                          q.ActivityBase.WithContext(ctx),
+		ActivityBlackInfo:                     q.ActivityBlackInfo.WithContext(ctx),
+		ActivityChristmasHelpInfo:             q.ActivityChristmasHelpInfo.WithContext(ctx),
+		ActivityCondition:                     q.ActivityCondition.WithContext(ctx),
+		ActivityConditionChristma:             q.ActivityConditionChristma.WithContext(ctx),
+		ActivityImage:                         q.ActivityImage.WithContext(ctx),
+		ActivityLaunchHelp:                    q.ActivityLaunchHelp.WithContext(ctx),
+		ActivityTakeRecord:                    q.ActivityTakeRecord.WithContext(ctx),
+		AgentCommissionRate:                   q.AgentCommissionRate.WithContext(ctx),
+		AgentConfig:                           q.AgentConfig.WithContext(ctx),
+		AgentDailyReport:                      q.AgentDailyReport.WithContext(ctx),
+		AgentPromoteCode:                      q.AgentPromoteCode.WithContext(ctx),
+		AgentRankReport:                       q.AgentRankReport.WithContext(ctx),
+		AgentReportConfigHistory:              q.AgentReportConfigHistory.WithContext(ctx),
+		ChristmasNewUserSupportRule:           q.ChristmasNewUserSupportRule.WithContext(ctx),
+		GameList:                              q.GameList.WithContext(ctx),
+		GameListTmp:                           q.GameListTmp.WithContext(ctx),
+		GamePagcor:                            q.GamePagcor.WithContext(ctx),
+		GameProvider:                          q.GameProvider.WithContext(ctx),
+		GameProviderSubtype:                   q.GameProviderSubtype.WithContext(ctx),
+		GameRankReport:                        q.GameRankReport.WithContext(ctx),
+		GameType:                              q.GameType.WithContext(ctx),
+		LevelFreeGame:                         q.LevelFreeGame.WithContext(ctx),
+		OrderSettle:                           q.OrderSettle.WithContext(ctx),
+		Pet:                                   q.Pet.WithContext(ctx),
+		PromotionsConfig:                      q.PromotionsConfig.WithContext(ctx),
+		User:                                  q.User.WithContext(ctx),
+		UserRankReport:                        q.UserRankReport.WithContext(ctx),
+		WinAdmin:                              q.WinAdmin.WithContext(ctx),
+		WinAdminExportFileTask:                q.WinAdminExportFileTask.WithContext(ctx),
+		WinAdminLoginLog:                      q.WinAdminLoginLog.WithContext(ctx),
+		WinAgentCommissionRate:                q.WinAgentCommissionRate.WithContext(ctx),
+		WinAgentLink:                          q.WinAgentLink.WithContext(ctx),
+		WinAuthAdminGroup:                     q.WinAuthAdminGroup.WithContext(ctx),
+		WinAuthGroup:                          q.WinAuthGroup.WithContext(ctx),
+		WinAuthGroupAccess:                    q.WinAuthGroupAccess.WithContext(ctx),
+		WinAuthRule:                           q.WinAuthRule.WithContext(ctx),
+		WinAuthRuleMap:                        q.WinAuthRuleMap.WithContext(ctx),
+		WinBanner:                             q.WinBanner.WithContext(ctx),
+		WinBetSlipsException:                  q.WinBetSlipsException.WithContext(ctx),
+		WinBetslip:                            q.WinBetslip.WithContext(ctx),
+		WinBlog:                               q.WinBlog.WithContext(ctx),
+		WinCheckInRecord:                      q.WinCheckInRecord.WithContext(ctx),
+		WinCheckInRule:                        q.WinCheckInRule.WithContext(ctx),
+		WinCityItem:                           q.WinCityItem.WithContext(ctx),
+		WinCodeAudit:                          q.WinCodeAudit.WithContext(ctx),
+		WinCodeRecord:                         q.WinCodeRecord.WithContext(ctx),
+		WinCoinAdminTransferM2:                q.WinCoinAdminTransferM2.WithContext(ctx),
+		WinCoinCommission:                     q.WinCoinCommission.WithContext(ctx),
+		WinCoinCommissionLog:                  q.WinCoinCommissionLog.WithContext(ctx),
+		WinCoinCommissionM2:                   q.WinCoinCommissionM2.WithContext(ctx),
+		WinCoinDepositRecordM2:                q.WinCoinDepositRecordM2.WithContext(ctx),
+		WinCoinRateM2:                         q.WinCoinRateM2.WithContext(ctx),
+		WinCoinRebateM2:                       q.WinCoinRebateM2.WithContext(ctx),
+		WinCoinRewardsM2:                      q.WinCoinRewardsM2.WithContext(ctx),
+		WinCoinWithdrawalRecordM2:             q.WinCoinWithdrawalRecordM2.WithContext(ctx),
+		WinConfig:                             q.WinConfig.WithContext(ctx),
+		WinDailyTax:                           q.WinDailyTax.WithContext(ctx),
+		WinDict:                               q.WinDict.WithContext(ctx),
+		WinDictItem:                           q.WinDictItem.WithContext(ctx),
+		WinFbOrderLog:                         q.WinFbOrderLog.WithContext(ctx),
+		WinFreeGameList:                       q.WinFreeGameList.WithContext(ctx),
+		WinFreeGameRecord:                     q.WinFreeGameRecord.WithContext(ctx),
+		WinFrontGameBigCategoryBanner:         q.WinFrontGameBigCategoryBanner.WithContext(ctx),
+		WinFrontGameClassifyCms:               q.WinFrontGameClassifyCms.WithContext(ctx),
+		WinFrontGameClassifyInfoCm:            q.WinFrontGameClassifyInfoCm.WithContext(ctx),
+		WinGameSlotFavorite:                   q.WinGameSlotFavorite.WithContext(ctx),
+		WinHelpInfo:                           q.WinHelpInfo.WithContext(ctx),
+		WinHelpType:                           q.WinHelpType.WithContext(ctx),
+		WinMerchant:                           q.WinMerchant.WithContext(ctx),
+		WinMonthlyTax:                         q.WinMonthlyTax.WithContext(ctx),
+		WinMqError:                            q.WinMqError.WithContext(ctx),
+		WinNotice:                             q.WinNotice.WithContext(ctx),
+		WinNoticeStatus:                       q.WinNoticeStatus.WithContext(ctx),
+		WinOperationLog:                       q.WinOperationLog.WithContext(ctx),
+		WinPayChannel:                         q.WinPayChannel.WithContext(ctx),
+		WinPayPlatConfig:                      q.WinPayPlatConfig.WithContext(ctx),
+		WinPromotions:                         q.WinPromotions.WithContext(ctx),
+		WinPromotionsInfo:                     q.WinPromotionsInfo.WithContext(ctx),
+		WinSendSmsReq:                         q.WinSendSmsReq.WithContext(ctx),
+		WinSetting:                            q.WinSetting.WithContext(ctx),
+		WinSmsRecord:                          q.WinSmsRecord.WithContext(ctx),
+		WinUser:                               q.WinUser.WithContext(ctx),
+		WinUserBankList:                       q.WinUserBankList.WithContext(ctx),
+		WinUserExt:                            q.WinUserExt.WithContext(ctx),
+		WinUserFacebookLogin:                  q.WinUserFacebookLogin.WithContext(ctx),
+		WinUserFlag:                           q.WinUserFlag.WithContext(ctx),
+		WinUserGoogleCode:                     q.WinUserGoogleCode.WithContext(ctx),
+		WinUserGoogleLogin:                    q.WinUserGoogleLogin.WithContext(ctx),
+		WinUserJoinFlag:                       q.WinUserJoinFlag.WithContext(ctx),
+		WinUserKyc:                            q.WinUserKyc.WithContext(ctx),
+		WinUserKycBac:                         q.WinUserKycBac.WithContext(ctx),
+		WinUserKycHi:                          q.WinUserKycHi.WithContext(ctx),
+		WinUserKycHisBac:                      q.WinUserKycHisBac.WithContext(ctx),
+		WinUserLevel:                          q.WinUserLevel.WithContext(ctx),
+		WinUserLevelRebate:                    q.WinUserLevelRebate.WithContext(ctx),
+		WinUserLevelRebateTmp:                 q.WinUserLevelRebateTmp.WithContext(ctx),
+		WinUserLevelReward:                    q.WinUserLevelReward.WithContext(ctx),
+		WinUserLevelTmp:                       q.WinUserLevelTmp.WithContext(ctx),
+		WinUserLoginLog:                       q.WinUserLoginLog.WithContext(ctx),
+		XxlJobGroup:                           q.XxlJobGroup.WithContext(ctx),
+		XxlJobInfo:                            q.XxlJobInfo.WithContext(ctx),
+		XxlJobLock:                            q.XxlJobLock.WithContext(ctx),
+		XxlJobLog:                             q.XxlJobLog.WithContext(ctx),
+		XxlJobLogReport:                       q.XxlJobLogReport.WithContext(ctx),
+		XxlJobLogglue:                         q.XxlJobLogglue.WithContext(ctx),
+		XxlJobRegistry:                        q.XxlJobRegistry.WithContext(ctx),
+		XxlJobUser:                            q.XxlJobUser.WithContext(ctx),
+		GameOperationUrl:                      q.GameOperationUrl.WithContext(ctx),
+		CompetitionRankingRewards:             q.CompetitionRankingRewards.WithContext(ctx),
+		PointsRewards:                         q.PointsRewards.WithContext(ctx),
+		PointsCollectionRecord:                q.PointsCollectionRecord.WithContext(ctx),
 	}
 }
 
