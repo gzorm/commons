@@ -25,8 +25,6 @@ var (
 	FbSportsMatch                         *fbSportsMatch
 	FbSportsMatchFutureCount              *fbSportsMatchFutureCount
 	FbSportsMatchLeagues                  *fbSportsMatchLeagues
-	FbSportsMatchRecommendPlay            *fbSportsMatchRecommendPlay
-	FbSportsMatchRecommendPlayOptions     *fbSportsMatchRecommendPlayOptions
 	FbSportsMatchResults                  *fbSportsMatchResults
 	FbSportsMatchResultsStatistics        *fbSportsMatchResultsStatistics
 	FbSportsMatchStatisticsHotLeague      *fbSportsMatchStatisticsHotLeague
@@ -192,8 +190,6 @@ func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	FbSportsMatch = &Q.FbSportsMatch
 	FbSportsMatchFutureCount = &Q.FbSportsMatchFutureCount
 	FbSportsMatchLeagues = &Q.FbSportsMatchLeagues
-	FbSportsMatchRecommendPlay = &Q.FbSportsMatchRecommendPlay
-	FbSportsMatchRecommendPlayOptions = &Q.FbSportsMatchRecommendPlayOptions
 	FbSportsMatchResults = &Q.FbSportsMatchResults
 	FbSportsMatchResultsStatistics = &Q.FbSportsMatchResultsStatistics
 	FbSportsMatchStatisticsHotLeague = &Q.FbSportsMatchStatisticsHotLeague
@@ -361,8 +357,6 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 		FbSportsMatch:                         newFbSportsMatch(db, opts...),
 		FbSportsMatchFutureCount:              newFbSportsMatchFutureCount(db, opts...),
 		FbSportsMatchLeagues:                  newFbSportsMatchLeagues(db, opts...),
-		FbSportsMatchRecommendPlay:            newFbSportsMatchRecommendPlay(db, opts...),
-		FbSportsMatchRecommendPlayOptions:     newFbSportsMatchRecommendPlayOptions(db, opts...),
 		FbSportsMatchResults:                  newFbSportsMatchResults(db, opts...),
 		FbSportsMatchResultsStatistics:        newFbSportsMatchResultsStatistics(db, opts...),
 		FbSportsMatchStatisticsHotLeague:      newFbSportsMatchStatisticsHotLeague(db, opts...),
@@ -529,8 +523,6 @@ type Query struct {
 	FbSportsMatch                         fbSportsMatch
 	FbSportsMatchFutureCount              fbSportsMatchFutureCount
 	FbSportsMatchLeagues                  fbSportsMatchLeagues
-	FbSportsMatchRecommendPlay            fbSportsMatchRecommendPlay
-	FbSportsMatchRecommendPlayOptions     fbSportsMatchRecommendPlayOptions
 	FbSportsMatchResults                  fbSportsMatchResults
 	FbSportsMatchResultsStatistics        fbSportsMatchResultsStatistics
 	FbSportsMatchStatisticsHotLeague      fbSportsMatchStatisticsHotLeague
@@ -699,8 +691,6 @@ func (q *Query) clone(db *gorm.DB) *Query {
 		FbSportsMatch:                         q.FbSportsMatch.clone(db),
 		FbSportsMatchFutureCount:              q.FbSportsMatchFutureCount.clone(db),
 		FbSportsMatchLeagues:                  q.FbSportsMatchLeagues.clone(db),
-		FbSportsMatchRecommendPlay:            q.FbSportsMatchRecommendPlay.clone(db),
-		FbSportsMatchRecommendPlayOptions:     q.FbSportsMatchRecommendPlayOptions.clone(db),
 		FbSportsMatchResults:                  q.FbSportsMatchResults.clone(db),
 		FbSportsMatchResultsStatistics:        q.FbSportsMatchResultsStatistics.clone(db),
 		FbSportsMatchStatisticsHotLeague:      q.FbSportsMatchStatisticsHotLeague.clone(db),
@@ -876,8 +866,6 @@ func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 		FbSportsMatch:                         q.FbSportsMatch.replaceDB(db),
 		FbSportsMatchFutureCount:              q.FbSportsMatchFutureCount.replaceDB(db),
 		FbSportsMatchLeagues:                  q.FbSportsMatchLeagues.replaceDB(db),
-		FbSportsMatchRecommendPlay:            q.FbSportsMatchRecommendPlay.replaceDB(db),
-		FbSportsMatchRecommendPlayOptions:     q.FbSportsMatchRecommendPlayOptions.replaceDB(db),
 		FbSportsMatchResults:                  q.FbSportsMatchResults.replaceDB(db),
 		FbSportsMatchResultsStatistics:        q.FbSportsMatchResultsStatistics.replaceDB(db),
 		FbSportsMatchStatisticsHotLeague:      q.FbSportsMatchStatisticsHotLeague.replaceDB(db),
@@ -1043,8 +1031,6 @@ type queryCtx struct {
 	FbSportsMatch                         IFbSportsMatchDo
 	FbSportsMatchFutureCount              IFbSportsMatchFutureCountDo
 	FbSportsMatchLeagues                  IFbSportsMatchLeaguesDo
-	FbSportsMatchRecommendPlay            IFbSportsMatchRecommendPlayDo
-	FbSportsMatchRecommendPlayOptions     IFbSportsMatchRecommendPlayOptionsDo
 	FbSportsMatchResults                  IFbSportsMatchResultsDo
 	FbSportsMatchResultsStatistics        IFbSportsMatchResultsStatisticsDo
 	FbSportsMatchStatisticsHotLeague      IFbSportsMatchStatisticsHotLeagueDo
@@ -1210,8 +1196,6 @@ func (q *Query) WithContext(ctx context.Context) *queryCtx {
 		FbSportsMatch:                         q.FbSportsMatch.WithContext(ctx),
 		FbSportsMatchFutureCount:              q.FbSportsMatchFutureCount.WithContext(ctx),
 		FbSportsMatchLeagues:                  q.FbSportsMatchLeagues.WithContext(ctx),
-		FbSportsMatchRecommendPlay:            q.FbSportsMatchRecommendPlay.WithContext(ctx),
-		FbSportsMatchRecommendPlayOptions:     q.FbSportsMatchRecommendPlayOptions.WithContext(ctx),
 		FbSportsMatchResults:                  q.FbSportsMatchResults.WithContext(ctx),
 		FbSportsMatchResultsStatistics:        q.FbSportsMatchResultsStatistics.WithContext(ctx),
 		FbSportsMatchStatisticsHotLeague:      q.FbSportsMatchStatisticsHotLeague.WithContext(ctx),
