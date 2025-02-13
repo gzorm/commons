@@ -35,11 +35,11 @@ type FbSportsMatch struct {
 	MatchName     string `gorm:"column:match_name;type:varchar(255);comment:冠军赛赛事名称，用于展示（原 nm）" json:"matchName"`                      // 冠军赛赛事名称，用于展示（原 nm）
 	Scoreboard    string `gorm:"column:scoreboard;type:text;comment:比分板（原 sb）" json:"scoreboard"`                                      // 比分板（原 sb）
 	IsInPlay      int64  `gorm:"column:is_in_play;type:int;not null;comment:是否可以开售滚球盘口 0 否，1 是（原 pl）" json:"isInPlay"`                 // 是否可以开售滚球盘口 0 否，1 是（原 pl）
-	MarketType    int64  `gorm:"column:market_type;type:int;comment:玩法类型，如 亚盘、大小球等(盘口类型)（原 mty）" json:"marketType"`                    // 玩法类型，如 亚盘、大小球等(盘口类型)（原 mty）
 	LeagueID      int64  `gorm:"column:league_id;type:bigint;comment:联赛ID（原 leagueId）" json:"leagueId"`                                // 联赛ID（原 leagueId）
-	OddsType      int64  `gorm:"column:odds_type;type:int;comment:赔率类型（原 oddsType）" json:"oddsType"`                                   // 赔率类型（原 oddsType）
 	CreatedAt     int64  `gorm:"column:created_at;comment:创建时间" json:"createdAt"`                                                      // 创建时间
 	UpdatedAt     int64  `gorm:"column:updated_at;comment:更新时间" json:"updatedAt"`                                                      // 更新时间
+	MarketType    int64  `gorm:"column:market_type;type:int" json:"marketType"`
+	OddsType      int64  `gorm:"column:odds_type;type:int" json:"oddsType"`
 }
 
 // TableName FbSportsMatch's table name

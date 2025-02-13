@@ -54,11 +54,11 @@ func newFbSportsMatch(db *gorm.DB, opts ...gen.DOOption) fbSportsMatch {
 	_fbSportsMatch.MatchName = field.NewString(tableName, "match_name")
 	_fbSportsMatch.Scoreboard = field.NewString(tableName, "scoreboard")
 	_fbSportsMatch.IsInPlay = field.NewInt64(tableName, "is_in_play")
-	_fbSportsMatch.MarketType = field.NewInt64(tableName, "market_type")
 	_fbSportsMatch.LeagueID = field.NewInt64(tableName, "league_id")
-	_fbSportsMatch.OddsType = field.NewInt64(tableName, "odds_type")
 	_fbSportsMatch.CreatedAt = field.NewInt64(tableName, "created_at")
 	_fbSportsMatch.UpdatedAt = field.NewInt64(tableName, "updated_at")
+	_fbSportsMatch.MarketType = field.NewInt64(tableName, "market_type")
+	_fbSportsMatch.OddsType = field.NewInt64(tableName, "odds_type")
 
 	_fbSportsMatch.fillFieldMap()
 
@@ -97,11 +97,11 @@ type fbSportsMatch struct {
 	MatchName     field.String // 冠军赛赛事名称，用于展示（原 nm）
 	Scoreboard    field.String // 比分板（原 sb）
 	IsInPlay      field.Int64  // 是否可以开售滚球盘口 0 否，1 是（原 pl）
-	MarketType    field.Int64  // 玩法类型，如 亚盘、大小球等(盘口类型)（原 mty）
 	LeagueID      field.Int64  // 联赛ID（原 leagueId）
-	OddsType      field.Int64  // 赔率类型（原 oddsType）
 	CreatedAt     field.Int64  // 创建时间
 	UpdatedAt     field.Int64  // 更新时间
+	MarketType    field.Int64
+	OddsType      field.Int64
 
 	fieldMap map[string]field.Expr
 }
@@ -145,11 +145,11 @@ func (f *fbSportsMatch) updateTableName(table string) *fbSportsMatch {
 	f.MatchName = field.NewString(table, "match_name")
 	f.Scoreboard = field.NewString(table, "scoreboard")
 	f.IsInPlay = field.NewInt64(table, "is_in_play")
-	f.MarketType = field.NewInt64(table, "market_type")
 	f.LeagueID = field.NewInt64(table, "league_id")
-	f.OddsType = field.NewInt64(table, "odds_type")
 	f.CreatedAt = field.NewInt64(table, "created_at")
 	f.UpdatedAt = field.NewInt64(table, "updated_at")
+	f.MarketType = field.NewInt64(table, "market_type")
+	f.OddsType = field.NewInt64(table, "odds_type")
 
 	f.fillFieldMap()
 
@@ -194,11 +194,11 @@ func (f *fbSportsMatch) fillFieldMap() {
 	f.fieldMap["match_name"] = f.MatchName
 	f.fieldMap["scoreboard"] = f.Scoreboard
 	f.fieldMap["is_in_play"] = f.IsInPlay
-	f.fieldMap["market_type"] = f.MarketType
 	f.fieldMap["league_id"] = f.LeagueID
-	f.fieldMap["odds_type"] = f.OddsType
 	f.fieldMap["created_at"] = f.CreatedAt
 	f.fieldMap["updated_at"] = f.UpdatedAt
+	f.fieldMap["market_type"] = f.MarketType
+	f.fieldMap["odds_type"] = f.OddsType
 }
 
 func (f fbSportsMatch) clone(db *gorm.DB) fbSportsMatch {
