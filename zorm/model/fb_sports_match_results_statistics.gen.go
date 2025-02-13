@@ -9,6 +9,7 @@ const TableNameFbSportsMatchResultsStatistics = "fb_sports_match_results_statist
 // FbSportsMatchResultsStatistics 赛果统计表
 type FbSportsMatchResultsStatistics struct {
 	ID          int64 `gorm:"column:id;type:bigint;primaryKey;autoIncrement:true;comment:主键ID" json:"id,string"` // 主键ID
+	MatchID     int64 `gorm:"column:match_id;type:bigint;comment:赛事ID" json:"matchId"`                           // 赛事ID
 	SportID     int64 `gorm:"column:sport_id;type:int;not null;comment:运动ID，如足球、篮球" json:"sportId"`              // 运动ID，如足球、篮球
 	MatchType   int64 `gorm:"column:match_type;type:int;not null;comment:赛事类型，如常规赛、季后赛" json:"matchType"`        // 赛事类型，如常规赛、季后赛
 	ResultCount int64 `gorm:"column:result_count;type:int;not null;comment:赛果统计总数" json:"resultCount"`           // 赛果统计总数

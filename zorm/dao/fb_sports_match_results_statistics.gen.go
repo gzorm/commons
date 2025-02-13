@@ -28,6 +28,7 @@ func newFbSportsMatchResultsStatistics(db *gorm.DB, opts ...gen.DOOption) fbSpor
 	tableName := _fbSportsMatchResultsStatistics.fbSportsMatchResultsStatisticsDo.TableName()
 	_fbSportsMatchResultsStatistics.ALL = field.NewAsterisk(tableName)
 	_fbSportsMatchResultsStatistics.ID = field.NewInt64(tableName, "id")
+	_fbSportsMatchResultsStatistics.MatchID = field.NewInt64(tableName, "match_id")
 	_fbSportsMatchResultsStatistics.SportID = field.NewInt64(tableName, "sport_id")
 	_fbSportsMatchResultsStatistics.MatchType = field.NewInt64(tableName, "match_type")
 	_fbSportsMatchResultsStatistics.ResultCount = field.NewInt64(tableName, "result_count")
@@ -45,6 +46,7 @@ type fbSportsMatchResultsStatistics struct {
 
 	ALL         field.Asterisk
 	ID          field.Int64 // 主键ID
+	MatchID     field.Int64 // 赛事ID
 	SportID     field.Int64 // 运动ID，如足球、篮球
 	MatchType   field.Int64 // 赛事类型，如常规赛、季后赛
 	ResultCount field.Int64 // 赛果统计总数
@@ -67,6 +69,7 @@ func (f fbSportsMatchResultsStatistics) As(alias string) *fbSportsMatchResultsSt
 func (f *fbSportsMatchResultsStatistics) updateTableName(table string) *fbSportsMatchResultsStatistics {
 	f.ALL = field.NewAsterisk(table)
 	f.ID = field.NewInt64(table, "id")
+	f.MatchID = field.NewInt64(table, "match_id")
 	f.SportID = field.NewInt64(table, "sport_id")
 	f.MatchType = field.NewInt64(table, "match_type")
 	f.ResultCount = field.NewInt64(table, "result_count")
@@ -88,8 +91,9 @@ func (f *fbSportsMatchResultsStatistics) GetFieldByName(fieldName string) (field
 }
 
 func (f *fbSportsMatchResultsStatistics) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 6)
+	f.fieldMap = make(map[string]field.Expr, 7)
 	f.fieldMap["id"] = f.ID
+	f.fieldMap["match_id"] = f.MatchID
 	f.fieldMap["sport_id"] = f.SportID
 	f.fieldMap["match_type"] = f.MatchType
 	f.fieldMap["result_count"] = f.ResultCount
