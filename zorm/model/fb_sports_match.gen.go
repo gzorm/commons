@@ -11,7 +11,6 @@ type FbSportsMatch struct {
 	ID            int64  `gorm:"column:id;type:bigint;primaryKey;autoIncrement:true;comment:主键ID" json:"id,string"`                    // 主键ID
 	FbID          int64  `gorm:"column:fb_id;type:int;not null;comment:赛事ID" json:"fbId"`                                              // 赛事ID
 	LanguageType  string `gorm:"column:language_type;type:varchar(50);comment:语言类型" json:"languageType"`                               // 语言类型
-	MatchPlayType int64  `gorm:"column:match_play_type;type:int;comment:赛事分组类型" json:"matchPlayType"`                                  // 赛事分组类型
 	ScoreList     string `gorm:"column:score_list;type:text;comment:比分列表，提供各个赛事阶段的比分（原 nsg）" json:"scoreList"`                         // 比分列表，提供各个赛事阶段的比分（原 nsg）
 	OddsList      string `gorm:"column:odds_list;type:text;comment:赔率列表（原 mg）" json:"oddsList"`                                        // 赔率列表（原 mg）
 	MarketCount   int64  `gorm:"column:market_count;type:int;not null;comment:单个赛事玩法总数（原 tms）" json:"marketCount"`                     // 单个赛事玩法总数（原 tms）

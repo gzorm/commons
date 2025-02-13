@@ -30,7 +30,6 @@ func newFbSportsMatch(db *gorm.DB, opts ...gen.DOOption) fbSportsMatch {
 	_fbSportsMatch.ID = field.NewInt64(tableName, "id")
 	_fbSportsMatch.FbID = field.NewInt64(tableName, "fb_id")
 	_fbSportsMatch.LanguageType = field.NewString(tableName, "language_type")
-	_fbSportsMatch.MatchPlayType = field.NewInt64(tableName, "match_play_type")
 	_fbSportsMatch.ScoreList = field.NewString(tableName, "score_list")
 	_fbSportsMatch.OddsList = field.NewString(tableName, "odds_list")
 	_fbSportsMatch.MarketCount = field.NewInt64(tableName, "market_count")
@@ -73,7 +72,6 @@ type fbSportsMatch struct {
 	ID            field.Int64  // 主键ID
 	FbID          field.Int64  // 赛事ID
 	LanguageType  field.String // 语言类型
-	MatchPlayType field.Int64  // 赛事分组类型
 	ScoreList     field.String // 比分列表，提供各个赛事阶段的比分（原 nsg）
 	OddsList      field.String // 赔率列表（原 mg）
 	MarketCount   field.Int64  // 单个赛事玩法总数（原 tms）
@@ -121,7 +119,6 @@ func (f *fbSportsMatch) updateTableName(table string) *fbSportsMatch {
 	f.ID = field.NewInt64(table, "id")
 	f.FbID = field.NewInt64(table, "fb_id")
 	f.LanguageType = field.NewString(table, "language_type")
-	f.MatchPlayType = field.NewInt64(table, "match_play_type")
 	f.ScoreList = field.NewString(table, "score_list")
 	f.OddsList = field.NewString(table, "odds_list")
 	f.MarketCount = field.NewInt64(table, "market_count")
@@ -166,11 +163,10 @@ func (f *fbSportsMatch) GetFieldByName(fieldName string) (field.OrderExpr, bool)
 }
 
 func (f *fbSportsMatch) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 32)
+	f.fieldMap = make(map[string]field.Expr, 31)
 	f.fieldMap["id"] = f.ID
 	f.fieldMap["fb_id"] = f.FbID
 	f.fieldMap["language_type"] = f.LanguageType
-	f.fieldMap["match_play_type"] = f.MatchPlayType
 	f.fieldMap["score_list"] = f.ScoreList
 	f.fieldMap["odds_list"] = f.OddsList
 	f.fieldMap["market_count"] = f.MarketCount
