@@ -18,6 +18,7 @@ import (
 
 var (
 	Q                                     = new(Query)
+	FbSportsMatchStatistics               *fbSportsMatchStatistics
 	FbSportsMatchPlayType                 *fbSportsMatchPlayType
 	FbSportsMatchMarketOdds               *fbSportsMatchMarketOdds
 	FbSportsMatchMarketOddsMarkets        *fbSportsMatchMarketOddsMarkets
@@ -183,6 +184,7 @@ var (
 
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	*Q = *Use(db, opts...)
+	FbSportsMatchStatistics = &Q.FbSportsMatchStatistics
 	FbSportsMatchPlayType = &Q.FbSportsMatchPlayType
 	FbSportsMatchMarketOdds = &Q.FbSportsMatchMarketOdds
 	FbSportsMatchMarketOddsMarkets = &Q.FbSportsMatchMarketOddsMarkets
@@ -350,6 +352,7 @@ func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 	return &Query{
 		db:                                    db,
+		FbSportsMatchStatistics:               newFbSportsMatchStatistics(db, opts...),
 		FbSportsMatchPlayType:                 newFbSportsMatchPlayType(db, opts...),
 		FbSportsMatchMarketOdds:               newFbSportsMatchMarketOdds(db, opts...),
 		FbSportsMatchMarketOddsMarkets:        newFbSportsMatchMarketOddsMarkets(db, opts...),
@@ -516,6 +519,7 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 
 type Query struct {
 	db                                    *gorm.DB
+	FbSportsMatchStatistics               fbSportsMatchStatistics
 	FbSportsMatchPlayType                 fbSportsMatchPlayType
 	FbSportsMatchMarketOdds               fbSportsMatchMarketOdds
 	FbSportsMatchMarketOddsMarkets        fbSportsMatchMarketOddsMarkets
@@ -684,6 +688,7 @@ func (q *Query) Available() bool { return q.db != nil }
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
 		db:                                    db,
+		FbSportsMatchStatistics:               q.FbSportsMatchStatistics.clone(db),
 		FbSportsMatchPlayType:                 q.FbSportsMatchPlayType.clone(db),
 		FbSportsMatchMarketOdds:               q.FbSportsMatchMarketOdds.clone(db),
 		FbSportsMatchMarketOddsMarkets:        q.FbSportsMatchMarketOddsMarkets.clone(db),
@@ -859,6 +864,7 @@ func (q *Query) WriteDB() *Query {
 func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 	return &Query{
 		db:                                    db,
+		FbSportsMatchStatistics:               q.FbSportsMatchStatistics.replaceDB(db),
 		FbSportsMatchPlayType:                 q.FbSportsMatchPlayType.replaceDB(db),
 		FbSportsMatchMarketOdds:               q.FbSportsMatchMarketOdds.replaceDB(db),
 		FbSportsMatchMarketOddsMarkets:        q.FbSportsMatchMarketOddsMarkets.replaceDB(db),
@@ -1024,6 +1030,7 @@ func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 }
 
 type queryCtx struct {
+	FbSportsMatchStatistics               IFbSportsMatchStatisticsDo
 	FbSportsMatchPlayType                 IFbSportsMatchPlayTypeDo
 	FbSportsMatchMarketOdds               IFbSportsMatchMarketOddsDo
 	FbSportsMatchMarketOddsMarkets        IFbSportsMatchMarketOddsMarketsDo
@@ -1189,6 +1196,7 @@ type queryCtx struct {
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
+		FbSportsMatchStatistics:               q.FbSportsMatchStatistics.WithContext(ctx),
 		FbSportsMatchPlayType:                 q.FbSportsMatchPlayType.WithContext(ctx),
 		FbSportsMatchMarketOdds:               q.FbSportsMatchMarketOdds.WithContext(ctx),
 		FbSportsMatchMarketOddsMarkets:        q.FbSportsMatchMarketOddsMarkets.WithContext(ctx),
