@@ -18,6 +18,9 @@ import (
 
 var (
 	Q                                     = new(Query)
+	FbSportsMatchPlayerRank               *fbSportsMatchPlayerRank
+	FbSportsMatchTeamRank                 *fbSportsMatchTeamRank
+	FbSportsMatchTopic                    *fbSportsMatchTopic
 	FbSportsMatchMarketOddsTips           *fbSportsMatchMarketOddsTips
 	FbSportsMatchStatistics               *fbSportsMatchStatistics
 	FbSportsMatchPlayType                 *fbSportsMatchPlayType
@@ -185,6 +188,9 @@ var (
 
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	*Q = *Use(db, opts...)
+	FbSportsMatchPlayerRank = &Q.FbSportsMatchPlayerRank
+	FbSportsMatchTeamRank = &Q.FbSportsMatchTeamRank
+	FbSportsMatchTopic = &Q.FbSportsMatchTopic
 	FbSportsMatchMarketOddsTips = &Q.FbSportsMatchMarketOddsTips
 	FbSportsMatchStatistics = &Q.FbSportsMatchStatistics
 	FbSportsMatchPlayType = &Q.FbSportsMatchPlayType
@@ -354,6 +360,9 @@ func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 	return &Query{
 		db:                                    db,
+		FbSportsMatchPlayerRank:               newFbSportsMatchPlayerRank(db, opts...),
+		FbSportsMatchTeamRank:                 newFbSportsMatchTeamRank(db, opts...),
+		FbSportsMatchTopic:                    newFbSportsMatchTopic(db, opts...),
 		FbSportsMatchMarketOddsTips:           newFbSportsMatchMarketOddsTips(db, opts...),
 		FbSportsMatchStatistics:               newFbSportsMatchStatistics(db, opts...),
 		FbSportsMatchPlayType:                 newFbSportsMatchPlayType(db, opts...),
@@ -522,6 +531,9 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 
 type Query struct {
 	db                                    *gorm.DB
+	FbSportsMatchPlayerRank               fbSportsMatchPlayerRank
+	FbSportsMatchTeamRank                 fbSportsMatchTeamRank
+	FbSportsMatchTopic                    fbSportsMatchTopic
 	FbSportsMatchMarketOddsTips           fbSportsMatchMarketOddsTips
 	FbSportsMatchStatistics               fbSportsMatchStatistics
 	FbSportsMatchPlayType                 fbSportsMatchPlayType
@@ -692,6 +704,9 @@ func (q *Query) Available() bool { return q.db != nil }
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
 		db:                                    db,
+		FbSportsMatchPlayerRank:               q.FbSportsMatchPlayerRank.clone(db),
+		FbSportsMatchTeamRank:                 q.FbSportsMatchTeamRank.clone(db),
+		FbSportsMatchTopic:                    q.FbSportsMatchTopic.clone(db),
 		FbSportsMatchMarketOddsTips:           q.FbSportsMatchMarketOddsTips.clone(db),
 		FbSportsMatchStatistics:               q.FbSportsMatchStatistics.clone(db),
 		FbSportsMatchPlayType:                 q.FbSportsMatchPlayType.clone(db),
@@ -869,6 +884,9 @@ func (q *Query) WriteDB() *Query {
 func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 	return &Query{
 		db:                                    db,
+		FbSportsMatchPlayerRank:               q.FbSportsMatchPlayerRank.replaceDB(db),
+		FbSportsMatchTeamRank:                 q.FbSportsMatchTeamRank.replaceDB(db),
+		FbSportsMatchTopic:                    q.FbSportsMatchTopic.replaceDB(db),
 		FbSportsMatchMarketOddsTips:           q.FbSportsMatchMarketOddsTips.replaceDB(db),
 		FbSportsMatchStatistics:               q.FbSportsMatchStatistics.replaceDB(db),
 		FbSportsMatchPlayType:                 q.FbSportsMatchPlayType.replaceDB(db),
@@ -1036,6 +1054,9 @@ func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 }
 
 type queryCtx struct {
+	FbSportsMatchPlayerRank               IFbSportsMatchPlayerRankDo
+	FbSportsMatchTeamRank                 IFbSportsMatchTeamRankDo
+	FbSportsMatchTopic                    IFbSportsMatchTopicDo
 	FbSportsMatchMarketOddsTips           IFbSportsMatchMarketOddsTipsDo
 	FbSportsMatchStatistics               IFbSportsMatchStatisticsDo
 	FbSportsMatchPlayType                 IFbSportsMatchPlayTypeDo
@@ -1203,6 +1224,9 @@ type queryCtx struct {
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
+		FbSportsMatchPlayerRank:               q.FbSportsMatchPlayerRank.WithContext(ctx),
+		FbSportsMatchTeamRank:                 q.FbSportsMatchTeamRank.WithContext(ctx),
+		FbSportsMatchTopic:                    q.FbSportsMatchTopic.WithContext(ctx),
 		FbSportsMatchMarketOddsTips:           q.FbSportsMatchMarketOddsTips.WithContext(ctx),
 		FbSportsMatchStatistics:               q.FbSportsMatchStatistics.WithContext(ctx),
 		FbSportsMatchPlayType:                 q.FbSportsMatchPlayType.WithContext(ctx),
