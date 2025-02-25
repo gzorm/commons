@@ -10,11 +10,11 @@ const TableNameFbSportsMatch = "fb_sports_match"
 type FbSportsMatch struct {
 	ID            int64  `gorm:"column:id;type:bigint;primaryKey;autoIncrement:true;comment:主键ID" json:"id,string"`                    // 主键ID
 	LanguageType  string `gorm:"column:language_type;type:varchar(50);comment:语言类型" json:"languageType"`                               // 语言类型
-	MatchID       int64  `gorm:"column:match_id;type:int;not null;comment:赛事ID" json:"matchId"`                                        // 赛事ID
+	MatchID       int64  `gorm:"column:match_id;type:bigint;not null;comment:赛事ID" json:"matchId"`                                     // 赛事ID
 	MatchName     string `gorm:"column:match_name;type:varchar(255);comment:冠军赛赛事名称，用于展示（原 nm）" json:"matchName"`                      // 冠军赛赛事名称，用于展示（原 nm）
 	SportID       int64  `gorm:"column:sport_id;type:int;not null;comment:运动ID（原 sid）" json:"sportId"`                                 // 运动ID（原 sid）
 	MatchStatus   int64  `gorm:"column:match_status;type:int;not null;comment:赛事进行状态（原 ms）" json:"matchStatus"`                        // 赛事进行状态（原 ms）
-	StartTime     int64  `gorm:"column:start_time;type:int;not null;comment:开赛时间（原 bt）" json:"startTime"`                              // 开赛时间（原 bt）
+	StartTime     int64  `gorm:"column:start_time;type:bigint;not null;comment:开赛时间（原 bt）" json:"startTime"`                           // 开赛时间（原 bt）
 	MarketCount   int64  `gorm:"column:market_count;type:int;not null;comment:单个赛事玩法总数（原 tms）" json:"marketCount"`                     // 单个赛事玩法总数（原 tms）
 	Neutral       int64  `gorm:"column:neutral;type:int;not null;comment:中立场标记 0 非中立场 ，1 中立场（原 ne）" json:"neutral"`                    // 中立场标记 0 非中立场 ，1 中立场（原 ne）
 	ScoreList     string `gorm:"column:score_list;type:text;comment:比分列表，提供各个赛事阶段的比分（原 nsg）" json:"scoreList"`                         // 比分列表，提供各个赛事阶段的比分（原 nsg）
@@ -37,6 +37,7 @@ type FbSportsMatch struct {
 	IsRecommend   int64  `gorm:"column:is_recommend;type:int;default:1;comment:是否推荐  1==否 3==是" json:"isRecommend"`                    // 是否推荐  1==否 3==是
 	CreatedAt     int64  `gorm:"column:created_at;comment:创建时间" json:"createdAt"`                                                      // 创建时间
 	UpdatedAt     int64  `gorm:"column:updated_at;comment:更新时间" json:"updatedAt"`                                                      // 更新时间
+	Sort          int64  `gorm:"column:sort;type:int;not null;comment:排序: 从低到高" json:"sort"`                                           // 排序: 从低到高
 }
 
 // TableName FbSportsMatch's table name

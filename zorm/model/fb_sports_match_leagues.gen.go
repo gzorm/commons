@@ -6,24 +6,25 @@ package model
 
 const TableNameFbSportsMatchLeagues = "fb_sports_match_leagues"
 
-// FbSportsMatchLeagues 联赛统计表
+// FbSportsMatchLeagues 联赛表
 type FbSportsMatchLeagues struct {
-	ID            int64  `gorm:"column:id;type:bigint;primaryKey;autoIncrement:true;comment:主键 ID" json:"id,string"` // 主键 ID
-	MatchID       int64  `gorm:"column:match_id;type:bigint;comment:赛事ID" json:"matchId"`                            // 赛事ID
-	LeagueID      int64  `gorm:"column:league_id;type:bigint;comment:联赛 ID" json:"leagueId"`                         // 联赛 ID
-	LeagueType    int64  `gorm:"column:league_type;type:int;comment:类表分类类型，如滚球、今日、早盘等" json:"leagueType"`            // 类表分类类型，如滚球、今日、早盘等
-	MatchCount    int64  `gorm:"column:match_count;type:int;comment:该联赛开售的赛事数量" json:"matchCount"`                   // 该联赛开售的赛事数量
-	LeagueName    string `gorm:"column:league_name;type:varchar(100);not null;comment:联赛名称" json:"leagueName"`       // 联赛名称
-	LeagueLevel   int64  `gorm:"column:league_level;type:int;not null;comment:联赛等级" json:"leagueLevel"`              // 联赛等级
-	SportID       int64  `gorm:"column:sport_id;type:int;not null;comment:运动种类 ID" json:"sportId"`                   // 运动种类 ID
-	LeagueIconURL string `gorm:"column:league_icon_url;type:varchar(255);comment:联赛图标 URL" json:"leagueIconUrl"`     // 联赛图标 URL
-	RegionID      int64  `gorm:"column:region_id;type:int;not null;comment:区域 ID" json:"regionId"`                   // 区域 ID
-	RegionName    string `gorm:"column:region_name;type:varchar(100);comment:区域名称" json:"regionName"`                // 区域名称
-	RegionLogoURL string `gorm:"column:region_logo_url;type:varchar(255);comment:区域 LOGO URL" json:"regionLogoUrl"`  // 区域 LOGO URL
-	IsHot         int64  `gorm:"column:is_hot;type:tinyint(1);not null;comment:是否热门联赛，1 表示热门，0 表示非热门" json:"isHot"`  // 是否热门联赛，1 表示热门，0 表示非热门
-	LeagueGroupID int64  `gorm:"column:league_group_id;type:int;not null;comment:联赛分组 ID" json:"leagueGroupId"`      // 联赛分组 ID
-	CreatedAt     int64  `gorm:"column:created_at;comment:创建时间" json:"createdAt"`                                    // 记录创建时间（时间戳）
-	UpdatedAt     int64  `gorm:"column:updated_at;comment:更新时间" json:"updatedAt"`                                    // 记录更新时间（时间戳）
+	ID            int64  `gorm:"column:id;type:bigint;primaryKey;autoIncrement:true;comment:主键 ID" json:"id,string"`      // 主键 ID
+	MatchID       int64  `gorm:"column:match_id;type:bigint;comment:赛事ID" json:"matchId"`                                 // 赛事ID
+	LeagueID      int64  `gorm:"column:league_id;type:bigint;comment:联赛 ID" json:"leagueId"`                              // 联赛 ID
+	LeagueName    string `gorm:"column:league_name;type:varchar(100);not null;comment:联赛名称" json:"leagueName"`            // 联赛名称
+	LeagueType    int64  `gorm:"column:league_type;type:int;comment:类表分类类型，如滚球、今日、早盘等 match_play_type" json:"leagueType"` // 类表分类类型，如滚球、今日、早盘等 match_play_type
+	MatchCount    int64  `gorm:"column:match_count;type:int;comment:该联赛开售的赛事数量" json:"matchCount"`                        // 该联赛开售的赛事数量
+	LeagueLevel   int64  `gorm:"column:league_level;type:int;not null;comment:联赛等级" json:"leagueLevel"`                   // 联赛等级
+	SportID       int64  `gorm:"column:sport_id;type:int;not null;comment:运动种类 ID" json:"sportId"`                        // 运动种类 ID
+	LeagueIconURL string `gorm:"column:league_icon_url;type:varchar(255);comment:联赛图标 URL" json:"leagueIconUrl"`          // 联赛图标 URL
+	RegionID      int64  `gorm:"column:region_id;type:int;not null;comment:区域 ID" json:"regionId"`                        // 区域 ID
+	RegionName    string `gorm:"column:region_name;type:varchar(100);comment:区域名称" json:"regionName"`                     // 区域名称
+	RegionLogoURL string `gorm:"column:region_logo_url;type:varchar(255);comment:区域 LOGO URL" json:"regionLogoUrl"`       // 区域 LOGO URL
+	IsHot         int64  `gorm:"column:is_hot;type:tinyint(1);not null;comment:是否热门联赛，1 表示热门，0 表示非热门" json:"isHot"`       // 是否热门联赛，1 表示热门，0 表示非热门
+	LeagueGroupID int64  `gorm:"column:league_group_id;type:int;not null;comment:联赛分组 ID" json:"leagueGroupId"`           // 联赛分组 ID
+	CreatedAt     int64  `gorm:"column:created_at;comment:创建时间" json:"createdAt"`                                         // 记录创建时间（时间戳）
+	UpdatedAt     int64  `gorm:"column:updated_at;comment:更新时间" json:"updatedAt"`                                         // 记录更新时间（时间戳）
+	Sort          int64  `gorm:"column:sort;type:int;not null;comment:排序: 从低到高" json:"sort"`                              // 排序: 从低到高
 }
 
 // TableName FbSportsMatchLeagues's table name

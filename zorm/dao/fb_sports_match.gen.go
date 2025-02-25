@@ -56,6 +56,7 @@ func newFbSportsMatch(db *gorm.DB, opts ...gen.DOOption) fbSportsMatch {
 	_fbSportsMatch.IsRecommend = field.NewInt64(tableName, "is_recommend")
 	_fbSportsMatch.CreatedAt = field.NewInt64(tableName, "created_at")
 	_fbSportsMatch.UpdatedAt = field.NewInt64(tableName, "updated_at")
+	_fbSportsMatch.Sort = field.NewInt64(tableName, "sort")
 
 	_fbSportsMatch.fillFieldMap()
 
@@ -96,6 +97,7 @@ type fbSportsMatch struct {
 	IsRecommend   field.Int64  // 是否推荐  1==否 3==是
 	CreatedAt     field.Int64  // 创建时间
 	UpdatedAt     field.Int64  // 更新时间
+	Sort          field.Int64  // 排序: 从低到高
 
 	fieldMap map[string]field.Expr
 }
@@ -141,6 +143,7 @@ func (f *fbSportsMatch) updateTableName(table string) *fbSportsMatch {
 	f.IsRecommend = field.NewInt64(table, "is_recommend")
 	f.CreatedAt = field.NewInt64(table, "created_at")
 	f.UpdatedAt = field.NewInt64(table, "updated_at")
+	f.Sort = field.NewInt64(table, "sort")
 
 	f.fillFieldMap()
 
@@ -157,7 +160,7 @@ func (f *fbSportsMatch) GetFieldByName(fieldName string) (field.OrderExpr, bool)
 }
 
 func (f *fbSportsMatch) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 29)
+	f.fieldMap = make(map[string]field.Expr, 30)
 	f.fieldMap["id"] = f.ID
 	f.fieldMap["language_type"] = f.LanguageType
 	f.fieldMap["match_id"] = f.MatchID
@@ -187,6 +190,7 @@ func (f *fbSportsMatch) fillFieldMap() {
 	f.fieldMap["is_recommend"] = f.IsRecommend
 	f.fieldMap["created_at"] = f.CreatedAt
 	f.fieldMap["updated_at"] = f.UpdatedAt
+	f.fieldMap["sort"] = f.Sort
 }
 
 func (f fbSportsMatch) clone(db *gorm.DB) fbSportsMatch {

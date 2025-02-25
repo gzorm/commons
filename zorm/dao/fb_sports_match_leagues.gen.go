@@ -30,9 +30,9 @@ func newFbSportsMatchLeagues(db *gorm.DB, opts ...gen.DOOption) fbSportsMatchLea
 	_fbSportsMatchLeagues.ID = field.NewInt64(tableName, "id")
 	_fbSportsMatchLeagues.MatchID = field.NewInt64(tableName, "match_id")
 	_fbSportsMatchLeagues.LeagueID = field.NewInt64(tableName, "league_id")
+	_fbSportsMatchLeagues.LeagueName = field.NewString(tableName, "league_name")
 	_fbSportsMatchLeagues.LeagueType = field.NewInt64(tableName, "league_type")
 	_fbSportsMatchLeagues.MatchCount = field.NewInt64(tableName, "match_count")
-	_fbSportsMatchLeagues.LeagueName = field.NewString(tableName, "league_name")
 	_fbSportsMatchLeagues.LeagueLevel = field.NewInt64(tableName, "league_level")
 	_fbSportsMatchLeagues.SportID = field.NewInt64(tableName, "sport_id")
 	_fbSportsMatchLeagues.LeagueIconURL = field.NewString(tableName, "league_icon_url")
@@ -43,13 +43,14 @@ func newFbSportsMatchLeagues(db *gorm.DB, opts ...gen.DOOption) fbSportsMatchLea
 	_fbSportsMatchLeagues.LeagueGroupID = field.NewInt64(tableName, "league_group_id")
 	_fbSportsMatchLeagues.CreatedAt = field.NewInt64(tableName, "created_at")
 	_fbSportsMatchLeagues.UpdatedAt = field.NewInt64(tableName, "updated_at")
+	_fbSportsMatchLeagues.Sort = field.NewInt64(tableName, "sort")
 
 	_fbSportsMatchLeagues.fillFieldMap()
 
 	return _fbSportsMatchLeagues
 }
 
-// fbSportsMatchLeagues 联赛统计表
+// fbSportsMatchLeagues 联赛表
 type fbSportsMatchLeagues struct {
 	fbSportsMatchLeaguesDo
 
@@ -57,9 +58,9 @@ type fbSportsMatchLeagues struct {
 	ID            field.Int64  // 主键 ID
 	MatchID       field.Int64  // 赛事ID
 	LeagueID      field.Int64  // 联赛 ID
-	LeagueType    field.Int64  // 类表分类类型，如滚球、今日、早盘等
-	MatchCount    field.Int64  // 该联赛开售的赛事数量
 	LeagueName    field.String // 联赛名称
+	LeagueType    field.Int64  // 类表分类类型，如滚球、今日、早盘等 match_play_type
+	MatchCount    field.Int64  // 该联赛开售的赛事数量
 	LeagueLevel   field.Int64  // 联赛等级
 	SportID       field.Int64  // 运动种类 ID
 	LeagueIconURL field.String // 联赛图标 URL
@@ -70,6 +71,7 @@ type fbSportsMatchLeagues struct {
 	LeagueGroupID field.Int64  // 联赛分组 ID
 	CreatedAt     field.Int64  // 记录创建时间（时间戳）
 	UpdatedAt     field.Int64  // 记录更新时间（时间戳）
+	Sort          field.Int64  // 排序: 从低到高
 
 	fieldMap map[string]field.Expr
 }
@@ -89,9 +91,9 @@ func (f *fbSportsMatchLeagues) updateTableName(table string) *fbSportsMatchLeagu
 	f.ID = field.NewInt64(table, "id")
 	f.MatchID = field.NewInt64(table, "match_id")
 	f.LeagueID = field.NewInt64(table, "league_id")
+	f.LeagueName = field.NewString(table, "league_name")
 	f.LeagueType = field.NewInt64(table, "league_type")
 	f.MatchCount = field.NewInt64(table, "match_count")
-	f.LeagueName = field.NewString(table, "league_name")
 	f.LeagueLevel = field.NewInt64(table, "league_level")
 	f.SportID = field.NewInt64(table, "sport_id")
 	f.LeagueIconURL = field.NewString(table, "league_icon_url")
@@ -102,6 +104,7 @@ func (f *fbSportsMatchLeagues) updateTableName(table string) *fbSportsMatchLeagu
 	f.LeagueGroupID = field.NewInt64(table, "league_group_id")
 	f.CreatedAt = field.NewInt64(table, "created_at")
 	f.UpdatedAt = field.NewInt64(table, "updated_at")
+	f.Sort = field.NewInt64(table, "sort")
 
 	f.fillFieldMap()
 
@@ -118,13 +121,13 @@ func (f *fbSportsMatchLeagues) GetFieldByName(fieldName string) (field.OrderExpr
 }
 
 func (f *fbSportsMatchLeagues) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 16)
+	f.fieldMap = make(map[string]field.Expr, 17)
 	f.fieldMap["id"] = f.ID
 	f.fieldMap["match_id"] = f.MatchID
 	f.fieldMap["league_id"] = f.LeagueID
+	f.fieldMap["league_name"] = f.LeagueName
 	f.fieldMap["league_type"] = f.LeagueType
 	f.fieldMap["match_count"] = f.MatchCount
-	f.fieldMap["league_name"] = f.LeagueName
 	f.fieldMap["league_level"] = f.LeagueLevel
 	f.fieldMap["sport_id"] = f.SportID
 	f.fieldMap["league_icon_url"] = f.LeagueIconURL
@@ -135,6 +138,7 @@ func (f *fbSportsMatchLeagues) fillFieldMap() {
 	f.fieldMap["league_group_id"] = f.LeagueGroupID
 	f.fieldMap["created_at"] = f.CreatedAt
 	f.fieldMap["updated_at"] = f.UpdatedAt
+	f.fieldMap["sort"] = f.Sort
 }
 
 func (f fbSportsMatchLeagues) clone(db *gorm.DB) fbSportsMatchLeagues {
