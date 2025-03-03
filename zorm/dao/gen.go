@@ -18,6 +18,8 @@ import (
 
 var (
 	Q                                     = new(Query)
+	LiveAnchor                            *liveAnchor
+	LiveRoom                              *liveRoom
 	FbSportsMatchPlayerRank               *fbSportsMatchPlayerRank
 	FbSportsMatchTeamRank                 *fbSportsMatchTeamRank
 	FbSportsMatchTopic                    *fbSportsMatchTopic
@@ -188,6 +190,8 @@ var (
 
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	*Q = *Use(db, opts...)
+	LiveAnchor = &Q.LiveAnchor
+	LiveRoom = &Q.LiveRoom
 	FbSportsMatchPlayerRank = &Q.FbSportsMatchPlayerRank
 	FbSportsMatchTeamRank = &Q.FbSportsMatchTeamRank
 	FbSportsMatchTopic = &Q.FbSportsMatchTopic
@@ -360,6 +364,8 @@ func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 	return &Query{
 		db:                                    db,
+		LiveAnchor:                            newLiveAnchor(db, opts...),
+		LiveRoom:                              newLiveRoom(db, opts...),
 		FbSportsMatchPlayerRank:               newFbSportsMatchPlayerRank(db, opts...),
 		FbSportsMatchTeamRank:                 newFbSportsMatchTeamRank(db, opts...),
 		FbSportsMatchTopic:                    newFbSportsMatchTopic(db, opts...),
@@ -531,6 +537,8 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 
 type Query struct {
 	db                                    *gorm.DB
+	LiveAnchor                            liveAnchor
+	LiveRoom                              liveRoom
 	FbSportsMatchPlayerRank               fbSportsMatchPlayerRank
 	FbSportsMatchTeamRank                 fbSportsMatchTeamRank
 	FbSportsMatchTopic                    fbSportsMatchTopic
@@ -704,6 +712,8 @@ func (q *Query) Available() bool { return q.db != nil }
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
 		db:                                    db,
+		LiveAnchor:                            q.LiveAnchor.clone(db),
+		LiveRoom:                              q.LiveRoom.clone(db),
 		FbSportsMatchPlayerRank:               q.FbSportsMatchPlayerRank.clone(db),
 		FbSportsMatchTeamRank:                 q.FbSportsMatchTeamRank.clone(db),
 		FbSportsMatchTopic:                    q.FbSportsMatchTopic.clone(db),
@@ -884,6 +894,8 @@ func (q *Query) WriteDB() *Query {
 func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 	return &Query{
 		db:                                    db,
+		LiveAnchor:                            q.LiveAnchor.replaceDB(db),
+		LiveRoom:                              q.LiveRoom.replaceDB(db),
 		FbSportsMatchPlayerRank:               q.FbSportsMatchPlayerRank.replaceDB(db),
 		FbSportsMatchTeamRank:                 q.FbSportsMatchTeamRank.replaceDB(db),
 		FbSportsMatchTopic:                    q.FbSportsMatchTopic.replaceDB(db),
@@ -1054,6 +1066,8 @@ func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 }
 
 type queryCtx struct {
+	LiveAnchor                            ILiveAnchorDo
+	LiveRoom                              ILiveRoomDo
 	FbSportsMatchPlayerRank               IFbSportsMatchPlayerRankDo
 	FbSportsMatchTeamRank                 IFbSportsMatchTeamRankDo
 	FbSportsMatchTopic                    IFbSportsMatchTopicDo
@@ -1224,6 +1238,8 @@ type queryCtx struct {
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
+		LiveAnchor:                            q.LiveAnchor.WithContext(ctx),
+		LiveRoom:                              q.LiveRoom.WithContext(ctx),
 		FbSportsMatchPlayerRank:               q.FbSportsMatchPlayerRank.WithContext(ctx),
 		FbSportsMatchTeamRank:                 q.FbSportsMatchTeamRank.WithContext(ctx),
 		FbSportsMatchTopic:                    q.FbSportsMatchTopic.WithContext(ctx),
