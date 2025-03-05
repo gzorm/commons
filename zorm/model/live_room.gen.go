@@ -26,7 +26,8 @@ type LiveRoom struct {
 	HomeLogo      string `gorm:"column:home_logo;type:varchar(255);comment:主队LOGO" json:"homeLogo"`                             // 主队LOGO
 	AwayLogo      string `gorm:"column:away_logo;type:varchar(255);comment:客队LOGO" json:"awayLogo"`                             // 客队LOGO
 	LiveStatus    int64  `gorm:"column:live_status;type:tinyint(1);not null;comment:直播状态(1=未开始，3=直播中，5=已结束)" json:"liveStatus"` // 直播状态(1=未开始，3=直播中，5=已结束)
-	StreamInfo    string `gorm:"column:stream_info;type:varchar(255);comment:推流信息" json:"streamInfo"`                           // 推流信息
+	PushURL       string `gorm:"column:push_url;type:varchar(355);comment:推流地址" json:"pushUrl"`                                 // 推流地址
+	PlayURL       string `gorm:"column:play_url;type:varchar(355);comment:播放地址" json:"playUrl"`                                 // 播放地址
 	CreatedAt     int64  `gorm:"column:created_at;comment:创建时间" json:"createdAt"`                                               // 创建时间
 	CreatedBy     string `gorm:"column:created_by;type:varchar(255);not null;comment:创建人姓名" json:"createdBy"`                   // 创建人姓名
 	UpdatedAt     int64  `gorm:"column:updated_at;comment:更新时间" json:"updatedAt"`                                               // 更新时间

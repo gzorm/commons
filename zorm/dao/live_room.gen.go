@@ -45,7 +45,8 @@ func newLiveRoom(db *gorm.DB, opts ...gen.DOOption) liveRoom {
 	_liveRoom.HomeLogo = field.NewString(tableName, "home_logo")
 	_liveRoom.AwayLogo = field.NewString(tableName, "away_logo")
 	_liveRoom.LiveStatus = field.NewInt64(tableName, "live_status")
-	_liveRoom.StreamInfo = field.NewString(tableName, "stream_info")
+	_liveRoom.PushURL = field.NewString(tableName, "push_url")
+	_liveRoom.PlayURL = field.NewString(tableName, "play_url")
 	_liveRoom.CreatedAt = field.NewInt64(tableName, "created_at")
 	_liveRoom.CreatedBy = field.NewString(tableName, "created_by")
 	_liveRoom.UpdatedAt = field.NewInt64(tableName, "updated_at")
@@ -80,7 +81,8 @@ type liveRoom struct {
 	HomeLogo      field.String // 主队LOGO
 	AwayLogo      field.String // 客队LOGO
 	LiveStatus    field.Int64  // 直播状态(1=未开始，3=直播中，5=已结束)
-	StreamInfo    field.String // 推流信息
+	PushURL       field.String // 推流地址
+	PlayURL       field.String // 播放地址
 	CreatedAt     field.Int64  // 创建时间
 	CreatedBy     field.String // 创建人姓名
 	UpdatedAt     field.Int64  // 更新时间
@@ -120,7 +122,8 @@ func (l *liveRoom) updateTableName(table string) *liveRoom {
 	l.HomeLogo = field.NewString(table, "home_logo")
 	l.AwayLogo = field.NewString(table, "away_logo")
 	l.LiveStatus = field.NewInt64(table, "live_status")
-	l.StreamInfo = field.NewString(table, "stream_info")
+	l.PushURL = field.NewString(table, "push_url")
+	l.PlayURL = field.NewString(table, "play_url")
 	l.CreatedAt = field.NewInt64(table, "created_at")
 	l.CreatedBy = field.NewString(table, "created_by")
 	l.UpdatedAt = field.NewInt64(table, "updated_at")
@@ -142,7 +145,7 @@ func (l *liveRoom) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (l *liveRoom) fillFieldMap() {
-	l.fieldMap = make(map[string]field.Expr, 24)
+	l.fieldMap = make(map[string]field.Expr, 25)
 	l.fieldMap["id"] = l.ID
 	l.fieldMap["room_name"] = l.RoomName
 	l.fieldMap["anchor_id"] = l.AnchorID
@@ -161,7 +164,8 @@ func (l *liveRoom) fillFieldMap() {
 	l.fieldMap["home_logo"] = l.HomeLogo
 	l.fieldMap["away_logo"] = l.AwayLogo
 	l.fieldMap["live_status"] = l.LiveStatus
-	l.fieldMap["stream_info"] = l.StreamInfo
+	l.fieldMap["push_url"] = l.PushURL
+	l.fieldMap["play_url"] = l.PlayURL
 	l.fieldMap["created_at"] = l.CreatedAt
 	l.fieldMap["created_by"] = l.CreatedBy
 	l.fieldMap["updated_at"] = l.UpdatedAt
