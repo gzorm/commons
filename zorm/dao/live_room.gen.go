@@ -47,6 +47,8 @@ func newLiveRoom(db *gorm.DB, opts ...gen.DOOption) liveRoom {
 	_liveRoom.LiveStatus = field.NewInt64(tableName, "live_status")
 	_liveRoom.PushURL = field.NewString(tableName, "push_url")
 	_liveRoom.PlayURL = field.NewString(tableName, "play_url")
+	_liveRoom.LiveAppName = field.NewString(tableName, "live_app_name")
+	_liveRoom.LiveStreamName = field.NewString(tableName, "live_stream_name")
 	_liveRoom.CreatedAt = field.NewInt64(tableName, "created_at")
 	_liveRoom.CreatedBy = field.NewString(tableName, "created_by")
 	_liveRoom.UpdatedAt = field.NewInt64(tableName, "updated_at")
@@ -62,32 +64,34 @@ func newLiveRoom(db *gorm.DB, opts ...gen.DOOption) liveRoom {
 type liveRoom struct {
 	liveRoomDo
 
-	ALL           field.Asterisk
-	ID            field.Int64  // 主键ID
-	RoomName      field.String // 直播间名称
-	AnchorID      field.Int64  // 主播序号
-	AnchorNick    field.String // 主播昵称
-	AnchorAccount field.String // 主播账户
-	RoomImage     field.String // 直播间图片
-	MatchType     field.Int64  // 赛事类型(1=足球，3=篮球)
-	MatchID       field.Int64  // 赛事ID
-	MatchName     field.String // 赛事名称
-	LeagueName    field.String // 联赛名称
-	HomeTeam      field.String // 主队名称
-	AwayTeam      field.String // 客队名称
-	MatchStatus   field.Int64  // 赛事状态（1=未开赛，3=结束，5=其他）
-	StartTime     field.Int64  // 赛事开始时间
-	EndTime       field.Int64  // 赛事结束时间
-	HomeLogo      field.String // 主队LOGO
-	AwayLogo      field.String // 客队LOGO
-	LiveStatus    field.Int64  // 直播状态(1=未开始，3=直播中，5=已结束)
-	PushURL       field.String // 推流地址
-	PlayURL       field.String // 播放地址
-	CreatedAt     field.Int64  // 创建时间
-	CreatedBy     field.String // 创建人姓名
-	UpdatedAt     field.Int64  // 更新时间
-	UpdatedBy     field.String // 更新人姓名
-	IsDeleted     field.Int64  // 是否删除(1=否，3=是)
+	ALL            field.Asterisk
+	ID             field.Int64  // 主键ID
+	RoomName       field.String // 直播间名称
+	AnchorID       field.Int64  // 主播序号
+	AnchorNick     field.String // 主播昵称
+	AnchorAccount  field.String // 主播账户
+	RoomImage      field.String // 直播间图片
+	MatchType      field.Int64  // 赛事类型(1=足球，3=篮球)
+	MatchID        field.Int64  // 赛事ID
+	MatchName      field.String // 赛事名称
+	LeagueName     field.String // 联赛名称
+	HomeTeam       field.String // 主队名称
+	AwayTeam       field.String // 客队名称
+	MatchStatus    field.Int64  // 赛事状态（1=未开赛，3=结束，5=其他）
+	StartTime      field.Int64  // 赛事开始时间
+	EndTime        field.Int64  // 赛事结束时间
+	HomeLogo       field.String // 主队LOGO
+	AwayLogo       field.String // 客队LOGO
+	LiveStatus     field.Int64  // 直播状态(1=未开始，3=直播中，5=已结束)
+	PushURL        field.String // 推流地址
+	PlayURL        field.String // 播放地址
+	LiveAppName    field.String // 推流APP名称
+	LiveStreamName field.String // 推流的名称
+	CreatedAt      field.Int64  // 创建时间
+	CreatedBy      field.String // 创建人姓名
+	UpdatedAt      field.Int64  // 更新时间
+	UpdatedBy      field.String // 更新人姓名
+	IsDeleted      field.Int64  // 是否删除(1=否，3=是)
 
 	fieldMap map[string]field.Expr
 }
@@ -124,6 +128,8 @@ func (l *liveRoom) updateTableName(table string) *liveRoom {
 	l.LiveStatus = field.NewInt64(table, "live_status")
 	l.PushURL = field.NewString(table, "push_url")
 	l.PlayURL = field.NewString(table, "play_url")
+	l.LiveAppName = field.NewString(table, "live_app_name")
+	l.LiveStreamName = field.NewString(table, "live_stream_name")
 	l.CreatedAt = field.NewInt64(table, "created_at")
 	l.CreatedBy = field.NewString(table, "created_by")
 	l.UpdatedAt = field.NewInt64(table, "updated_at")
@@ -145,7 +151,7 @@ func (l *liveRoom) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (l *liveRoom) fillFieldMap() {
-	l.fieldMap = make(map[string]field.Expr, 25)
+	l.fieldMap = make(map[string]field.Expr, 27)
 	l.fieldMap["id"] = l.ID
 	l.fieldMap["room_name"] = l.RoomName
 	l.fieldMap["anchor_id"] = l.AnchorID
@@ -166,6 +172,8 @@ func (l *liveRoom) fillFieldMap() {
 	l.fieldMap["live_status"] = l.LiveStatus
 	l.fieldMap["push_url"] = l.PushURL
 	l.fieldMap["play_url"] = l.PlayURL
+	l.fieldMap["live_app_name"] = l.LiveAppName
+	l.fieldMap["live_stream_name"] = l.LiveStreamName
 	l.fieldMap["created_at"] = l.CreatedAt
 	l.fieldMap["created_by"] = l.CreatedBy
 	l.fieldMap["updated_at"] = l.UpdatedAt
