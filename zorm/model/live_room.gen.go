@@ -13,6 +13,7 @@ type LiveRoom struct {
 	AnchorID       int64  `gorm:"column:anchor_id;type:int;not null;comment:主播序号" json:"anchorId"`                               // 主播序号
 	AnchorNick     string `gorm:"column:anchor_nick;type:varchar(255);not null;comment:主播昵称" json:"anchorNick"`                  // 主播昵称
 	AnchorAccount  string `gorm:"column:anchor_account;type:varchar(255);comment:主播账户" json:"anchorAccount"`                     // 主播账户
+	AnchorAvatar   string `gorm:"column:anchor_avatar;type:varchar(255);comment:主播头像" json:"anchorAvatar"`                       // 主播头像
 	RoomImage      string `gorm:"column:room_image;type:varchar(255);comment:直播间图片" json:"roomImage"`                            // 直播间图片
 	MatchType      int64  `gorm:"column:match_type;type:tinyint;not null;default:1;comment:赛事类型(1=足球，3=篮球)" json:"matchType"`    // 赛事类型(1=足球，3=篮球)
 	MatchID        int64  `gorm:"column:match_id;type:int;not null;comment:赛事ID" json:"matchId"`                                 // 赛事ID

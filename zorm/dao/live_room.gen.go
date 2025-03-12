@@ -32,6 +32,7 @@ func newLiveRoom(db *gorm.DB, opts ...gen.DOOption) liveRoom {
 	_liveRoom.AnchorID = field.NewInt64(tableName, "anchor_id")
 	_liveRoom.AnchorNick = field.NewString(tableName, "anchor_nick")
 	_liveRoom.AnchorAccount = field.NewString(tableName, "anchor_account")
+	_liveRoom.AnchorAvatar = field.NewString(tableName, "anchor_avatar")
 	_liveRoom.RoomImage = field.NewString(tableName, "room_image")
 	_liveRoom.MatchType = field.NewInt64(tableName, "match_type")
 	_liveRoom.MatchID = field.NewInt64(tableName, "match_id")
@@ -70,6 +71,7 @@ type liveRoom struct {
 	AnchorID       field.Int64  // 主播序号
 	AnchorNick     field.String // 主播昵称
 	AnchorAccount  field.String // 主播账户
+	AnchorAvatar   field.String // 主播头像
 	RoomImage      field.String // 直播间图片
 	MatchType      field.Int64  // 赛事类型(1=足球，3=篮球)
 	MatchID        field.Int64  // 赛事ID
@@ -113,6 +115,7 @@ func (l *liveRoom) updateTableName(table string) *liveRoom {
 	l.AnchorID = field.NewInt64(table, "anchor_id")
 	l.AnchorNick = field.NewString(table, "anchor_nick")
 	l.AnchorAccount = field.NewString(table, "anchor_account")
+	l.AnchorAvatar = field.NewString(table, "anchor_avatar")
 	l.RoomImage = field.NewString(table, "room_image")
 	l.MatchType = field.NewInt64(table, "match_type")
 	l.MatchID = field.NewInt64(table, "match_id")
@@ -151,12 +154,13 @@ func (l *liveRoom) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (l *liveRoom) fillFieldMap() {
-	l.fieldMap = make(map[string]field.Expr, 27)
+	l.fieldMap = make(map[string]field.Expr, 28)
 	l.fieldMap["id"] = l.ID
 	l.fieldMap["room_name"] = l.RoomName
 	l.fieldMap["anchor_id"] = l.AnchorID
 	l.fieldMap["anchor_nick"] = l.AnchorNick
 	l.fieldMap["anchor_account"] = l.AnchorAccount
+	l.fieldMap["anchor_avatar"] = l.AnchorAvatar
 	l.fieldMap["room_image"] = l.RoomImage
 	l.fieldMap["match_type"] = l.MatchType
 	l.fieldMap["match_id"] = l.MatchID
