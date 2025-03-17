@@ -31,6 +31,7 @@ type LiveRoom struct {
 	PlayURL        string `gorm:"column:play_url;type:varchar(355);comment:播放地址" json:"playUrl"`                                 // 播放地址
 	LiveAppName    string `gorm:"column:live_app_name;type:varchar(255);comment:推流APP名称" json:"liveAppName"`                     // 推流APP名称
 	LiveStreamName string `gorm:"column:live_stream_name;type:varchar(255);comment:推流的名称" json:"liveStreamName"`                 // 推流的名称
+	Position       int64  `gorm:"column:position;type:int;comment:排序号" json:"position"`                                          // 排序号
 	CreatedAt      int64  `gorm:"column:created_at;comment:创建时间" json:"createdAt"`                                               // 创建时间
 	CreatedBy      string `gorm:"column:created_by;type:varchar(255);not null;comment:创建人姓名" json:"createdBy"`                   // 创建人姓名
 	UpdatedAt      int64  `gorm:"column:updated_at;comment:更新时间" json:"updatedAt"`                                               // 更新时间

@@ -50,6 +50,7 @@ func newLiveRoom(db *gorm.DB, opts ...gen.DOOption) liveRoom {
 	_liveRoom.PlayURL = field.NewString(tableName, "play_url")
 	_liveRoom.LiveAppName = field.NewString(tableName, "live_app_name")
 	_liveRoom.LiveStreamName = field.NewString(tableName, "live_stream_name")
+	_liveRoom.Position = field.NewInt64(tableName, "position")
 	_liveRoom.CreatedAt = field.NewInt64(tableName, "created_at")
 	_liveRoom.CreatedBy = field.NewString(tableName, "created_by")
 	_liveRoom.UpdatedAt = field.NewInt64(tableName, "updated_at")
@@ -89,6 +90,7 @@ type liveRoom struct {
 	PlayURL        field.String // 播放地址
 	LiveAppName    field.String // 推流APP名称
 	LiveStreamName field.String // 推流的名称
+	Position       field.Int64  // 排序号
 	CreatedAt      field.Int64  // 创建时间
 	CreatedBy      field.String // 创建人姓名
 	UpdatedAt      field.Int64  // 更新时间
@@ -133,6 +135,7 @@ func (l *liveRoom) updateTableName(table string) *liveRoom {
 	l.PlayURL = field.NewString(table, "play_url")
 	l.LiveAppName = field.NewString(table, "live_app_name")
 	l.LiveStreamName = field.NewString(table, "live_stream_name")
+	l.Position = field.NewInt64(table, "position")
 	l.CreatedAt = field.NewInt64(table, "created_at")
 	l.CreatedBy = field.NewString(table, "created_by")
 	l.UpdatedAt = field.NewInt64(table, "updated_at")
@@ -154,7 +157,7 @@ func (l *liveRoom) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (l *liveRoom) fillFieldMap() {
-	l.fieldMap = make(map[string]field.Expr, 28)
+	l.fieldMap = make(map[string]field.Expr, 29)
 	l.fieldMap["id"] = l.ID
 	l.fieldMap["room_name"] = l.RoomName
 	l.fieldMap["anchor_id"] = l.AnchorID
@@ -178,6 +181,7 @@ func (l *liveRoom) fillFieldMap() {
 	l.fieldMap["play_url"] = l.PlayURL
 	l.fieldMap["live_app_name"] = l.LiveAppName
 	l.fieldMap["live_stream_name"] = l.LiveStreamName
+	l.fieldMap["position"] = l.Position
 	l.fieldMap["created_at"] = l.CreatedAt
 	l.fieldMap["created_by"] = l.CreatedBy
 	l.fieldMap["updated_at"] = l.UpdatedAt
