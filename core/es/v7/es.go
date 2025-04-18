@@ -525,8 +525,8 @@ func (es *ElasticsearchClient) SearchSQL(index string, conditions []QueryConditi
 	return result, nil
 }
 
-// QueryByOpenDistroSQL 原始SQL查询
-func (es *ElasticsearchClient) QueryByOpenDistroSQL(query string, formatType string) (map[string]interface{}, error) {
+// QueryByOpenDistroSQLHaWei 原始SQL查询 华为es sql 查询
+func (es *ElasticsearchClient) QueryByOpenDistroSQLHaWei(query string, formatType string) (map[string]interface{}, error) {
 	body := map[string]interface{}{
 		"query": query,
 	}
@@ -563,6 +563,46 @@ func (es *ElasticsearchClient) QueryByOpenDistroSQL(query string, formatType str
 
 	return result, nil
 }
+
+// QueryByOpenDistroSQL 原始SQL查询 google es sql 查询
+func (es *ElasticsearchClient) QueryByOpenDistroSQL(query string, formatType string) (map[string]interface{}, error) {
+	body := map[string]interface{}{
+		"query": query,
+	}
+
+	bodyBytes, err := json.Marshal(body)
+	if err != nil {
+		return nil, fmt.Errorf("error marshalling query body: %s", err)
+	}
+
+	req, err := http.NewRequest("POST", fmt.Sprintf("%s/_sql?format=%v", es.baseURL, formatType), bytes.NewReader(bodyBytes))
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %s", err)
+	}
+
+	req.Header.Set("Content-Type", "application/json")
+
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	defer cancel()
+
+	res, err := es.client.Perform(req.WithContext(ctx))
+	if err != nil {
+		return nil, fmt.Errorf("error performing request: %s", err)
+	}
+	defer res.Body.Close()
+
+	if res.StatusCode >= 400 {
+		return nil, fmt.Errorf("error response from Elasticsearch: %s", res.Status)
+	}
+
+	var result map[string]interface{}
+	if err := json.NewDecoder(res.Body).Decode(&result); err != nil {
+		return nil, fmt.Errorf("error parsing response body: %s", err)
+	}
+
+	return result, nil
+}
+
 func (es *ElasticsearchClient) QueryByXPackSQL(query string) (map[string]interface{}, error) {
 	body := map[string]interface{}{
 		"query": query,
