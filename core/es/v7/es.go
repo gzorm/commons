@@ -525,7 +525,7 @@ func (es *ElasticsearchClient) SearchSQL(index string, conditions []QueryConditi
 	return result, nil
 }
 
-// QueryByOpenDistroSQLHaWei 原始SQL查询 华为es sql 查询
+// QueryByOpenDistroSQLHaWei: 原始SQL查询 华为es sql 查询
 func (es *ElasticsearchClient) QueryByOpenDistroSQLHaWei(query string, formatType string) (map[string]interface{}, error) {
 	body := map[string]interface{}{
 		"query": query,
