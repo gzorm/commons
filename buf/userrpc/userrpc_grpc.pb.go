@@ -139,11 +139,11 @@ type UserRpcClient interface {
 	// group: rule
 	UpdateRoleAuthManager(ctx context.Context, in *UpdateRoleAuthManagerReq, opts ...grpc.CallOption) (*UpdateRoleAuthManagerResp, error)
 	// group: rule
-	QueryAdminList(ctx context.Context, in *QueryAdminListReq, opts ...grpc.CallOption) (*QueryAdminListResp, error)
-	// group: rule
 	UpdateAdminUser(ctx context.Context, in *UpdateAdminUserReq, opts ...grpc.CallOption) (*UpdateAdminUserResp, error)
 	// group: rule
 	UpdateUserGroup(ctx context.Context, in *UpdateUserGroupReq, opts ...grpc.CallOption) (*UpdateUserGroupResp, error)
+	// group: rule
+	GetAdminList(ctx context.Context, in *GetAdminListReq, opts ...grpc.CallOption) (*GetAdminListResp, error)
 	//group:user
 	GetUserRetentionRate(ctx context.Context, in *GetUserRetentionRateReq, opts ...grpc.CallOption) (*GetUserRetentionRateResp, error)
 	//group:user
@@ -689,15 +689,6 @@ func (c *userRpcClient) UpdateRoleAuthManager(ctx context.Context, in *UpdateRol
 	return out, nil
 }
 
-func (c *userRpcClient) QueryAdminList(ctx context.Context, in *QueryAdminListReq, opts ...grpc.CallOption) (*QueryAdminListResp, error) {
-	out := new(QueryAdminListResp)
-	err := c.cc.Invoke(ctx, "/userrpc.UserRpc/QueryAdminList", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *userRpcClient) UpdateAdminUser(ctx context.Context, in *UpdateAdminUserReq, opts ...grpc.CallOption) (*UpdateAdminUserResp, error) {
 	out := new(UpdateAdminUserResp)
 	err := c.cc.Invoke(ctx, "/userrpc.UserRpc/UpdateAdminUser", in, out, opts...)
@@ -710,6 +701,15 @@ func (c *userRpcClient) UpdateAdminUser(ctx context.Context, in *UpdateAdminUser
 func (c *userRpcClient) UpdateUserGroup(ctx context.Context, in *UpdateUserGroupReq, opts ...grpc.CallOption) (*UpdateUserGroupResp, error) {
 	out := new(UpdateUserGroupResp)
 	err := c.cc.Invoke(ctx, "/userrpc.UserRpc/UpdateUserGroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userRpcClient) GetAdminList(ctx context.Context, in *GetAdminListReq, opts ...grpc.CallOption) (*GetAdminListResp, error) {
+	out := new(GetAdminListResp)
+	err := c.cc.Invoke(ctx, "/userrpc.UserRpc/GetAdminList", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -860,11 +860,11 @@ type UserRpcServer interface {
 	// group: rule
 	UpdateRoleAuthManager(context.Context, *UpdateRoleAuthManagerReq) (*UpdateRoleAuthManagerResp, error)
 	// group: rule
-	QueryAdminList(context.Context, *QueryAdminListReq) (*QueryAdminListResp, error)
-	// group: rule
 	UpdateAdminUser(context.Context, *UpdateAdminUserReq) (*UpdateAdminUserResp, error)
 	// group: rule
 	UpdateUserGroup(context.Context, *UpdateUserGroupReq) (*UpdateUserGroupResp, error)
+	// group: rule
+	GetAdminList(context.Context, *GetAdminListReq) (*GetAdminListResp, error)
 	//group:user
 	GetUserRetentionRate(context.Context, *GetUserRetentionRateReq) (*GetUserRetentionRateResp, error)
 	//group:user
@@ -1053,14 +1053,14 @@ func (*UnimplementedUserRpcServer) GetRoleAuthManagerList(context.Context, *GetR
 func (*UnimplementedUserRpcServer) UpdateRoleAuthManager(context.Context, *UpdateRoleAuthManagerReq) (*UpdateRoleAuthManagerResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateRoleAuthManager not implemented")
 }
-func (*UnimplementedUserRpcServer) QueryAdminList(context.Context, *QueryAdminListReq) (*QueryAdminListResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method QueryAdminList not implemented")
-}
 func (*UnimplementedUserRpcServer) UpdateAdminUser(context.Context, *UpdateAdminUserReq) (*UpdateAdminUserResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateAdminUser not implemented")
 }
 func (*UnimplementedUserRpcServer) UpdateUserGroup(context.Context, *UpdateUserGroupReq) (*UpdateUserGroupResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserGroup not implemented")
+}
+func (*UnimplementedUserRpcServer) GetAdminList(context.Context, *GetAdminListReq) (*GetAdminListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAdminList not implemented")
 }
 func (*UnimplementedUserRpcServer) GetUserRetentionRate(context.Context, *GetUserRetentionRateReq) (*GetUserRetentionRateResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserRetentionRate not implemented")
@@ -2136,24 +2136,6 @@ func _UserRpc_UpdateRoleAuthManager_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserRpc_QueryAdminList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryAdminListReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserRpcServer).QueryAdminList(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/userrpc.UserRpc/QueryAdminList",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserRpcServer).QueryAdminList(ctx, req.(*QueryAdminListReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _UserRpc_UpdateAdminUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateAdminUserReq)
 	if err := dec(in); err != nil {
@@ -2186,6 +2168,24 @@ func _UserRpc_UpdateUserGroup_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserRpcServer).UpdateUserGroup(ctx, req.(*UpdateUserGroupReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserRpc_GetAdminList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAdminListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserRpcServer).GetAdminList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/userrpc.UserRpc/GetAdminList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserRpcServer).GetAdminList(ctx, req.(*GetAdminListReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2467,16 +2467,16 @@ var _UserRpc_serviceDesc = grpc.ServiceDesc{
 			Handler:    _UserRpc_UpdateRoleAuthManager_Handler,
 		},
 		{
-			MethodName: "QueryAdminList",
-			Handler:    _UserRpc_QueryAdminList_Handler,
-		},
-		{
 			MethodName: "UpdateAdminUser",
 			Handler:    _UserRpc_UpdateAdminUser_Handler,
 		},
 		{
 			MethodName: "UpdateUserGroup",
 			Handler:    _UserRpc_UpdateUserGroup_Handler,
+		},
+		{
+			MethodName: "GetAdminList",
+			Handler:    _UserRpc_GetAdminList_Handler,
 		},
 		{
 			MethodName: "getUserRetentionRate",
