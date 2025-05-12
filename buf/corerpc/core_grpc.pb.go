@@ -179,7 +179,7 @@ const (
 	Core_ElectronUserLogout_FullMethodName            = "/core.Core/ElectronUserLogout"
 	Core_ElectronUserBroadcast_FullMethodName         = "/core.Core/ElectronUserBroadcast"
 	Core_CompetitionRankingRewards_FullMethodName     = "/core.Core/CompetitionRankingRewards"
-	Core_EgAfbBalance_FullMethodName                  = "/core.Core/EgAfbBalance"
+	Core_EgAfbGetBalance_FullMethodName               = "/core.Core/EgAfbGetBalance"
 	Core_EgAfbBet_FullMethodName                      = "/core.Core/EgAfbBet"
 )
 
@@ -543,7 +543,7 @@ type CoreClient interface {
 	ElectronUserBroadcast(ctx context.Context, in *ElectronUserBroadcastReq, opts ...grpc.CallOption) (*ElectronUserBroadcastResp, error)
 	CompetitionRankingRewards(ctx context.Context, in *CompetitionRankingRewardsReq, opts ...grpc.CallOption) (*CompetitionRankingRewardsResp, error)
 	// eg
-	EgAfbBalance(ctx context.Context, in *EgAfbBalanceReq, opts ...grpc.CallOption) (*EgAfbBalanceResp, error)
+	EgAfbGetBalance(ctx context.Context, in *EgAfbGetBalanceReq, opts ...grpc.CallOption) (*EgAfbGetBalanceResp, error)
 	EgAfbBet(ctx context.Context, in *EgAfbBetReq, opts ...grpc.CallOption) (*EgAfbBetResp, error)
 }
 
@@ -1995,9 +1995,9 @@ func (c *coreClient) CompetitionRankingRewards(ctx context.Context, in *Competit
 	return out, nil
 }
 
-func (c *coreClient) EgAfbBalance(ctx context.Context, in *EgAfbBalanceReq, opts ...grpc.CallOption) (*EgAfbBalanceResp, error) {
-	out := new(EgAfbBalanceResp)
-	err := c.cc.Invoke(ctx, Core_EgAfbBalance_FullMethodName, in, out, opts...)
+func (c *coreClient) EgAfbGetBalance(ctx context.Context, in *EgAfbGetBalanceReq, opts ...grpc.CallOption) (*EgAfbGetBalanceResp, error) {
+	out := new(EgAfbGetBalanceResp)
+	err := c.cc.Invoke(ctx, Core_EgAfbGetBalance_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2373,7 +2373,7 @@ type CoreServer interface {
 	ElectronUserBroadcast(context.Context, *ElectronUserBroadcastReq) (*ElectronUserBroadcastResp, error)
 	CompetitionRankingRewards(context.Context, *CompetitionRankingRewardsReq) (*CompetitionRankingRewardsResp, error)
 	// eg
-	EgAfbBalance(context.Context, *EgAfbBalanceReq) (*EgAfbBalanceResp, error)
+	EgAfbGetBalance(context.Context, *EgAfbGetBalanceReq) (*EgAfbGetBalanceResp, error)
 	EgAfbBet(context.Context, *EgAfbBetReq) (*EgAfbBetResp, error)
 	mustEmbedUnimplementedCoreServer()
 }
@@ -2862,8 +2862,8 @@ func (UnimplementedCoreServer) ElectronUserBroadcast(context.Context, *ElectronU
 func (UnimplementedCoreServer) CompetitionRankingRewards(context.Context, *CompetitionRankingRewardsReq) (*CompetitionRankingRewardsResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CompetitionRankingRewards not implemented")
 }
-func (UnimplementedCoreServer) EgAfbBalance(context.Context, *EgAfbBalanceReq) (*EgAfbBalanceResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method EgAfbBalance not implemented")
+func (UnimplementedCoreServer) EgAfbGetBalance(context.Context, *EgAfbGetBalanceReq) (*EgAfbGetBalanceResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EgAfbGetBalance not implemented")
 }
 func (UnimplementedCoreServer) EgAfbBet(context.Context, *EgAfbBetReq) (*EgAfbBetResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method EgAfbBet not implemented")
@@ -5761,20 +5761,20 @@ func _Core_CompetitionRankingRewards_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Core_EgAfbBalance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EgAfbBalanceReq)
+func _Core_EgAfbGetBalance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EgAfbGetBalanceReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CoreServer).EgAfbBalance(ctx, in)
+		return srv.(CoreServer).EgAfbGetBalance(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Core_EgAfbBalance_FullMethodName,
+		FullMethod: Core_EgAfbGetBalance_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CoreServer).EgAfbBalance(ctx, req.(*EgAfbBalanceReq))
+		return srv.(CoreServer).EgAfbGetBalance(ctx, req.(*EgAfbGetBalanceReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -6445,8 +6445,8 @@ var Core_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Core_CompetitionRankingRewards_Handler,
 		},
 		{
-			MethodName: "EgAfbBalance",
-			Handler:    _Core_EgAfbBalance_Handler,
+			MethodName: "EgAfbGetBalance",
+			Handler:    _Core_EgAfbGetBalance_Handler,
 		},
 		{
 			MethodName: "EgAfbBet",
