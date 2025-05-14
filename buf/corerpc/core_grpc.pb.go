@@ -181,6 +181,10 @@ const (
 	Core_CompetitionRankingRewards_FullMethodName     = "/core.Core/CompetitionRankingRewards"
 	Core_EgAfbGetBalance_FullMethodName               = "/core.Core/EgAfbGetBalance"
 	Core_EgAfbBet_FullMethodName                      = "/core.Core/EgAfbBet"
+	Core_EgAfbBetPaid_FullMethodName                  = "/core.Core/EgAfbBetPaid"
+	Core_EgAfbRefund_FullMethodName                   = "/core.Core/EgAfbRefund"
+	Core_EgAfbGameCloseNotify_FullMethodName          = "/core.Core/EgAfbGameCloseNotify"
+	Core_EgAfbBonusStatusNotify_FullMethodName        = "/core.Core/EgAfbBonusStatusNotify"
 )
 
 // CoreClient is the client API for Core service.
@@ -545,6 +549,10 @@ type CoreClient interface {
 	// eg
 	EgAfbGetBalance(ctx context.Context, in *EgAfbGetBalanceReq, opts ...grpc.CallOption) (*EgAfbGetBalanceResp, error)
 	EgAfbBet(ctx context.Context, in *EgAfbBetReq, opts ...grpc.CallOption) (*EgAfbBetResp, error)
+	EgAfbBetPaid(ctx context.Context, in *EgAfbBetPaidReq, opts ...grpc.CallOption) (*EgAfbBetPaidResp, error)
+	EgAfbRefund(ctx context.Context, in *EgAfbRefundReq, opts ...grpc.CallOption) (*EgAfbRefundResp, error)
+	EgAfbGameCloseNotify(ctx context.Context, in *EgAfbGameCloseNotifyReq, opts ...grpc.CallOption) (*EgAfbGameCloseNotifyResp, error)
+	EgAfbBonusStatusNotify(ctx context.Context, in *EgAfbBonusStatusNotifyReq, opts ...grpc.CallOption) (*EgAfbBonusStatusNotifyResp, error)
 }
 
 type coreClient struct {
@@ -2013,6 +2021,42 @@ func (c *coreClient) EgAfbBet(ctx context.Context, in *EgAfbBetReq, opts ...grpc
 	return out, nil
 }
 
+func (c *coreClient) EgAfbBetPaid(ctx context.Context, in *EgAfbBetPaidReq, opts ...grpc.CallOption) (*EgAfbBetPaidResp, error) {
+	out := new(EgAfbBetPaidResp)
+	err := c.cc.Invoke(ctx, Core_EgAfbBetPaid_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) EgAfbRefund(ctx context.Context, in *EgAfbRefundReq, opts ...grpc.CallOption) (*EgAfbRefundResp, error) {
+	out := new(EgAfbRefundResp)
+	err := c.cc.Invoke(ctx, Core_EgAfbRefund_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) EgAfbGameCloseNotify(ctx context.Context, in *EgAfbGameCloseNotifyReq, opts ...grpc.CallOption) (*EgAfbGameCloseNotifyResp, error) {
+	out := new(EgAfbGameCloseNotifyResp)
+	err := c.cc.Invoke(ctx, Core_EgAfbGameCloseNotify_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) EgAfbBonusStatusNotify(ctx context.Context, in *EgAfbBonusStatusNotifyReq, opts ...grpc.CallOption) (*EgAfbBonusStatusNotifyResp, error) {
+	out := new(EgAfbBonusStatusNotifyResp)
+	err := c.cc.Invoke(ctx, Core_EgAfbBonusStatusNotify_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CoreServer is the server API for Core service.
 // All implementations must embed UnimplementedCoreServer
 // for forward compatibility
@@ -2375,6 +2419,10 @@ type CoreServer interface {
 	// eg
 	EgAfbGetBalance(context.Context, *EgAfbGetBalanceReq) (*EgAfbGetBalanceResp, error)
 	EgAfbBet(context.Context, *EgAfbBetReq) (*EgAfbBetResp, error)
+	EgAfbBetPaid(context.Context, *EgAfbBetPaidReq) (*EgAfbBetPaidResp, error)
+	EgAfbRefund(context.Context, *EgAfbRefundReq) (*EgAfbRefundResp, error)
+	EgAfbGameCloseNotify(context.Context, *EgAfbGameCloseNotifyReq) (*EgAfbGameCloseNotifyResp, error)
+	EgAfbBonusStatusNotify(context.Context, *EgAfbBonusStatusNotifyReq) (*EgAfbBonusStatusNotifyResp, error)
 	mustEmbedUnimplementedCoreServer()
 }
 
@@ -2867,6 +2915,18 @@ func (UnimplementedCoreServer) EgAfbGetBalance(context.Context, *EgAfbGetBalance
 }
 func (UnimplementedCoreServer) EgAfbBet(context.Context, *EgAfbBetReq) (*EgAfbBetResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method EgAfbBet not implemented")
+}
+func (UnimplementedCoreServer) EgAfbBetPaid(context.Context, *EgAfbBetPaidReq) (*EgAfbBetPaidResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EgAfbBetPaid not implemented")
+}
+func (UnimplementedCoreServer) EgAfbRefund(context.Context, *EgAfbRefundReq) (*EgAfbRefundResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EgAfbRefund not implemented")
+}
+func (UnimplementedCoreServer) EgAfbGameCloseNotify(context.Context, *EgAfbGameCloseNotifyReq) (*EgAfbGameCloseNotifyResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EgAfbGameCloseNotify not implemented")
+}
+func (UnimplementedCoreServer) EgAfbBonusStatusNotify(context.Context, *EgAfbBonusStatusNotifyReq) (*EgAfbBonusStatusNotifyResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EgAfbBonusStatusNotify not implemented")
 }
 func (UnimplementedCoreServer) mustEmbedUnimplementedCoreServer() {}
 
@@ -5797,6 +5857,78 @@ func _Core_EgAfbBet_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Core_EgAfbBetPaid_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EgAfbBetPaidReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).EgAfbBetPaid(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_EgAfbBetPaid_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).EgAfbBetPaid(ctx, req.(*EgAfbBetPaidReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_EgAfbRefund_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EgAfbRefundReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).EgAfbRefund(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_EgAfbRefund_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).EgAfbRefund(ctx, req.(*EgAfbRefundReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_EgAfbGameCloseNotify_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EgAfbGameCloseNotifyReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).EgAfbGameCloseNotify(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_EgAfbGameCloseNotify_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).EgAfbGameCloseNotify(ctx, req.(*EgAfbGameCloseNotifyReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_EgAfbBonusStatusNotify_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EgAfbBonusStatusNotifyReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).EgAfbBonusStatusNotify(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_EgAfbBonusStatusNotify_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).EgAfbBonusStatusNotify(ctx, req.(*EgAfbBonusStatusNotifyReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Core_ServiceDesc is the grpc.ServiceDesc for Core service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -6451,6 +6583,22 @@ var Core_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "EgAfbBet",
 			Handler:    _Core_EgAfbBet_Handler,
+		},
+		{
+			MethodName: "EgAfbBetPaid",
+			Handler:    _Core_EgAfbBetPaid_Handler,
+		},
+		{
+			MethodName: "EgAfbRefund",
+			Handler:    _Core_EgAfbRefund_Handler,
+		},
+		{
+			MethodName: "EgAfbGameCloseNotify",
+			Handler:    _Core_EgAfbGameCloseNotify_Handler,
+		},
+		{
+			MethodName: "EgAfbBonusStatusNotify",
+			Handler:    _Core_EgAfbBonusStatusNotify_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
