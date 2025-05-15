@@ -185,6 +185,7 @@ const (
 	Core_EgAfbRefund_FullMethodName                   = "/core.Core/EgAfbRefund"
 	Core_EgAfbGameCloseNotify_FullMethodName          = "/core.Core/EgAfbGameCloseNotify"
 	Core_EgAfbBonusStatusNotify_FullMethodName        = "/core.Core/EgAfbBonusStatusNotify"
+	Core_EgAfbPaid_FullMethodName                     = "/core.Core/EgAfbPaid"
 )
 
 // CoreClient is the client API for Core service.
@@ -553,6 +554,7 @@ type CoreClient interface {
 	EgAfbRefund(ctx context.Context, in *EgAfbRefundReq, opts ...grpc.CallOption) (*EgAfbRefundResp, error)
 	EgAfbGameCloseNotify(ctx context.Context, in *EgAfbGameCloseNotifyReq, opts ...grpc.CallOption) (*EgAfbGameCloseNotifyResp, error)
 	EgAfbBonusStatusNotify(ctx context.Context, in *EgAfbBonusStatusNotifyReq, opts ...grpc.CallOption) (*EgAfbBonusStatusNotifyResp, error)
+	EgAfbPaid(ctx context.Context, in *EgAfbPaidReq, opts ...grpc.CallOption) (*EgAfbPaidResp, error)
 }
 
 type coreClient struct {
@@ -2057,6 +2059,15 @@ func (c *coreClient) EgAfbBonusStatusNotify(ctx context.Context, in *EgAfbBonusS
 	return out, nil
 }
 
+func (c *coreClient) EgAfbPaid(ctx context.Context, in *EgAfbPaidReq, opts ...grpc.CallOption) (*EgAfbPaidResp, error) {
+	out := new(EgAfbPaidResp)
+	err := c.cc.Invoke(ctx, Core_EgAfbPaid_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CoreServer is the server API for Core service.
 // All implementations must embed UnimplementedCoreServer
 // for forward compatibility
@@ -2423,6 +2434,7 @@ type CoreServer interface {
 	EgAfbRefund(context.Context, *EgAfbRefundReq) (*EgAfbRefundResp, error)
 	EgAfbGameCloseNotify(context.Context, *EgAfbGameCloseNotifyReq) (*EgAfbGameCloseNotifyResp, error)
 	EgAfbBonusStatusNotify(context.Context, *EgAfbBonusStatusNotifyReq) (*EgAfbBonusStatusNotifyResp, error)
+	EgAfbPaid(context.Context, *EgAfbPaidReq) (*EgAfbPaidResp, error)
 	mustEmbedUnimplementedCoreServer()
 }
 
@@ -2927,6 +2939,9 @@ func (UnimplementedCoreServer) EgAfbGameCloseNotify(context.Context, *EgAfbGameC
 }
 func (UnimplementedCoreServer) EgAfbBonusStatusNotify(context.Context, *EgAfbBonusStatusNotifyReq) (*EgAfbBonusStatusNotifyResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method EgAfbBonusStatusNotify not implemented")
+}
+func (UnimplementedCoreServer) EgAfbPaid(context.Context, *EgAfbPaidReq) (*EgAfbPaidResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EgAfbPaid not implemented")
 }
 func (UnimplementedCoreServer) mustEmbedUnimplementedCoreServer() {}
 
@@ -5929,6 +5944,24 @@ func _Core_EgAfbBonusStatusNotify_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Core_EgAfbPaid_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EgAfbPaidReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).EgAfbPaid(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_EgAfbPaid_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).EgAfbPaid(ctx, req.(*EgAfbPaidReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Core_ServiceDesc is the grpc.ServiceDesc for Core service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -6599,6 +6632,10 @@ var Core_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "EgAfbBonusStatusNotify",
 			Handler:    _Core_EgAfbBonusStatusNotify_Handler,
+		},
+		{
+			MethodName: "EgAfbPaid",
+			Handler:    _Core_EgAfbPaid_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
