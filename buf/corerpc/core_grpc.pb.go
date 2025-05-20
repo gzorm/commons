@@ -186,6 +186,8 @@ const (
 	Core_EgAfbGameCloseNotify_FullMethodName          = "/core.Core/EgAfbGameCloseNotify"
 	Core_EgAfbBonusStatusNotify_FullMethodName        = "/core.Core/EgAfbBonusStatusNotify"
 	Core_EgAfbPaid_FullMethodName                     = "/core.Core/EgAfbPaid"
+	Core_EgPgBalance_FullMethodName                   = "/core.Core/EgPgBalance"
+	Core_EgPgBet_FullMethodName                       = "/core.Core/EgPgBet"
 )
 
 // CoreClient is the client API for Core service.
@@ -547,7 +549,7 @@ type CoreClient interface {
 	ElectronUserLogout(ctx context.Context, in *ElectronUserLogoutReq, opts ...grpc.CallOption) (*ElectronUserLogoutResp, error)
 	ElectronUserBroadcast(ctx context.Context, in *ElectronUserBroadcastReq, opts ...grpc.CallOption) (*ElectronUserBroadcastResp, error)
 	CompetitionRankingRewards(ctx context.Context, in *CompetitionRankingRewardsReq, opts ...grpc.CallOption) (*CompetitionRankingRewardsResp, error)
-	// eg
+	// eg-afb
 	EgAfbGetBalance(ctx context.Context, in *EgAfbGetBalanceReq, opts ...grpc.CallOption) (*EgAfbGetBalanceResp, error)
 	EgAfbBet(ctx context.Context, in *EgAfbBetReq, opts ...grpc.CallOption) (*EgAfbBetResp, error)
 	EgAfbBetPaid(ctx context.Context, in *EgAfbBetPaidReq, opts ...grpc.CallOption) (*EgAfbBetPaidResp, error)
@@ -555,6 +557,9 @@ type CoreClient interface {
 	EgAfbGameCloseNotify(ctx context.Context, in *EgAfbGameCloseNotifyReq, opts ...grpc.CallOption) (*EgAfbGameCloseNotifyResp, error)
 	EgAfbBonusStatusNotify(ctx context.Context, in *EgAfbBonusStatusNotifyReq, opts ...grpc.CallOption) (*EgAfbBonusStatusNotifyResp, error)
 	EgAfbPaid(ctx context.Context, in *EgAfbPaidReq, opts ...grpc.CallOption) (*EgAfbPaidResp, error)
+	// eg-pg
+	EgPgBalance(ctx context.Context, in *EgPgBalanceReq, opts ...grpc.CallOption) (*EgPgBalanceResp, error)
+	EgPgBet(ctx context.Context, in *EgPgBetReq, opts ...grpc.CallOption) (*EgPgBetResp, error)
 }
 
 type coreClient struct {
@@ -2068,6 +2073,24 @@ func (c *coreClient) EgAfbPaid(ctx context.Context, in *EgAfbPaidReq, opts ...gr
 	return out, nil
 }
 
+func (c *coreClient) EgPgBalance(ctx context.Context, in *EgPgBalanceReq, opts ...grpc.CallOption) (*EgPgBalanceResp, error) {
+	out := new(EgPgBalanceResp)
+	err := c.cc.Invoke(ctx, Core_EgPgBalance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) EgPgBet(ctx context.Context, in *EgPgBetReq, opts ...grpc.CallOption) (*EgPgBetResp, error) {
+	out := new(EgPgBetResp)
+	err := c.cc.Invoke(ctx, Core_EgPgBet_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CoreServer is the server API for Core service.
 // All implementations must embed UnimplementedCoreServer
 // for forward compatibility
@@ -2427,7 +2450,7 @@ type CoreServer interface {
 	ElectronUserLogout(context.Context, *ElectronUserLogoutReq) (*ElectronUserLogoutResp, error)
 	ElectronUserBroadcast(context.Context, *ElectronUserBroadcastReq) (*ElectronUserBroadcastResp, error)
 	CompetitionRankingRewards(context.Context, *CompetitionRankingRewardsReq) (*CompetitionRankingRewardsResp, error)
-	// eg
+	// eg-afb
 	EgAfbGetBalance(context.Context, *EgAfbGetBalanceReq) (*EgAfbGetBalanceResp, error)
 	EgAfbBet(context.Context, *EgAfbBetReq) (*EgAfbBetResp, error)
 	EgAfbBetPaid(context.Context, *EgAfbBetPaidReq) (*EgAfbBetPaidResp, error)
@@ -2435,6 +2458,9 @@ type CoreServer interface {
 	EgAfbGameCloseNotify(context.Context, *EgAfbGameCloseNotifyReq) (*EgAfbGameCloseNotifyResp, error)
 	EgAfbBonusStatusNotify(context.Context, *EgAfbBonusStatusNotifyReq) (*EgAfbBonusStatusNotifyResp, error)
 	EgAfbPaid(context.Context, *EgAfbPaidReq) (*EgAfbPaidResp, error)
+	// eg-pg
+	EgPgBalance(context.Context, *EgPgBalanceReq) (*EgPgBalanceResp, error)
+	EgPgBet(context.Context, *EgPgBetReq) (*EgPgBetResp, error)
 	mustEmbedUnimplementedCoreServer()
 }
 
@@ -2942,6 +2968,12 @@ func (UnimplementedCoreServer) EgAfbBonusStatusNotify(context.Context, *EgAfbBon
 }
 func (UnimplementedCoreServer) EgAfbPaid(context.Context, *EgAfbPaidReq) (*EgAfbPaidResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method EgAfbPaid not implemented")
+}
+func (UnimplementedCoreServer) EgPgBalance(context.Context, *EgPgBalanceReq) (*EgPgBalanceResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EgPgBalance not implemented")
+}
+func (UnimplementedCoreServer) EgPgBet(context.Context, *EgPgBetReq) (*EgPgBetResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EgPgBet not implemented")
 }
 func (UnimplementedCoreServer) mustEmbedUnimplementedCoreServer() {}
 
@@ -5962,6 +5994,42 @@ func _Core_EgAfbPaid_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Core_EgPgBalance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EgPgBalanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).EgPgBalance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_EgPgBalance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).EgPgBalance(ctx, req.(*EgPgBalanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_EgPgBet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EgPgBetReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).EgPgBet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_EgPgBet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).EgPgBet(ctx, req.(*EgPgBetReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Core_ServiceDesc is the grpc.ServiceDesc for Core service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -6636,6 +6704,14 @@ var Core_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "EgAfbPaid",
 			Handler:    _Core_EgAfbPaid_Handler,
+		},
+		{
+			MethodName: "EgPgBalance",
+			Handler:    _Core_EgPgBalance_Handler,
+		},
+		{
+			MethodName: "EgPgBet",
+			Handler:    _Core_EgPgBet_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
