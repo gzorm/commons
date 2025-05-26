@@ -99,8 +99,8 @@ const (
 	TG
 	ELECTRON
 	TABLES
-	SGAFB
-	SGPG
+	EGAFB
+	EGPG
 
 	//HABANERO1
 )
@@ -171,10 +171,10 @@ func (p PLAT) String() string {
 		return "v99_100003"
 	case ELECTRON:
 		return "v99_100002"
-	case SGAFB:
-		return "sg_afb"
-	case SGPG:
-		return "sg_pg"
+	case EGAFB:
+		return "eg_afb"
+	case EGPG:
+		return "eg_pg"
 	}
 	return ""
 }
