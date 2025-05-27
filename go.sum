@@ -48,7 +48,6 @@ github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym
 github.com/DATA-DOG/go-sqlmock v1.5.0/go.mod h1:f/Ixk793poVmq4qj/V1dPUg2JEAKC73Q5eFN3EC/SaM=
 github.com/DATA-DOG/go-sqlmock v1.5.2 h1:OcvFkGmslmlZibjAjaHm3L//6LiuBgolP7OputlJIzU=
 github.com/DATA-DOG/go-sqlmock v1.5.2/go.mod h1:88MAG/4G7SMwSE3CeA0ZKzrT5CiOU3OJ+JlNzwDqpNU=
-github.com/FZambia/sentinel v1.1.0 h1:qrCBfxc8SvJihYNjBWgwUI93ZCvFe/PJIPTHKmlp8a8=
 github.com/FZambia/sentinel v1.1.0/go.mod h1:ytL1Am/RLlAoAXG6Kj5LNuw/TRRQrv2rt2FT26vP5gI=
 github.com/Knetic/govaluate v3.0.1-0.20171022003610-9aa49832a739+incompatible/go.mod h1:r7JcOSlj0wfOMncg0iLm8Leh48TZaKVeNIfJntJ2wa0=
 github.com/Masterminds/semver/v3 v3.1.1 h1:hLg3sBzpNErnxhQtUy/mmLR2I9foDujNK030IGemrRc=
@@ -183,8 +182,6 @@ github.com/go-kit/log v0.2.0/go.mod h1:NwTd00d/i8cPZ3xOwwiv2PO5MOcx78fFErGNcVmBj
 github.com/go-kit/log v0.2.1/go.mod h1:NwTd00d/i8cPZ3xOwwiv2PO5MOcx78fFErGNcVmBjv0=
 github.com/go-locks/distlock v1.0.0 h1:92u84ruQhAwe7S5B1RwQuAIkYBxVkhwAvmaMW5Abzh8=
 github.com/go-locks/distlock v1.0.0/go.mod h1:7QCBMGPe2pj4bw7vinw+hUxNZF7nv4wNbVJYIP+UPaU=
-github.com/go-locks/testcase v0.0.0-20190220141255-1f257e03718f h1:VwQDNqMYMF0zkZO9EEQxDNlsH/5KUXplt0tcIR4SFPM=
-github.com/go-locks/testcase v0.0.0-20190220141255-1f257e03718f/go.mod h1:SdtJPcF4H0WrcVkJQ16kOU3APqM1ejUgAIlx9sq/Lp0=
 github.com/go-logfmt/logfmt v0.3.0/go.mod h1:Qt1PoO58o5twSAckw1HlFXLmHsOX5/0LbT9GBnD5lWE=
 github.com/go-logfmt/logfmt v0.4.0/go.mod h1:3RMwSq7FuexP4Kalkev3ejPJsZTpXXBr9+V4qmtdjCk=
 github.com/go-logfmt/logfmt v0.5.0/go.mod h1:wCYkCAKZfumFQihp8CzCvQ3paCTfi41vtzG1KdI/P7A=
@@ -480,12 +477,8 @@ github.com/kylelemons/godebug v1.1.0 h1:RPNrshWIDI6G2gRW9EHilWtl7Z6Sb1BR0xunSBf0
 github.com/kylelemons/godebug v1.1.0/go.mod h1:9/0rRGxNHcop5bhtWyNeEfOS8JIWk580+fNqagV/RAw=
 github.com/leodido/go-urn v1.4.0 h1:WT9HwE9SGECu3lg4d/dIA+jxlljEa1/ffXKmRjqdmIQ=
 github.com/leodido/go-urn v1.4.0/go.mod h1:bvxc+MVxLKB4z00jd1z+Dvzr47oO32F/QSNjSBOlFxI=
-github.com/letsfire/redigo v1.0.1 h1:UcJ2xWOHI7YPr9UKoHKssSv/qU5GE1Q4ciTknFyUDSM=
-github.com/letsfire/redigo v1.0.1/go.mod h1:QXnBmcEm9xbP2hCBx5fMgK4pvsqdC9mNXC9H3r8PHX4=
 github.com/letsfire/redigo/v2 v2.0.5 h1:rBfCkBHV/ojzoa34tdNfQWe7qH2ujRTu0ivoCQ0vcAA=
 github.com/letsfire/redigo/v2 v2.0.5/go.mod h1:tXDRB4P/BVtBTX+oWnJRlqmmx/JkG4ocyHC7DYIl0OU=
-github.com/letsfire/redisc v1.1.3 h1:06k7djv15h8DNZ9LRu7Gt9UJvJ2vjI91xQ0RedMO974=
-github.com/letsfire/redisc v1.1.3/go.mod h1:WmCYzd5orup/EMBV1FMxcIKeLP1R5zEtUcaBET9nzGo=
 github.com/lib/pq v1.0.0/go.mod h1:5WUZQaWbwv1U+lTReE5YruASi9Al49XbQIvNi/34Woo=
 github.com/lib/pq v1.1.0/go.mod h1:5WUZQaWbwv1U+lTReE5YruASi9Al49XbQIvNi/34Woo=
 github.com/lib/pq v1.2.0/go.mod h1:5WUZQaWbwv1U+lTReE5YruASi9Al49XbQIvNi/34Woo=
@@ -537,6 +530,8 @@ github.com/mitchellh/iochan v1.0.0/go.mod h1:JwYml1nuB7xOzsp52dPpHFffvOCDupsG0Qu
 github.com/mitchellh/mapstructure v0.0.0-20160808181253-ca63d7c062ee/go.mod h1:FVVH3fgwuzCH5S8UJGiWEs2h04kUh9fWfEaFds41c1Y=
 github.com/mitchellh/mapstructure v1.1.2/go.mod h1:FVVH3fgwuzCH5S8UJGiWEs2h04kUh9fWfEaFds41c1Y=
 github.com/mitchellh/mapstructure v1.4.1/go.mod h1:bFUtVrKA4DC2yAKiSyO/QUcy7e+RRV2QTWOzhPopBRo=
+github.com/mna/redisc v1.1.6 h1:e9GL6MPS+jhKAe+RL20jZ+eG1tLSm29L2mbCl0WI2pY=
+github.com/mna/redisc v1.1.6/go.mod h1:GXeOb7zyYKiT+K8MKdIiJvuv7MfhDoQGcuzfiJQmqQI=
 github.com/mna/redisc v1.3.2/go.mod h1:CplIoaSTDi5h9icnj4FLbRgHoNKCHDNJDVRztWDGeSQ=
 github.com/mna/redisc v1.4.0 h1:rBKXyGO/39SGmYoRKCyzXcBpoMMKqkikg8E1G8YIfSA=
 github.com/mna/redisc v1.4.0/go.mod h1:CplIoaSTDi5h9icnj4FLbRgHoNKCHDNJDVRztWDGeSQ=

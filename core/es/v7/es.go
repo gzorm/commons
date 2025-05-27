@@ -9,6 +9,7 @@ import (
 	"fmt"
 	elasticsearch7 "github.com/elastic/go-elasticsearch/v7"
 	"github.com/elastic/go-elasticsearch/v7/esapi"
+	"io"
 	"net"
 	"net/http"
 	"os"
@@ -593,6 +594,50 @@ func (es *ElasticsearchClient) QueryByOpenDistroSQL(query string, formatType str
 
 	if res.StatusCode >= 400 {
 		return nil, fmt.Errorf("error response from Elasticsearch: %s", res.Status)
+	}
+
+	var result map[string]interface{}
+	if err := json.NewDecoder(res.Body).Decode(&result); err != nil {
+		return nil, fmt.Errorf("error parsing response body: %s", err)
+	}
+
+	return result, nil
+}
+
+func (es *ElasticsearchClient) QueryByOpenDistroSQL718(query string, formatType string) (map[string]interface{}, error) {
+	body := map[string]interface{}{
+		"query": query,
+	}
+
+	bodyBytes, err := json.Marshal(body)
+	if err != nil {
+		return nil, fmt.Errorf("error marshalling query body: %s", err)
+	}
+
+	// 这里假设使用的是OpenDistro SQL插件标准接口路径
+	url := fmt.Sprintf("%s/_opendistro/_sql?format=%s", es.baseURL, formatType)
+	// 如果是 Elastic SQL 插件，路径可能是 "/_sql"
+
+	req, err := http.NewRequest("POST", url, bytes.NewReader(bodyBytes))
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %s", err)
+	}
+
+	req.Header.Set("Content-Type", "application/json")
+
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	defer cancel()
+
+	res, err := es.client.Perform(req.WithContext(ctx))
+	if err != nil {
+		return nil, fmt.Errorf("error performing request: %s", err)
+	}
+	defer res.Body.Close()
+
+	if res.StatusCode >= 400 {
+		// 可以打印返回体做排查
+		respBody, _ := io.ReadAll(res.Body)
+		return nil, fmt.Errorf("error response from Elasticsearch: %s, body: %s", res.Status, string(respBody))
 	}
 
 	var result map[string]interface{}

@@ -19,7 +19,6 @@ require (
 	github.com/fatih/color v1.16.0
 	github.com/glebarez/sqlite v1.11.0
 	github.com/go-locks/distlock v1.0.0
-	github.com/go-locks/testcase v0.0.0-20190220141255-1f257e03718f
 	github.com/go-playground/locales v0.14.1
 	github.com/go-playground/universal-translator v0.18.1
 	github.com/go-playground/validator/v10 v10.21.0
@@ -34,7 +33,6 @@ require (
 	github.com/hibiken/asynq v0.24.1
 	github.com/json-iterator/go v1.1.12
 	github.com/karlseguin/ccache/v3 v3.0.5
-	github.com/letsfire/redigo v1.0.1
 	github.com/letsfire/redigo/v2 v2.0.5
 	github.com/letsfire/redisc v1.1.3
 	github.com/lib/pq v1.10.9
@@ -210,3 +208,5 @@ require (
 	sigs.k8s.io/yaml v1.4.0 // indirect
 	stathat.com/c/consistent v1.0.0 // indirect
 )
+
+replace github.com/letsfire/redisc => github.com/mna/redisc v1.1.6
