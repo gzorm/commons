@@ -614,9 +614,7 @@ func (es *ElasticsearchClient) QueryByOpenDistroSQL718(query string, formatType 
 		return nil, fmt.Errorf("error marshalling query body: %s", err)
 	}
 
-	// 这里注意：es.baseURL 不应带结尾的斜杠
-	// OpenDistro SQL 标准接口路径（注意路径正确性）
-	url := es.baseURL + "/_opendistro/_sql?format=" + formatType
+	url := es.baseURL + "/_sql?format=" + formatType
 
 	req, err := http.NewRequest("POST", url, bytes.NewReader(bodyBytes))
 	if err != nil {
@@ -642,6 +640,45 @@ func (es *ElasticsearchClient) QueryByOpenDistroSQL718(query string, formatType 
 	var result map[string]interface{}
 	if err := json.NewDecoder(res.Body).Decode(&result); err != nil {
 		return nil, fmt.Errorf("error parsing response body: %s", err)
+	}
+
+	return result, nil
+}
+
+// QuerySQL 发送 SQL 查询并返回解析后的结果
+func (es *ElasticsearchClient) QuerySQL(query, format string) (map[string]interface{}, error) {
+	bodyBytes, err := json.Marshal(map[string]string{
+		"query": query,
+	})
+	if err != nil {
+		return nil, fmt.Errorf("marshal request body: %w", err)
+	}
+
+	url := fmt.Sprintf("%s/_sql?format=%s", es.baseURL, format)
+
+	req, err := http.NewRequest("POST", url, bytes.NewReader(bodyBytes))
+	if err != nil {
+		return nil, fmt.Errorf("create request: %w", err)
+	}
+	req.Header.Set("Content-Type", "application/json")
+
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	defer cancel()
+
+	resp, err := es.client.Perform(req.WithContext(ctx))
+	if err != nil {
+		return nil, fmt.Errorf("perform request: %w", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode >= 400 {
+		body, _ := io.ReadAll(resp.Body)
+		return nil, fmt.Errorf("ES error [%s]: %s", resp.Status, string(body))
+	}
+
+	var result map[string]interface{}
+	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
+		return nil, fmt.Errorf("decode response: %w", err)
 	}
 
 	return result, nil
