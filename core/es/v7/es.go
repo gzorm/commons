@@ -645,27 +645,22 @@ func (es *ElasticsearchClient) QueryByOpenDistroSQL718(query string, formatType 
 	return result, nil
 }
 
-// QuerySQL 发送 SQL 查询并返回解析后的结果
-func (es *ElasticsearchClient) QuerySQL(query, format string) (map[string]interface{}, error) {
-	bodyBytes, err := json.Marshal(map[string]string{
-		"query": query,
-	})
+// QueryDSL 执行原生DSL查询
+func (es *ElasticsearchClient) QueryDSL(ctx context.Context, index string, query map[string]interface{}) (map[string]interface{}, error) {
+	bodyBytes, err := json.Marshal(query)
 	if err != nil {
 		return nil, fmt.Errorf("marshal request body: %w", err)
 	}
 
-	url := fmt.Sprintf("%s/_sql?format=%s", es.baseURL, format)
+	url := fmt.Sprintf("%s/%s/_search", es.baseURL, index)
 
-	req, err := http.NewRequest("POST", url, bytes.NewReader(bodyBytes))
+	req, err := http.NewRequestWithContext(ctx, "POST", url, bytes.NewReader(bodyBytes))
 	if err != nil {
 		return nil, fmt.Errorf("create request: %w", err)
 	}
 	req.Header.Set("Content-Type", "application/json")
 
-	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
-	defer cancel()
-
-	resp, err := es.client.Perform(req.WithContext(ctx))
+	resp, err := es.client.Perform(req)
 	if err != nil {
 		return nil, fmt.Errorf("perform request: %w", err)
 	}
