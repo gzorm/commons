@@ -614,9 +614,9 @@ func (es *ElasticsearchClient) QueryByOpenDistroSQL718(query string, formatType 
 		return nil, fmt.Errorf("error marshalling query body: %s", err)
 	}
 
-	// 这里假设使用的是OpenDistro SQL插件标准接口路径
-	url := fmt.Sprintf("%s/_opendistro/_sql?format=%s", es.baseURL, formatType)
-	// 如果是 Elastic SQL 插件，路径可能是 "/_sql"
+	// 这里注意：es.baseURL 不应带结尾的斜杠
+	// OpenDistro SQL 标准接口路径（注意路径正确性）
+	url := es.baseURL + "/_opendistro/_sql?format=" + formatType
 
 	req, err := http.NewRequest("POST", url, bytes.NewReader(bodyBytes))
 	if err != nil {
@@ -635,7 +635,6 @@ func (es *ElasticsearchClient) QueryByOpenDistroSQL718(query string, formatType 
 	defer res.Body.Close()
 
 	if res.StatusCode >= 400 {
-		// 可以打印返回体做排查
 		respBody, _ := io.ReadAll(res.Body)
 		return nil, fmt.Errorf("error response from Elasticsearch: %s, body: %s", res.Status, string(respBody))
 	}
