@@ -537,7 +537,8 @@ func (es *ElasticsearchClient) QueryByOpenDistroSQLHaWei(query string, formatTyp
 		return nil, fmt.Errorf("error marshalling query body: %s", err)
 	}
 
-	req, err := http.NewRequest("POST", fmt.Sprintf("%s/_opendistro/_sql?format=%v", es.baseURL, formatType), bytes.NewReader(bodyBytes))
+	//req, err := http.NewRequest("POST", fmt.Sprintf("%s/_opendistro/_sql?format=%v", es.baseURL, formatType), bytes.NewReader(bodyBytes))
+	req, err := http.NewRequest("POST", fmt.Sprintf("%s/_sql?format=%v", es.baseURL, formatType), bytes.NewReader(bodyBytes))
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %s", err)
 	}
