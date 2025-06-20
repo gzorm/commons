@@ -36,6 +36,7 @@ type GameList struct {
 	IsCasino                int64           `gorm:"column:is_casino;type:tinyint;comment:是否isCasino 1是 0否" json:"isCasino"`                                                                           // 是否isCasino 1是 0否
 	BetTotalLimit           decimal.Decimal `gorm:"column:bet_total_limit;type:decimal(20,2);default:99999.00;comment:比赛下注总金额限制" json:"betTotalLimit"`                                                // 比赛下注总金额限制
 	SingleUserBetPercentage decimal.Decimal `gorm:"column:single_user_bet_percentage;type:decimal(5,2);default:50.00;comment:单用户下注金额不超过总金额的百分比比例(数值范围0-100，如50表示50%)" json:"singleUserBetPercentage"` // 单用户下注金额不超过总金额的百分比比例(数值范围0-100，如50表示50%)
+	BetTotal                decimal.Decimal `gorm:"column:bet_total;type:decimal(20,2);default:0.00;comment:比赛当前下注总金额" json:"betTotal"`                                                               // 比赛当前下注总金额
 }
 
 // TableName GameList's table name

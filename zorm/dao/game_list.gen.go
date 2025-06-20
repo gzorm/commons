@@ -53,6 +53,7 @@ func newGameList(db *gorm.DB, opts ...gen.DOOption) gameList {
 	_gameList.IsCasino = field.NewInt64(tableName, "is_casino")
 	_gameList.BetTotalLimit = field.NewField(tableName, "bet_total_limit")
 	_gameList.SingleUserBetPercentage = field.NewField(tableName, "single_user_bet_percentage")
+	_gameList.BetTotal = field.NewField(tableName, "bet_total")
 
 	_gameList.fillFieldMap()
 
@@ -90,6 +91,7 @@ type gameList struct {
 	IsCasino                field.Int64  // 是否isCasino 1是 0否
 	BetTotalLimit           field.Field  // 比赛下注总金额限制
 	SingleUserBetPercentage field.Field  // 单用户下注金额不超过总金额的百分比比例(数值范围0-100，如50表示50%)
+	BetTotal                field.Field  // 比赛当前下注总金额
 
 	fieldMap map[string]field.Expr
 }
@@ -132,6 +134,7 @@ func (g *gameList) updateTableName(table string) *gameList {
 	g.IsCasino = field.NewInt64(table, "is_casino")
 	g.BetTotalLimit = field.NewField(table, "bet_total_limit")
 	g.SingleUserBetPercentage = field.NewField(table, "single_user_bet_percentage")
+	g.BetTotal = field.NewField(table, "bet_total")
 
 	g.fillFieldMap()
 
@@ -148,7 +151,7 @@ func (g *gameList) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (g *gameList) fillFieldMap() {
-	g.fieldMap = make(map[string]field.Expr, 26)
+	g.fieldMap = make(map[string]field.Expr, 27)
 	g.fieldMap["id"] = g.ID
 	g.fieldMap["code"] = g.Code
 	g.fieldMap["game_provider_subtype_id"] = g.GameProviderSubtypeID
@@ -175,6 +178,7 @@ func (g *gameList) fillFieldMap() {
 	g.fieldMap["is_casino"] = g.IsCasino
 	g.fieldMap["bet_total_limit"] = g.BetTotalLimit
 	g.fieldMap["single_user_bet_percentage"] = g.SingleUserBetPercentage
+	g.fieldMap["bet_total"] = g.BetTotal
 }
 
 func (g gameList) clone(db *gorm.DB) gameList {
