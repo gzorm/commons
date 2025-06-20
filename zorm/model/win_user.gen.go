@@ -67,6 +67,7 @@ type WinUser struct {
 	CodeURL           string          `gorm:"column:code_url;type:varchar(255);comment:google二维码" json:"codeUrl"`                              // google二维码
 	CodeStatus        int64           `gorm:"column:code_status;type:tinyint(1);not null;comment:google绑定验证记录:0=未绑定 ,1=已绑定" json:"codeStatus"` // google绑定验证记录:0=未绑定 ,1=已绑定
 	UserType          int64           `gorm:"column:user_type;type:tinyint(1);default:1;comment:1==手机注册  3==whatsapp 5==邮箱" json:"userType"`   // 1==手机注册  3==whatsapp 5==邮箱
+	IsGuest           int64           `gorm:"column:is_guest;type:tinyint;not null;default:1;comment:是否游客：1=否 3=是" json:"isGuest"`             // 是否游客：1=否 3=是
 }
 
 // TableName WinUser's table name
