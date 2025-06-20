@@ -51,6 +51,8 @@ func newGameList(db *gorm.DB, opts ...gen.DOOption) gameList {
 	_gameList.UpdatedBy = field.NewString(tableName, "updated_by")
 	_gameList.Maintenance = field.NewString(tableName, "maintenance")
 	_gameList.IsCasino = field.NewInt64(tableName, "is_casino")
+	_gameList.BetTotalLimit = field.NewField(tableName, "bet_total_limit")
+	_gameList.SingleUserBetPercentage = field.NewField(tableName, "single_user_bet_percentage")
 
 	_gameList.fillFieldMap()
 
@@ -61,31 +63,33 @@ func newGameList(db *gorm.DB, opts ...gen.DOOption) gameList {
 type gameList struct {
 	gameListDo
 
-	ALL                   field.Asterisk
-	ID                    field.Int64
-	Code                  field.String // 启动游戏编码
-	GameProviderSubtypeID field.Int64  // 关联game_provider_subtype表ID
-	GamePagcorID          field.Int64  // pagcor类型id
-	GameTypeID            field.Int64  // 游戏类型id
-	GameProviderID        field.Int64  // 游戏供应商id
-	GameStartParam        field.String // 特殊游戏三方启动参数，如:elbet
-	GameURL               field.String // 三方平台游戏url
-	Sort                  field.Int64  // 排序: 从低到高
-	Status                field.Int64  // 状态: 1-启用 0-停用
-	Name                  field.String // 简体名称
-	OriginalIcon          field.String // 英文图片
-	LatestIcon            field.String // 新版游戏图片
-	IsNew                 field.Int64  // 是否新游戏:1-是 0-否
-	IsRotated             field.Int64  // 1=否, 3=是
-	FavoriteStar          field.Int64  // 收藏值
-	HotStar               field.Int64  // 热度
-	Device                field.Int64  // 设备:0-all 1-pc 2-h5
-	CreatedAt             field.Int64
-	UpdatedAt             field.Int64
-	CreatedBy             field.String // 操作人姓名
-	UpdatedBy             field.String // 最后更新人
-	Maintenance           field.String // 维护时间
-	IsCasino              field.Int64  // 是否isCasino 1是 0否
+	ALL                     field.Asterisk
+	ID                      field.Int64
+	Code                    field.String // 启动游戏编码
+	GameProviderSubtypeID   field.Int64  // 关联game_provider_subtype表ID
+	GamePagcorID            field.Int64  // pagcor类型id
+	GameTypeID              field.Int64  // 游戏类型id
+	GameProviderID          field.Int64  // 游戏供应商id
+	GameStartParam          field.String // 特殊游戏三方启动参数，如: elbet
+	GameURL                 field.String // 三方平台游戏url
+	Sort                    field.Int64  // 排序: 从低到高
+	Status                  field.Int64  // 状态: 1-启用 0-停用
+	Name                    field.String // 简体名称
+	OriginalIcon            field.String // 英文图片
+	LatestIcon              field.String // 新版游戏图片
+	IsNew                   field.Int64  // 是否新游戏:1-是 0-否
+	IsRotated               field.Int64  // 1=否(横屏), 3=是(竖屏)
+	FavoriteStar            field.Int64  // 收藏值
+	HotStar                 field.Int64  // 热度
+	Device                  field.Int64  // 设备:0-all 1-pc 2-h5
+	CreatedAt               field.Int64
+	UpdatedAt               field.Int64
+	CreatedBy               field.String // 操作人姓名
+	UpdatedBy               field.String // 最后更新人
+	Maintenance             field.String // 维护时间
+	IsCasino                field.Int64  // 是否isCasino 1是 0否
+	BetTotalLimit           field.Field  // 比赛下注总金额限制
+	SingleUserBetPercentage field.Field  // 单用户下注金额不超过总金额的百分比比例(数值范围0-100，如50表示50%)
 
 	fieldMap map[string]field.Expr
 }
@@ -126,6 +130,8 @@ func (g *gameList) updateTableName(table string) *gameList {
 	g.UpdatedBy = field.NewString(table, "updated_by")
 	g.Maintenance = field.NewString(table, "maintenance")
 	g.IsCasino = field.NewInt64(table, "is_casino")
+	g.BetTotalLimit = field.NewField(table, "bet_total_limit")
+	g.SingleUserBetPercentage = field.NewField(table, "single_user_bet_percentage")
 
 	g.fillFieldMap()
 
@@ -142,7 +148,7 @@ func (g *gameList) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (g *gameList) fillFieldMap() {
-	g.fieldMap = make(map[string]field.Expr, 24)
+	g.fieldMap = make(map[string]field.Expr, 26)
 	g.fieldMap["id"] = g.ID
 	g.fieldMap["code"] = g.Code
 	g.fieldMap["game_provider_subtype_id"] = g.GameProviderSubtypeID
@@ -167,6 +173,8 @@ func (g *gameList) fillFieldMap() {
 	g.fieldMap["updated_by"] = g.UpdatedBy
 	g.fieldMap["maintenance"] = g.Maintenance
 	g.fieldMap["is_casino"] = g.IsCasino
+	g.fieldMap["bet_total_limit"] = g.BetTotalLimit
+	g.fieldMap["single_user_bet_percentage"] = g.SingleUserBetPercentage
 }
 
 func (g gameList) clone(db *gorm.DB) gameList {
