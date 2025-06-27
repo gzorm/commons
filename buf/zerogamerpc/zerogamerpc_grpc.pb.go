@@ -97,6 +97,7 @@ const (
 	Zerogamerpc_GetRecommendLiveRoomMatchList_FullMethodName         = "/zerogamerpc.Zerogamerpc/getRecommendLiveRoomMatchList"
 	Zerogamerpc_GetRecommentLiveRoomMatchDetailOption_FullMethodName = "/zerogamerpc.Zerogamerpc/getRecommentLiveRoomMatchDetailOption"
 	Zerogamerpc_GetRecommentLiveRoomMatchResult_FullMethodName       = "/zerogamerpc.Zerogamerpc/getRecommentLiveRoomMatchResult"
+	Zerogamerpc_SaBaTourist_FullMethodName                           = "/zerogamerpc.Zerogamerpc/SaBaTourist"
 )
 
 // ZerogamerpcClient is the client API for Zerogamerpc service.
@@ -259,6 +260,8 @@ type ZerogamerpcClient interface {
 	GetRecommentLiveRoomMatchDetailOption(ctx context.Context, in *GetRecommentLiveRoomMatchDetailOptionReq, opts ...grpc.CallOption) (*GetRecommentLiveRoomMatchDetailOptionResp, error)
 	//group:live
 	GetRecommentLiveRoomMatchResult(ctx context.Context, in *GetRecommentLiveRoomMatchResultReq, opts ...grpc.CallOption) (*GetRecommentLiveRoomMatchResultResp, error)
+	//group:saba
+	SaBaTourist(ctx context.Context, in *SaBaTouristReq, opts ...grpc.CallOption) (*SaBaTouristResp, error)
 }
 
 type zerogamerpcClient struct {
@@ -971,6 +974,15 @@ func (c *zerogamerpcClient) GetRecommentLiveRoomMatchResult(ctx context.Context,
 	return out, nil
 }
 
+func (c *zerogamerpcClient) SaBaTourist(ctx context.Context, in *SaBaTouristReq, opts ...grpc.CallOption) (*SaBaTouristResp, error) {
+	out := new(SaBaTouristResp)
+	err := c.cc.Invoke(ctx, Zerogamerpc_SaBaTourist_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ZerogamerpcServer is the server API for Zerogamerpc service.
 // All implementations must embed UnimplementedZerogamerpcServer
 // for forward compatibility
@@ -1131,6 +1143,8 @@ type ZerogamerpcServer interface {
 	GetRecommentLiveRoomMatchDetailOption(context.Context, *GetRecommentLiveRoomMatchDetailOptionReq) (*GetRecommentLiveRoomMatchDetailOptionResp, error)
 	//group:live
 	GetRecommentLiveRoomMatchResult(context.Context, *GetRecommentLiveRoomMatchResultReq) (*GetRecommentLiveRoomMatchResultResp, error)
+	//group:saba
+	SaBaTourist(context.Context, *SaBaTouristReq) (*SaBaTouristResp, error)
 	mustEmbedUnimplementedZerogamerpcServer()
 }
 
@@ -1371,6 +1385,9 @@ func (UnimplementedZerogamerpcServer) GetRecommentLiveRoomMatchDetailOption(cont
 }
 func (UnimplementedZerogamerpcServer) GetRecommentLiveRoomMatchResult(context.Context, *GetRecommentLiveRoomMatchResultReq) (*GetRecommentLiveRoomMatchResultResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRecommentLiveRoomMatchResult not implemented")
+}
+func (UnimplementedZerogamerpcServer) SaBaTourist(context.Context, *SaBaTouristReq) (*SaBaTouristResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SaBaTourist not implemented")
 }
 func (UnimplementedZerogamerpcServer) mustEmbedUnimplementedZerogamerpcServer() {}
 
@@ -2789,6 +2806,24 @@ func _Zerogamerpc_GetRecommentLiveRoomMatchResult_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Zerogamerpc_SaBaTourist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SaBaTouristReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ZerogamerpcServer).SaBaTourist(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Zerogamerpc_SaBaTourist_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ZerogamerpcServer).SaBaTourist(ctx, req.(*SaBaTouristReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Zerogamerpc_ServiceDesc is the grpc.ServiceDesc for Zerogamerpc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -3107,6 +3142,10 @@ var Zerogamerpc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getRecommentLiveRoomMatchResult",
 			Handler:    _Zerogamerpc_GetRecommentLiveRoomMatchResult_Handler,
+		},
+		{
+			MethodName: "SaBaTourist",
+			Handler:    _Zerogamerpc_SaBaTourist_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
