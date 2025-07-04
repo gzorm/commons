@@ -188,6 +188,13 @@ const (
 	Core_EgAfbPaid_FullMethodName                     = "/core.Core/EgAfbPaid"
 	Core_EgPgBalance_FullMethodName                   = "/core.Core/EgPgBalance"
 	Core_EgPgBet_FullMethodName                       = "/core.Core/EgPgBet"
+	Core_LiveCasinoCheck_FullMethodName               = "/core.Core/LiveCasinoCheck"
+	Core_LiveCasinoBalance_FullMethodName             = "/core.Core/LiveCasinoBalance"
+	Core_LiveCasinoBet_FullMethodName                 = "/core.Core/LiveCasinoBet"
+	Core_LiveCasinoResult_FullMethodName              = "/core.Core/LiveCasinoResult"
+	Core_LiveCasinoEndRound_FullMethodName            = "/core.Core/LiveCasinoEndRound"
+	Core_LiveCasinoCancel_FullMethodName              = "/core.Core/LiveCasinoCancel"
+	Core_LiveCasinoRefund_FullMethodName              = "/core.Core/LiveCasinoRefund"
 )
 
 // CoreClient is the client API for Core service.
@@ -560,6 +567,14 @@ type CoreClient interface {
 	// eg-pg
 	EgPgBalance(ctx context.Context, in *EgPgBalanceReq, opts ...grpc.CallOption) (*EgPgBalanceResp, error)
 	EgPgBet(ctx context.Context, in *EgPgBetReq, opts ...grpc.CallOption) (*EgPgBetResp, error)
+	// LiveCasino
+	LiveCasinoCheck(ctx context.Context, in *LiveCasinoCheckReq, opts ...grpc.CallOption) (*LiveCasinoCheckResp, error)
+	LiveCasinoBalance(ctx context.Context, in *LiveCasinoBalanceReq, opts ...grpc.CallOption) (*LiveCasinoBalanceResp, error)
+	LiveCasinoBet(ctx context.Context, in *LiveCasinoBetReq, opts ...grpc.CallOption) (*LiveCasinoBetResp, error)
+	LiveCasinoResult(ctx context.Context, in *LiveCasinoResultReq, opts ...grpc.CallOption) (*LiveCasinoResultResp, error)
+	LiveCasinoEndRound(ctx context.Context, in *LiveCasinoEndRoundReq, opts ...grpc.CallOption) (*LiveCasinoEndRoundResp, error)
+	LiveCasinoCancel(ctx context.Context, in *LiveCasinoCancelReq, opts ...grpc.CallOption) (*LiveCasinoCancelResp, error)
+	LiveCasinoRefund(ctx context.Context, in *LiveCasinoRefundReq, opts ...grpc.CallOption) (*LiveCasinoRefundResp, error)
 }
 
 type coreClient struct {
@@ -2091,6 +2106,69 @@ func (c *coreClient) EgPgBet(ctx context.Context, in *EgPgBetReq, opts ...grpc.C
 	return out, nil
 }
 
+func (c *coreClient) LiveCasinoCheck(ctx context.Context, in *LiveCasinoCheckReq, opts ...grpc.CallOption) (*LiveCasinoCheckResp, error) {
+	out := new(LiveCasinoCheckResp)
+	err := c.cc.Invoke(ctx, Core_LiveCasinoCheck_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) LiveCasinoBalance(ctx context.Context, in *LiveCasinoBalanceReq, opts ...grpc.CallOption) (*LiveCasinoBalanceResp, error) {
+	out := new(LiveCasinoBalanceResp)
+	err := c.cc.Invoke(ctx, Core_LiveCasinoBalance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) LiveCasinoBet(ctx context.Context, in *LiveCasinoBetReq, opts ...grpc.CallOption) (*LiveCasinoBetResp, error) {
+	out := new(LiveCasinoBetResp)
+	err := c.cc.Invoke(ctx, Core_LiveCasinoBet_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) LiveCasinoResult(ctx context.Context, in *LiveCasinoResultReq, opts ...grpc.CallOption) (*LiveCasinoResultResp, error) {
+	out := new(LiveCasinoResultResp)
+	err := c.cc.Invoke(ctx, Core_LiveCasinoResult_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) LiveCasinoEndRound(ctx context.Context, in *LiveCasinoEndRoundReq, opts ...grpc.CallOption) (*LiveCasinoEndRoundResp, error) {
+	out := new(LiveCasinoEndRoundResp)
+	err := c.cc.Invoke(ctx, Core_LiveCasinoEndRound_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) LiveCasinoCancel(ctx context.Context, in *LiveCasinoCancelReq, opts ...grpc.CallOption) (*LiveCasinoCancelResp, error) {
+	out := new(LiveCasinoCancelResp)
+	err := c.cc.Invoke(ctx, Core_LiveCasinoCancel_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) LiveCasinoRefund(ctx context.Context, in *LiveCasinoRefundReq, opts ...grpc.CallOption) (*LiveCasinoRefundResp, error) {
+	out := new(LiveCasinoRefundResp)
+	err := c.cc.Invoke(ctx, Core_LiveCasinoRefund_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CoreServer is the server API for Core service.
 // All implementations must embed UnimplementedCoreServer
 // for forward compatibility
@@ -2461,6 +2539,14 @@ type CoreServer interface {
 	// eg-pg
 	EgPgBalance(context.Context, *EgPgBalanceReq) (*EgPgBalanceResp, error)
 	EgPgBet(context.Context, *EgPgBetReq) (*EgPgBetResp, error)
+	// LiveCasino
+	LiveCasinoCheck(context.Context, *LiveCasinoCheckReq) (*LiveCasinoCheckResp, error)
+	LiveCasinoBalance(context.Context, *LiveCasinoBalanceReq) (*LiveCasinoBalanceResp, error)
+	LiveCasinoBet(context.Context, *LiveCasinoBetReq) (*LiveCasinoBetResp, error)
+	LiveCasinoResult(context.Context, *LiveCasinoResultReq) (*LiveCasinoResultResp, error)
+	LiveCasinoEndRound(context.Context, *LiveCasinoEndRoundReq) (*LiveCasinoEndRoundResp, error)
+	LiveCasinoCancel(context.Context, *LiveCasinoCancelReq) (*LiveCasinoCancelResp, error)
+	LiveCasinoRefund(context.Context, *LiveCasinoRefundReq) (*LiveCasinoRefundResp, error)
 	mustEmbedUnimplementedCoreServer()
 }
 
@@ -2974,6 +3060,27 @@ func (UnimplementedCoreServer) EgPgBalance(context.Context, *EgPgBalanceReq) (*E
 }
 func (UnimplementedCoreServer) EgPgBet(context.Context, *EgPgBetReq) (*EgPgBetResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method EgPgBet not implemented")
+}
+func (UnimplementedCoreServer) LiveCasinoCheck(context.Context, *LiveCasinoCheckReq) (*LiveCasinoCheckResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LiveCasinoCheck not implemented")
+}
+func (UnimplementedCoreServer) LiveCasinoBalance(context.Context, *LiveCasinoBalanceReq) (*LiveCasinoBalanceResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LiveCasinoBalance not implemented")
+}
+func (UnimplementedCoreServer) LiveCasinoBet(context.Context, *LiveCasinoBetReq) (*LiveCasinoBetResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LiveCasinoBet not implemented")
+}
+func (UnimplementedCoreServer) LiveCasinoResult(context.Context, *LiveCasinoResultReq) (*LiveCasinoResultResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LiveCasinoResult not implemented")
+}
+func (UnimplementedCoreServer) LiveCasinoEndRound(context.Context, *LiveCasinoEndRoundReq) (*LiveCasinoEndRoundResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LiveCasinoEndRound not implemented")
+}
+func (UnimplementedCoreServer) LiveCasinoCancel(context.Context, *LiveCasinoCancelReq) (*LiveCasinoCancelResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LiveCasinoCancel not implemented")
+}
+func (UnimplementedCoreServer) LiveCasinoRefund(context.Context, *LiveCasinoRefundReq) (*LiveCasinoRefundResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LiveCasinoRefund not implemented")
 }
 func (UnimplementedCoreServer) mustEmbedUnimplementedCoreServer() {}
 
@@ -6030,6 +6137,132 @@ func _Core_EgPgBet_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Core_LiveCasinoCheck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LiveCasinoCheckReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).LiveCasinoCheck(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_LiveCasinoCheck_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).LiveCasinoCheck(ctx, req.(*LiveCasinoCheckReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_LiveCasinoBalance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LiveCasinoBalanceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).LiveCasinoBalance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_LiveCasinoBalance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).LiveCasinoBalance(ctx, req.(*LiveCasinoBalanceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_LiveCasinoBet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LiveCasinoBetReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).LiveCasinoBet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_LiveCasinoBet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).LiveCasinoBet(ctx, req.(*LiveCasinoBetReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_LiveCasinoResult_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LiveCasinoResultReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).LiveCasinoResult(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_LiveCasinoResult_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).LiveCasinoResult(ctx, req.(*LiveCasinoResultReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_LiveCasinoEndRound_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LiveCasinoEndRoundReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).LiveCasinoEndRound(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_LiveCasinoEndRound_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).LiveCasinoEndRound(ctx, req.(*LiveCasinoEndRoundReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_LiveCasinoCancel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LiveCasinoCancelReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).LiveCasinoCancel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_LiveCasinoCancel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).LiveCasinoCancel(ctx, req.(*LiveCasinoCancelReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_LiveCasinoRefund_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LiveCasinoRefundReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).LiveCasinoRefund(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_LiveCasinoRefund_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).LiveCasinoRefund(ctx, req.(*LiveCasinoRefundReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Core_ServiceDesc is the grpc.ServiceDesc for Core service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -6712,6 +6945,34 @@ var Core_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "EgPgBet",
 			Handler:    _Core_EgPgBet_Handler,
+		},
+		{
+			MethodName: "LiveCasinoCheck",
+			Handler:    _Core_LiveCasinoCheck_Handler,
+		},
+		{
+			MethodName: "LiveCasinoBalance",
+			Handler:    _Core_LiveCasinoBalance_Handler,
+		},
+		{
+			MethodName: "LiveCasinoBet",
+			Handler:    _Core_LiveCasinoBet_Handler,
+		},
+		{
+			MethodName: "LiveCasinoResult",
+			Handler:    _Core_LiveCasinoResult_Handler,
+		},
+		{
+			MethodName: "LiveCasinoEndRound",
+			Handler:    _Core_LiveCasinoEndRound_Handler,
+		},
+		{
+			MethodName: "LiveCasinoCancel",
+			Handler:    _Core_LiveCasinoCancel_Handler,
+		},
+		{
+			MethodName: "LiveCasinoRefund",
+			Handler:    _Core_LiveCasinoRefund_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
