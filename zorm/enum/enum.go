@@ -101,7 +101,7 @@ const (
 	TABLES
 	EGAFB
 	EGPG
-	LIVECASINO
+	LUCKYMONACO
 
 	//HABANERO1
 )
@@ -176,8 +176,8 @@ func (p PLAT) String() string {
 		return "eg_afb"
 	case EGPG:
 		return "eg_pg"
-	case LIVECASINO:
-		return "LiveCasino"
+	case LUCKYMONACO:
+		return "LuckyMonaco"
 	}
 	return ""
 }
