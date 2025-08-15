@@ -89,7 +89,7 @@ const (
 	UserRpc_GetUserRetentionRate_FullMethodName          = "/userrpc.UserRpc/getUserRetentionRate"
 	UserRpc_RegisterUsernamePrompt_FullMethodName        = "/userrpc.UserRpc/RegisterUsernamePrompt"
 	UserRpc_AdminLogout_FullMethodName                   = "/userrpc.UserRpc/AdminLogout"
-	UserRpc_OnlineUserCountList_FullMethodName           = "/userrpc.UserRpc/OnlineUserCountList"
+	UserRpc_AdminOnlineUserCountList_FullMethodName      = "/userrpc.UserRpc/AdminOnlineUserCountList"
 )
 
 // UserRpcClient is the client API for UserRpc service.
@@ -239,7 +239,7 @@ type UserRpcClient interface {
 	RegisterUsernamePrompt(ctx context.Context, in *RegisterUsernamePromptReq, opts ...grpc.CallOption) (*RegisterUsernamePromptResp, error)
 	//group:admin
 	AdminLogout(ctx context.Context, in *AdminLogoutRequest, opts ...grpc.CallOption) (*AdminLogoutResponse, error)
-	OnlineUserCountList(ctx context.Context, in *OnlineUserCountListRequest, opts ...grpc.CallOption) (*OnlineUserCountListResponse, error)
+	AdminOnlineUserCountList(ctx context.Context, in *AdminOnlineUserCountListRequest, opts ...grpc.CallOption) (*AdminOnlineUserCountListResponse, error)
 }
 
 type userRpcClient struct {
@@ -880,9 +880,9 @@ func (c *userRpcClient) AdminLogout(ctx context.Context, in *AdminLogoutRequest,
 	return out, nil
 }
 
-func (c *userRpcClient) OnlineUserCountList(ctx context.Context, in *OnlineUserCountListRequest, opts ...grpc.CallOption) (*OnlineUserCountListResponse, error) {
-	out := new(OnlineUserCountListResponse)
-	err := c.cc.Invoke(ctx, UserRpc_OnlineUserCountList_FullMethodName, in, out, opts...)
+func (c *userRpcClient) AdminOnlineUserCountList(ctx context.Context, in *AdminOnlineUserCountListRequest, opts ...grpc.CallOption) (*AdminOnlineUserCountListResponse, error) {
+	out := new(AdminOnlineUserCountListResponse)
+	err := c.cc.Invoke(ctx, UserRpc_AdminOnlineUserCountList_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1036,7 +1036,7 @@ type UserRpcServer interface {
 	RegisterUsernamePrompt(context.Context, *RegisterUsernamePromptReq) (*RegisterUsernamePromptResp, error)
 	//group:admin
 	AdminLogout(context.Context, *AdminLogoutRequest) (*AdminLogoutResponse, error)
-	OnlineUserCountList(context.Context, *OnlineUserCountListRequest) (*OnlineUserCountListResponse, error)
+	AdminOnlineUserCountList(context.Context, *AdminOnlineUserCountListRequest) (*AdminOnlineUserCountListResponse, error)
 	mustEmbedUnimplementedUserRpcServer()
 }
 
@@ -1254,8 +1254,8 @@ func (UnimplementedUserRpcServer) RegisterUsernamePrompt(context.Context, *Regis
 func (UnimplementedUserRpcServer) AdminLogout(context.Context, *AdminLogoutRequest) (*AdminLogoutResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AdminLogout not implemented")
 }
-func (UnimplementedUserRpcServer) OnlineUserCountList(context.Context, *OnlineUserCountListRequest) (*OnlineUserCountListResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method OnlineUserCountList not implemented")
+func (UnimplementedUserRpcServer) AdminOnlineUserCountList(context.Context, *AdminOnlineUserCountListRequest) (*AdminOnlineUserCountListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminOnlineUserCountList not implemented")
 }
 func (UnimplementedUserRpcServer) mustEmbedUnimplementedUserRpcServer() {}
 
@@ -2530,20 +2530,20 @@ func _UserRpc_AdminLogout_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserRpc_OnlineUserCountList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(OnlineUserCountListRequest)
+func _UserRpc_AdminOnlineUserCountList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminOnlineUserCountListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserRpcServer).OnlineUserCountList(ctx, in)
+		return srv.(UserRpcServer).AdminOnlineUserCountList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserRpc_OnlineUserCountList_FullMethodName,
+		FullMethod: UserRpc_AdminOnlineUserCountList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserRpcServer).OnlineUserCountList(ctx, req.(*OnlineUserCountListRequest))
+		return srv.(UserRpcServer).AdminOnlineUserCountList(ctx, req.(*AdminOnlineUserCountListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2836,8 +2836,8 @@ var UserRpc_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserRpc_AdminLogout_Handler,
 		},
 		{
-			MethodName: "OnlineUserCountList",
-			Handler:    _UserRpc_OnlineUserCountList_Handler,
+			MethodName: "AdminOnlineUserCountList",
+			Handler:    _UserRpc_AdminOnlineUserCountList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
