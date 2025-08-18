@@ -90,6 +90,7 @@ const (
 	UserRpc_RegisterUsernamePrompt_FullMethodName        = "/userrpc.UserRpc/RegisterUsernamePrompt"
 	UserRpc_AdminLogout_FullMethodName                   = "/userrpc.UserRpc/AdminLogout"
 	UserRpc_AdminOnlineUserCountList_FullMethodName      = "/userrpc.UserRpc/AdminOnlineUserCountList"
+	UserRpc_AdminUserLevelList_FullMethodName            = "/userrpc.UserRpc/AdminUserLevelList"
 )
 
 // UserRpcClient is the client API for UserRpc service.
@@ -240,6 +241,7 @@ type UserRpcClient interface {
 	//group:admin
 	AdminLogout(ctx context.Context, in *AdminLogoutRequest, opts ...grpc.CallOption) (*AdminLogoutResponse, error)
 	AdminOnlineUserCountList(ctx context.Context, in *AdminOnlineUserCountListRequest, opts ...grpc.CallOption) (*AdminOnlineUserCountListResponse, error)
+	AdminUserLevelList(ctx context.Context, in *AdminUserLevelListRequest, opts ...grpc.CallOption) (*AdminUserLevelListResponse, error)
 }
 
 type userRpcClient struct {
@@ -889,6 +891,15 @@ func (c *userRpcClient) AdminOnlineUserCountList(ctx context.Context, in *AdminO
 	return out, nil
 }
 
+func (c *userRpcClient) AdminUserLevelList(ctx context.Context, in *AdminUserLevelListRequest, opts ...grpc.CallOption) (*AdminUserLevelListResponse, error) {
+	out := new(AdminUserLevelListResponse)
+	err := c.cc.Invoke(ctx, UserRpc_AdminUserLevelList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserRpcServer is the server API for UserRpc service.
 // All implementations must embed UnimplementedUserRpcServer
 // for forward compatibility
@@ -1037,6 +1048,7 @@ type UserRpcServer interface {
 	//group:admin
 	AdminLogout(context.Context, *AdminLogoutRequest) (*AdminLogoutResponse, error)
 	AdminOnlineUserCountList(context.Context, *AdminOnlineUserCountListRequest) (*AdminOnlineUserCountListResponse, error)
+	AdminUserLevelList(context.Context, *AdminUserLevelListRequest) (*AdminUserLevelListResponse, error)
 	mustEmbedUnimplementedUserRpcServer()
 }
 
@@ -1256,6 +1268,9 @@ func (UnimplementedUserRpcServer) AdminLogout(context.Context, *AdminLogoutReque
 }
 func (UnimplementedUserRpcServer) AdminOnlineUserCountList(context.Context, *AdminOnlineUserCountListRequest) (*AdminOnlineUserCountListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AdminOnlineUserCountList not implemented")
+}
+func (UnimplementedUserRpcServer) AdminUserLevelList(context.Context, *AdminUserLevelListRequest) (*AdminUserLevelListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminUserLevelList not implemented")
 }
 func (UnimplementedUserRpcServer) mustEmbedUnimplementedUserRpcServer() {}
 
@@ -2548,6 +2563,24 @@ func _UserRpc_AdminOnlineUserCountList_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserRpc_AdminUserLevelList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminUserLevelListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserRpcServer).AdminUserLevelList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserRpc_AdminUserLevelList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserRpcServer).AdminUserLevelList(ctx, req.(*AdminUserLevelListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserRpc_ServiceDesc is the grpc.ServiceDesc for UserRpc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2838,6 +2871,10 @@ var UserRpc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AdminOnlineUserCountList",
 			Handler:    _UserRpc_AdminOnlineUserCountList_Handler,
+		},
+		{
+			MethodName: "AdminUserLevelList",
+			Handler:    _UserRpc_AdminUserLevelList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
