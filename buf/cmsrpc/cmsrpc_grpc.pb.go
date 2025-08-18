@@ -32,11 +32,17 @@ const (
 	Cmsrpc_AddFrontClassifyCms_FullMethodName             = "/cmsrpc.cmsrpc/addFrontClassifyCms"
 	Cmsrpc_EditFrontClassifyCms_FullMethodName            = "/cmsrpc.cmsrpc/editFrontClassifyCms"
 	Cmsrpc_DelFrontClassifyCms_FullMethodName             = "/cmsrpc.cmsrpc/delFrontClassifyCms"
+	Cmsrpc_DelFrontClassifyInfoCms_FullMethodName         = "/cmsrpc.cmsrpc/delFrontClassifyInfoCms"
 	Cmsrpc_SportBet_FullMethodName                        = "/cmsrpc.cmsrpc/sportBet"
 	Cmsrpc_Help_FullMethodName                            = "/cmsrpc.cmsrpc/help"
 	Cmsrpc_SaveHelpType_FullMethodName                    = "/cmsrpc.cmsrpc/saveHelpType"
 	Cmsrpc_GetHelpTypeList_FullMethodName                 = "/cmsrpc.cmsrpc/GetHelpTypeList"
+	Cmsrpc_AddHelpType_FullMethodName                     = "/cmsrpc.cmsrpc/AddHelpType"
+	Cmsrpc_EditHelpType_FullMethodName                    = "/cmsrpc.cmsrpc/EditHelpType"
 	Cmsrpc_HelpInfo_FullMethodName                        = "/cmsrpc.cmsrpc/helpInfo"
+	Cmsrpc_RomoveHelpInfo_FullMethodName                  = "/cmsrpc.cmsrpc/romoveHelpInfo"
+	Cmsrpc_EditHelpInfo_FullMethodName                    = "/cmsrpc.cmsrpc/editHelpInfo"
+	Cmsrpc_AddHelpInfo_FullMethodName                     = "/cmsrpc.cmsrpc/addHelpInfo"
 	Cmsrpc_Banner_FullMethodName                          = "/cmsrpc.cmsrpc/banner"
 	Cmsrpc_GameClassify_FullMethodName                    = "/cmsrpc.cmsrpc/gameClassify"
 	Cmsrpc_Lamp_FullMethodName                            = "/cmsrpc.cmsrpc/lamp"
@@ -96,6 +102,18 @@ const (
 	Cmsrpc_PointsCollectionRecordList_FullMethodName      = "/cmsrpc.cmsrpc/PointsCollectionRecordList"
 	Cmsrpc_PointsUserChangeList_FullMethodName            = "/cmsrpc.cmsrpc/PointsUserChangeList"
 	Cmsrpc_GetPromotionalVideo_FullMethodName             = "/cmsrpc.cmsrpc/GetPromotionalVideo"
+	Cmsrpc_UserLevelRewardsSum_FullMethodName             = "/cmsrpc.cmsrpc/UserLevelRewardsSum"
+	Cmsrpc_UserLevelRewardsList_FullMethodName            = "/cmsrpc.cmsrpc/UserLevelRewardsList"
+	Cmsrpc_SaveOrUpdateUserGroup_FullMethodName           = "/cmsrpc.cmsrpc/SaveOrUpdateUserGroup"
+	Cmsrpc_QueryAllRuleTitleManager_FullMethodName        = "/cmsrpc.cmsrpc/QueryAllRuleTitleManager"
+	Cmsrpc_AddAdmin_FullMethodName                        = "/cmsrpc.cmsrpc/AddAdmin"
+	Cmsrpc_InsertRule_FullMethodName                      = "/cmsrpc.cmsrpc/InsertRule"
+	Cmsrpc_InsertRoleAuthManager_FullMethodName           = "/cmsrpc.cmsrpc/InsertRoleAuthManager"
+	Cmsrpc_ListAdminOperationLog_FullMethodName           = "/cmsrpc.cmsrpc/ListAdminOperationLog"
+	Cmsrpc_ListAdminLoginLog_FullMethodName               = "/cmsrpc.cmsrpc/ListAdminLoginLog"
+	Cmsrpc_AdminOperationLogMenu_FullMethodName           = "/cmsrpc.cmsrpc/AdminOperationLogMenu"
+	Cmsrpc_PagcorDailyTaxCount_FullMethodName             = "/cmsrpc.cmsrpc/PagcorDailyTaxCount"
+	Cmsrpc_Logout_FullMethodName                          = "/cmsrpc.cmsrpc/Logout"
 )
 
 // CmsrpcClient is the client API for Cmsrpc service.
@@ -128,6 +146,8 @@ type CmsrpcClient interface {
 	EditFrontClassifyCms(ctx context.Context, in *EditFrontClassifyCmsRequest, opts ...grpc.CallOption) (*EditFrontClassifyCmsResponse, error)
 	// group: delFrontClassifyCms
 	DelFrontClassifyCms(ctx context.Context, in *DelFrontClassifyCmsRequest, opts ...grpc.CallOption) (*DelFrontClassifyCmsResponse, error)
+	// group: delFrontClassifyInfoCms
+	DelFrontClassifyInfoCms(ctx context.Context, in *DelFrontClassifyInfoCmsRequest, opts ...grpc.CallOption) (*DelFrontClassifyInfoCmsResponse, error)
 	// group: sportBet
 	SportBet(ctx context.Context, in *SportBetRequest, opts ...grpc.CallOption) (*SportBetResponse, error)
 	// group: help
@@ -136,8 +156,18 @@ type CmsrpcClient interface {
 	SaveHelpType(ctx context.Context, in *SaveHelpTypeRequest, opts ...grpc.CallOption) (*SaveHelpTypeResponse, error)
 	// group: help
 	GetHelpTypeList(ctx context.Context, in *GetHelpTypeListRequest, opts ...grpc.CallOption) (*GetHelpTypeListResponse, error)
+	// group:help
+	AddHelpType(ctx context.Context, in *AddHelpTypeRequest, opts ...grpc.CallOption) (*AddHelpTypeResponse, error)
+	//group:help
+	EditHelpType(ctx context.Context, in *EditHelpTypeRequest, opts ...grpc.CallOption) (*EditHelpTypeResponse, error)
 	// group: helpInfo
 	HelpInfo(ctx context.Context, in *HelpInfoRequest, opts ...grpc.CallOption) (*HelpInfoResponse, error)
+	// group: helpInfo
+	RomoveHelpInfo(ctx context.Context, in *RomoveHelpInfoRequest, opts ...grpc.CallOption) (*RomoveHelpInfoResponse, error)
+	// group: helpInfo
+	EditHelpInfo(ctx context.Context, in *EditHelpInfoRequest, opts ...grpc.CallOption) (*EditHelpInfoResponse, error)
+	// group: helpInfo
+	AddHelpInfo(ctx context.Context, in *AddHelpInfoRequest, opts ...grpc.CallOption) (*AddHelpInfoResponse, error)
 	// group: banner
 	Banner(ctx context.Context, in *BannerRequest, opts ...grpc.CallOption) (*BannerResponse, error)
 	// group: gameClassify
@@ -256,6 +286,30 @@ type CmsrpcClient interface {
 	PointsUserChangeList(ctx context.Context, in *PointsUserChangeListReq, opts ...grpc.CallOption) (*PointsUserChangeListResp, error)
 	//group:system
 	GetPromotionalVideo(ctx context.Context, in *GetPromotionalVideoReq, opts ...grpc.CallOption) (*GetPromotionalVideoResp, error)
+	// group:user
+	UserLevelRewardsSum(ctx context.Context, in *UserLevelRewardsSumReq, opts ...grpc.CallOption) (*UserLevelRewardsSumResp, error)
+	// group:user
+	UserLevelRewardsList(ctx context.Context, in *UserLevelRewardsListReq, opts ...grpc.CallOption) (*UserLevelRewardsListResp, error)
+	// group:user
+	SaveOrUpdateUserGroup(ctx context.Context, in *SaveOrUpdateUserGroupReq, opts ...grpc.CallOption) (*SaveOrUpdateUserGroupResp, error)
+	// group:user
+	QueryAllRuleTitleManager(ctx context.Context, in *QueryAllRuleTitleManagerReq, opts ...grpc.CallOption) (*QueryAllRuleTitleManagerResp, error)
+	// group:user
+	AddAdmin(ctx context.Context, in *AddAdminReq, opts ...grpc.CallOption) (*AddAdminResp, error)
+	// group:user
+	InsertRule(ctx context.Context, in *InsertRuleReq, opts ...grpc.CallOption) (*InsertRuleResp, error)
+	// group:user
+	InsertRoleAuthManager(ctx context.Context, in *InsertRoleAuthManagerReq, opts ...grpc.CallOption) (*InsertRoleAuthManagerResp, error)
+	// group:user
+	ListAdminOperationLog(ctx context.Context, in *ListAdminOperationLogReq, opts ...grpc.CallOption) (*ListAdminOperationLogResp, error)
+	// group:user
+	ListAdminLoginLog(ctx context.Context, in *ListAdminLoginLogReq, opts ...grpc.CallOption) (*ListAdminLoginLogResp, error)
+	// group:user
+	AdminOperationLogMenu(ctx context.Context, in *AdminOperationLogMenuReq, opts ...grpc.CallOption) (*AdminOperationLogMenuResp, error)
+	//group:user
+	PagcorDailyTaxCount(ctx context.Context, in *PagcorDailyTaxCountReq, opts ...grpc.CallOption) (*PagcorDailyTaxCountResp, error)
+	//group:user
+	Logout(ctx context.Context, in *LogoutReq, opts ...grpc.CallOption) (*LogoutResp, error)
 }
 
 type cmsrpcClient struct {
@@ -396,6 +450,16 @@ func (c *cmsrpcClient) DelFrontClassifyCms(ctx context.Context, in *DelFrontClas
 	return out, nil
 }
 
+func (c *cmsrpcClient) DelFrontClassifyInfoCms(ctx context.Context, in *DelFrontClassifyInfoCmsRequest, opts ...grpc.CallOption) (*DelFrontClassifyInfoCmsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DelFrontClassifyInfoCmsResponse)
+	err := c.cc.Invoke(ctx, Cmsrpc_DelFrontClassifyInfoCms_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *cmsrpcClient) SportBet(ctx context.Context, in *SportBetRequest, opts ...grpc.CallOption) (*SportBetResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SportBetResponse)
@@ -436,10 +500,60 @@ func (c *cmsrpcClient) GetHelpTypeList(ctx context.Context, in *GetHelpTypeListR
 	return out, nil
 }
 
+func (c *cmsrpcClient) AddHelpType(ctx context.Context, in *AddHelpTypeRequest, opts ...grpc.CallOption) (*AddHelpTypeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddHelpTypeResponse)
+	err := c.cc.Invoke(ctx, Cmsrpc_AddHelpType_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cmsrpcClient) EditHelpType(ctx context.Context, in *EditHelpTypeRequest, opts ...grpc.CallOption) (*EditHelpTypeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EditHelpTypeResponse)
+	err := c.cc.Invoke(ctx, Cmsrpc_EditHelpType_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *cmsrpcClient) HelpInfo(ctx context.Context, in *HelpInfoRequest, opts ...grpc.CallOption) (*HelpInfoResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(HelpInfoResponse)
 	err := c.cc.Invoke(ctx, Cmsrpc_HelpInfo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cmsrpcClient) RomoveHelpInfo(ctx context.Context, in *RomoveHelpInfoRequest, opts ...grpc.CallOption) (*RomoveHelpInfoResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RomoveHelpInfoResponse)
+	err := c.cc.Invoke(ctx, Cmsrpc_RomoveHelpInfo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cmsrpcClient) EditHelpInfo(ctx context.Context, in *EditHelpInfoRequest, opts ...grpc.CallOption) (*EditHelpInfoResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EditHelpInfoResponse)
+	err := c.cc.Invoke(ctx, Cmsrpc_EditHelpInfo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cmsrpcClient) AddHelpInfo(ctx context.Context, in *AddHelpInfoRequest, opts ...grpc.CallOption) (*AddHelpInfoResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddHelpInfoResponse)
+	err := c.cc.Invoke(ctx, Cmsrpc_AddHelpInfo_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1036,6 +1150,126 @@ func (c *cmsrpcClient) GetPromotionalVideo(ctx context.Context, in *GetPromotion
 	return out, nil
 }
 
+func (c *cmsrpcClient) UserLevelRewardsSum(ctx context.Context, in *UserLevelRewardsSumReq, opts ...grpc.CallOption) (*UserLevelRewardsSumResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserLevelRewardsSumResp)
+	err := c.cc.Invoke(ctx, Cmsrpc_UserLevelRewardsSum_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cmsrpcClient) UserLevelRewardsList(ctx context.Context, in *UserLevelRewardsListReq, opts ...grpc.CallOption) (*UserLevelRewardsListResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserLevelRewardsListResp)
+	err := c.cc.Invoke(ctx, Cmsrpc_UserLevelRewardsList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cmsrpcClient) SaveOrUpdateUserGroup(ctx context.Context, in *SaveOrUpdateUserGroupReq, opts ...grpc.CallOption) (*SaveOrUpdateUserGroupResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SaveOrUpdateUserGroupResp)
+	err := c.cc.Invoke(ctx, Cmsrpc_SaveOrUpdateUserGroup_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cmsrpcClient) QueryAllRuleTitleManager(ctx context.Context, in *QueryAllRuleTitleManagerReq, opts ...grpc.CallOption) (*QueryAllRuleTitleManagerResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(QueryAllRuleTitleManagerResp)
+	err := c.cc.Invoke(ctx, Cmsrpc_QueryAllRuleTitleManager_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cmsrpcClient) AddAdmin(ctx context.Context, in *AddAdminReq, opts ...grpc.CallOption) (*AddAdminResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddAdminResp)
+	err := c.cc.Invoke(ctx, Cmsrpc_AddAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cmsrpcClient) InsertRule(ctx context.Context, in *InsertRuleReq, opts ...grpc.CallOption) (*InsertRuleResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(InsertRuleResp)
+	err := c.cc.Invoke(ctx, Cmsrpc_InsertRule_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cmsrpcClient) InsertRoleAuthManager(ctx context.Context, in *InsertRoleAuthManagerReq, opts ...grpc.CallOption) (*InsertRoleAuthManagerResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(InsertRoleAuthManagerResp)
+	err := c.cc.Invoke(ctx, Cmsrpc_InsertRoleAuthManager_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cmsrpcClient) ListAdminOperationLog(ctx context.Context, in *ListAdminOperationLogReq, opts ...grpc.CallOption) (*ListAdminOperationLogResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListAdminOperationLogResp)
+	err := c.cc.Invoke(ctx, Cmsrpc_ListAdminOperationLog_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cmsrpcClient) ListAdminLoginLog(ctx context.Context, in *ListAdminLoginLogReq, opts ...grpc.CallOption) (*ListAdminLoginLogResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListAdminLoginLogResp)
+	err := c.cc.Invoke(ctx, Cmsrpc_ListAdminLoginLog_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cmsrpcClient) AdminOperationLogMenu(ctx context.Context, in *AdminOperationLogMenuReq, opts ...grpc.CallOption) (*AdminOperationLogMenuResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AdminOperationLogMenuResp)
+	err := c.cc.Invoke(ctx, Cmsrpc_AdminOperationLogMenu_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cmsrpcClient) PagcorDailyTaxCount(ctx context.Context, in *PagcorDailyTaxCountReq, opts ...grpc.CallOption) (*PagcorDailyTaxCountResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PagcorDailyTaxCountResp)
+	err := c.cc.Invoke(ctx, Cmsrpc_PagcorDailyTaxCount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cmsrpcClient) Logout(ctx context.Context, in *LogoutReq, opts ...grpc.CallOption) (*LogoutResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LogoutResp)
+	err := c.cc.Invoke(ctx, Cmsrpc_Logout_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CmsrpcServer is the server API for Cmsrpc service.
 // All implementations must embed UnimplementedCmsrpcServer
 // for forward compatibility.
@@ -1066,6 +1300,8 @@ type CmsrpcServer interface {
 	EditFrontClassifyCms(context.Context, *EditFrontClassifyCmsRequest) (*EditFrontClassifyCmsResponse, error)
 	// group: delFrontClassifyCms
 	DelFrontClassifyCms(context.Context, *DelFrontClassifyCmsRequest) (*DelFrontClassifyCmsResponse, error)
+	// group: delFrontClassifyInfoCms
+	DelFrontClassifyInfoCms(context.Context, *DelFrontClassifyInfoCmsRequest) (*DelFrontClassifyInfoCmsResponse, error)
 	// group: sportBet
 	SportBet(context.Context, *SportBetRequest) (*SportBetResponse, error)
 	// group: help
@@ -1074,8 +1310,18 @@ type CmsrpcServer interface {
 	SaveHelpType(context.Context, *SaveHelpTypeRequest) (*SaveHelpTypeResponse, error)
 	// group: help
 	GetHelpTypeList(context.Context, *GetHelpTypeListRequest) (*GetHelpTypeListResponse, error)
+	// group:help
+	AddHelpType(context.Context, *AddHelpTypeRequest) (*AddHelpTypeResponse, error)
+	//group:help
+	EditHelpType(context.Context, *EditHelpTypeRequest) (*EditHelpTypeResponse, error)
 	// group: helpInfo
 	HelpInfo(context.Context, *HelpInfoRequest) (*HelpInfoResponse, error)
+	// group: helpInfo
+	RomoveHelpInfo(context.Context, *RomoveHelpInfoRequest) (*RomoveHelpInfoResponse, error)
+	// group: helpInfo
+	EditHelpInfo(context.Context, *EditHelpInfoRequest) (*EditHelpInfoResponse, error)
+	// group: helpInfo
+	AddHelpInfo(context.Context, *AddHelpInfoRequest) (*AddHelpInfoResponse, error)
 	// group: banner
 	Banner(context.Context, *BannerRequest) (*BannerResponse, error)
 	// group: gameClassify
@@ -1194,6 +1440,30 @@ type CmsrpcServer interface {
 	PointsUserChangeList(context.Context, *PointsUserChangeListReq) (*PointsUserChangeListResp, error)
 	//group:system
 	GetPromotionalVideo(context.Context, *GetPromotionalVideoReq) (*GetPromotionalVideoResp, error)
+	// group:user
+	UserLevelRewardsSum(context.Context, *UserLevelRewardsSumReq) (*UserLevelRewardsSumResp, error)
+	// group:user
+	UserLevelRewardsList(context.Context, *UserLevelRewardsListReq) (*UserLevelRewardsListResp, error)
+	// group:user
+	SaveOrUpdateUserGroup(context.Context, *SaveOrUpdateUserGroupReq) (*SaveOrUpdateUserGroupResp, error)
+	// group:user
+	QueryAllRuleTitleManager(context.Context, *QueryAllRuleTitleManagerReq) (*QueryAllRuleTitleManagerResp, error)
+	// group:user
+	AddAdmin(context.Context, *AddAdminReq) (*AddAdminResp, error)
+	// group:user
+	InsertRule(context.Context, *InsertRuleReq) (*InsertRuleResp, error)
+	// group:user
+	InsertRoleAuthManager(context.Context, *InsertRoleAuthManagerReq) (*InsertRoleAuthManagerResp, error)
+	// group:user
+	ListAdminOperationLog(context.Context, *ListAdminOperationLogReq) (*ListAdminOperationLogResp, error)
+	// group:user
+	ListAdminLoginLog(context.Context, *ListAdminLoginLogReq) (*ListAdminLoginLogResp, error)
+	// group:user
+	AdminOperationLogMenu(context.Context, *AdminOperationLogMenuReq) (*AdminOperationLogMenuResp, error)
+	//group:user
+	PagcorDailyTaxCount(context.Context, *PagcorDailyTaxCountReq) (*PagcorDailyTaxCountResp, error)
+	//group:user
+	Logout(context.Context, *LogoutReq) (*LogoutResp, error)
 	mustEmbedUnimplementedCmsrpcServer()
 }
 
@@ -1243,6 +1513,9 @@ func (UnimplementedCmsrpcServer) EditFrontClassifyCms(context.Context, *EditFron
 func (UnimplementedCmsrpcServer) DelFrontClassifyCms(context.Context, *DelFrontClassifyCmsRequest) (*DelFrontClassifyCmsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DelFrontClassifyCms not implemented")
 }
+func (UnimplementedCmsrpcServer) DelFrontClassifyInfoCms(context.Context, *DelFrontClassifyInfoCmsRequest) (*DelFrontClassifyInfoCmsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelFrontClassifyInfoCms not implemented")
+}
 func (UnimplementedCmsrpcServer) SportBet(context.Context, *SportBetRequest) (*SportBetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SportBet not implemented")
 }
@@ -1255,8 +1528,23 @@ func (UnimplementedCmsrpcServer) SaveHelpType(context.Context, *SaveHelpTypeRequ
 func (UnimplementedCmsrpcServer) GetHelpTypeList(context.Context, *GetHelpTypeListRequest) (*GetHelpTypeListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetHelpTypeList not implemented")
 }
+func (UnimplementedCmsrpcServer) AddHelpType(context.Context, *AddHelpTypeRequest) (*AddHelpTypeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddHelpType not implemented")
+}
+func (UnimplementedCmsrpcServer) EditHelpType(context.Context, *EditHelpTypeRequest) (*EditHelpTypeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EditHelpType not implemented")
+}
 func (UnimplementedCmsrpcServer) HelpInfo(context.Context, *HelpInfoRequest) (*HelpInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method HelpInfo not implemented")
+}
+func (UnimplementedCmsrpcServer) RomoveHelpInfo(context.Context, *RomoveHelpInfoRequest) (*RomoveHelpInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RomoveHelpInfo not implemented")
+}
+func (UnimplementedCmsrpcServer) EditHelpInfo(context.Context, *EditHelpInfoRequest) (*EditHelpInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EditHelpInfo not implemented")
+}
+func (UnimplementedCmsrpcServer) AddHelpInfo(context.Context, *AddHelpInfoRequest) (*AddHelpInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddHelpInfo not implemented")
 }
 func (UnimplementedCmsrpcServer) Banner(context.Context, *BannerRequest) (*BannerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Banner not implemented")
@@ -1434,6 +1722,42 @@ func (UnimplementedCmsrpcServer) PointsUserChangeList(context.Context, *PointsUs
 }
 func (UnimplementedCmsrpcServer) GetPromotionalVideo(context.Context, *GetPromotionalVideoReq) (*GetPromotionalVideoResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPromotionalVideo not implemented")
+}
+func (UnimplementedCmsrpcServer) UserLevelRewardsSum(context.Context, *UserLevelRewardsSumReq) (*UserLevelRewardsSumResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UserLevelRewardsSum not implemented")
+}
+func (UnimplementedCmsrpcServer) UserLevelRewardsList(context.Context, *UserLevelRewardsListReq) (*UserLevelRewardsListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UserLevelRewardsList not implemented")
+}
+func (UnimplementedCmsrpcServer) SaveOrUpdateUserGroup(context.Context, *SaveOrUpdateUserGroupReq) (*SaveOrUpdateUserGroupResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SaveOrUpdateUserGroup not implemented")
+}
+func (UnimplementedCmsrpcServer) QueryAllRuleTitleManager(context.Context, *QueryAllRuleTitleManagerReq) (*QueryAllRuleTitleManagerResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method QueryAllRuleTitleManager not implemented")
+}
+func (UnimplementedCmsrpcServer) AddAdmin(context.Context, *AddAdminReq) (*AddAdminResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddAdmin not implemented")
+}
+func (UnimplementedCmsrpcServer) InsertRule(context.Context, *InsertRuleReq) (*InsertRuleResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InsertRule not implemented")
+}
+func (UnimplementedCmsrpcServer) InsertRoleAuthManager(context.Context, *InsertRoleAuthManagerReq) (*InsertRoleAuthManagerResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InsertRoleAuthManager not implemented")
+}
+func (UnimplementedCmsrpcServer) ListAdminOperationLog(context.Context, *ListAdminOperationLogReq) (*ListAdminOperationLogResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAdminOperationLog not implemented")
+}
+func (UnimplementedCmsrpcServer) ListAdminLoginLog(context.Context, *ListAdminLoginLogReq) (*ListAdminLoginLogResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAdminLoginLog not implemented")
+}
+func (UnimplementedCmsrpcServer) AdminOperationLogMenu(context.Context, *AdminOperationLogMenuReq) (*AdminOperationLogMenuResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminOperationLogMenu not implemented")
+}
+func (UnimplementedCmsrpcServer) PagcorDailyTaxCount(context.Context, *PagcorDailyTaxCountReq) (*PagcorDailyTaxCountResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PagcorDailyTaxCount not implemented")
+}
+func (UnimplementedCmsrpcServer) Logout(context.Context, *LogoutReq) (*LogoutResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Logout not implemented")
 }
 func (UnimplementedCmsrpcServer) mustEmbedUnimplementedCmsrpcServer() {}
 func (UnimplementedCmsrpcServer) testEmbeddedByValue()                {}
@@ -1690,6 +2014,24 @@ func _Cmsrpc_DelFrontClassifyCms_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Cmsrpc_DelFrontClassifyInfoCms_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DelFrontClassifyInfoCmsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).DelFrontClassifyInfoCms(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_DelFrontClassifyInfoCms_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).DelFrontClassifyInfoCms(ctx, req.(*DelFrontClassifyInfoCmsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Cmsrpc_SportBet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SportBetRequest)
 	if err := dec(in); err != nil {
@@ -1762,6 +2104,42 @@ func _Cmsrpc_GetHelpTypeList_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Cmsrpc_AddHelpType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddHelpTypeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).AddHelpType(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_AddHelpType_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).AddHelpType(ctx, req.(*AddHelpTypeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cmsrpc_EditHelpType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EditHelpTypeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).EditHelpType(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_EditHelpType_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).EditHelpType(ctx, req.(*EditHelpTypeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Cmsrpc_HelpInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(HelpInfoRequest)
 	if err := dec(in); err != nil {
@@ -1776,6 +2154,60 @@ func _Cmsrpc_HelpInfo_Handler(srv interface{}, ctx context.Context, dec func(int
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CmsrpcServer).HelpInfo(ctx, req.(*HelpInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cmsrpc_RomoveHelpInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RomoveHelpInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).RomoveHelpInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_RomoveHelpInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).RomoveHelpInfo(ctx, req.(*RomoveHelpInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cmsrpc_EditHelpInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EditHelpInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).EditHelpInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_EditHelpInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).EditHelpInfo(ctx, req.(*EditHelpInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cmsrpc_AddHelpInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddHelpInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).AddHelpInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_AddHelpInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).AddHelpInfo(ctx, req.(*AddHelpInfoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2842,6 +3274,222 @@ func _Cmsrpc_GetPromotionalVideo_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Cmsrpc_UserLevelRewardsSum_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserLevelRewardsSumReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).UserLevelRewardsSum(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_UserLevelRewardsSum_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).UserLevelRewardsSum(ctx, req.(*UserLevelRewardsSumReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cmsrpc_UserLevelRewardsList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserLevelRewardsListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).UserLevelRewardsList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_UserLevelRewardsList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).UserLevelRewardsList(ctx, req.(*UserLevelRewardsListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cmsrpc_SaveOrUpdateUserGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SaveOrUpdateUserGroupReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).SaveOrUpdateUserGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_SaveOrUpdateUserGroup_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).SaveOrUpdateUserGroup(ctx, req.(*SaveOrUpdateUserGroupReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cmsrpc_QueryAllRuleTitleManager_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllRuleTitleManagerReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).QueryAllRuleTitleManager(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_QueryAllRuleTitleManager_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).QueryAllRuleTitleManager(ctx, req.(*QueryAllRuleTitleManagerReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cmsrpc_AddAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddAdminReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).AddAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_AddAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).AddAdmin(ctx, req.(*AddAdminReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cmsrpc_InsertRule_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InsertRuleReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).InsertRule(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_InsertRule_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).InsertRule(ctx, req.(*InsertRuleReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cmsrpc_InsertRoleAuthManager_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InsertRoleAuthManagerReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).InsertRoleAuthManager(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_InsertRoleAuthManager_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).InsertRoleAuthManager(ctx, req.(*InsertRoleAuthManagerReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cmsrpc_ListAdminOperationLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAdminOperationLogReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).ListAdminOperationLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_ListAdminOperationLog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).ListAdminOperationLog(ctx, req.(*ListAdminOperationLogReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cmsrpc_ListAdminLoginLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAdminLoginLogReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).ListAdminLoginLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_ListAdminLoginLog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).ListAdminLoginLog(ctx, req.(*ListAdminLoginLogReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cmsrpc_AdminOperationLogMenu_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminOperationLogMenuReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).AdminOperationLogMenu(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_AdminOperationLogMenu_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).AdminOperationLogMenu(ctx, req.(*AdminOperationLogMenuReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cmsrpc_PagcorDailyTaxCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PagcorDailyTaxCountReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).PagcorDailyTaxCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_PagcorDailyTaxCount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).PagcorDailyTaxCount(ctx, req.(*PagcorDailyTaxCountReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cmsrpc_Logout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LogoutReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).Logout(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_Logout_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).Logout(ctx, req.(*LogoutReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Cmsrpc_ServiceDesc is the grpc.ServiceDesc for Cmsrpc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2902,6 +3550,10 @@ var Cmsrpc_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Cmsrpc_DelFrontClassifyCms_Handler,
 		},
 		{
+			MethodName: "delFrontClassifyInfoCms",
+			Handler:    _Cmsrpc_DelFrontClassifyInfoCms_Handler,
+		},
+		{
 			MethodName: "sportBet",
 			Handler:    _Cmsrpc_SportBet_Handler,
 		},
@@ -2918,8 +3570,28 @@ var Cmsrpc_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Cmsrpc_GetHelpTypeList_Handler,
 		},
 		{
+			MethodName: "AddHelpType",
+			Handler:    _Cmsrpc_AddHelpType_Handler,
+		},
+		{
+			MethodName: "EditHelpType",
+			Handler:    _Cmsrpc_EditHelpType_Handler,
+		},
+		{
 			MethodName: "helpInfo",
 			Handler:    _Cmsrpc_HelpInfo_Handler,
+		},
+		{
+			MethodName: "romoveHelpInfo",
+			Handler:    _Cmsrpc_RomoveHelpInfo_Handler,
+		},
+		{
+			MethodName: "editHelpInfo",
+			Handler:    _Cmsrpc_EditHelpInfo_Handler,
+		},
+		{
+			MethodName: "addHelpInfo",
+			Handler:    _Cmsrpc_AddHelpInfo_Handler,
 		},
 		{
 			MethodName: "banner",
@@ -3156,6 +3828,54 @@ var Cmsrpc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPromotionalVideo",
 			Handler:    _Cmsrpc_GetPromotionalVideo_Handler,
+		},
+		{
+			MethodName: "UserLevelRewardsSum",
+			Handler:    _Cmsrpc_UserLevelRewardsSum_Handler,
+		},
+		{
+			MethodName: "UserLevelRewardsList",
+			Handler:    _Cmsrpc_UserLevelRewardsList_Handler,
+		},
+		{
+			MethodName: "SaveOrUpdateUserGroup",
+			Handler:    _Cmsrpc_SaveOrUpdateUserGroup_Handler,
+		},
+		{
+			MethodName: "QueryAllRuleTitleManager",
+			Handler:    _Cmsrpc_QueryAllRuleTitleManager_Handler,
+		},
+		{
+			MethodName: "AddAdmin",
+			Handler:    _Cmsrpc_AddAdmin_Handler,
+		},
+		{
+			MethodName: "InsertRule",
+			Handler:    _Cmsrpc_InsertRule_Handler,
+		},
+		{
+			MethodName: "InsertRoleAuthManager",
+			Handler:    _Cmsrpc_InsertRoleAuthManager_Handler,
+		},
+		{
+			MethodName: "ListAdminOperationLog",
+			Handler:    _Cmsrpc_ListAdminOperationLog_Handler,
+		},
+		{
+			MethodName: "ListAdminLoginLog",
+			Handler:    _Cmsrpc_ListAdminLoginLog_Handler,
+		},
+		{
+			MethodName: "AdminOperationLogMenu",
+			Handler:    _Cmsrpc_AdminOperationLogMenu_Handler,
+		},
+		{
+			MethodName: "PagcorDailyTaxCount",
+			Handler:    _Cmsrpc_PagcorDailyTaxCount_Handler,
+		},
+		{
+			MethodName: "Logout",
+			Handler:    _Cmsrpc_Logout_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
