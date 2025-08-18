@@ -35,6 +35,7 @@ func newWinUserBankList(db *gorm.DB, opts ...gen.DOOption) winUserBankList {
 	_winUserBankList.BankName = field.NewString(tableName, "bank_name")
 	_winUserBankList.Address = field.NewString(tableName, "address")
 	_winUserBankList.BankCode = field.NewString(tableName, "bank_code")
+	_winUserBankList.WalletAddress = field.NewString(tableName, "wallet_address")
 	_winUserBankList.Status = field.NewInt64(tableName, "status")
 	_winUserBankList.CreatedAt = field.NewInt64(tableName, "created_at")
 	_winUserBankList.UpdatedAt = field.NewInt64(tableName, "updated_at")
@@ -60,6 +61,7 @@ type winUserBankList struct {
 	BankName         field.String // 银行名称
 	Address          field.String // 提款地址
 	BankCode         field.String // 银行编码
+	WalletAddress    field.String // 钱包地址
 	Status           field.Int64  // 状态:1-默认地址(启用) 2-正常启用 3-删除
 	CreatedAt        field.Int64
 	UpdatedAt        field.Int64
@@ -90,6 +92,7 @@ func (w *winUserBankList) updateTableName(table string) *winUserBankList {
 	w.BankName = field.NewString(table, "bank_name")
 	w.Address = field.NewString(table, "address")
 	w.BankCode = field.NewString(table, "bank_code")
+	w.WalletAddress = field.NewString(table, "wallet_address")
 	w.Status = field.NewInt64(table, "status")
 	w.CreatedAt = field.NewInt64(table, "created_at")
 	w.UpdatedAt = field.NewInt64(table, "updated_at")
@@ -112,7 +115,7 @@ func (w *winUserBankList) GetFieldByName(fieldName string) (field.OrderExpr, boo
 }
 
 func (w *winUserBankList) fillFieldMap() {
-	w.fieldMap = make(map[string]field.Expr, 14)
+	w.fieldMap = make(map[string]field.Expr, 15)
 	w.fieldMap["id"] = w.ID
 	w.fieldMap["uid"] = w.UID
 	w.fieldMap["username"] = w.Username
@@ -121,6 +124,7 @@ func (w *winUserBankList) fillFieldMap() {
 	w.fieldMap["bank_name"] = w.BankName
 	w.fieldMap["address"] = w.Address
 	w.fieldMap["bank_code"] = w.BankCode
+	w.fieldMap["wallet_address"] = w.WalletAddress
 	w.fieldMap["status"] = w.Status
 	w.fieldMap["created_at"] = w.CreatedAt
 	w.fieldMap["updated_at"] = w.UpdatedAt

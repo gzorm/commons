@@ -16,6 +16,7 @@ type WinUserBankList struct {
 	BankName         string `gorm:"column:bank_name;type:varchar(255);comment:银行名称" json:"bankName"`                                                                // 银行名称
 	Address          string `gorm:"column:address;type:varchar(255);not null;comment:提款地址" json:"address"`                                                          // 提款地址
 	BankCode         string `gorm:"column:bank_code;type:varchar(64);comment:银行编码" json:"bankCode"`                                                                 // 银行编码
+	WalletAddress    string `gorm:"column:wallet_address;type:varchar(255);comment:钱包地址" json:"walletAddress"`                                                      // 钱包地址
 	Status           int64  `gorm:"column:status;type:tinyint;not null;default:2;comment:状态:1-默认地址(启用) 2-正常启用 3-删除" json:"status"`                                  // 状态:1-默认地址(启用) 2-正常启用 3-删除
 	CreatedAt        int64  `gorm:"column:created_at;comment:创建时间" json:"createdAt"`
 	UpdatedAt        int64  `gorm:"column:updated_at;comment:更新时间" json:"updatedAt"`
