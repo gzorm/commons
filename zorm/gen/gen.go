@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
+	"strings"
+
 	"gorm.io/driver/mysql"
 	"gorm.io/gen"
 	"gorm.io/gen/field"
 	"gorm.io/gorm"
-	"strings"
 )
 
 const dsn = "root:root@(127.0.0.1:3306)/filbet_dev_main?charset=utf8mb4&parseTime=True&loc=Local"
