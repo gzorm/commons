@@ -271,7 +271,7 @@ type ZerogamerpcClient interface {
 	//group:platform
 	PlatformGameList(ctx context.Context, in *PlatformGameListReq, opts ...grpc.CallOption) (*PlatformGameListResp, error)
 	//group:platform
-	PlatformPlatList(ctx context.Context, in *PlatformPlatListDataReq, opts ...grpc.CallOption) (*PlatformPlatListDataResp, error)
+	PlatformPlatList(ctx context.Context, in *PlatformPlatListReq, opts ...grpc.CallOption) (*PlatformPlatListResp, error)
 	//group:platform
 	GetGamesByCategory(ctx context.Context, in *GetGamesByCategoryReq, opts ...grpc.CallOption) (*GetGamesByCategoryResp, error)
 	//group:platform
@@ -1090,9 +1090,9 @@ func (c *zerogamerpcClient) PlatformGameList(ctx context.Context, in *PlatformGa
 	return out, nil
 }
 
-func (c *zerogamerpcClient) PlatformPlatList(ctx context.Context, in *PlatformPlatListDataReq, opts ...grpc.CallOption) (*PlatformPlatListDataResp, error) {
+func (c *zerogamerpcClient) PlatformPlatList(ctx context.Context, in *PlatformPlatListReq, opts ...grpc.CallOption) (*PlatformPlatListResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(PlatformPlatListDataResp)
+	out := new(PlatformPlatListResp)
 	err := c.cc.Invoke(ctx, Zerogamerpc_PlatformPlatList_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -1305,7 +1305,7 @@ type ZerogamerpcServer interface {
 	//group:platform
 	PlatformGameList(context.Context, *PlatformGameListReq) (*PlatformGameListResp, error)
 	//group:platform
-	PlatformPlatList(context.Context, *PlatformPlatListDataReq) (*PlatformPlatListDataResp, error)
+	PlatformPlatList(context.Context, *PlatformPlatListReq) (*PlatformPlatListResp, error)
 	//group:platform
 	GetGamesByCategory(context.Context, *GetGamesByCategoryReq) (*GetGamesByCategoryResp, error)
 	//group:platform
@@ -1564,7 +1564,7 @@ func (UnimplementedZerogamerpcServer) SaBaTourist(context.Context, *SaBaTouristR
 func (UnimplementedZerogamerpcServer) PlatformGameList(context.Context, *PlatformGameListReq) (*PlatformGameListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PlatformGameList not implemented")
 }
-func (UnimplementedZerogamerpcServer) PlatformPlatList(context.Context, *PlatformPlatListDataReq) (*PlatformPlatListDataResp, error) {
+func (UnimplementedZerogamerpcServer) PlatformPlatList(context.Context, *PlatformPlatListReq) (*PlatformPlatListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PlatformPlatList not implemented")
 }
 func (UnimplementedZerogamerpcServer) GetGamesByCategory(context.Context, *GetGamesByCategoryReq) (*GetGamesByCategoryResp, error) {
@@ -3041,7 +3041,7 @@ func _Zerogamerpc_PlatformGameList_Handler(srv interface{}, ctx context.Context,
 }
 
 func _Zerogamerpc_PlatformPlatList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PlatformPlatListDataReq)
+	in := new(PlatformPlatListReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3053,7 +3053,7 @@ func _Zerogamerpc_PlatformPlatList_Handler(srv interface{}, ctx context.Context,
 		FullMethod: Zerogamerpc_PlatformPlatList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ZerogamerpcServer).PlatformPlatList(ctx, req.(*PlatformPlatListDataReq))
+		return srv.(ZerogamerpcServer).PlatformPlatList(ctx, req.(*PlatformPlatListReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
