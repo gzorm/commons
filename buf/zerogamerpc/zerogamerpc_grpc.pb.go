@@ -104,6 +104,7 @@ const (
 	Zerogamerpc_GamePagcorList_FullMethodName                        = "/zerogamerpc.Zerogamerpc/gamePagcorList"
 	Zerogamerpc_GameProviderList_FullMethodName                      = "/zerogamerpc.Zerogamerpc/gameProviderList"
 	Zerogamerpc_LoginUserCountChart_FullMethodName                   = "/zerogamerpc.Zerogamerpc/loginUserCountChart"
+	Zerogamerpc_BetGameList_FullMethodName                           = "/zerogamerpc.Zerogamerpc/betGameList"
 )
 
 // ZerogamerpcClient is the client API for Zerogamerpc service.
@@ -280,6 +281,8 @@ type ZerogamerpcClient interface {
 	GameProviderList(ctx context.Context, in *GameProviderListReq, opts ...grpc.CallOption) (*GameProviderListResp, error)
 	//group:platform
 	LoginUserCountChart(ctx context.Context, in *LoginUserCountChartReq, opts ...grpc.CallOption) (*LoginUserCountChartResp, error)
+	//group:platform
+	BetGameList(ctx context.Context, in *BetGameListReq, opts ...grpc.CallOption) (*BetGameListResp, error)
 }
 
 type zerogamerpcClient struct {
@@ -1140,6 +1143,16 @@ func (c *zerogamerpcClient) LoginUserCountChart(ctx context.Context, in *LoginUs
 	return out, nil
 }
 
+func (c *zerogamerpcClient) BetGameList(ctx context.Context, in *BetGameListReq, opts ...grpc.CallOption) (*BetGameListResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(BetGameListResp)
+	err := c.cc.Invoke(ctx, Zerogamerpc_BetGameList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ZerogamerpcServer is the server API for Zerogamerpc service.
 // All implementations must embed UnimplementedZerogamerpcServer
 // for forward compatibility.
@@ -1314,6 +1327,8 @@ type ZerogamerpcServer interface {
 	GameProviderList(context.Context, *GameProviderListReq) (*GameProviderListResp, error)
 	//group:platform
 	LoginUserCountChart(context.Context, *LoginUserCountChartReq) (*LoginUserCountChartResp, error)
+	//group:platform
+	BetGameList(context.Context, *BetGameListReq) (*BetGameListResp, error)
 	mustEmbedUnimplementedZerogamerpcServer()
 }
 
@@ -1578,6 +1593,9 @@ func (UnimplementedZerogamerpcServer) GameProviderList(context.Context, *GamePro
 }
 func (UnimplementedZerogamerpcServer) LoginUserCountChart(context.Context, *LoginUserCountChartReq) (*LoginUserCountChartResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LoginUserCountChart not implemented")
+}
+func (UnimplementedZerogamerpcServer) BetGameList(context.Context, *BetGameListReq) (*BetGameListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BetGameList not implemented")
 }
 func (UnimplementedZerogamerpcServer) mustEmbedUnimplementedZerogamerpcServer() {}
 func (UnimplementedZerogamerpcServer) testEmbeddedByValue()                     {}
@@ -3130,6 +3148,24 @@ func _Zerogamerpc_LoginUserCountChart_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Zerogamerpc_BetGameList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BetGameListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ZerogamerpcServer).BetGameList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Zerogamerpc_BetGameList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ZerogamerpcServer).BetGameList(ctx, req.(*BetGameListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Zerogamerpc_ServiceDesc is the grpc.ServiceDesc for Zerogamerpc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -3476,6 +3512,10 @@ var Zerogamerpc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "loginUserCountChart",
 			Handler:    _Zerogamerpc_LoginUserCountChart_Handler,
+		},
+		{
+			MethodName: "betGameList",
+			Handler:    _Zerogamerpc_BetGameList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
