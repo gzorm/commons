@@ -105,6 +105,7 @@ const (
 	Zerogamerpc_GameProviderList_FullMethodName                      = "/zerogamerpc.Zerogamerpc/gameProviderList"
 	Zerogamerpc_LoginUserCountChart_FullMethodName                   = "/zerogamerpc.Zerogamerpc/loginUserCountChart"
 	Zerogamerpc_BetGameList_FullMethodName                           = "/zerogamerpc.Zerogamerpc/betGameList"
+	Zerogamerpc_GetCascadeByGameGroupList_FullMethodName             = "/zerogamerpc.Zerogamerpc/getCascadeByGameGroupList"
 )
 
 // ZerogamerpcClient is the client API for Zerogamerpc service.
@@ -283,6 +284,8 @@ type ZerogamerpcClient interface {
 	LoginUserCountChart(ctx context.Context, in *LoginUserCountChartReq, opts ...grpc.CallOption) (*LoginUserCountChartResp, error)
 	//group:platform
 	BetGameList(ctx context.Context, in *BetGameListReq, opts ...grpc.CallOption) (*BetGameListResp, error)
+	//group:platform
+	GetCascadeByGameGroupList(ctx context.Context, in *GetCascadeByGameGroupListReq, opts ...grpc.CallOption) (*GetCascadeByGameGroupListResp, error)
 }
 
 type zerogamerpcClient struct {
@@ -1153,6 +1156,16 @@ func (c *zerogamerpcClient) BetGameList(ctx context.Context, in *BetGameListReq,
 	return out, nil
 }
 
+func (c *zerogamerpcClient) GetCascadeByGameGroupList(ctx context.Context, in *GetCascadeByGameGroupListReq, opts ...grpc.CallOption) (*GetCascadeByGameGroupListResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetCascadeByGameGroupListResp)
+	err := c.cc.Invoke(ctx, Zerogamerpc_GetCascadeByGameGroupList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ZerogamerpcServer is the server API for Zerogamerpc service.
 // All implementations must embed UnimplementedZerogamerpcServer
 // for forward compatibility.
@@ -1329,6 +1342,8 @@ type ZerogamerpcServer interface {
 	LoginUserCountChart(context.Context, *LoginUserCountChartReq) (*LoginUserCountChartResp, error)
 	//group:platform
 	BetGameList(context.Context, *BetGameListReq) (*BetGameListResp, error)
+	//group:platform
+	GetCascadeByGameGroupList(context.Context, *GetCascadeByGameGroupListReq) (*GetCascadeByGameGroupListResp, error)
 	mustEmbedUnimplementedZerogamerpcServer()
 }
 
@@ -1596,6 +1611,9 @@ func (UnimplementedZerogamerpcServer) LoginUserCountChart(context.Context, *Logi
 }
 func (UnimplementedZerogamerpcServer) BetGameList(context.Context, *BetGameListReq) (*BetGameListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BetGameList not implemented")
+}
+func (UnimplementedZerogamerpcServer) GetCascadeByGameGroupList(context.Context, *GetCascadeByGameGroupListReq) (*GetCascadeByGameGroupListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCascadeByGameGroupList not implemented")
 }
 func (UnimplementedZerogamerpcServer) mustEmbedUnimplementedZerogamerpcServer() {}
 func (UnimplementedZerogamerpcServer) testEmbeddedByValue()                     {}
@@ -3166,6 +3184,24 @@ func _Zerogamerpc_BetGameList_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Zerogamerpc_GetCascadeByGameGroupList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCascadeByGameGroupListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ZerogamerpcServer).GetCascadeByGameGroupList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Zerogamerpc_GetCascadeByGameGroupList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ZerogamerpcServer).GetCascadeByGameGroupList(ctx, req.(*GetCascadeByGameGroupListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Zerogamerpc_ServiceDesc is the grpc.ServiceDesc for Zerogamerpc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -3516,6 +3552,10 @@ var Zerogamerpc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "betGameList",
 			Handler:    _Zerogamerpc_BetGameList_Handler,
+		},
+		{
+			MethodName: "getCascadeByGameGroupList",
+			Handler:    _Zerogamerpc_GetCascadeByGameGroupList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
