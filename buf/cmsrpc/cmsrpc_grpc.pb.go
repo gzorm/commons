@@ -104,9 +104,6 @@ const (
 	Cmsrpc_GetPromotionalVideo_FullMethodName             = "/cmsrpc.cmsrpc/GetPromotionalVideo"
 	Cmsrpc_UserLevelRewardsSum_FullMethodName             = "/cmsrpc.cmsrpc/UserLevelRewardsSum"
 	Cmsrpc_UserLevelRewardsList_FullMethodName            = "/cmsrpc.cmsrpc/UserLevelRewardsList"
-	Cmsrpc_SaveOrUpdateUserGroup_FullMethodName           = "/cmsrpc.cmsrpc/SaveOrUpdateUserGroup"
-	Cmsrpc_QueryAllRuleTitleManager_FullMethodName        = "/cmsrpc.cmsrpc/QueryAllRuleTitleManager"
-	Cmsrpc_AddAdmin_FullMethodName                        = "/cmsrpc.cmsrpc/AddAdmin"
 	Cmsrpc_InsertRule_FullMethodName                      = "/cmsrpc.cmsrpc/InsertRule"
 	Cmsrpc_InsertRoleAuthManager_FullMethodName           = "/cmsrpc.cmsrpc/InsertRoleAuthManager"
 	Cmsrpc_ListAdminOperationLog_FullMethodName           = "/cmsrpc.cmsrpc/ListAdminOperationLog"
@@ -114,6 +111,9 @@ const (
 	Cmsrpc_AdminOperationLogMenu_FullMethodName           = "/cmsrpc.cmsrpc/AdminOperationLogMenu"
 	Cmsrpc_PagcorDailyTaxCount_FullMethodName             = "/cmsrpc.cmsrpc/PagcorDailyTaxCount"
 	Cmsrpc_Logout_FullMethodName                          = "/cmsrpc.cmsrpc/Logout"
+	Cmsrpc_TotalAwardAmount_FullMethodName                = "/cmsrpc.cmsrpc/totalAwardAmount"
+	Cmsrpc_RecordPageList_FullMethodName                  = "/cmsrpc.cmsrpc/recordPageList"
+	Cmsrpc_CheckInRecordDetail_FullMethodName             = "/cmsrpc.cmsrpc/checkInRecordDetail"
 )
 
 // CmsrpcClient is the client API for Cmsrpc service.
@@ -291,12 +291,6 @@ type CmsrpcClient interface {
 	// group:user
 	UserLevelRewardsList(ctx context.Context, in *UserLevelRewardsListReq, opts ...grpc.CallOption) (*UserLevelRewardsListResp, error)
 	// group:user
-	SaveOrUpdateUserGroup(ctx context.Context, in *SaveOrUpdateUserGroupReq, opts ...grpc.CallOption) (*SaveOrUpdateUserGroupResp, error)
-	// group:user
-	QueryAllRuleTitleManager(ctx context.Context, in *QueryAllRuleTitleManagerReq, opts ...grpc.CallOption) (*QueryAllRuleTitleManagerResp, error)
-	// group:user
-	AddAdmin(ctx context.Context, in *AddAdminReq, opts ...grpc.CallOption) (*AddAdminResp, error)
-	// group:user
 	InsertRule(ctx context.Context, in *InsertRuleReq, opts ...grpc.CallOption) (*InsertRuleResp, error)
 	// group:user
 	InsertRoleAuthManager(ctx context.Context, in *InsertRoleAuthManagerReq, opts ...grpc.CallOption) (*InsertRoleAuthManagerResp, error)
@@ -310,6 +304,12 @@ type CmsrpcClient interface {
 	PagcorDailyTaxCount(ctx context.Context, in *PagcorDailyTaxCountReq, opts ...grpc.CallOption) (*PagcorDailyTaxCountResp, error)
 	//group:user
 	Logout(ctx context.Context, in *LogoutReq, opts ...grpc.CallOption) (*LogoutResp, error)
+	//group:checkIn
+	TotalAwardAmount(ctx context.Context, in *TotalAwardAmountReq, opts ...grpc.CallOption) (*TotalAwardAmountResp, error)
+	//group:checkIn
+	RecordPageList(ctx context.Context, in *RecordPageListReq, opts ...grpc.CallOption) (*RecordPageListResp, error)
+	//group:checkIn
+	CheckInRecordDetail(ctx context.Context, in *CheckInRecordDetailReq, opts ...grpc.CallOption) (*CheckInRecordDetailResp, error)
 }
 
 type cmsrpcClient struct {
@@ -1170,36 +1170,6 @@ func (c *cmsrpcClient) UserLevelRewardsList(ctx context.Context, in *UserLevelRe
 	return out, nil
 }
 
-func (c *cmsrpcClient) SaveOrUpdateUserGroup(ctx context.Context, in *SaveOrUpdateUserGroupReq, opts ...grpc.CallOption) (*SaveOrUpdateUserGroupResp, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SaveOrUpdateUserGroupResp)
-	err := c.cc.Invoke(ctx, Cmsrpc_SaveOrUpdateUserGroup_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *cmsrpcClient) QueryAllRuleTitleManager(ctx context.Context, in *QueryAllRuleTitleManagerReq, opts ...grpc.CallOption) (*QueryAllRuleTitleManagerResp, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(QueryAllRuleTitleManagerResp)
-	err := c.cc.Invoke(ctx, Cmsrpc_QueryAllRuleTitleManager_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *cmsrpcClient) AddAdmin(ctx context.Context, in *AddAdminReq, opts ...grpc.CallOption) (*AddAdminResp, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AddAdminResp)
-	err := c.cc.Invoke(ctx, Cmsrpc_AddAdmin_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *cmsrpcClient) InsertRule(ctx context.Context, in *InsertRuleReq, opts ...grpc.CallOption) (*InsertRuleResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(InsertRuleResp)
@@ -1264,6 +1234,36 @@ func (c *cmsrpcClient) Logout(ctx context.Context, in *LogoutReq, opts ...grpc.C
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(LogoutResp)
 	err := c.cc.Invoke(ctx, Cmsrpc_Logout_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cmsrpcClient) TotalAwardAmount(ctx context.Context, in *TotalAwardAmountReq, opts ...grpc.CallOption) (*TotalAwardAmountResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TotalAwardAmountResp)
+	err := c.cc.Invoke(ctx, Cmsrpc_TotalAwardAmount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cmsrpcClient) RecordPageList(ctx context.Context, in *RecordPageListReq, opts ...grpc.CallOption) (*RecordPageListResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RecordPageListResp)
+	err := c.cc.Invoke(ctx, Cmsrpc_RecordPageList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cmsrpcClient) CheckInRecordDetail(ctx context.Context, in *CheckInRecordDetailReq, opts ...grpc.CallOption) (*CheckInRecordDetailResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CheckInRecordDetailResp)
+	err := c.cc.Invoke(ctx, Cmsrpc_CheckInRecordDetail_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1445,12 +1445,6 @@ type CmsrpcServer interface {
 	// group:user
 	UserLevelRewardsList(context.Context, *UserLevelRewardsListReq) (*UserLevelRewardsListResp, error)
 	// group:user
-	SaveOrUpdateUserGroup(context.Context, *SaveOrUpdateUserGroupReq) (*SaveOrUpdateUserGroupResp, error)
-	// group:user
-	QueryAllRuleTitleManager(context.Context, *QueryAllRuleTitleManagerReq) (*QueryAllRuleTitleManagerResp, error)
-	// group:user
-	AddAdmin(context.Context, *AddAdminReq) (*AddAdminResp, error)
-	// group:user
 	InsertRule(context.Context, *InsertRuleReq) (*InsertRuleResp, error)
 	// group:user
 	InsertRoleAuthManager(context.Context, *InsertRoleAuthManagerReq) (*InsertRoleAuthManagerResp, error)
@@ -1464,6 +1458,12 @@ type CmsrpcServer interface {
 	PagcorDailyTaxCount(context.Context, *PagcorDailyTaxCountReq) (*PagcorDailyTaxCountResp, error)
 	//group:user
 	Logout(context.Context, *LogoutReq) (*LogoutResp, error)
+	//group:checkIn
+	TotalAwardAmount(context.Context, *TotalAwardAmountReq) (*TotalAwardAmountResp, error)
+	//group:checkIn
+	RecordPageList(context.Context, *RecordPageListReq) (*RecordPageListResp, error)
+	//group:checkIn
+	CheckInRecordDetail(context.Context, *CheckInRecordDetailReq) (*CheckInRecordDetailResp, error)
 	mustEmbedUnimplementedCmsrpcServer()
 }
 
@@ -1729,15 +1729,6 @@ func (UnimplementedCmsrpcServer) UserLevelRewardsSum(context.Context, *UserLevel
 func (UnimplementedCmsrpcServer) UserLevelRewardsList(context.Context, *UserLevelRewardsListReq) (*UserLevelRewardsListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserLevelRewardsList not implemented")
 }
-func (UnimplementedCmsrpcServer) SaveOrUpdateUserGroup(context.Context, *SaveOrUpdateUserGroupReq) (*SaveOrUpdateUserGroupResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SaveOrUpdateUserGroup not implemented")
-}
-func (UnimplementedCmsrpcServer) QueryAllRuleTitleManager(context.Context, *QueryAllRuleTitleManagerReq) (*QueryAllRuleTitleManagerResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method QueryAllRuleTitleManager not implemented")
-}
-func (UnimplementedCmsrpcServer) AddAdmin(context.Context, *AddAdminReq) (*AddAdminResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddAdmin not implemented")
-}
 func (UnimplementedCmsrpcServer) InsertRule(context.Context, *InsertRuleReq) (*InsertRuleResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InsertRule not implemented")
 }
@@ -1758,6 +1749,15 @@ func (UnimplementedCmsrpcServer) PagcorDailyTaxCount(context.Context, *PagcorDai
 }
 func (UnimplementedCmsrpcServer) Logout(context.Context, *LogoutReq) (*LogoutResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Logout not implemented")
+}
+func (UnimplementedCmsrpcServer) TotalAwardAmount(context.Context, *TotalAwardAmountReq) (*TotalAwardAmountResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TotalAwardAmount not implemented")
+}
+func (UnimplementedCmsrpcServer) RecordPageList(context.Context, *RecordPageListReq) (*RecordPageListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RecordPageList not implemented")
+}
+func (UnimplementedCmsrpcServer) CheckInRecordDetail(context.Context, *CheckInRecordDetailReq) (*CheckInRecordDetailResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckInRecordDetail not implemented")
 }
 func (UnimplementedCmsrpcServer) mustEmbedUnimplementedCmsrpcServer() {}
 func (UnimplementedCmsrpcServer) testEmbeddedByValue()                {}
@@ -3310,60 +3310,6 @@ func _Cmsrpc_UserLevelRewardsList_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Cmsrpc_SaveOrUpdateUserGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SaveOrUpdateUserGroupReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CmsrpcServer).SaveOrUpdateUserGroup(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Cmsrpc_SaveOrUpdateUserGroup_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CmsrpcServer).SaveOrUpdateUserGroup(ctx, req.(*SaveOrUpdateUserGroupReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Cmsrpc_QueryAllRuleTitleManager_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryAllRuleTitleManagerReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CmsrpcServer).QueryAllRuleTitleManager(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Cmsrpc_QueryAllRuleTitleManager_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CmsrpcServer).QueryAllRuleTitleManager(ctx, req.(*QueryAllRuleTitleManagerReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Cmsrpc_AddAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddAdminReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CmsrpcServer).AddAdmin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Cmsrpc_AddAdmin_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CmsrpcServer).AddAdmin(ctx, req.(*AddAdminReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Cmsrpc_InsertRule_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(InsertRuleReq)
 	if err := dec(in); err != nil {
@@ -3486,6 +3432,60 @@ func _Cmsrpc_Logout_Handler(srv interface{}, ctx context.Context, dec func(inter
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CmsrpcServer).Logout(ctx, req.(*LogoutReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cmsrpc_TotalAwardAmount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TotalAwardAmountReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).TotalAwardAmount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_TotalAwardAmount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).TotalAwardAmount(ctx, req.(*TotalAwardAmountReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cmsrpc_RecordPageList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RecordPageListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).RecordPageList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_RecordPageList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).RecordPageList(ctx, req.(*RecordPageListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cmsrpc_CheckInRecordDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckInRecordDetailReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).CheckInRecordDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_CheckInRecordDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).CheckInRecordDetail(ctx, req.(*CheckInRecordDetailReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3838,18 +3838,6 @@ var Cmsrpc_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Cmsrpc_UserLevelRewardsList_Handler,
 		},
 		{
-			MethodName: "SaveOrUpdateUserGroup",
-			Handler:    _Cmsrpc_SaveOrUpdateUserGroup_Handler,
-		},
-		{
-			MethodName: "QueryAllRuleTitleManager",
-			Handler:    _Cmsrpc_QueryAllRuleTitleManager_Handler,
-		},
-		{
-			MethodName: "AddAdmin",
-			Handler:    _Cmsrpc_AddAdmin_Handler,
-		},
-		{
 			MethodName: "InsertRule",
 			Handler:    _Cmsrpc_InsertRule_Handler,
 		},
@@ -3876,6 +3864,18 @@ var Cmsrpc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Logout",
 			Handler:    _Cmsrpc_Logout_Handler,
+		},
+		{
+			MethodName: "totalAwardAmount",
+			Handler:    _Cmsrpc_TotalAwardAmount_Handler,
+		},
+		{
+			MethodName: "recordPageList",
+			Handler:    _Cmsrpc_RecordPageList_Handler,
+		},
+		{
+			MethodName: "checkInRecordDetail",
+			Handler:    _Cmsrpc_CheckInRecordDetail_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
