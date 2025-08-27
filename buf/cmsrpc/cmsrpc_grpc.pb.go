@@ -114,6 +114,8 @@ const (
 	Cmsrpc_TotalAwardAmount_FullMethodName                = "/cmsrpc.cmsrpc/totalAwardAmount"
 	Cmsrpc_RecordPageList_FullMethodName                  = "/cmsrpc.cmsrpc/recordPageList"
 	Cmsrpc_CheckInRecordDetail_FullMethodName             = "/cmsrpc.cmsrpc/checkInRecordDetail"
+	Cmsrpc_PromotionBlogList_FullMethodName               = "/cmsrpc.cmsrpc/promotionBlogList"
+	Cmsrpc_GetPromotionsCode_FullMethodName               = "/cmsrpc.cmsrpc/getPromotionsCode"
 )
 
 // CmsrpcClient is the client API for Cmsrpc service.
@@ -310,6 +312,10 @@ type CmsrpcClient interface {
 	RecordPageList(ctx context.Context, in *RecordPageListReq, opts ...grpc.CallOption) (*RecordPageListResp, error)
 	//group:checkIn
 	CheckInRecordDetail(ctx context.Context, in *CheckInRecordDetailReq, opts ...grpc.CallOption) (*CheckInRecordDetailResp, error)
+	//group:promotion
+	PromotionBlogList(ctx context.Context, in *PromotionBlogListReq, opts ...grpc.CallOption) (*PromotionBlogListResp, error)
+	//group:promotion
+	GetPromotionsCode(ctx context.Context, in *GetPromotionsCodeReq, opts ...grpc.CallOption) (*GetPromotionsCodeResp, error)
 }
 
 type cmsrpcClient struct {
@@ -1270,6 +1276,26 @@ func (c *cmsrpcClient) CheckInRecordDetail(ctx context.Context, in *CheckInRecor
 	return out, nil
 }
 
+func (c *cmsrpcClient) PromotionBlogList(ctx context.Context, in *PromotionBlogListReq, opts ...grpc.CallOption) (*PromotionBlogListResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PromotionBlogListResp)
+	err := c.cc.Invoke(ctx, Cmsrpc_PromotionBlogList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cmsrpcClient) GetPromotionsCode(ctx context.Context, in *GetPromotionsCodeReq, opts ...grpc.CallOption) (*GetPromotionsCodeResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPromotionsCodeResp)
+	err := c.cc.Invoke(ctx, Cmsrpc_GetPromotionsCode_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CmsrpcServer is the server API for Cmsrpc service.
 // All implementations must embed UnimplementedCmsrpcServer
 // for forward compatibility.
@@ -1464,6 +1490,10 @@ type CmsrpcServer interface {
 	RecordPageList(context.Context, *RecordPageListReq) (*RecordPageListResp, error)
 	//group:checkIn
 	CheckInRecordDetail(context.Context, *CheckInRecordDetailReq) (*CheckInRecordDetailResp, error)
+	//group:promotion
+	PromotionBlogList(context.Context, *PromotionBlogListReq) (*PromotionBlogListResp, error)
+	//group:promotion
+	GetPromotionsCode(context.Context, *GetPromotionsCodeReq) (*GetPromotionsCodeResp, error)
 	mustEmbedUnimplementedCmsrpcServer()
 }
 
@@ -1758,6 +1788,12 @@ func (UnimplementedCmsrpcServer) RecordPageList(context.Context, *RecordPageList
 }
 func (UnimplementedCmsrpcServer) CheckInRecordDetail(context.Context, *CheckInRecordDetailReq) (*CheckInRecordDetailResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckInRecordDetail not implemented")
+}
+func (UnimplementedCmsrpcServer) PromotionBlogList(context.Context, *PromotionBlogListReq) (*PromotionBlogListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PromotionBlogList not implemented")
+}
+func (UnimplementedCmsrpcServer) GetPromotionsCode(context.Context, *GetPromotionsCodeReq) (*GetPromotionsCodeResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPromotionsCode not implemented")
 }
 func (UnimplementedCmsrpcServer) mustEmbedUnimplementedCmsrpcServer() {}
 func (UnimplementedCmsrpcServer) testEmbeddedByValue()                {}
@@ -3490,6 +3526,42 @@ func _Cmsrpc_CheckInRecordDetail_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Cmsrpc_PromotionBlogList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PromotionBlogListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).PromotionBlogList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_PromotionBlogList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).PromotionBlogList(ctx, req.(*PromotionBlogListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cmsrpc_GetPromotionsCode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPromotionsCodeReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).GetPromotionsCode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_GetPromotionsCode_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).GetPromotionsCode(ctx, req.(*GetPromotionsCodeReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Cmsrpc_ServiceDesc is the grpc.ServiceDesc for Cmsrpc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -3876,6 +3948,14 @@ var Cmsrpc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "checkInRecordDetail",
 			Handler:    _Cmsrpc_CheckInRecordDetail_Handler,
+		},
+		{
+			MethodName: "promotionBlogList",
+			Handler:    _Cmsrpc_PromotionBlogList_Handler,
+		},
+		{
+			MethodName: "getPromotionsCode",
+			Handler:    _Cmsrpc_GetPromotionsCode_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
