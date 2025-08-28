@@ -78,6 +78,9 @@ const (
 	Payrpc_EditChannel_FullMethodName                     = "/payrpc.payrpc/editChannel"
 	Payrpc_DepositList_FullMethodName                     = "/payrpc.payrpc/depositList"
 	Payrpc_DepositStatistics_FullMethodName               = "/payrpc.payrpc/depositStatistics"
+	Payrpc_GetWithdrawalAddressType_FullMethodName        = "/payrpc.payrpc/getWithdrawalAddressType"
+	Payrpc_PayChannelList_FullMethodName                  = "/payrpc.payrpc/payChannelList"
+	Payrpc_PayPlatList_FullMethodName                     = "/payrpc.payrpc/payPlatList"
 )
 
 // PayrpcClient is the client API for Payrpc service.
@@ -202,6 +205,12 @@ type PayrpcClient interface {
 	DepositList(ctx context.Context, in *AdminDepositListReq, opts ...grpc.CallOption) (*AdminDepositListResp, error)
 	//group:pay
 	DepositStatistics(ctx context.Context, in *AdminDepositStatisticsReq, opts ...grpc.CallOption) (*AdminDepositStatisticsResp, error)
+	// group:system
+	GetWithdrawalAddressType(ctx context.Context, in *GetWithdrawalAddressTypeReq, opts ...grpc.CallOption) (*GetWithdrawalAddressTypeResp, error)
+	//group:system
+	PayChannelList(ctx context.Context, in *PayChannelListReq, opts ...grpc.CallOption) (*PayChannelListResp, error)
+	//group:system
+	PayPlatList(ctx context.Context, in *PayPlatListReq, opts ...grpc.CallOption) (*PayPlatListResp, error)
 }
 
 type payrpcClient struct {
@@ -802,6 +811,36 @@ func (c *payrpcClient) DepositStatistics(ctx context.Context, in *AdminDepositSt
 	return out, nil
 }
 
+func (c *payrpcClient) GetWithdrawalAddressType(ctx context.Context, in *GetWithdrawalAddressTypeReq, opts ...grpc.CallOption) (*GetWithdrawalAddressTypeResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetWithdrawalAddressTypeResp)
+	err := c.cc.Invoke(ctx, Payrpc_GetWithdrawalAddressType_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payrpcClient) PayChannelList(ctx context.Context, in *PayChannelListReq, opts ...grpc.CallOption) (*PayChannelListResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PayChannelListResp)
+	err := c.cc.Invoke(ctx, Payrpc_PayChannelList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payrpcClient) PayPlatList(ctx context.Context, in *PayPlatListReq, opts ...grpc.CallOption) (*PayPlatListResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PayPlatListResp)
+	err := c.cc.Invoke(ctx, Payrpc_PayPlatList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PayrpcServer is the server API for Payrpc service.
 // All implementations must embed UnimplementedPayrpcServer
 // for forward compatibility.
@@ -924,6 +963,12 @@ type PayrpcServer interface {
 	DepositList(context.Context, *AdminDepositListReq) (*AdminDepositListResp, error)
 	//group:pay
 	DepositStatistics(context.Context, *AdminDepositStatisticsReq) (*AdminDepositStatisticsResp, error)
+	// group:system
+	GetWithdrawalAddressType(context.Context, *GetWithdrawalAddressTypeReq) (*GetWithdrawalAddressTypeResp, error)
+	//group:system
+	PayChannelList(context.Context, *PayChannelListReq) (*PayChannelListResp, error)
+	//group:system
+	PayPlatList(context.Context, *PayPlatListReq) (*PayPlatListResp, error)
 	mustEmbedUnimplementedPayrpcServer()
 }
 
@@ -1110,6 +1155,15 @@ func (UnimplementedPayrpcServer) DepositList(context.Context, *AdminDepositListR
 }
 func (UnimplementedPayrpcServer) DepositStatistics(context.Context, *AdminDepositStatisticsReq) (*AdminDepositStatisticsResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DepositStatistics not implemented")
+}
+func (UnimplementedPayrpcServer) GetWithdrawalAddressType(context.Context, *GetWithdrawalAddressTypeReq) (*GetWithdrawalAddressTypeResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWithdrawalAddressType not implemented")
+}
+func (UnimplementedPayrpcServer) PayChannelList(context.Context, *PayChannelListReq) (*PayChannelListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PayChannelList not implemented")
+}
+func (UnimplementedPayrpcServer) PayPlatList(context.Context, *PayPlatListReq) (*PayPlatListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PayPlatList not implemented")
 }
 func (UnimplementedPayrpcServer) mustEmbedUnimplementedPayrpcServer() {}
 func (UnimplementedPayrpcServer) testEmbeddedByValue()                {}
@@ -2194,6 +2248,60 @@ func _Payrpc_DepositStatistics_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Payrpc_GetWithdrawalAddressType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetWithdrawalAddressTypeReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).GetWithdrawalAddressType(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_GetWithdrawalAddressType_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).GetWithdrawalAddressType(ctx, req.(*GetWithdrawalAddressTypeReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Payrpc_PayChannelList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PayChannelListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).PayChannelList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_PayChannelList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).PayChannelList(ctx, req.(*PayChannelListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Payrpc_PayPlatList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PayPlatListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).PayPlatList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_PayPlatList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).PayPlatList(ctx, req.(*PayPlatListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Payrpc_ServiceDesc is the grpc.ServiceDesc for Payrpc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2436,6 +2544,18 @@ var Payrpc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "depositStatistics",
 			Handler:    _Payrpc_DepositStatistics_Handler,
+		},
+		{
+			MethodName: "getWithdrawalAddressType",
+			Handler:    _Payrpc_GetWithdrawalAddressType_Handler,
+		},
+		{
+			MethodName: "payChannelList",
+			Handler:    _Payrpc_PayChannelList_Handler,
+		},
+		{
+			MethodName: "payPlatList",
+			Handler:    _Payrpc_PayPlatList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
