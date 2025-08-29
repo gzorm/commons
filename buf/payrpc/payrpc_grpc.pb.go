@@ -81,6 +81,10 @@ const (
 	Payrpc_GetWithdrawalAddressType_FullMethodName        = "/payrpc.payrpc/getWithdrawalAddressType"
 	Payrpc_PayChannelList_FullMethodName                  = "/payrpc.payrpc/payChannelList"
 	Payrpc_PayPlatList_FullMethodName                     = "/payrpc.payrpc/payPlatList"
+	Payrpc_AdminTransferList_FullMethodName               = "/payrpc.payrpc/adminTransferList"
+	Payrpc_AdminTransferStatistics_FullMethodName         = "/payrpc.payrpc/adminTransferStatistics"
+	Payrpc_GetChannelList_FullMethodName                  = "/payrpc.payrpc/getChannelList"
+	Payrpc_WithdrawalSum_FullMethodName                   = "/payrpc.payrpc/WithdrawalSum"
 )
 
 // PayrpcClient is the client API for Payrpc service.
@@ -211,6 +215,14 @@ type PayrpcClient interface {
 	PayChannelList(ctx context.Context, in *PayChannelListReq, opts ...grpc.CallOption) (*PayChannelListResp, error)
 	//group:system
 	PayPlatList(ctx context.Context, in *PayPlatListReq, opts ...grpc.CallOption) (*PayPlatListResp, error)
+	//group:financeRecord
+	AdminTransferList(ctx context.Context, in *AdminTransferListReq, opts ...grpc.CallOption) (*AdminTransferListResp, error)
+	//group:financeRecord
+	AdminTransferStatistics(ctx context.Context, in *AdminTransferStatisticsReq, opts ...grpc.CallOption) (*AdminTransferStatisticsResp, error)
+	//group:financeRecord
+	GetChannelList(ctx context.Context, in *GetChannelListReq, opts ...grpc.CallOption) (*GetChannelListResp, error)
+	//group:financeRecord
+	WithdrawalSum(ctx context.Context, in *WithdrawalSumReq, opts ...grpc.CallOption) (*WithdrawalSumResp, error)
 }
 
 type payrpcClient struct {
@@ -841,6 +853,46 @@ func (c *payrpcClient) PayPlatList(ctx context.Context, in *PayPlatListReq, opts
 	return out, nil
 }
 
+func (c *payrpcClient) AdminTransferList(ctx context.Context, in *AdminTransferListReq, opts ...grpc.CallOption) (*AdminTransferListResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AdminTransferListResp)
+	err := c.cc.Invoke(ctx, Payrpc_AdminTransferList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payrpcClient) AdminTransferStatistics(ctx context.Context, in *AdminTransferStatisticsReq, opts ...grpc.CallOption) (*AdminTransferStatisticsResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AdminTransferStatisticsResp)
+	err := c.cc.Invoke(ctx, Payrpc_AdminTransferStatistics_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payrpcClient) GetChannelList(ctx context.Context, in *GetChannelListReq, opts ...grpc.CallOption) (*GetChannelListResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetChannelListResp)
+	err := c.cc.Invoke(ctx, Payrpc_GetChannelList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payrpcClient) WithdrawalSum(ctx context.Context, in *WithdrawalSumReq, opts ...grpc.CallOption) (*WithdrawalSumResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WithdrawalSumResp)
+	err := c.cc.Invoke(ctx, Payrpc_WithdrawalSum_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PayrpcServer is the server API for Payrpc service.
 // All implementations must embed UnimplementedPayrpcServer
 // for forward compatibility.
@@ -969,6 +1021,14 @@ type PayrpcServer interface {
 	PayChannelList(context.Context, *PayChannelListReq) (*PayChannelListResp, error)
 	//group:system
 	PayPlatList(context.Context, *PayPlatListReq) (*PayPlatListResp, error)
+	//group:financeRecord
+	AdminTransferList(context.Context, *AdminTransferListReq) (*AdminTransferListResp, error)
+	//group:financeRecord
+	AdminTransferStatistics(context.Context, *AdminTransferStatisticsReq) (*AdminTransferStatisticsResp, error)
+	//group:financeRecord
+	GetChannelList(context.Context, *GetChannelListReq) (*GetChannelListResp, error)
+	//group:financeRecord
+	WithdrawalSum(context.Context, *WithdrawalSumReq) (*WithdrawalSumResp, error)
 	mustEmbedUnimplementedPayrpcServer()
 }
 
@@ -1164,6 +1224,18 @@ func (UnimplementedPayrpcServer) PayChannelList(context.Context, *PayChannelList
 }
 func (UnimplementedPayrpcServer) PayPlatList(context.Context, *PayPlatListReq) (*PayPlatListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PayPlatList not implemented")
+}
+func (UnimplementedPayrpcServer) AdminTransferList(context.Context, *AdminTransferListReq) (*AdminTransferListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminTransferList not implemented")
+}
+func (UnimplementedPayrpcServer) AdminTransferStatistics(context.Context, *AdminTransferStatisticsReq) (*AdminTransferStatisticsResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminTransferStatistics not implemented")
+}
+func (UnimplementedPayrpcServer) GetChannelList(context.Context, *GetChannelListReq) (*GetChannelListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetChannelList not implemented")
+}
+func (UnimplementedPayrpcServer) WithdrawalSum(context.Context, *WithdrawalSumReq) (*WithdrawalSumResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WithdrawalSum not implemented")
 }
 func (UnimplementedPayrpcServer) mustEmbedUnimplementedPayrpcServer() {}
 func (UnimplementedPayrpcServer) testEmbeddedByValue()                {}
@@ -2302,6 +2374,78 @@ func _Payrpc_PayPlatList_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Payrpc_AdminTransferList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminTransferListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).AdminTransferList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_AdminTransferList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).AdminTransferList(ctx, req.(*AdminTransferListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Payrpc_AdminTransferStatistics_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminTransferStatisticsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).AdminTransferStatistics(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_AdminTransferStatistics_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).AdminTransferStatistics(ctx, req.(*AdminTransferStatisticsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Payrpc_GetChannelList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetChannelListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).GetChannelList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_GetChannelList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).GetChannelList(ctx, req.(*GetChannelListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Payrpc_WithdrawalSum_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WithdrawalSumReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).WithdrawalSum(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_WithdrawalSum_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).WithdrawalSum(ctx, req.(*WithdrawalSumReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Payrpc_ServiceDesc is the grpc.ServiceDesc for Payrpc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2556,6 +2700,22 @@ var Payrpc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "payPlatList",
 			Handler:    _Payrpc_PayPlatList_Handler,
+		},
+		{
+			MethodName: "adminTransferList",
+			Handler:    _Payrpc_AdminTransferList_Handler,
+		},
+		{
+			MethodName: "adminTransferStatistics",
+			Handler:    _Payrpc_AdminTransferStatistics_Handler,
+		},
+		{
+			MethodName: "getChannelList",
+			Handler:    _Payrpc_GetChannelList_Handler,
+		},
+		{
+			MethodName: "WithdrawalSum",
+			Handler:    _Payrpc_WithdrawalSum_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
