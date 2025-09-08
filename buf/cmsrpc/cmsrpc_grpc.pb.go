@@ -117,6 +117,7 @@ const (
 	Cmsrpc_PromotionBlogList_FullMethodName               = "/cmsrpc.cmsrpc/promotionBlogList"
 	Cmsrpc_GetPromotionsCode_FullMethodName               = "/cmsrpc.cmsrpc/getPromotionsCode"
 	Cmsrpc_EventReports_FullMethodName                    = "/cmsrpc.cmsrpc/EventReports"
+	Cmsrpc_EventReportsList_FullMethodName                = "/cmsrpc.cmsrpc/EventReportsList"
 )
 
 // CmsrpcClient is the client API for Cmsrpc service.
@@ -317,8 +318,10 @@ type CmsrpcClient interface {
 	PromotionBlogList(ctx context.Context, in *PromotionBlogListReq, opts ...grpc.CallOption) (*PromotionBlogListResp, error)
 	//group:promotion
 	GetPromotionsCode(ctx context.Context, in *GetPromotionsCodeReq, opts ...grpc.CallOption) (*GetPromotionsCodeResp, error)
-	//group:promotion
+	//group:eventReports
 	EventReports(ctx context.Context, in *EventReportsReq, opts ...grpc.CallOption) (*EventReportsResp, error)
+	//group:eventReportsList
+	EventReportsList(ctx context.Context, in *EventReportsListReq, opts ...grpc.CallOption) (*EventReportsListResp, error)
 }
 
 type cmsrpcClient struct {
@@ -1211,6 +1214,15 @@ func (c *cmsrpcClient) EventReports(ctx context.Context, in *EventReportsReq, op
 	return out, nil
 }
 
+func (c *cmsrpcClient) EventReportsList(ctx context.Context, in *EventReportsListReq, opts ...grpc.CallOption) (*EventReportsListResp, error) {
+	out := new(EventReportsListResp)
+	err := c.cc.Invoke(ctx, Cmsrpc_EventReportsList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CmsrpcServer is the server API for Cmsrpc service.
 // All implementations must embed UnimplementedCmsrpcServer
 // for forward compatibility
@@ -1409,8 +1421,10 @@ type CmsrpcServer interface {
 	PromotionBlogList(context.Context, *PromotionBlogListReq) (*PromotionBlogListResp, error)
 	//group:promotion
 	GetPromotionsCode(context.Context, *GetPromotionsCodeReq) (*GetPromotionsCodeResp, error)
-	//group:promotion
+	//group:eventReports
 	EventReports(context.Context, *EventReportsReq) (*EventReportsResp, error)
+	//group:eventReportsList
+	EventReportsList(context.Context, *EventReportsListReq) (*EventReportsListResp, error)
 	mustEmbedUnimplementedCmsrpcServer()
 }
 
@@ -1711,6 +1725,9 @@ func (UnimplementedCmsrpcServer) GetPromotionsCode(context.Context, *GetPromotio
 }
 func (UnimplementedCmsrpcServer) EventReports(context.Context, *EventReportsReq) (*EventReportsResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method EventReports not implemented")
+}
+func (UnimplementedCmsrpcServer) EventReportsList(context.Context, *EventReportsListReq) (*EventReportsListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EventReportsList not implemented")
 }
 func (UnimplementedCmsrpcServer) mustEmbedUnimplementedCmsrpcServer() {}
 
@@ -3489,6 +3506,24 @@ func _Cmsrpc_EventReports_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Cmsrpc_EventReportsList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EventReportsListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CmsrpcServer).EventReportsList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cmsrpc_EventReportsList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CmsrpcServer).EventReportsList(ctx, req.(*EventReportsListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Cmsrpc_ServiceDesc is the grpc.ServiceDesc for Cmsrpc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -3887,6 +3922,10 @@ var Cmsrpc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "EventReports",
 			Handler:    _Cmsrpc_EventReports_Handler,
+		},
+		{
+			MethodName: "EventReportsList",
+			Handler:    _Cmsrpc_EventReportsList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
