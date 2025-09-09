@@ -33,6 +33,7 @@ func newEventReports(db *gorm.DB, opts ...gen.DOOption) eventReports {
 	_eventReports.EventType = field.NewInt64(tableName, "event_type")
 	_eventReports.IPAddress = field.NewString(tableName, "ip_address")
 	_eventReports.DeviceID = field.NewString(tableName, "device_id")
+	_eventReports.Device = field.NewString(tableName, "device")
 	_eventReports.UserAgent = field.NewString(tableName, "user_agent")
 	_eventReports.CreatedAt = field.NewTime(tableName, "created_at")
 	_eventReports.UpdateAt = field.NewTime(tableName, "update_at")
@@ -53,6 +54,7 @@ type eventReports struct {
 	EventType field.Int64  // 事件类型:登录页=1,注册页=2
 	IPAddress field.String // IP地址
 	DeviceID  field.String // 设备号
+	Device    field.String // 设备类型
 	UserAgent field.String // ua
 	CreatedAt field.Time   // 上报时间
 	UpdateAt  field.Time   // 更新时间
@@ -78,6 +80,7 @@ func (e *eventReports) updateTableName(table string) *eventReports {
 	e.EventType = field.NewInt64(table, "event_type")
 	e.IPAddress = field.NewString(table, "ip_address")
 	e.DeviceID = field.NewString(table, "device_id")
+	e.Device = field.NewString(table, "device")
 	e.UserAgent = field.NewString(table, "user_agent")
 	e.CreatedAt = field.NewTime(table, "created_at")
 	e.UpdateAt = field.NewTime(table, "update_at")
@@ -97,13 +100,14 @@ func (e *eventReports) GetFieldByName(fieldName string) (field.OrderExpr, bool) 
 }
 
 func (e *eventReports) fillFieldMap() {
-	e.fieldMap = make(map[string]field.Expr, 9)
+	e.fieldMap = make(map[string]field.Expr, 10)
 	e.fieldMap["id"] = e.ID
 	e.fieldMap["uid"] = e.UID
 	e.fieldMap["username"] = e.Username
 	e.fieldMap["event_type"] = e.EventType
 	e.fieldMap["ip_address"] = e.IPAddress
 	e.fieldMap["device_id"] = e.DeviceID
+	e.fieldMap["device"] = e.Device
 	e.fieldMap["user_agent"] = e.UserAgent
 	e.fieldMap["created_at"] = e.CreatedAt
 	e.fieldMap["update_at"] = e.UpdateAt

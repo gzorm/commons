@@ -18,6 +18,7 @@ type EventReports struct {
 	EventType int64     `gorm:"column:event_type;type:tinyint;not null;comment:事件类型:登录页=1,注册页=2" json:"eventType"`      // 事件类型:登录页=1,注册页=2
 	IPAddress string    `gorm:"column:ip_address;type:varchar(100);not null;comment:IP地址" json:"ipAddress"`             // IP地址
 	DeviceID  string    `gorm:"column:device_id;type:varchar(100);not null;comment:设备号" json:"deviceId"`                // 设备号
+	Device    string    `gorm:"column:device;type:varchar(100);comment:设备类型" json:"device"`                             // 设备类型
 	UserAgent string    `gorm:"column:user_agent;type:varchar(255);comment:ua" json:"userAgent"`                        // ua
 	CreatedAt time.Time `gorm:"column:created_at;comment:创建时间" json:"createdAt"`                                        // 上报时间
 	UpdateAt  time.Time `gorm:"column:update_at;type:timestamp;default:CURRENT_TIMESTAMP;comment:更新时间" json:"updateAt"` // 更新时间
