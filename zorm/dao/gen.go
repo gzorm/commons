@@ -18,6 +18,7 @@ import (
 
 var (
 	Q                                     = new(Query)
+	LiveGame                              *liveGame
 	EventReports                          *eventReports
 	LiveRoomCallback                      *liveRoomCallback
 	LiveAnchor                            *liveAnchor
@@ -192,6 +193,7 @@ var (
 
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	*Q = *Use(db, opts...)
+	LiveGame = &Q.LiveGame
 	EventReports = &Q.EventReports
 	LiveRoomCallback = &Q.LiveRoomCallback
 	LiveAnchor = &Q.LiveAnchor
@@ -368,6 +370,7 @@ func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 	return &Query{
 		db:                                    db,
+		LiveGame:                              newLiveGame(db, opts...),
 		EventReports:                          newEventReports(db, opts...),
 		LiveRoomCallback:                      newLiveRoomCallback(db, opts...),
 		LiveAnchor:                            newLiveAnchor(db, opts...),
@@ -543,6 +546,7 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 
 type Query struct {
 	db                                    *gorm.DB
+	LiveGame                              liveGame
 	EventReports                          eventReports
 	LiveRoomCallback                      liveRoomCallback
 	LiveAnchor                            liveAnchor
@@ -720,6 +724,7 @@ func (q *Query) Available() bool { return q.db != nil }
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
 		db:                                    db,
+		LiveGame:                              q.LiveGame.clone(db),
 		EventReports:                          q.EventReports.clone(db),
 		LiveRoomCallback:                      q.LiveRoomCallback.clone(db),
 		LiveAnchor:                            q.LiveAnchor.clone(db),
@@ -904,6 +909,7 @@ func (q *Query) WriteDB() *Query {
 func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 	return &Query{
 		db:                                    db,
+		LiveGame:                              q.LiveGame.replaceDB(db),
 		EventReports:                          q.EventReports.replaceDB(db),
 		LiveRoomCallback:                      q.LiveRoomCallback.replaceDB(db),
 		LiveAnchor:                            q.LiveAnchor.replaceDB(db),
@@ -1078,6 +1084,7 @@ func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 }
 
 type queryCtx struct {
+	LiveGame                              ILiveGameDo
 	EventReports                          IEventReportsDo
 	LiveRoomCallback                      ILiveRoomCallbackDo
 	LiveAnchor                            ILiveAnchorDo
@@ -1252,6 +1259,7 @@ type queryCtx struct {
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
+		LiveGame:                              q.LiveGame.WithContext(ctx),
 		EventReports:                          q.EventReports.WithContext(ctx),
 		LiveRoomCallback:                      q.LiveRoomCallback.WithContext(ctx),
 		LiveAnchor:                            q.LiveAnchor.WithContext(ctx),
