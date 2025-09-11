@@ -43,6 +43,8 @@ func newLiveGame(db *gorm.DB, opts ...gen.DOOption) liveGame {
 	_liveGame.MatchStatus = field.NewInt64(tableName, "match_status")
 	_liveGame.StartTime = field.NewInt64(tableName, "start_time")
 	_liveGame.EndTime = field.NewInt64(tableName, "end_time")
+	_liveGame.HomeScore = field.NewInt64(tableName, "home_score")
+	_liveGame.AwayScore = field.NewInt64(tableName, "away_score")
 	_liveGame.HomeLogo = field.NewString(tableName, "home_logo")
 	_liveGame.AwayLogo = field.NewString(tableName, "away_logo")
 	_liveGame.LiveStatus = field.NewInt64(tableName, "live_status")
@@ -83,6 +85,8 @@ type liveGame struct {
 	MatchStatus    field.Int64  // 赛事状态（1=未开赛，3=结束，5=其他）
 	StartTime      field.Int64  // 赛事开始时间
 	EndTime        field.Int64  // 赛事结束时间
+	HomeScore      field.Int64  // 主队得分
+	AwayScore      field.Int64  // 客队得分
 	HomeLogo       field.String // 主队LOGO
 	AwayLogo       field.String // 客队LOGO
 	LiveStatus     field.Int64  // 直播状态(1=未开始，3=直播中，5=已结束, 7=回放中)
@@ -128,6 +132,8 @@ func (l *liveGame) updateTableName(table string) *liveGame {
 	l.MatchStatus = field.NewInt64(table, "match_status")
 	l.StartTime = field.NewInt64(table, "start_time")
 	l.EndTime = field.NewInt64(table, "end_time")
+	l.HomeScore = field.NewInt64(table, "home_score")
+	l.AwayScore = field.NewInt64(table, "away_score")
 	l.HomeLogo = field.NewString(table, "home_logo")
 	l.AwayLogo = field.NewString(table, "away_logo")
 	l.LiveStatus = field.NewInt64(table, "live_status")
@@ -157,7 +163,7 @@ func (l *liveGame) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (l *liveGame) fillFieldMap() {
-	l.fieldMap = make(map[string]field.Expr, 29)
+	l.fieldMap = make(map[string]field.Expr, 31)
 	l.fieldMap["id"] = l.ID
 	l.fieldMap["match_type"] = l.MatchType
 	l.fieldMap["match_id"] = l.MatchID
@@ -174,6 +180,8 @@ func (l *liveGame) fillFieldMap() {
 	l.fieldMap["match_status"] = l.MatchStatus
 	l.fieldMap["start_time"] = l.StartTime
 	l.fieldMap["end_time"] = l.EndTime
+	l.fieldMap["home_score"] = l.HomeScore
+	l.fieldMap["away_score"] = l.AwayScore
 	l.fieldMap["home_logo"] = l.HomeLogo
 	l.fieldMap["away_logo"] = l.AwayLogo
 	l.fieldMap["live_status"] = l.LiveStatus
