@@ -50,6 +50,7 @@ func newLiveGame(db *gorm.DB, opts ...gen.DOOption) liveGame {
 	_liveGame.LiveStatus = field.NewInt64(tableName, "live_status")
 	_liveGame.PushURL = field.NewString(tableName, "push_url")
 	_liveGame.PlayURL = field.NewString(tableName, "play_url")
+	_liveGame.PlayURLIos = field.NewString(tableName, "play_url_ios")
 	_liveGame.LiveAppName = field.NewString(tableName, "live_app_name")
 	_liveGame.LiveStreamName = field.NewString(tableName, "live_stream_name")
 	_liveGame.Position = field.NewInt64(tableName, "position")
@@ -91,7 +92,8 @@ type liveGame struct {
 	AwayLogo       field.String // 客队LOGO
 	LiveStatus     field.Int64  // 直播状态(1=未开始，3=直播中，5=已结束, 7=回放中)
 	PushURL        field.String // 推流地址
-	PlayURL        field.String // 播放地址
+	PlayURL        field.String // 安卓播放地址
+	PlayURLIos     field.String // ios播放地址
 	LiveAppName    field.String // 推流APP名称
 	LiveStreamName field.String // 推流的名称
 	Position       field.Int64  // 排序号
@@ -139,6 +141,7 @@ func (l *liveGame) updateTableName(table string) *liveGame {
 	l.LiveStatus = field.NewInt64(table, "live_status")
 	l.PushURL = field.NewString(table, "push_url")
 	l.PlayURL = field.NewString(table, "play_url")
+	l.PlayURLIos = field.NewString(table, "play_url_ios")
 	l.LiveAppName = field.NewString(table, "live_app_name")
 	l.LiveStreamName = field.NewString(table, "live_stream_name")
 	l.Position = field.NewInt64(table, "position")
@@ -163,7 +166,7 @@ func (l *liveGame) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (l *liveGame) fillFieldMap() {
-	l.fieldMap = make(map[string]field.Expr, 31)
+	l.fieldMap = make(map[string]field.Expr, 32)
 	l.fieldMap["id"] = l.ID
 	l.fieldMap["match_type"] = l.MatchType
 	l.fieldMap["match_id"] = l.MatchID
@@ -187,6 +190,7 @@ func (l *liveGame) fillFieldMap() {
 	l.fieldMap["live_status"] = l.LiveStatus
 	l.fieldMap["push_url"] = l.PushURL
 	l.fieldMap["play_url"] = l.PlayURL
+	l.fieldMap["play_url_ios"] = l.PlayURLIos
 	l.fieldMap["live_app_name"] = l.LiveAppName
 	l.fieldMap["live_stream_name"] = l.LiveStreamName
 	l.fieldMap["position"] = l.Position

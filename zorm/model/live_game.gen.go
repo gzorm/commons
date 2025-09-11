@@ -30,7 +30,8 @@ type LiveGame struct {
 	AwayLogo       string `gorm:"column:away_logo;type:varchar(255);comment:客队LOGO" json:"awayLogo"`                        // 客队LOGO
 	LiveStatus     int64  `gorm:"column:live_status;type:tinyint;comment:直播状态(1=未开始，3=直播中，5=已结束, 7=回放中)" json:"liveStatus"` // 直播状态(1=未开始，3=直播中，5=已结束, 7=回放中)
 	PushURL        string `gorm:"column:push_url;type:varchar(355);comment:推流地址" json:"pushUrl"`                            // 推流地址
-	PlayURL        string `gorm:"column:play_url;type:varchar(355);comment:播放地址" json:"playUrl"`                            // 播放地址
+	PlayURL        string `gorm:"column:play_url;type:varchar(355);comment:安卓播放地址" json:"playUrl"`                          // 安卓播放地址
+	PlayURLIos     string `gorm:"column:play_url_ios;type:varchar(255);comment:ios播放地址" json:"playUrlIos"`                  // ios播放地址
 	LiveAppName    string `gorm:"column:live_app_name;type:varchar(255);comment:推流APP名称" json:"liveAppName"`                // 推流APP名称
 	LiveStreamName string `gorm:"column:live_stream_name;type:varchar(255);comment:推流的名称" json:"liveStreamName"`            // 推流的名称
 	Position       int64  `gorm:"column:position;type:int;comment:排序号" json:"position"`                                     // 排序号
