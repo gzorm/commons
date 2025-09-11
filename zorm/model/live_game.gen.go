@@ -24,8 +24,8 @@ type LiveGame struct {
 	MatchStatus    int64  `gorm:"column:match_status;type:tinyint;comment:赛事状态（1=未开赛，3=结束，5=其他）" json:"matchStatus"`        // 赛事状态（1=未开赛，3=结束，5=其他）
 	StartTime      int64  `gorm:"column:start_time;type:bigint;not null;comment:赛事开始时间" json:"startTime"`                   // 赛事开始时间
 	EndTime        int64  `gorm:"column:end_time;type:bigint;not null;comment:赛事结束时间" json:"endTime"`                       // 赛事结束时间
-	HomeScore      int64  `gorm:"column:home_score;type:int;comment:主队得分" json:"homeScore"`                                 // 主队得分
-	AwayScore      int64  `gorm:"column:away_score;type:int;comment:客队得分" json:"awayScore"`                                 // 客队得分
+	HomeScore      string `gorm:"column:home_score;type:json;comment:主队各节得分，格式如 [1,0,0,2]" json:"homeScore"`                // 主队各节得分，格式如 [1,0,0,2]
+	AwayScore      string `gorm:"column:away_score;type:json;comment:客队各节得分，格式如 [2,0,0,0]" json:"awayScore"`                // 客队各节得分，格式如 [2,0,0,0]
 	HomeLogo       string `gorm:"column:home_logo;type:varchar(255);comment:主队LOGO" json:"homeLogo"`                        // 主队LOGO
 	AwayLogo       string `gorm:"column:away_logo;type:varchar(255);comment:客队LOGO" json:"awayLogo"`                        // 客队LOGO
 	LiveStatus     int64  `gorm:"column:live_status;type:tinyint;comment:直播状态(1=未开始，3=直播中，5=已结束, 7=回放中)" json:"liveStatus"` // 直播状态(1=未开始，3=直播中，5=已结束, 7=回放中)
