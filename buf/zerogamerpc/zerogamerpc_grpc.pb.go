@@ -107,6 +107,7 @@ const (
 	Zerogamerpc_BetGameList_FullMethodName                           = "/zerogamerpc.Zerogamerpc/betGameList"
 	Zerogamerpc_GetCascadeByGameGroupList_FullMethodName             = "/zerogamerpc.Zerogamerpc/getCascadeByGameGroupList"
 	Zerogamerpc_LiveGameList_FullMethodName                          = "/zerogamerpc.Zerogamerpc/liveGameList"
+	Zerogamerpc_SaBaPlayGame_FullMethodName                          = "/zerogamerpc.Zerogamerpc/SaBaPlayGame"
 )
 
 // ZerogamerpcClient is the client API for Zerogamerpc service.
@@ -289,6 +290,8 @@ type ZerogamerpcClient interface {
 	GetCascadeByGameGroupList(ctx context.Context, in *GetCascadeByGameGroupListReq, opts ...grpc.CallOption) (*GetCascadeByGameGroupListResp, error)
 	//group:liveGameList
 	LiveGameList(ctx context.Context, in *LiveGameListReq, opts ...grpc.CallOption) (*LiveGameListResp, error)
+	// group:SaBaPlayGame
+	SaBaPlayGame(ctx context.Context, in *SaBaPlayGameReq, opts ...grpc.CallOption) (*SaBaPlayGameResp, error)
 }
 
 type zerogamerpcClient struct {
@@ -1091,6 +1094,15 @@ func (c *zerogamerpcClient) LiveGameList(ctx context.Context, in *LiveGameListRe
 	return out, nil
 }
 
+func (c *zerogamerpcClient) SaBaPlayGame(ctx context.Context, in *SaBaPlayGameReq, opts ...grpc.CallOption) (*SaBaPlayGameResp, error) {
+	out := new(SaBaPlayGameResp)
+	err := c.cc.Invoke(ctx, Zerogamerpc_SaBaPlayGame_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ZerogamerpcServer is the server API for Zerogamerpc service.
 // All implementations must embed UnimplementedZerogamerpcServer
 // for forward compatibility
@@ -1271,6 +1283,8 @@ type ZerogamerpcServer interface {
 	GetCascadeByGameGroupList(context.Context, *GetCascadeByGameGroupListReq) (*GetCascadeByGameGroupListResp, error)
 	//group:liveGameList
 	LiveGameList(context.Context, *LiveGameListReq) (*LiveGameListResp, error)
+	// group:SaBaPlayGame
+	SaBaPlayGame(context.Context, *SaBaPlayGameReq) (*SaBaPlayGameResp, error)
 	mustEmbedUnimplementedZerogamerpcServer()
 }
 
@@ -1541,6 +1555,9 @@ func (UnimplementedZerogamerpcServer) GetCascadeByGameGroupList(context.Context,
 }
 func (UnimplementedZerogamerpcServer) LiveGameList(context.Context, *LiveGameListReq) (*LiveGameListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LiveGameList not implemented")
+}
+func (UnimplementedZerogamerpcServer) SaBaPlayGame(context.Context, *SaBaPlayGameReq) (*SaBaPlayGameResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SaBaPlayGame not implemented")
 }
 func (UnimplementedZerogamerpcServer) mustEmbedUnimplementedZerogamerpcServer() {}
 
@@ -3139,6 +3156,24 @@ func _Zerogamerpc_LiveGameList_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Zerogamerpc_SaBaPlayGame_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SaBaPlayGameReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ZerogamerpcServer).SaBaPlayGame(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Zerogamerpc_SaBaPlayGame_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ZerogamerpcServer).SaBaPlayGame(ctx, req.(*SaBaPlayGameReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Zerogamerpc_ServiceDesc is the grpc.ServiceDesc for Zerogamerpc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -3497,6 +3532,10 @@ var Zerogamerpc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "liveGameList",
 			Handler:    _Zerogamerpc_LiveGameList_Handler,
+		},
+		{
+			MethodName: "SaBaPlayGame",
+			Handler:    _Zerogamerpc_SaBaPlayGame_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
