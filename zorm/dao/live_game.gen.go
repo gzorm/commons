@@ -54,6 +54,7 @@ func newLiveGame(db *gorm.DB, opts ...gen.DOOption) liveGame {
 	_liveGame.LiveAppName = field.NewString(tableName, "live_app_name")
 	_liveGame.LiveStreamName = field.NewString(tableName, "live_stream_name")
 	_liveGame.Position = field.NewInt64(tableName, "position")
+	_liveGame.GameURL = field.NewString(tableName, "game_url")
 	_liveGame.CreatedAt = field.NewInt64(tableName, "created_at")
 	_liveGame.CreatedBy = field.NewString(tableName, "created_by")
 	_liveGame.UpdatedAt = field.NewInt64(tableName, "updated_at")
@@ -71,7 +72,7 @@ type liveGame struct {
 
 	ALL            field.Asterisk
 	ID             field.Int64  // 直播ID
-	MatchType      field.Int64  // 赛事类型(1=足球，3=篮球)
+	MatchType      field.Int64  // 赛事类型(1=足球，2=篮球)
 	MatchID        field.Int64  // 赛事ID
 	MatchName      field.String // 赛事名称
 	MatchNameEn    field.String // 赛事名称(英文)
@@ -97,6 +98,7 @@ type liveGame struct {
 	LiveAppName    field.String // 推流APP名称
 	LiveStreamName field.String // 推流的名称
 	Position       field.Int64  // 排序号
+	GameURL        field.String // 游戏URL
 	CreatedAt      field.Int64  // 创建时间
 	CreatedBy      field.String // 创建人姓名
 	UpdatedAt      field.Int64  // 更新时间
@@ -145,6 +147,7 @@ func (l *liveGame) updateTableName(table string) *liveGame {
 	l.LiveAppName = field.NewString(table, "live_app_name")
 	l.LiveStreamName = field.NewString(table, "live_stream_name")
 	l.Position = field.NewInt64(table, "position")
+	l.GameURL = field.NewString(table, "game_url")
 	l.CreatedAt = field.NewInt64(table, "created_at")
 	l.CreatedBy = field.NewString(table, "created_by")
 	l.UpdatedAt = field.NewInt64(table, "updated_at")
@@ -166,7 +169,7 @@ func (l *liveGame) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (l *liveGame) fillFieldMap() {
-	l.fieldMap = make(map[string]field.Expr, 32)
+	l.fieldMap = make(map[string]field.Expr, 33)
 	l.fieldMap["id"] = l.ID
 	l.fieldMap["match_type"] = l.MatchType
 	l.fieldMap["match_id"] = l.MatchID
@@ -194,6 +197,7 @@ func (l *liveGame) fillFieldMap() {
 	l.fieldMap["live_app_name"] = l.LiveAppName
 	l.fieldMap["live_stream_name"] = l.LiveStreamName
 	l.fieldMap["position"] = l.Position
+	l.fieldMap["game_url"] = l.GameURL
 	l.fieldMap["created_at"] = l.CreatedAt
 	l.fieldMap["created_by"] = l.CreatedBy
 	l.fieldMap["updated_at"] = l.UpdatedAt

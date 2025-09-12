@@ -9,7 +9,7 @@ const TableNameLiveGame = "live_game"
 // LiveGame 直播赛事表
 type LiveGame struct {
 	ID             int64  `gorm:"column:id;type:bigint;primaryKey;autoIncrement:true;comment:直播ID" json:"id,string"`        // 直播ID
-	MatchType      int64  `gorm:"column:match_type;type:tinyint;comment:赛事类型(1=足球，3=篮球)" json:"matchType"`                  // 赛事类型(1=足球，3=篮球)
+	MatchType      int64  `gorm:"column:match_type;type:tinyint;comment:赛事类型(1=足球，2=篮球)" json:"matchType"`                  // 赛事类型(1=足球，2=篮球)
 	MatchID        int64  `gorm:"column:match_id;type:bigint;comment:赛事ID" json:"matchId"`                                  // 赛事ID
 	MatchName      string `gorm:"column:match_name;type:varchar(255);comment:赛事名称" json:"matchName"`                        // 赛事名称
 	MatchNameEn    string `gorm:"column:match_name_en;type:varchar(255);comment:赛事名称(英文)" json:"matchNameEn"`               // 赛事名称(英文)
@@ -35,6 +35,7 @@ type LiveGame struct {
 	LiveAppName    string `gorm:"column:live_app_name;type:varchar(255);comment:推流APP名称" json:"liveAppName"`                // 推流APP名称
 	LiveStreamName string `gorm:"column:live_stream_name;type:varchar(255);comment:推流的名称" json:"liveStreamName"`            // 推流的名称
 	Position       int64  `gorm:"column:position;type:int;comment:排序号" json:"position"`                                     // 排序号
+	GameURL        string `gorm:"column:game_url;type:varchar(500);comment:游戏URL" json:"gameUrl"`                           // 游戏URL
 	CreatedAt      int64  `gorm:"column:created_at;comment:创建时间" json:"createdAt"`                                          // 创建时间
 	CreatedBy      string `gorm:"column:created_by;type:varchar(255);not null;comment:创建人姓名" json:"createdBy"`              // 创建人姓名
 	UpdatedAt      int64  `gorm:"column:updated_at;comment:更新时间" json:"updatedAt"`                                          // 更新时间
