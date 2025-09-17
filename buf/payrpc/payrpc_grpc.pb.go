@@ -86,6 +86,7 @@ const (
 	Payrpc_GetChannelList_FullMethodName                  = "/payrpc.payrpc/getChannelList"
 	Payrpc_WithdrawalSum_FullMethodName                   = "/payrpc.payrpc/WithdrawalSum"
 	Payrpc_UpdateChannel_FullMethodName                   = "/payrpc.payrpc/updateChannel"
+	Payrpc_DepositDetail_FullMethodName                   = "/payrpc.payrpc/depositDetail"
 )
 
 // PayrpcClient is the client API for Payrpc service.
@@ -226,6 +227,8 @@ type PayrpcClient interface {
 	WithdrawalSum(ctx context.Context, in *WithdrawalSumReq, opts ...grpc.CallOption) (*WithdrawalSumResp, error)
 	//system:updateChannel
 	UpdateChannel(ctx context.Context, in *UpdateChannelReq, opts ...grpc.CallOption) (*UpdateChannelResp, error)
+	// financeManage
+	DepositDetail(ctx context.Context, in *DepositDetailReq, opts ...grpc.CallOption) (*DepositDetailResp, error)
 }
 
 type payrpcClient struct {
@@ -906,6 +909,16 @@ func (c *payrpcClient) UpdateChannel(ctx context.Context, in *UpdateChannelReq, 
 	return out, nil
 }
 
+func (c *payrpcClient) DepositDetail(ctx context.Context, in *DepositDetailReq, opts ...grpc.CallOption) (*DepositDetailResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DepositDetailResp)
+	err := c.cc.Invoke(ctx, Payrpc_DepositDetail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PayrpcServer is the server API for Payrpc service.
 // All implementations must embed UnimplementedPayrpcServer
 // for forward compatibility.
@@ -1044,6 +1057,8 @@ type PayrpcServer interface {
 	WithdrawalSum(context.Context, *WithdrawalSumReq) (*WithdrawalSumResp, error)
 	//system:updateChannel
 	UpdateChannel(context.Context, *UpdateChannelReq) (*UpdateChannelResp, error)
+	// financeManage
+	DepositDetail(context.Context, *DepositDetailReq) (*DepositDetailResp, error)
 	mustEmbedUnimplementedPayrpcServer()
 }
 
@@ -1254,6 +1269,9 @@ func (UnimplementedPayrpcServer) WithdrawalSum(context.Context, *WithdrawalSumRe
 }
 func (UnimplementedPayrpcServer) UpdateChannel(context.Context, *UpdateChannelReq) (*UpdateChannelResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateChannel not implemented")
+}
+func (UnimplementedPayrpcServer) DepositDetail(context.Context, *DepositDetailReq) (*DepositDetailResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DepositDetail not implemented")
 }
 func (UnimplementedPayrpcServer) mustEmbedUnimplementedPayrpcServer() {}
 func (UnimplementedPayrpcServer) testEmbeddedByValue()                {}
@@ -2482,6 +2500,24 @@ func _Payrpc_UpdateChannel_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Payrpc_DepositDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DepositDetailReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).DepositDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_DepositDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).DepositDetail(ctx, req.(*DepositDetailReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Payrpc_ServiceDesc is the grpc.ServiceDesc for Payrpc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2756,6 +2792,10 @@ var Payrpc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "updateChannel",
 			Handler:    _Payrpc_UpdateChannel_Handler,
+		},
+		{
+			MethodName: "depositDetail",
+			Handler:    _Payrpc_DepositDetail_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
