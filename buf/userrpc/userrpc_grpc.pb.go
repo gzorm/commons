@@ -103,6 +103,8 @@ const (
 	UserRpc_UpdateUser_FullMethodName                    = "/userrpc.UserRpc/UpdateUser"
 	UserRpc_UpdatePlat_FullMethodName                    = "/userrpc.UserRpc/UpdatePlat"
 	UserRpc_ListUserLoginLog_FullMethodName              = "/userrpc.UserRpc/ListUserLoginLog"
+	UserRpc_SaveOrUpdate_FullMethodName                  = "/userrpc.UserRpc/SaveOrUpdate"
+	UserRpc_UpdateRule_FullMethodName                    = "/userrpc.UserRpc/UpdateRule"
 )
 
 // UserRpcClient is the client API for UserRpc service.
@@ -268,6 +270,8 @@ type UserRpcClient interface {
 	//group:platform
 	UpdatePlat(ctx context.Context, in *UpdatePlatReq, opts ...grpc.CallOption) (*UpdatePlatResp, error)
 	ListUserLoginLog(ctx context.Context, in *ListUserLoginLogRequest, opts ...grpc.CallOption) (*ListUserLoginLogResponse, error)
+	SaveOrUpdate(ctx context.Context, in *SaveOrUpdateReq, opts ...grpc.CallOption) (*SaveOrUpdateResp, error)
+	UpdateRule(ctx context.Context, in *UpdateRuleReq, opts ...grpc.CallOption) (*UpdateRuleResp, error)
 }
 
 type userRpcClient struct {
@@ -1118,6 +1122,26 @@ func (c *userRpcClient) ListUserLoginLog(ctx context.Context, in *ListUserLoginL
 	return out, nil
 }
 
+func (c *userRpcClient) SaveOrUpdate(ctx context.Context, in *SaveOrUpdateReq, opts ...grpc.CallOption) (*SaveOrUpdateResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SaveOrUpdateResp)
+	err := c.cc.Invoke(ctx, UserRpc_SaveOrUpdate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userRpcClient) UpdateRule(ctx context.Context, in *UpdateRuleReq, opts ...grpc.CallOption) (*UpdateRuleResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateRuleResp)
+	err := c.cc.Invoke(ctx, UserRpc_UpdateRule_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserRpcServer is the server API for UserRpc service.
 // All implementations must embed UnimplementedUserRpcServer
 // for forward compatibility.
@@ -1281,6 +1305,8 @@ type UserRpcServer interface {
 	//group:platform
 	UpdatePlat(context.Context, *UpdatePlatReq) (*UpdatePlatResp, error)
 	ListUserLoginLog(context.Context, *ListUserLoginLogRequest) (*ListUserLoginLogResponse, error)
+	SaveOrUpdate(context.Context, *SaveOrUpdateReq) (*SaveOrUpdateResp, error)
+	UpdateRule(context.Context, *UpdateRuleReq) (*UpdateRuleResp, error)
 	mustEmbedUnimplementedUserRpcServer()
 }
 
@@ -1542,6 +1568,12 @@ func (UnimplementedUserRpcServer) UpdatePlat(context.Context, *UpdatePlatReq) (*
 }
 func (UnimplementedUserRpcServer) ListUserLoginLog(context.Context, *ListUserLoginLogRequest) (*ListUserLoginLogResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListUserLoginLog not implemented")
+}
+func (UnimplementedUserRpcServer) SaveOrUpdate(context.Context, *SaveOrUpdateReq) (*SaveOrUpdateResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SaveOrUpdate not implemented")
+}
+func (UnimplementedUserRpcServer) UpdateRule(context.Context, *UpdateRuleReq) (*UpdateRuleResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateRule not implemented")
 }
 func (UnimplementedUserRpcServer) mustEmbedUnimplementedUserRpcServer() {}
 func (UnimplementedUserRpcServer) testEmbeddedByValue()                 {}
@@ -3076,6 +3108,42 @@ func _UserRpc_ListUserLoginLog_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserRpc_SaveOrUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SaveOrUpdateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserRpcServer).SaveOrUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserRpc_SaveOrUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserRpcServer).SaveOrUpdate(ctx, req.(*SaveOrUpdateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserRpc_UpdateRule_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateRuleReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserRpcServer).UpdateRule(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserRpc_UpdateRule_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserRpcServer).UpdateRule(ctx, req.(*UpdateRuleReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserRpc_ServiceDesc is the grpc.ServiceDesc for UserRpc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -3418,6 +3486,14 @@ var UserRpc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListUserLoginLog",
 			Handler:    _UserRpc_ListUserLoginLog_Handler,
+		},
+		{
+			MethodName: "SaveOrUpdate",
+			Handler:    _UserRpc_SaveOrUpdate_Handler,
+		},
+		{
+			MethodName: "UpdateRule",
+			Handler:    _UserRpc_UpdateRule_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
