@@ -87,6 +87,9 @@ const (
 	Payrpc_WithdrawalSum_FullMethodName                   = "/payrpc.payrpc/WithdrawalSum"
 	Payrpc_UpdateChannel_FullMethodName                   = "/payrpc.payrpc/updateChannel"
 	Payrpc_DepositDetail_FullMethodName                   = "/payrpc.payrpc/depositDetail"
+	Payrpc_RevenueDailyTaxCount_FullMethodName            = "/payrpc.payrpc/revenueDailyTaxCount"
+	Payrpc_RevenueDailyTax_FullMethodName                 = "/payrpc.payrpc/revenueDailyTax"
+	Payrpc_GetGameProviderSubtype_FullMethodName          = "/payrpc.payrpc/getGameProviderSubtype"
 )
 
 // PayrpcClient is the client API for Payrpc service.
@@ -229,6 +232,9 @@ type PayrpcClient interface {
 	UpdateChannel(ctx context.Context, in *UpdateChannelReq, opts ...grpc.CallOption) (*UpdateChannelResp, error)
 	// financeManage
 	DepositDetail(ctx context.Context, in *DepositDetailReq, opts ...grpc.CallOption) (*DepositDetailResp, error)
+	RevenueDailyTaxCount(ctx context.Context, in *RevenueDailyTaxCountReq, opts ...grpc.CallOption) (*RevenueDailyTaxCountResp, error)
+	RevenueDailyTax(ctx context.Context, in *RevenueDailyTaxReq, opts ...grpc.CallOption) (*RevenueDailyTaxResp, error)
+	GetGameProviderSubtype(ctx context.Context, in *GetGameProviderSubtypeReq, opts ...grpc.CallOption) (*GetGameProviderSubtypeResp, error)
 }
 
 type payrpcClient struct {
@@ -919,6 +925,36 @@ func (c *payrpcClient) DepositDetail(ctx context.Context, in *DepositDetailReq, 
 	return out, nil
 }
 
+func (c *payrpcClient) RevenueDailyTaxCount(ctx context.Context, in *RevenueDailyTaxCountReq, opts ...grpc.CallOption) (*RevenueDailyTaxCountResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RevenueDailyTaxCountResp)
+	err := c.cc.Invoke(ctx, Payrpc_RevenueDailyTaxCount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payrpcClient) RevenueDailyTax(ctx context.Context, in *RevenueDailyTaxReq, opts ...grpc.CallOption) (*RevenueDailyTaxResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RevenueDailyTaxResp)
+	err := c.cc.Invoke(ctx, Payrpc_RevenueDailyTax_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payrpcClient) GetGameProviderSubtype(ctx context.Context, in *GetGameProviderSubtypeReq, opts ...grpc.CallOption) (*GetGameProviderSubtypeResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetGameProviderSubtypeResp)
+	err := c.cc.Invoke(ctx, Payrpc_GetGameProviderSubtype_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PayrpcServer is the server API for Payrpc service.
 // All implementations must embed UnimplementedPayrpcServer
 // for forward compatibility.
@@ -1059,6 +1095,9 @@ type PayrpcServer interface {
 	UpdateChannel(context.Context, *UpdateChannelReq) (*UpdateChannelResp, error)
 	// financeManage
 	DepositDetail(context.Context, *DepositDetailReq) (*DepositDetailResp, error)
+	RevenueDailyTaxCount(context.Context, *RevenueDailyTaxCountReq) (*RevenueDailyTaxCountResp, error)
+	RevenueDailyTax(context.Context, *RevenueDailyTaxReq) (*RevenueDailyTaxResp, error)
+	GetGameProviderSubtype(context.Context, *GetGameProviderSubtypeReq) (*GetGameProviderSubtypeResp, error)
 	mustEmbedUnimplementedPayrpcServer()
 }
 
@@ -1272,6 +1311,15 @@ func (UnimplementedPayrpcServer) UpdateChannel(context.Context, *UpdateChannelRe
 }
 func (UnimplementedPayrpcServer) DepositDetail(context.Context, *DepositDetailReq) (*DepositDetailResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DepositDetail not implemented")
+}
+func (UnimplementedPayrpcServer) RevenueDailyTaxCount(context.Context, *RevenueDailyTaxCountReq) (*RevenueDailyTaxCountResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RevenueDailyTaxCount not implemented")
+}
+func (UnimplementedPayrpcServer) RevenueDailyTax(context.Context, *RevenueDailyTaxReq) (*RevenueDailyTaxResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RevenueDailyTax not implemented")
+}
+func (UnimplementedPayrpcServer) GetGameProviderSubtype(context.Context, *GetGameProviderSubtypeReq) (*GetGameProviderSubtypeResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGameProviderSubtype not implemented")
 }
 func (UnimplementedPayrpcServer) mustEmbedUnimplementedPayrpcServer() {}
 func (UnimplementedPayrpcServer) testEmbeddedByValue()                {}
@@ -2518,6 +2566,60 @@ func _Payrpc_DepositDetail_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Payrpc_RevenueDailyTaxCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RevenueDailyTaxCountReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).RevenueDailyTaxCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_RevenueDailyTaxCount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).RevenueDailyTaxCount(ctx, req.(*RevenueDailyTaxCountReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Payrpc_RevenueDailyTax_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RevenueDailyTaxReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).RevenueDailyTax(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_RevenueDailyTax_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).RevenueDailyTax(ctx, req.(*RevenueDailyTaxReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Payrpc_GetGameProviderSubtype_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetGameProviderSubtypeReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).GetGameProviderSubtype(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_GetGameProviderSubtype_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).GetGameProviderSubtype(ctx, req.(*GetGameProviderSubtypeReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Payrpc_ServiceDesc is the grpc.ServiceDesc for Payrpc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2796,6 +2898,18 @@ var Payrpc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "depositDetail",
 			Handler:    _Payrpc_DepositDetail_Handler,
+		},
+		{
+			MethodName: "revenueDailyTaxCount",
+			Handler:    _Payrpc_RevenueDailyTaxCount_Handler,
+		},
+		{
+			MethodName: "revenueDailyTax",
+			Handler:    _Payrpc_RevenueDailyTax_Handler,
+		},
+		{
+			MethodName: "getGameProviderSubtype",
+			Handler:    _Payrpc_GetGameProviderSubtype_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
