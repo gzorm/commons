@@ -90,6 +90,7 @@ const (
 	Payrpc_RevenueDailyTaxCount_FullMethodName            = "/payrpc.payrpc/revenueDailyTaxCount"
 	Payrpc_RevenueDailyTax_FullMethodName                 = "/payrpc.payrpc/revenueDailyTax"
 	Payrpc_GetGameProviderSubtype_FullMethodName          = "/payrpc.payrpc/getGameProviderSubtype"
+	Payrpc_UpdateGameProviderSubtypeRate_FullMethodName   = "/payrpc.payrpc/UpdateGameProviderSubtypeRate"
 )
 
 // PayrpcClient is the client API for Payrpc service.
@@ -235,6 +236,7 @@ type PayrpcClient interface {
 	RevenueDailyTaxCount(ctx context.Context, in *RevenueDailyTaxCountReq, opts ...grpc.CallOption) (*RevenueDailyTaxCountResp, error)
 	RevenueDailyTax(ctx context.Context, in *RevenueDailyTaxReq, opts ...grpc.CallOption) (*RevenueDailyTaxResp, error)
 	GetGameProviderSubtype(ctx context.Context, in *GetGameProviderSubtypeReq, opts ...grpc.CallOption) (*GetGameProviderSubtypeResp, error)
+	UpdateGameProviderSubtypeRate(ctx context.Context, in *UpdateGameProviderSubtypeRateReq, opts ...grpc.CallOption) (*UpdateGameProviderSubtypeRateResp, error)
 }
 
 type payrpcClient struct {
@@ -955,6 +957,16 @@ func (c *payrpcClient) GetGameProviderSubtype(ctx context.Context, in *GetGamePr
 	return out, nil
 }
 
+func (c *payrpcClient) UpdateGameProviderSubtypeRate(ctx context.Context, in *UpdateGameProviderSubtypeRateReq, opts ...grpc.CallOption) (*UpdateGameProviderSubtypeRateResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateGameProviderSubtypeRateResp)
+	err := c.cc.Invoke(ctx, Payrpc_UpdateGameProviderSubtypeRate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PayrpcServer is the server API for Payrpc service.
 // All implementations must embed UnimplementedPayrpcServer
 // for forward compatibility.
@@ -1098,6 +1110,7 @@ type PayrpcServer interface {
 	RevenueDailyTaxCount(context.Context, *RevenueDailyTaxCountReq) (*RevenueDailyTaxCountResp, error)
 	RevenueDailyTax(context.Context, *RevenueDailyTaxReq) (*RevenueDailyTaxResp, error)
 	GetGameProviderSubtype(context.Context, *GetGameProviderSubtypeReq) (*GetGameProviderSubtypeResp, error)
+	UpdateGameProviderSubtypeRate(context.Context, *UpdateGameProviderSubtypeRateReq) (*UpdateGameProviderSubtypeRateResp, error)
 	mustEmbedUnimplementedPayrpcServer()
 }
 
@@ -1320,6 +1333,9 @@ func (UnimplementedPayrpcServer) RevenueDailyTax(context.Context, *RevenueDailyT
 }
 func (UnimplementedPayrpcServer) GetGameProviderSubtype(context.Context, *GetGameProviderSubtypeReq) (*GetGameProviderSubtypeResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGameProviderSubtype not implemented")
+}
+func (UnimplementedPayrpcServer) UpdateGameProviderSubtypeRate(context.Context, *UpdateGameProviderSubtypeRateReq) (*UpdateGameProviderSubtypeRateResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateGameProviderSubtypeRate not implemented")
 }
 func (UnimplementedPayrpcServer) mustEmbedUnimplementedPayrpcServer() {}
 func (UnimplementedPayrpcServer) testEmbeddedByValue()                {}
@@ -2620,6 +2636,24 @@ func _Payrpc_GetGameProviderSubtype_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Payrpc_UpdateGameProviderSubtypeRate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateGameProviderSubtypeRateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).UpdateGameProviderSubtypeRate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_UpdateGameProviderSubtypeRate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).UpdateGameProviderSubtypeRate(ctx, req.(*UpdateGameProviderSubtypeRateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Payrpc_ServiceDesc is the grpc.ServiceDesc for Payrpc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2910,6 +2944,10 @@ var Payrpc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getGameProviderSubtype",
 			Handler:    _Payrpc_GetGameProviderSubtype_Handler,
+		},
+		{
+			MethodName: "UpdateGameProviderSubtypeRate",
+			Handler:    _Payrpc_UpdateGameProviderSubtypeRate_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
