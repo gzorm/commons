@@ -105,6 +105,7 @@ const (
 	UserRpc_ListUserLoginLog_FullMethodName              = "/userrpc.UserRpc/ListUserLoginLog"
 	UserRpc_SaveOrUpdate_FullMethodName                  = "/userrpc.UserRpc/SaveOrUpdate"
 	UserRpc_UpdateRule_FullMethodName                    = "/userrpc.UserRpc/UpdateRule"
+	UserRpc_DeleteRule_FullMethodName                    = "/userrpc.UserRpc/DeleteRule"
 )
 
 // UserRpcClient is the client API for UserRpc service.
@@ -272,6 +273,7 @@ type UserRpcClient interface {
 	ListUserLoginLog(ctx context.Context, in *ListUserLoginLogRequest, opts ...grpc.CallOption) (*ListUserLoginLogResponse, error)
 	SaveOrUpdate(ctx context.Context, in *SaveOrUpdateReq, opts ...grpc.CallOption) (*SaveOrUpdateResp, error)
 	UpdateRule(ctx context.Context, in *UpdateRuleReq, opts ...grpc.CallOption) (*UpdateRuleResp, error)
+	DeleteRule(ctx context.Context, in *DeleteRuleReq, opts ...grpc.CallOption) (*DeleteRuleResp, error)
 }
 
 type userRpcClient struct {
@@ -1142,6 +1144,16 @@ func (c *userRpcClient) UpdateRule(ctx context.Context, in *UpdateRuleReq, opts 
 	return out, nil
 }
 
+func (c *userRpcClient) DeleteRule(ctx context.Context, in *DeleteRuleReq, opts ...grpc.CallOption) (*DeleteRuleResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteRuleResp)
+	err := c.cc.Invoke(ctx, UserRpc_DeleteRule_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserRpcServer is the server API for UserRpc service.
 // All implementations must embed UnimplementedUserRpcServer
 // for forward compatibility.
@@ -1307,6 +1319,7 @@ type UserRpcServer interface {
 	ListUserLoginLog(context.Context, *ListUserLoginLogRequest) (*ListUserLoginLogResponse, error)
 	SaveOrUpdate(context.Context, *SaveOrUpdateReq) (*SaveOrUpdateResp, error)
 	UpdateRule(context.Context, *UpdateRuleReq) (*UpdateRuleResp, error)
+	DeleteRule(context.Context, *DeleteRuleReq) (*DeleteRuleResp, error)
 	mustEmbedUnimplementedUserRpcServer()
 }
 
@@ -1574,6 +1587,9 @@ func (UnimplementedUserRpcServer) SaveOrUpdate(context.Context, *SaveOrUpdateReq
 }
 func (UnimplementedUserRpcServer) UpdateRule(context.Context, *UpdateRuleReq) (*UpdateRuleResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateRule not implemented")
+}
+func (UnimplementedUserRpcServer) DeleteRule(context.Context, *DeleteRuleReq) (*DeleteRuleResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteRule not implemented")
 }
 func (UnimplementedUserRpcServer) mustEmbedUnimplementedUserRpcServer() {}
 func (UnimplementedUserRpcServer) testEmbeddedByValue()                 {}
@@ -3144,6 +3160,24 @@ func _UserRpc_UpdateRule_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserRpc_DeleteRule_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRuleReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserRpcServer).DeleteRule(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserRpc_DeleteRule_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserRpcServer).DeleteRule(ctx, req.(*DeleteRuleReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserRpc_ServiceDesc is the grpc.ServiceDesc for UserRpc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -3494,6 +3528,10 @@ var UserRpc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateRule",
 			Handler:    _UserRpc_UpdateRule_Handler,
+		},
+		{
+			MethodName: "DeleteRule",
+			Handler:    _UserRpc_DeleteRule_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
