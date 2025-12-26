@@ -91,6 +91,9 @@ const (
 	Payrpc_RevenueDailyTax_FullMethodName                 = "/payrpc.payrpc/revenueDailyTax"
 	Payrpc_GetGameProviderSubtype_FullMethodName          = "/payrpc.payrpc/getGameProviderSubtype"
 	Payrpc_UpdateGameProviderSubtypeRate_FullMethodName   = "/payrpc.payrpc/UpdateGameProviderSubtypeRate"
+	Payrpc_AuditFailWriteNotice_FullMethodName            = "/payrpc.payrpc/auditFailWriteNotice"
+	Payrpc_WithdrawalDetail_FullMethodName                = "/payrpc.payrpc/withdrawalDetail"
+	Payrpc_WithdrawalAuditDetail_FullMethodName           = "/payrpc.payrpc/withdrawalAuditDetail"
 )
 
 // PayrpcClient is the client API for Payrpc service.
@@ -237,6 +240,9 @@ type PayrpcClient interface {
 	RevenueDailyTax(ctx context.Context, in *RevenueDailyTaxReq, opts ...grpc.CallOption) (*RevenueDailyTaxResp, error)
 	GetGameProviderSubtype(ctx context.Context, in *GetGameProviderSubtypeReq, opts ...grpc.CallOption) (*GetGameProviderSubtypeResp, error)
 	UpdateGameProviderSubtypeRate(ctx context.Context, in *UpdateGameProviderSubtypeRateReq, opts ...grpc.CallOption) (*UpdateGameProviderSubtypeRateResp, error)
+	AuditFailWriteNotice(ctx context.Context, in *AuditFailWriteNoticeReq, opts ...grpc.CallOption) (*AuditFailWriteNoticeResp, error)
+	WithdrawalDetail(ctx context.Context, in *WithdrawalDetailReq, opts ...grpc.CallOption) (*WithdrawalDetailResp, error)
+	WithdrawalAuditDetail(ctx context.Context, in *WithdrawalAuditDetailReq, opts ...grpc.CallOption) (*WithdrawalAuditDetailResp, error)
 }
 
 type payrpcClient struct {
@@ -967,6 +973,36 @@ func (c *payrpcClient) UpdateGameProviderSubtypeRate(ctx context.Context, in *Up
 	return out, nil
 }
 
+func (c *payrpcClient) AuditFailWriteNotice(ctx context.Context, in *AuditFailWriteNoticeReq, opts ...grpc.CallOption) (*AuditFailWriteNoticeResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AuditFailWriteNoticeResp)
+	err := c.cc.Invoke(ctx, Payrpc_AuditFailWriteNotice_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payrpcClient) WithdrawalDetail(ctx context.Context, in *WithdrawalDetailReq, opts ...grpc.CallOption) (*WithdrawalDetailResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WithdrawalDetailResp)
+	err := c.cc.Invoke(ctx, Payrpc_WithdrawalDetail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payrpcClient) WithdrawalAuditDetail(ctx context.Context, in *WithdrawalAuditDetailReq, opts ...grpc.CallOption) (*WithdrawalAuditDetailResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WithdrawalAuditDetailResp)
+	err := c.cc.Invoke(ctx, Payrpc_WithdrawalAuditDetail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PayrpcServer is the server API for Payrpc service.
 // All implementations must embed UnimplementedPayrpcServer
 // for forward compatibility.
@@ -1111,6 +1147,9 @@ type PayrpcServer interface {
 	RevenueDailyTax(context.Context, *RevenueDailyTaxReq) (*RevenueDailyTaxResp, error)
 	GetGameProviderSubtype(context.Context, *GetGameProviderSubtypeReq) (*GetGameProviderSubtypeResp, error)
 	UpdateGameProviderSubtypeRate(context.Context, *UpdateGameProviderSubtypeRateReq) (*UpdateGameProviderSubtypeRateResp, error)
+	AuditFailWriteNotice(context.Context, *AuditFailWriteNoticeReq) (*AuditFailWriteNoticeResp, error)
+	WithdrawalDetail(context.Context, *WithdrawalDetailReq) (*WithdrawalDetailResp, error)
+	WithdrawalAuditDetail(context.Context, *WithdrawalAuditDetailReq) (*WithdrawalAuditDetailResp, error)
 	mustEmbedUnimplementedPayrpcServer()
 }
 
@@ -1336,6 +1375,15 @@ func (UnimplementedPayrpcServer) GetGameProviderSubtype(context.Context, *GetGam
 }
 func (UnimplementedPayrpcServer) UpdateGameProviderSubtypeRate(context.Context, *UpdateGameProviderSubtypeRateReq) (*UpdateGameProviderSubtypeRateResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateGameProviderSubtypeRate not implemented")
+}
+func (UnimplementedPayrpcServer) AuditFailWriteNotice(context.Context, *AuditFailWriteNoticeReq) (*AuditFailWriteNoticeResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuditFailWriteNotice not implemented")
+}
+func (UnimplementedPayrpcServer) WithdrawalDetail(context.Context, *WithdrawalDetailReq) (*WithdrawalDetailResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WithdrawalDetail not implemented")
+}
+func (UnimplementedPayrpcServer) WithdrawalAuditDetail(context.Context, *WithdrawalAuditDetailReq) (*WithdrawalAuditDetailResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WithdrawalAuditDetail not implemented")
 }
 func (UnimplementedPayrpcServer) mustEmbedUnimplementedPayrpcServer() {}
 func (UnimplementedPayrpcServer) testEmbeddedByValue()                {}
@@ -2654,6 +2702,60 @@ func _Payrpc_UpdateGameProviderSubtypeRate_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Payrpc_AuditFailWriteNotice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuditFailWriteNoticeReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).AuditFailWriteNotice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_AuditFailWriteNotice_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).AuditFailWriteNotice(ctx, req.(*AuditFailWriteNoticeReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Payrpc_WithdrawalDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WithdrawalDetailReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).WithdrawalDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_WithdrawalDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).WithdrawalDetail(ctx, req.(*WithdrawalDetailReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Payrpc_WithdrawalAuditDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WithdrawalAuditDetailReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).WithdrawalAuditDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_WithdrawalAuditDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).WithdrawalAuditDetail(ctx, req.(*WithdrawalAuditDetailReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Payrpc_ServiceDesc is the grpc.ServiceDesc for Payrpc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2948,6 +3050,18 @@ var Payrpc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateGameProviderSubtypeRate",
 			Handler:    _Payrpc_UpdateGameProviderSubtypeRate_Handler,
+		},
+		{
+			MethodName: "auditFailWriteNotice",
+			Handler:    _Payrpc_AuditFailWriteNotice_Handler,
+		},
+		{
+			MethodName: "withdrawalDetail",
+			Handler:    _Payrpc_WithdrawalDetail_Handler,
+		},
+		{
+			MethodName: "withdrawalAuditDetail",
+			Handler:    _Payrpc_WithdrawalAuditDetail_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
