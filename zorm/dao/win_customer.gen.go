@@ -33,6 +33,9 @@ func newWinCustomer(db *gorm.DB, opts ...gen.DOOption) winCustomer {
 	_winCustomer.CustomerFace = field.NewString(tableName, "customer_face")
 	_winCustomer.Language = field.NewString(tableName, "language")
 	_winCustomer.Status = field.NewInt64(tableName, "status")
+	_winCustomer.StartTime = field.NewTime(tableName, "start_time")
+	_winCustomer.EndTime = field.NewTime(tableName, "end_time")
+	_winCustomer.IsOvernight = field.NewInt64(tableName, "is_overnight")
 	_winCustomer.CreatedAt = field.NewInt64(tableName, "created_at")
 	_winCustomer.UpdatedAt = field.NewInt64(tableName, "updated_at")
 	_winCustomer.UpdatedUser = field.NewString(tableName, "updated_user")
@@ -42,18 +45,22 @@ func newWinCustomer(db *gorm.DB, opts ...gen.DOOption) winCustomer {
 	return _winCustomer
 }
 
+// winCustomer 在线客服
 type winCustomer struct {
 	winCustomerDo
 
 	ALL          field.Asterisk
-	ID           field.Int64
+	ID           field.Int64  // 主键
 	CustomerName field.String // 客服名称
 	CustomerURL  field.String // 客服连接
 	CustomerFace field.String // 客服头像
 	Language     field.String // 语言
-	Status       field.Int64  // 是否启用
-	CreatedAt    field.Int64  // 1==禁用  3==正常
-	UpdatedAt    field.Int64
+	Status       field.Int64  // 是否启用 1==禁用  3==正常
+	StartTime    field.Time   // 开始时间
+	EndTime      field.Time   // 结束时间
+	IsOvernight  field.Int64  // 是否跨天 1==不跨天  3==跨天
+	CreatedAt    field.Int64  // 创建时间
+	UpdatedAt    field.Int64  // 更新时间
 	UpdatedUser  field.String // 最后修改人
 
 	fieldMap map[string]field.Expr
@@ -77,6 +84,9 @@ func (w *winCustomer) updateTableName(table string) *winCustomer {
 	w.CustomerFace = field.NewString(table, "customer_face")
 	w.Language = field.NewString(table, "language")
 	w.Status = field.NewInt64(table, "status")
+	w.StartTime = field.NewTime(table, "start_time")
+	w.EndTime = field.NewTime(table, "end_time")
+	w.IsOvernight = field.NewInt64(table, "is_overnight")
 	w.CreatedAt = field.NewInt64(table, "created_at")
 	w.UpdatedAt = field.NewInt64(table, "updated_at")
 	w.UpdatedUser = field.NewString(table, "updated_user")
@@ -96,13 +106,16 @@ func (w *winCustomer) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (w *winCustomer) fillFieldMap() {
-	w.fieldMap = make(map[string]field.Expr, 9)
+	w.fieldMap = make(map[string]field.Expr, 12)
 	w.fieldMap["id"] = w.ID
 	w.fieldMap["customer_name"] = w.CustomerName
 	w.fieldMap["customer_url"] = w.CustomerURL
 	w.fieldMap["customer_face"] = w.CustomerFace
 	w.fieldMap["language"] = w.Language
 	w.fieldMap["status"] = w.Status
+	w.fieldMap["start_time"] = w.StartTime
+	w.fieldMap["end_time"] = w.EndTime
+	w.fieldMap["is_overnight"] = w.IsOvernight
 	w.fieldMap["created_at"] = w.CreatedAt
 	w.fieldMap["updated_at"] = w.UpdatedAt
 	w.fieldMap["updated_user"] = w.UpdatedUser
