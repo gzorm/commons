@@ -23,6 +23,7 @@ const (
 	Payrpc_PayAccount_FullMethodName                      = "/payrpc.payrpc/payAccount"
 	Payrpc_WithdrawConfig_FullMethodName                  = "/payrpc.payrpc/withdrawConfig"
 	Payrpc_ChannelList_FullMethodName                     = "/payrpc.payrpc/channelList"
+	Payrpc_SportDeposit_FullMethodName                    = "/payrpc.payrpc/sportDeposit"
 	Payrpc_Deposit_FullMethodName                         = "/payrpc.payrpc/deposit"
 	Payrpc_DepositCallBack_FullMethodName                 = "/payrpc.payrpc/depositCallBack"
 	Payrpc_DepositByWowIdrCallBack_FullMethodName         = "/payrpc.payrpc/depositByWowIdrCallBack"
@@ -32,6 +33,7 @@ const (
 	Payrpc_DepositBySixPayCallBack_FullMethodName         = "/payrpc.payrpc/depositBySixPayCallBack"
 	Payrpc_DepositByAiPayCallBack_FullMethodName          = "/payrpc.payrpc/depositByAiPayCallBack"
 	Payrpc_DepositByAPayCallBack_FullMethodName           = "/payrpc.payrpc/depositByAPayCallBack"
+	Payrpc_SportDepositByAPayCallBack_FullMethodName      = "/payrpc.payrpc/sportDepositByAPayCallBack"
 	Payrpc_DepositSearch_FullMethodName                   = "/payrpc.payrpc/depositSearch"
 	Payrpc_Withdraws_FullMethodName                       = "/payrpc.payrpc/withdraws"
 	Payrpc_WithdrawCallBack_FullMethodName                = "/payrpc.payrpc/withdrawCallBack"
@@ -109,6 +111,8 @@ type PayrpcClient interface {
 	// group: pay
 	ChannelList(ctx context.Context, in *ChannelListReq, opts ...grpc.CallOption) (*ChannelListResp, error)
 	// group: pay
+	SportDeposit(ctx context.Context, in *DepositReq, opts ...grpc.CallOption) (*DepositResp, error)
+	// group: pay
 	Deposit(ctx context.Context, in *DepositReq, opts ...grpc.CallOption) (*DepositResp, error)
 	// group: pay
 	DepositCallBack(ctx context.Context, in *DepositCallBackReq, opts ...grpc.CallOption) (*DepositCallBackResp, error)
@@ -126,6 +130,8 @@ type PayrpcClient interface {
 	DepositByAiPayCallBack(ctx context.Context, in *DepositByAiPayCallBackReq, opts ...grpc.CallOption) (*DepositByAiPayCallBackResp, error)
 	// group:pay
 	DepositByAPayCallBack(ctx context.Context, in *DepositByAPayCallBackReq, opts ...grpc.CallOption) (*DepositByAPayCallBackResp, error)
+	// group:pay
+	SportDepositByAPayCallBack(ctx context.Context, in *DepositByAPayCallBackReq, opts ...grpc.CallOption) (*DepositByAPayCallBackResp, error)
 	// group: pay
 	DepositSearch(ctx context.Context, in *DepositSearchReq, opts ...grpc.CallOption) (*DepositSearchResp, error)
 	// group: pay
@@ -293,6 +299,16 @@ func (c *payrpcClient) ChannelList(ctx context.Context, in *ChannelListReq, opts
 	return out, nil
 }
 
+func (c *payrpcClient) SportDeposit(ctx context.Context, in *DepositReq, opts ...grpc.CallOption) (*DepositResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DepositResp)
+	err := c.cc.Invoke(ctx, Payrpc_SportDeposit_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *payrpcClient) Deposit(ctx context.Context, in *DepositReq, opts ...grpc.CallOption) (*DepositResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DepositResp)
@@ -377,6 +393,16 @@ func (c *payrpcClient) DepositByAPayCallBack(ctx context.Context, in *DepositByA
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DepositByAPayCallBackResp)
 	err := c.cc.Invoke(ctx, Payrpc_DepositByAPayCallBack_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payrpcClient) SportDepositByAPayCallBack(ctx context.Context, in *DepositByAPayCallBackReq, opts ...grpc.CallOption) (*DepositByAPayCallBackResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DepositByAPayCallBackResp)
+	err := c.cc.Invoke(ctx, Payrpc_SportDepositByAPayCallBack_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1016,6 +1042,8 @@ type PayrpcServer interface {
 	// group: pay
 	ChannelList(context.Context, *ChannelListReq) (*ChannelListResp, error)
 	// group: pay
+	SportDeposit(context.Context, *DepositReq) (*DepositResp, error)
+	// group: pay
 	Deposit(context.Context, *DepositReq) (*DepositResp, error)
 	// group: pay
 	DepositCallBack(context.Context, *DepositCallBackReq) (*DepositCallBackResp, error)
@@ -1033,6 +1061,8 @@ type PayrpcServer interface {
 	DepositByAiPayCallBack(context.Context, *DepositByAiPayCallBackReq) (*DepositByAiPayCallBackResp, error)
 	// group:pay
 	DepositByAPayCallBack(context.Context, *DepositByAPayCallBackReq) (*DepositByAPayCallBackResp, error)
+	// group:pay
+	SportDepositByAPayCallBack(context.Context, *DepositByAPayCallBackReq) (*DepositByAPayCallBackResp, error)
 	// group: pay
 	DepositSearch(context.Context, *DepositSearchReq) (*DepositSearchResp, error)
 	// group: pay
@@ -1172,6 +1202,9 @@ func (UnimplementedPayrpcServer) WithdrawConfig(context.Context, *WithdrawConfig
 func (UnimplementedPayrpcServer) ChannelList(context.Context, *ChannelListReq) (*ChannelListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChannelList not implemented")
 }
+func (UnimplementedPayrpcServer) SportDeposit(context.Context, *DepositReq) (*DepositResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SportDeposit not implemented")
+}
 func (UnimplementedPayrpcServer) Deposit(context.Context, *DepositReq) (*DepositResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Deposit not implemented")
 }
@@ -1198,6 +1231,9 @@ func (UnimplementedPayrpcServer) DepositByAiPayCallBack(context.Context, *Deposi
 }
 func (UnimplementedPayrpcServer) DepositByAPayCallBack(context.Context, *DepositByAPayCallBackReq) (*DepositByAPayCallBackResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DepositByAPayCallBack not implemented")
+}
+func (UnimplementedPayrpcServer) SportDepositByAPayCallBack(context.Context, *DepositByAPayCallBackReq) (*DepositByAPayCallBackResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SportDepositByAPayCallBack not implemented")
 }
 func (UnimplementedPayrpcServer) DepositSearch(context.Context, *DepositSearchReq) (*DepositSearchResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DepositSearch not implemented")
@@ -1478,6 +1514,24 @@ func _Payrpc_ChannelList_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Payrpc_SportDeposit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DepositReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).SportDeposit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_SportDeposit_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).SportDeposit(ctx, req.(*DepositReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Payrpc_Deposit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DepositReq)
 	if err := dec(in); err != nil {
@@ -1636,6 +1690,24 @@ func _Payrpc_DepositByAPayCallBack_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PayrpcServer).DepositByAPayCallBack(ctx, req.(*DepositByAPayCallBackReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Payrpc_SportDepositByAPayCallBack_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DepositByAPayCallBackReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).SportDepositByAPayCallBack(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_SportDepositByAPayCallBack_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).SportDepositByAPayCallBack(ctx, req.(*DepositByAPayCallBackReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2780,6 +2852,10 @@ var Payrpc_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Payrpc_ChannelList_Handler,
 		},
 		{
+			MethodName: "sportDeposit",
+			Handler:    _Payrpc_SportDeposit_Handler,
+		},
+		{
 			MethodName: "deposit",
 			Handler:    _Payrpc_Deposit_Handler,
 		},
@@ -2814,6 +2890,10 @@ var Payrpc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "depositByAPayCallBack",
 			Handler:    _Payrpc_DepositByAPayCallBack_Handler,
+		},
+		{
+			MethodName: "sportDepositByAPayCallBack",
+			Handler:    _Payrpc_SportDepositByAPayCallBack_Handler,
 		},
 		{
 			MethodName: "depositSearch",
