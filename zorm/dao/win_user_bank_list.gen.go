@@ -42,6 +42,7 @@ func newWinUserBankList(db *gorm.DB, opts ...gen.DOOption) winUserBankList {
 	_winUserBankList.CreatedBy = field.NewString(tableName, "created_by")
 	_winUserBankList.UpdatedBy = field.NewString(tableName, "updated_by")
 	_winUserBankList.OperatorName = field.NewString(tableName, "operator_name")
+	_winUserBankList.BlockchainAddress = field.NewString(tableName, "blockchain_address")
 
 	_winUserBankList.fillFieldMap()
 
@@ -52,22 +53,23 @@ func newWinUserBankList(db *gorm.DB, opts ...gen.DOOption) winUserBankList {
 type winUserBankList struct {
 	winUserBankListDo
 
-	ALL              field.Asterisk
-	ID               field.Int64
-	UID              field.Int64  // UID
-	Username         field.String // 用户名
-	CategoryCurrency field.Int64  // 货币类型:0-数字货币 1-法币
-	CategoryTransfer field.Int64  // 转账类型：1-TRC,2-ERC,3-BANK,4-PIX,5-GCASH
-	BankName         field.String // 银行名称
-	Address          field.String // 提款地址
-	BankCode         field.String // 银行编码
-	WalletAddress    field.String // 钱包地址
-	Status           field.Int64  // 状态:1-默认地址(启用) 2-正常启用 3-删除
-	CreatedAt        field.Int64
-	UpdatedAt        field.Int64
-	CreatedBy        field.String // 后台创建人
-	UpdatedBy        field.String // 后台修改人
-	OperatorName     field.String // 操作人姓名
+	ALL               field.Asterisk
+	ID                field.Int64
+	UID               field.Int64  // UID
+	Username          field.String // 用户名
+	CategoryCurrency  field.Int64  // 货币类型:0-数字货币 1-法币
+	CategoryTransfer  field.Int64  // 转账类型：1-TRC,2-ERC,3-BANK,4-PIX,5-GCASH
+	BankName          field.String // 银行名称
+	Address           field.String // 提款地址
+	BankCode          field.String // 银行编码
+	WalletAddress     field.String // 钱包地址
+	Status            field.Int64  // 状态:1-默认地址(启用) 2-正常启用 3-删除
+	CreatedAt         field.Int64
+	UpdatedAt         field.Int64
+	CreatedBy         field.String // 后台创建人
+	UpdatedBy         field.String // 后台修改人
+	OperatorName      field.String // 操作人姓名
+	BlockchainAddress field.String // 虚拟币钱包地址
 
 	fieldMap map[string]field.Expr
 }
@@ -99,6 +101,7 @@ func (w *winUserBankList) updateTableName(table string) *winUserBankList {
 	w.CreatedBy = field.NewString(table, "created_by")
 	w.UpdatedBy = field.NewString(table, "updated_by")
 	w.OperatorName = field.NewString(table, "operator_name")
+	w.BlockchainAddress = field.NewString(table, "blockchain_address")
 
 	w.fillFieldMap()
 
@@ -115,7 +118,7 @@ func (w *winUserBankList) GetFieldByName(fieldName string) (field.OrderExpr, boo
 }
 
 func (w *winUserBankList) fillFieldMap() {
-	w.fieldMap = make(map[string]field.Expr, 15)
+	w.fieldMap = make(map[string]field.Expr, 16)
 	w.fieldMap["id"] = w.ID
 	w.fieldMap["uid"] = w.UID
 	w.fieldMap["username"] = w.Username
@@ -131,6 +134,7 @@ func (w *winUserBankList) fillFieldMap() {
 	w.fieldMap["created_by"] = w.CreatedBy
 	w.fieldMap["updated_by"] = w.UpdatedBy
 	w.fieldMap["operator_name"] = w.OperatorName
+	w.fieldMap["blockchain_address"] = w.BlockchainAddress
 }
 
 func (w winUserBankList) clone(db *gorm.DB) winUserBankList {
