@@ -68,7 +68,6 @@ const (
 	Payrpc_PlatBetCoinChart_FullMethodName                = "/payrpc.payrpc/platBetCoinChart"
 	Payrpc_WalletOutTransfer_FullMethodName               = "/payrpc.payrpc/walletOutTransfer"
 	Payrpc_ReplenishmentOrder_FullMethodName              = "/payrpc.payrpc/replenishmentOrder"
-	Payrpc_WithDrawalReplenishmentOrder_FullMethodName    = "/payrpc.payrpc/withDrawalReplenishmentOrder"
 	Payrpc_WithdrawalList_FullMethodName                  = "/payrpc.payrpc/withdrawalList"
 	Payrpc_WithdrawalStatistics_FullMethodName            = "/payrpc.payrpc/withdrawalStatistics"
 	Payrpc_DepositRecordList_FullMethodName               = "/payrpc.payrpc/depositRecordList"
@@ -97,6 +96,8 @@ const (
 	Payrpc_AuditFailWriteNotice_FullMethodName            = "/payrpc.payrpc/auditFailWriteNotice"
 	Payrpc_WithdrawalDetail_FullMethodName                = "/payrpc.payrpc/withdrawalDetail"
 	Payrpc_WithdrawalAuditDetail_FullMethodName           = "/payrpc.payrpc/withdrawalAuditDetail"
+	Payrpc_WithDrawalReplenishmentOrder_FullMethodName    = "/payrpc.payrpc/withDrawalReplenishmentOrder"
+	Payrpc_WithDrawalBlockInfo_FullMethodName             = "/payrpc.payrpc/withDrawalBlockInfo"
 )
 
 // PayrpcClient is the client API for Payrpc service.
@@ -202,8 +203,6 @@ type PayrpcClient interface {
 	//group:pay
 	ReplenishmentOrder(ctx context.Context, in *ReplenishmentOrderReq, opts ...grpc.CallOption) (*ReplenishmentOrderResp, error)
 	//group:pay
-	WithDrawalReplenishmentOrder(ctx context.Context, in *ReplenishmentOrderReq, opts ...grpc.CallOption) (*ReplenishmentOrderResp, error)
-	//group:pay
 	WithdrawalList(ctx context.Context, in *WithdrawalListReq, opts ...grpc.CallOption) (*WithdrawalListResp, error)
 	//group:pay
 	WithdrawalStatistics(ctx context.Context, in *WithdrawalStatisticsReq, opts ...grpc.CallOption) (*WithdrawalStatisticsResp, error)
@@ -252,6 +251,8 @@ type PayrpcClient interface {
 	AuditFailWriteNotice(ctx context.Context, in *AuditFailWriteNoticeReq, opts ...grpc.CallOption) (*AuditFailWriteNoticeResp, error)
 	WithdrawalDetail(ctx context.Context, in *WithdrawalDetailReq, opts ...grpc.CallOption) (*WithdrawalDetailResp, error)
 	WithdrawalAuditDetail(ctx context.Context, in *WithdrawalAuditDetailReq, opts ...grpc.CallOption) (*WithdrawalAuditDetailResp, error)
+	WithDrawalReplenishmentOrder(ctx context.Context, in *WithdrawalReplenishmentOrderReq, opts ...grpc.CallOption) (*WithdrawalReplenishmentOrderResp, error)
+	WithDrawalBlockInfo(ctx context.Context, in *WithDrawalBlockInfoReq, opts ...grpc.CallOption) (*WithDrawalBlockInfoResp, error)
 }
 
 type payrpcClient struct {
@@ -752,16 +753,6 @@ func (c *payrpcClient) ReplenishmentOrder(ctx context.Context, in *Replenishment
 	return out, nil
 }
 
-func (c *payrpcClient) WithDrawalReplenishmentOrder(ctx context.Context, in *ReplenishmentOrderReq, opts ...grpc.CallOption) (*ReplenishmentOrderResp, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ReplenishmentOrderResp)
-	err := c.cc.Invoke(ctx, Payrpc_WithDrawalReplenishmentOrder_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *payrpcClient) WithdrawalList(ctx context.Context, in *WithdrawalListReq, opts ...grpc.CallOption) (*WithdrawalListResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(WithdrawalListResp)
@@ -1042,6 +1033,26 @@ func (c *payrpcClient) WithdrawalAuditDetail(ctx context.Context, in *Withdrawal
 	return out, nil
 }
 
+func (c *payrpcClient) WithDrawalReplenishmentOrder(ctx context.Context, in *WithdrawalReplenishmentOrderReq, opts ...grpc.CallOption) (*WithdrawalReplenishmentOrderResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WithdrawalReplenishmentOrderResp)
+	err := c.cc.Invoke(ctx, Payrpc_WithDrawalReplenishmentOrder_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payrpcClient) WithDrawalBlockInfo(ctx context.Context, in *WithDrawalBlockInfoReq, opts ...grpc.CallOption) (*WithDrawalBlockInfoResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WithDrawalBlockInfoResp)
+	err := c.cc.Invoke(ctx, Payrpc_WithDrawalBlockInfo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PayrpcServer is the server API for Payrpc service.
 // All implementations must embed UnimplementedPayrpcServer
 // for forward compatibility.
@@ -1145,8 +1156,6 @@ type PayrpcServer interface {
 	//group:pay
 	ReplenishmentOrder(context.Context, *ReplenishmentOrderReq) (*ReplenishmentOrderResp, error)
 	//group:pay
-	WithDrawalReplenishmentOrder(context.Context, *ReplenishmentOrderReq) (*ReplenishmentOrderResp, error)
-	//group:pay
 	WithdrawalList(context.Context, *WithdrawalListReq) (*WithdrawalListResp, error)
 	//group:pay
 	WithdrawalStatistics(context.Context, *WithdrawalStatisticsReq) (*WithdrawalStatisticsResp, error)
@@ -1195,6 +1204,8 @@ type PayrpcServer interface {
 	AuditFailWriteNotice(context.Context, *AuditFailWriteNoticeReq) (*AuditFailWriteNoticeResp, error)
 	WithdrawalDetail(context.Context, *WithdrawalDetailReq) (*WithdrawalDetailResp, error)
 	WithdrawalAuditDetail(context.Context, *WithdrawalAuditDetailReq) (*WithdrawalAuditDetailResp, error)
+	WithDrawalReplenishmentOrder(context.Context, *WithdrawalReplenishmentOrderReq) (*WithdrawalReplenishmentOrderResp, error)
+	WithDrawalBlockInfo(context.Context, *WithDrawalBlockInfoReq) (*WithDrawalBlockInfoResp, error)
 	mustEmbedUnimplementedPayrpcServer()
 }
 
@@ -1352,9 +1363,6 @@ func (UnimplementedPayrpcServer) WalletOutTransfer(context.Context, *WalletOutTr
 func (UnimplementedPayrpcServer) ReplenishmentOrder(context.Context, *ReplenishmentOrderReq) (*ReplenishmentOrderResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReplenishmentOrder not implemented")
 }
-func (UnimplementedPayrpcServer) WithDrawalReplenishmentOrder(context.Context, *ReplenishmentOrderReq) (*ReplenishmentOrderResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method WithDrawalReplenishmentOrder not implemented")
-}
 func (UnimplementedPayrpcServer) WithdrawalList(context.Context, *WithdrawalListReq) (*WithdrawalListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WithdrawalList not implemented")
 }
@@ -1438,6 +1446,12 @@ func (UnimplementedPayrpcServer) WithdrawalDetail(context.Context, *WithdrawalDe
 }
 func (UnimplementedPayrpcServer) WithdrawalAuditDetail(context.Context, *WithdrawalAuditDetailReq) (*WithdrawalAuditDetailResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WithdrawalAuditDetail not implemented")
+}
+func (UnimplementedPayrpcServer) WithDrawalReplenishmentOrder(context.Context, *WithdrawalReplenishmentOrderReq) (*WithdrawalReplenishmentOrderResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WithDrawalReplenishmentOrder not implemented")
+}
+func (UnimplementedPayrpcServer) WithDrawalBlockInfo(context.Context, *WithDrawalBlockInfoReq) (*WithDrawalBlockInfoResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WithDrawalBlockInfo not implemented")
 }
 func (UnimplementedPayrpcServer) mustEmbedUnimplementedPayrpcServer() {}
 func (UnimplementedPayrpcServer) testEmbeddedByValue()                {}
@@ -2342,24 +2356,6 @@ func _Payrpc_ReplenishmentOrder_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Payrpc_WithDrawalReplenishmentOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReplenishmentOrderReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PayrpcServer).WithDrawalReplenishmentOrder(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Payrpc_WithDrawalReplenishmentOrder_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PayrpcServer).WithDrawalReplenishmentOrder(ctx, req.(*ReplenishmentOrderReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Payrpc_WithdrawalList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(WithdrawalListReq)
 	if err := dec(in); err != nil {
@@ -2864,6 +2860,42 @@ func _Payrpc_WithdrawalAuditDetail_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Payrpc_WithDrawalReplenishmentOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WithdrawalReplenishmentOrderReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).WithDrawalReplenishmentOrder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_WithDrawalReplenishmentOrder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).WithDrawalReplenishmentOrder(ctx, req.(*WithdrawalReplenishmentOrderReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Payrpc_WithDrawalBlockInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WithDrawalBlockInfoReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).WithDrawalBlockInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_WithDrawalBlockInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).WithDrawalBlockInfo(ctx, req.(*WithDrawalBlockInfoReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Payrpc_ServiceDesc is the grpc.ServiceDesc for Payrpc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -3068,10 +3100,6 @@ var Payrpc_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Payrpc_ReplenishmentOrder_Handler,
 		},
 		{
-			MethodName: "withDrawalReplenishmentOrder",
-			Handler:    _Payrpc_WithDrawalReplenishmentOrder_Handler,
-		},
-		{
 			MethodName: "withdrawalList",
 			Handler:    _Payrpc_WithdrawalList_Handler,
 		},
@@ -3182,6 +3210,14 @@ var Payrpc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "withdrawalAuditDetail",
 			Handler:    _Payrpc_WithdrawalAuditDetail_Handler,
+		},
+		{
+			MethodName: "withDrawalReplenishmentOrder",
+			Handler:    _Payrpc_WithDrawalReplenishmentOrder_Handler,
+		},
+		{
+			MethodName: "withDrawalBlockInfo",
+			Handler:    _Payrpc_WithDrawalBlockInfo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
