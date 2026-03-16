@@ -21,7 +21,7 @@ type WinCoinWithdrawalRecord struct {
 	PlatNickName            string          `gorm:"column:plat_nick_name;type:varchar(100);comment:平台自定义名称" json:"platNickName"`                                                          // 平台自定义名称
 	WithdrawalAddress       string          `gorm:"column:withdrawal_address;type:mediumtext;not null;comment:加密地址" json:"withdrawalAddress"`                                             // 加密地址
 	WithdrawalAmount        decimal.Decimal `gorm:"column:withdrawal_amount;type:decimal(15,4);not null;default:0.0000;comment:提款金额" json:"withdrawalAmount"`                             // 提款金额
-	ExchangeRate            decimal.Decimal `gorm:"column:exchange_rate;type:decimal(15,4);not null;default:0.0000;comment:汇率" json:"exchangeRate"`                                       // 汇率
+	ExchangeRate            decimal.Decimal `gorm:"column:exchange_rate;type:decimal(15,8);not null;default:0.0000;comment:汇率" json:"exchangeRate"`                                       // 汇率
 	RealAmount              decimal.Decimal `gorm:"column:real_amount;type:decimal(15,4);not null;default:0.0000;comment:到账金额" json:"realAmount"`                                         // 到账金额
 	CoinBefore              decimal.Decimal `gorm:"column:coin_before;type:decimal(15,4);not null;default:0.0000;comment:提款前用户金额" json:"coinBefore"`                                      // 提款前用户金额
 	PlatNetfees             decimal.Decimal `gorm:"column:plat_netfees;type:decimal(15,4);default:0.0000;comment:平台手续费" json:"platNetfees"`                                               // 平台手续费
