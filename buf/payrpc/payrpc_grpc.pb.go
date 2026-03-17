@@ -98,6 +98,8 @@ const (
 	Payrpc_WithdrawalAuditDetail_FullMethodName           = "/payrpc.payrpc/withdrawalAuditDetail"
 	Payrpc_WithDrawalReplenishmentOrder_FullMethodName    = "/payrpc.payrpc/withDrawalReplenishmentOrder"
 	Payrpc_WithDrawalBlockInfo_FullMethodName             = "/payrpc.payrpc/withDrawalBlockInfo"
+	Payrpc_WithChannelPayTypeList_FullMethodName          = "/payrpc.payrpc/withChannelPayTypeList"
+	Payrpc_DepositChannelPayTypeList_FullMethodName       = "/payrpc.payrpc/depositChannelPayTypeList"
 )
 
 // PayrpcClient is the client API for Payrpc service.
@@ -253,6 +255,8 @@ type PayrpcClient interface {
 	WithdrawalAuditDetail(ctx context.Context, in *WithdrawalAuditDetailReq, opts ...grpc.CallOption) (*WithdrawalAuditDetailResp, error)
 	WithDrawalReplenishmentOrder(ctx context.Context, in *WithdrawalReplenishmentOrderReq, opts ...grpc.CallOption) (*WithdrawalReplenishmentOrderResp, error)
 	WithDrawalBlockInfo(ctx context.Context, in *WithDrawalBlockInfoReq, opts ...grpc.CallOption) (*WithDrawalBlockInfoResp, error)
+	WithChannelPayTypeList(ctx context.Context, in *WithChannelPayTypeListReq, opts ...grpc.CallOption) (*WithChannelPayTypeListResp, error)
+	DepositChannelPayTypeList(ctx context.Context, in *DepositChannelPayTypeListReq, opts ...grpc.CallOption) (*DepositChannelPayTypeListResp, error)
 }
 
 type payrpcClient struct {
@@ -1053,6 +1057,26 @@ func (c *payrpcClient) WithDrawalBlockInfo(ctx context.Context, in *WithDrawalBl
 	return out, nil
 }
 
+func (c *payrpcClient) WithChannelPayTypeList(ctx context.Context, in *WithChannelPayTypeListReq, opts ...grpc.CallOption) (*WithChannelPayTypeListResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WithChannelPayTypeListResp)
+	err := c.cc.Invoke(ctx, Payrpc_WithChannelPayTypeList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payrpcClient) DepositChannelPayTypeList(ctx context.Context, in *DepositChannelPayTypeListReq, opts ...grpc.CallOption) (*DepositChannelPayTypeListResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DepositChannelPayTypeListResp)
+	err := c.cc.Invoke(ctx, Payrpc_DepositChannelPayTypeList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PayrpcServer is the server API for Payrpc service.
 // All implementations must embed UnimplementedPayrpcServer
 // for forward compatibility.
@@ -1206,6 +1230,8 @@ type PayrpcServer interface {
 	WithdrawalAuditDetail(context.Context, *WithdrawalAuditDetailReq) (*WithdrawalAuditDetailResp, error)
 	WithDrawalReplenishmentOrder(context.Context, *WithdrawalReplenishmentOrderReq) (*WithdrawalReplenishmentOrderResp, error)
 	WithDrawalBlockInfo(context.Context, *WithDrawalBlockInfoReq) (*WithDrawalBlockInfoResp, error)
+	WithChannelPayTypeList(context.Context, *WithChannelPayTypeListReq) (*WithChannelPayTypeListResp, error)
+	DepositChannelPayTypeList(context.Context, *DepositChannelPayTypeListReq) (*DepositChannelPayTypeListResp, error)
 	mustEmbedUnimplementedPayrpcServer()
 }
 
@@ -1452,6 +1478,12 @@ func (UnimplementedPayrpcServer) WithDrawalReplenishmentOrder(context.Context, *
 }
 func (UnimplementedPayrpcServer) WithDrawalBlockInfo(context.Context, *WithDrawalBlockInfoReq) (*WithDrawalBlockInfoResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WithDrawalBlockInfo not implemented")
+}
+func (UnimplementedPayrpcServer) WithChannelPayTypeList(context.Context, *WithChannelPayTypeListReq) (*WithChannelPayTypeListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WithChannelPayTypeList not implemented")
+}
+func (UnimplementedPayrpcServer) DepositChannelPayTypeList(context.Context, *DepositChannelPayTypeListReq) (*DepositChannelPayTypeListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DepositChannelPayTypeList not implemented")
 }
 func (UnimplementedPayrpcServer) mustEmbedUnimplementedPayrpcServer() {}
 func (UnimplementedPayrpcServer) testEmbeddedByValue()                {}
@@ -2896,6 +2928,42 @@ func _Payrpc_WithDrawalBlockInfo_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Payrpc_WithChannelPayTypeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WithChannelPayTypeListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).WithChannelPayTypeList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_WithChannelPayTypeList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).WithChannelPayTypeList(ctx, req.(*WithChannelPayTypeListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Payrpc_DepositChannelPayTypeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DepositChannelPayTypeListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).DepositChannelPayTypeList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_DepositChannelPayTypeList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).DepositChannelPayTypeList(ctx, req.(*DepositChannelPayTypeListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Payrpc_ServiceDesc is the grpc.ServiceDesc for Payrpc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -3218,6 +3286,14 @@ var Payrpc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "withDrawalBlockInfo",
 			Handler:    _Payrpc_WithDrawalBlockInfo_Handler,
+		},
+		{
+			MethodName: "withChannelPayTypeList",
+			Handler:    _Payrpc_WithChannelPayTypeList_Handler,
+		},
+		{
+			MethodName: "depositChannelPayTypeList",
+			Handler:    _Payrpc_DepositChannelPayTypeList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
