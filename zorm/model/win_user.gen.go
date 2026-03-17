@@ -4,7 +4,12 @@
 
 package model
 
-import "github.com/shopspring/decimal"
+import (
+	"time"
+
+	"github.com/shopspring/decimal"
+	"gorm.io/gorm"
+)
 
 const TableNameWinUser = "win_user"
 
@@ -17,41 +22,44 @@ type WinUser struct {
 	Fcoin             decimal.Decimal `gorm:"column:fcoin;type:decimal(15,4);not null;default:0.0000;comment:冻结金额" json:"fcoin"`                       // 冻结金额
 	CoinCommission    decimal.Decimal `gorm:"column:coin_commission;type:decimal(15,4);not null;default:0.0000;comment:佣金可提现金额" json:"coinCommission"` // 佣金可提现金额
 	LevelID           int64           `gorm:"column:level_id;type:tinyint;not null;default:1;comment:会员等级" json:"levelId"`                             // 会员等级
-	Role              int64           `gorm:"column:role;type:tinyint;not null;comment:角色:0-会员 1-代理 4-测试" json:"role"`                                 // 角色:0-会员 1-代理 4-测试
-	IsPromoter        int64           `gorm:"column:is_promoter;type:tinyint;not null;comment:是否推广:0-不是 1-是" json:"isPromoter"`                        // 是否推广:0-不是 1-是
+	Role              int64           `gorm:"column:role;type:tinyint;not null;comment:角色 用户=0,代理=1" json:"role"`                                      // 角色 用户=0,代理=1
+	IsPromoter        int64           `gorm:"column:is_promoter;type:tinyint;not null;comment:是否推广" json:"isPromoter"`                                 // 是否推广
 	Flag              int64           `gorm:"column:flag;type:int;not null;comment:会员旗" json:"flag"`                                                   // 会员旗
 	RealName          string          `gorm:"column:real_name;type:varchar(32);not null;comment:真实姓名" json:"realName"`                                 // 真实姓名
 	Signature         string          `gorm:"column:signature;type:varchar(128);not null;comment:个性签名" json:"signature"`                               // 个性签名
-	Birthday          string          `gorm:"column:birthday;type:varchar(16);not null;comment:生日" json:"birthday"`                                    // 生日
+	Birthday          string          `gorm:"column:birthday;type:varchar(64);not null;comment:出生日期" json:"birthday"`                                  // 出生日期
 	AreaCode          string          `gorm:"column:area_code;type:varchar(8);not null;comment:区号" json:"areaCode"`                                    // 区号
 	Mobile            string          `gorm:"column:mobile;type:varchar(16);not null;comment:手机号码" json:"mobile"`                                      // 手机号码
-	Email             string          `gorm:"column:email;type:varchar(32);comment:邮箱" json:"email"`                                                   // 邮箱
-	Sex               int64           `gorm:"column:sex;type:tinyint;not null;default:1;comment:性别:1-男 0-女 2-未知" json:"sex"`                           // 性别:1-男 0-女 2-未知
-	BindBank          int64           `gorm:"column:bind_bank;type:tinyint;not null;comment:是否绑定银行卡:1-已绑定 0-未绑定" json:"bindBank"`                      // 是否绑定银行卡:1-已绑定 0-未绑定
+	Phone             string          `gorm:"column:phone;type:varchar(20);comment:手机" json:"phone"`                                                   // 手机
+	Nickname          string          `gorm:"column:nickname;type:varchar(200);comment:昵称" json:"nickname"`                                            // 昵称
+	AreaNum           string          `gorm:"column:area_num;type:varchar(10);not null;comment:国家区号" json:"areaNum"`                                   // 国家区号
+	Email             string          `gorm:"column:email;type:varchar(100);comment:邮箱" json:"email"`                                                  // 邮箱
+	Sex               int64           `gorm:"column:sex;type:tinyint;comment:性别0:男1:女2:保密" json:"sex"`                                                 // 性别0:男1:女2:保密
+	BindBank          int64           `gorm:"column:bind_bank;type:tinyint;not null;comment:是否绑定银行卡" json:"bindBank"`                                  // 是否绑定银行卡
 	Address           string          `gorm:"column:address;type:varchar(256);not null;comment:家庭地址" json:"address"`                                   // 家庭地址
 	Score             int64           `gorm:"column:score;type:int;not null;comment:积分" json:"score"`                                                  // 积分
 	PromoCode         string          `gorm:"column:promo_code;type:varchar(8);not null;comment:推广码" json:"promoCode"`                                 // 推广码
 	IDPath            string          `gorm:"column:id_path;type:varchar(64);not null;comment:代理路径" json:"idPath"`                                     // 代理路径
-	SupUid1           int64           `gorm:"column:sup_uid_1;type:int;not null;comment:上1级代理" json:"supUid1"`                                         // 上1级代理
-	SupUsername1      string          `gorm:"column:sup_username_1;type:varchar(32);not null;comment:上1级代理" json:"supUsername1"`                       // 上1级代理
-	SupUid2           int64           `gorm:"column:sup_uid_2;type:int;not null;comment:上2级代理" json:"supUid2"`                                         // 上2级代理
-	SupUid3           int64           `gorm:"column:sup_uid_3;type:int;not null;comment:上3级代理" json:"supUid3"`                                         // 上3级代理
-	SupUid4           int64           `gorm:"column:sup_uid_4;type:int;not null;comment:上4级代理" json:"supUid4"`                                         // 上4级代理
-	SupUid5           int64           `gorm:"column:sup_uid_5;type:int;not null;comment:上5级代理" json:"supUid5"`                                         // 上5级代理
-	SupUid6           int64           `gorm:"column:sup_uid_6;type:int;not null;comment:上6级代理" json:"supUid6"`                                         // 上6级代理
-	SupUIDTop         int64           `gorm:"column:sup_uid_top;type:int;not null;comment:顶级推广用户名" json:"supUidTop"`                                   // 顶级推广用户名
-	SupUsernameTop    string          `gorm:"column:sup_username_top;type:varchar(32);not null;comment:顶级推广用户名" json:"supUsernameTop"`                 // 顶级推广用户名
-	SupLevelTop       int64           `gorm:"column:sup_level_top;type:int;not null;default:-1;comment:顶级推广层级" json:"supLevelTop"`                     // 顶级推广层级
-	PasswordHash      string          `gorm:"column:password_hash;type:varchar(255);not null;comment:登录密码" json:"passwordHash"`                        // 登录密码
-	PasswordCoin      string          `gorm:"column:password_coin;type:varchar(255);not null;comment:取款密码" json:"passwordCoin"`                        // 取款密码
-	IP                string          `gorm:"column:ip;type:varchar(128);not null;comment:IP地址" json:"ip"`                                             // IP地址
-	ThirdLoginType    string          `gorm:"column:third_login_type;type:varchar(128);not null;comment:三方登陆类型" json:"thirdLoginType"`                 // 三方登陆类型
-	IPRegion          string          `gorm:"column:ip_region;type:varchar(255);comment:IP归属地" json:"ipRegion"`                                        // IP归属地
-	Status            int64           `gorm:"column:status;type:tinyint;not null;default:10;comment:状态:10-正常 9-冻结 8-删除" json:"status"`                 // 状态:10-正常 9-冻结 8-删除
-	LastLoginIP       string          `gorm:"column:last_login_ip;type:varchar(128);comment:最后登陆ip" json:"lastLoginIp"`                                // 最后登陆ip
-	LastLoginIPRegion string          `gorm:"column:last_login_ip_region;type:varchar(255);comment:最后登录IP归属地" json:"lastLoginIpRegion"`                // 最后登录IP归属地
-	LastLoginTime     int64           `gorm:"column:last_login_time;type:int;comment:最后登陆时间" json:"lastLoginTime"`                                     // 最后登陆时间
-	LastLoginDeviceID string          `gorm:"column:last_login_device_id;type:varchar(64);comment:最后登录设备id" json:"lastLoginDeviceId"`                  // 最后登录设备id
+	SupUid1           int64           `gorm:"column:sup_uid_1;type:bigint" json:"supUid1"`
+	SupUsername1      string          `gorm:"column:sup_username_1;type:longtext" json:"supUsername1"`
+	SupUid2           int64           `gorm:"column:sup_uid_2;type:bigint" json:"supUid2"`
+	SupUid3           int64           `gorm:"column:sup_uid_3;type:bigint" json:"supUid3"`
+	SupUid4           int64           `gorm:"column:sup_uid_4;type:bigint" json:"supUid4"`
+	SupUid5           int64           `gorm:"column:sup_uid_5;type:bigint" json:"supUid5"`
+	SupUid6           int64           `gorm:"column:sup_uid_6;type:bigint" json:"supUid6"`
+	SupUIDTop         int64           `gorm:"column:sup_uid_top;type:bigint" json:"supUidTop"`
+	SupUsernameTop    string          `gorm:"column:sup_username_top;type:longtext" json:"supUsernameTop"`
+	SupLevelTop       int64           `gorm:"column:sup_level_top;type:bigint" json:"supLevelTop"`
+	PasswordHash      string          `gorm:"column:password_hash;type:longtext" json:"passwordHash"`
+	PasswordCoin      string          `gorm:"column:password_coin;type:longtext" json:"passwordCoin"`
+	IP                string          `gorm:"column:ip;type:longtext" json:"ip"`
+	ThirdLoginType    string          `gorm:"column:third_login_type;type:longtext" json:"thirdLoginType"`
+	IPRegion          string          `gorm:"column:ip_region;type:longtext" json:"ipRegion"`
+	Status            int64           `gorm:"column:status;type:tinyint" json:"status"`
+	LastLoginIP       string          `gorm:"column:last_login_ip;type:varchar(128);comment:最后登陆ip" json:"lastLoginIp"`                 // 最后登陆ip
+	LastLoginIPRegion string          `gorm:"column:last_login_ip_region;type:varchar(255);comment:最后登录IP归属地" json:"lastLoginIpRegion"` // 最后登录IP归属地
+	LastLoginTime     int64           `gorm:"column:last_login_time;type:bigint;comment:上次登录时间" json:"lastLoginTime"`                   // 上次登录时间
+	LastLoginDeviceID string          `gorm:"column:last_login_device_id;type:varchar(64);comment:最后登录设备id" json:"lastLoginDeviceId"`   // 最后登录设备id
 	CreatedAt         int64           `gorm:"column:created_at;comment:创建时间" json:"createdAt"`
 	UpdatedAt         int64           `gorm:"column:updated_at;comment:更新时间" json:"updatedAt"`
 	FreezeCause       string          `gorm:"column:freeze_cause;type:varchar(255);comment:冻结原因" json:"freezeCause"`   // 冻结原因
@@ -67,6 +75,29 @@ type WinUser struct {
 	CodeURL           string          `gorm:"column:code_url;type:varchar(255);comment:google二维码" json:"codeUrl"`                              // google二维码
 	CodeStatus        int64           `gorm:"column:code_status;type:tinyint(1);not null;comment:google绑定验证记录:0=未绑定 ,1=已绑定" json:"codeStatus"` // google绑定验证记录:0=未绑定 ,1=已绑定
 	UserType          int64           `gorm:"column:user_type;type:tinyint(1);default:1;comment:1==手机注册  3==whatsapp 5==邮箱" json:"userType"`   // 1==手机注册  3==whatsapp 5==邮箱
+	DeletedAt         gorm.DeletedAt  `gorm:"column:deleted_at;type:datetime(3)" json:"-"`
+	DeviceID          string          `gorm:"column:device_id;type:varchar(64);not null;comment:设备号" json:"deviceId"`                                     // 设备号
+	Password          string          `gorm:"column:password;type:varchar(128);comment:密码" json:"password"`                                               // 密码
+	UserStatus        int64           `gorm:"column:user_status;type:tinyint;comment:用户状态(0:正常,1:禁言)" json:"userStatus"`                                  // 用户状态(0:正常,1:禁言)
+	HeaderImg         string          `gorm:"column:header_img;type:varchar(200);not null;comment:图像" json:"headerImg"`                                   // 图像
+	RoleID            int64           `gorm:"column:role_id;type:tinyint;not null;default:1;comment:角色:1=游客,8=普通用户,16=超管用户,20=代理" json:"roleId"`          // 角色:1=游客,8=普通用户,16=超管用户,20=代理
+	SecondaryRoleID   int64           `gorm:"column:secondary_role_id;type:bigint unsigned;not null;default:1;comment:二级角色id:1球迷" json:"secondaryRoleId"` // 二级角色id:1球迷
+	Level             int64           `gorm:"column:level;type:bigint;not null;default:1;comment:用户等级" json:"level"`                                      // 用户等级
+	Experience        int64           `gorm:"column:experience;type:bigint;not null;comment:经验值" json:"experience"`                                       // 经验值
+	CreateTime        time.Time       `gorm:"column:create_time;type:datetime(3);comment:注册时间" json:"createTime"`                                         // 注册时间
+	InviteCode        string          `gorm:"column:invite_code;type:varchar(191);not null;comment:邀请码" json:"inviteCode"`                                // 邀请码
+	GameChannelID     int64           `gorm:"column:game_channel_id;type:bigint unsigned;not null;default:1;comment:渠道网站id" json:"gameChannelId"`         // 渠道网站id
+	ReceiverAddress   string          `gorm:"column:receiver_address;type:varchar(512);not null;comment:收货详细地址" json:"receiverAddress"`                   // 收货详细地址
+	PointsTotal       int64           `gorm:"column:points_total;type:bigint;not null;comment:当前积分余额" json:"pointsTotal"`                                 // 当前积分余额
+	PointsFrozen      int64           `gorm:"column:points_frozen;type:bigint unsigned;not null;comment:冻结中的积分（待结算或审核中）" json:"pointsFrozen"`             // 冻结中的积分（待结算或审核中）
+	PointsAccumulated int64           `gorm:"column:points_accumulated;type:bigint unsigned;not null;comment:历史累计积分" json:"pointsAccumulated"`            // 历史累计积分
+	PointsVersion     int64           `gorm:"column:points_version;type:bigint unsigned;not null;comment:积分版本号（乐观锁)" json:"pointsVersion"`                // 积分版本号（乐观锁)
+	AgentLevel        int64           `gorm:"column:agent_level;type:tinyint;default:1;comment:代理商级别" json:"agentLevel"`                                  // 代理商级别
+	ParentID          int64           `gorm:"column:parent_id;type:bigint;comment:上级ID" json:"parentId"`                                                  // 上级ID
+	ClientIP          string          `gorm:"column:client_ip;type:varchar(64);not null;comment:用户ip" json:"clientIp"`                                    // 用户ip
+	ChannelName       string          `gorm:"column:channel_name;type:varchar(512);not null;comment:渠道名称" json:"channelName"`                             // 渠道名称
+	GrowthValue       int64           `gorm:"column:growth_value;type:bigint;not null;comment:当前成长值" json:"growthValue"`                                  // 当前成长值
+	Currency          string          `gorm:"column:currency;type:varchar(10);not null;default:EGP;comment:货币类型(USDT:美元稳定币, EGP:埃及镑)" json:"currency"`    // 货币类型(USDT:美元稳定币, EGP:埃及镑)
 }
 
 // TableName WinUser's table name

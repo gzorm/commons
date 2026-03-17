@@ -42,6 +42,9 @@ func newWinUser(db *gorm.DB, opts ...gen.DOOption) winUser {
 	_winUser.Birthday = field.NewString(tableName, "birthday")
 	_winUser.AreaCode = field.NewString(tableName, "area_code")
 	_winUser.Mobile = field.NewString(tableName, "mobile")
+	_winUser.Phone = field.NewString(tableName, "phone")
+	_winUser.Nickname = field.NewString(tableName, "nickname")
+	_winUser.AreaNum = field.NewString(tableName, "area_num")
 	_winUser.Email = field.NewString(tableName, "email")
 	_winUser.Sex = field.NewInt64(tableName, "sex")
 	_winUser.BindBank = field.NewInt64(tableName, "bind_bank")
@@ -84,6 +87,29 @@ func newWinUser(db *gorm.DB, opts ...gen.DOOption) winUser {
 	_winUser.CodeURL = field.NewString(tableName, "code_url")
 	_winUser.CodeStatus = field.NewInt64(tableName, "code_status")
 	_winUser.UserType = field.NewInt64(tableName, "user_type")
+	_winUser.DeletedAt = field.NewField(tableName, "deleted_at")
+	_winUser.DeviceID = field.NewString(tableName, "device_id")
+	_winUser.Password = field.NewString(tableName, "password")
+	_winUser.UserStatus = field.NewInt64(tableName, "user_status")
+	_winUser.HeaderImg = field.NewString(tableName, "header_img")
+	_winUser.RoleID = field.NewInt64(tableName, "role_id")
+	_winUser.SecondaryRoleID = field.NewInt64(tableName, "secondary_role_id")
+	_winUser.Level = field.NewInt64(tableName, "level")
+	_winUser.Experience = field.NewInt64(tableName, "experience")
+	_winUser.CreateTime = field.NewTime(tableName, "create_time")
+	_winUser.InviteCode = field.NewString(tableName, "invite_code")
+	_winUser.GameChannelID = field.NewInt64(tableName, "game_channel_id")
+	_winUser.ReceiverAddress = field.NewString(tableName, "receiver_address")
+	_winUser.PointsTotal = field.NewInt64(tableName, "points_total")
+	_winUser.PointsFrozen = field.NewInt64(tableName, "points_frozen")
+	_winUser.PointsAccumulated = field.NewInt64(tableName, "points_accumulated")
+	_winUser.PointsVersion = field.NewInt64(tableName, "points_version")
+	_winUser.AgentLevel = field.NewInt64(tableName, "agent_level")
+	_winUser.ParentID = field.NewInt64(tableName, "parent_id")
+	_winUser.ClientIP = field.NewString(tableName, "client_ip")
+	_winUser.ChannelName = field.NewString(tableName, "channel_name")
+	_winUser.GrowthValue = field.NewInt64(tableName, "growth_value")
+	_winUser.Currency = field.NewString(tableName, "currency")
 
 	_winUser.fillFieldMap()
 
@@ -102,40 +128,43 @@ type winUser struct {
 	Fcoin             field.Field  // 冻结金额
 	CoinCommission    field.Field  // 佣金可提现金额
 	LevelID           field.Int64  // 会员等级
-	Role              field.Int64  // 角色:0-会员 1-代理 4-测试
-	IsPromoter        field.Int64  // 是否推广:0-不是 1-是
+	Role              field.Int64  // 角色 用户=0,代理=1
+	IsPromoter        field.Int64  // 是否推广
 	Flag              field.Int64  // 会员旗
 	RealName          field.String // 真实姓名
 	Signature         field.String // 个性签名
-	Birthday          field.String // 生日
+	Birthday          field.String // 出生日期
 	AreaCode          field.String // 区号
 	Mobile            field.String // 手机号码
+	Phone             field.String // 手机
+	Nickname          field.String // 昵称
+	AreaNum           field.String // 国家区号
 	Email             field.String // 邮箱
-	Sex               field.Int64  // 性别:1-男 0-女 2-未知
-	BindBank          field.Int64  // 是否绑定银行卡:1-已绑定 0-未绑定
+	Sex               field.Int64  // 性别0:男1:女2:保密
+	BindBank          field.Int64  // 是否绑定银行卡
 	Address           field.String // 家庭地址
 	Score             field.Int64  // 积分
 	PromoCode         field.String // 推广码
 	IDPath            field.String // 代理路径
-	SupUid1           field.Int64  // 上1级代理
-	SupUsername1      field.String // 上1级代理
-	SupUid2           field.Int64  // 上2级代理
-	SupUid3           field.Int64  // 上3级代理
-	SupUid4           field.Int64  // 上4级代理
-	SupUid5           field.Int64  // 上5级代理
-	SupUid6           field.Int64  // 上6级代理
-	SupUIDTop         field.Int64  // 顶级推广用户名
-	SupUsernameTop    field.String // 顶级推广用户名
-	SupLevelTop       field.Int64  // 顶级推广层级
-	PasswordHash      field.String // 登录密码
-	PasswordCoin      field.String // 取款密码
-	IP                field.String // IP地址
-	ThirdLoginType    field.String // 三方登陆类型
-	IPRegion          field.String // IP归属地
-	Status            field.Int64  // 状态:10-正常 9-冻结 8-删除
+	SupUid1           field.Int64
+	SupUsername1      field.String
+	SupUid2           field.Int64
+	SupUid3           field.Int64
+	SupUid4           field.Int64
+	SupUid5           field.Int64
+	SupUid6           field.Int64
+	SupUIDTop         field.Int64
+	SupUsernameTop    field.String
+	SupLevelTop       field.Int64
+	PasswordHash      field.String
+	PasswordCoin      field.String
+	IP                field.String
+	ThirdLoginType    field.String
+	IPRegion          field.String
+	Status            field.Int64
 	LastLoginIP       field.String // 最后登陆ip
 	LastLoginIPRegion field.String // 最后登录IP归属地
-	LastLoginTime     field.Int64  // 最后登陆时间
+	LastLoginTime     field.Int64  // 上次登录时间
 	LastLoginDeviceID field.String // 最后登录设备id
 	CreatedAt         field.Int64
 	UpdatedAt         field.Int64
@@ -152,6 +181,29 @@ type winUser struct {
 	CodeURL           field.String // google二维码
 	CodeStatus        field.Int64  // google绑定验证记录:0=未绑定 ,1=已绑定
 	UserType          field.Int64  // 1==手机注册  3==whatsapp 5==邮箱
+	DeletedAt         field.Field
+	DeviceID          field.String // 设备号
+	Password          field.String // 密码
+	UserStatus        field.Int64  // 用户状态(0:正常,1:禁言)
+	HeaderImg         field.String // 图像
+	RoleID            field.Int64  // 角色:1=游客,8=普通用户,16=超管用户,20=代理
+	SecondaryRoleID   field.Int64  // 二级角色id:1球迷
+	Level             field.Int64  // 用户等级
+	Experience        field.Int64  // 经验值
+	CreateTime        field.Time   // 注册时间
+	InviteCode        field.String // 邀请码
+	GameChannelID     field.Int64  // 渠道网站id
+	ReceiverAddress   field.String // 收货详细地址
+	PointsTotal       field.Int64  // 当前积分余额
+	PointsFrozen      field.Int64  // 冻结中的积分（待结算或审核中）
+	PointsAccumulated field.Int64  // 历史累计积分
+	PointsVersion     field.Int64  // 积分版本号（乐观锁)
+	AgentLevel        field.Int64  // 代理商级别
+	ParentID          field.Int64  // 上级ID
+	ClientIP          field.String // 用户ip
+	ChannelName       field.String // 渠道名称
+	GrowthValue       field.Int64  // 当前成长值
+	Currency          field.String // 货币类型(USDT:美元稳定币, EGP:埃及镑)
 
 	fieldMap map[string]field.Expr
 }
@@ -183,6 +235,9 @@ func (w *winUser) updateTableName(table string) *winUser {
 	w.Birthday = field.NewString(table, "birthday")
 	w.AreaCode = field.NewString(table, "area_code")
 	w.Mobile = field.NewString(table, "mobile")
+	w.Phone = field.NewString(table, "phone")
+	w.Nickname = field.NewString(table, "nickname")
+	w.AreaNum = field.NewString(table, "area_num")
 	w.Email = field.NewString(table, "email")
 	w.Sex = field.NewInt64(table, "sex")
 	w.BindBank = field.NewInt64(table, "bind_bank")
@@ -225,6 +280,29 @@ func (w *winUser) updateTableName(table string) *winUser {
 	w.CodeURL = field.NewString(table, "code_url")
 	w.CodeStatus = field.NewInt64(table, "code_status")
 	w.UserType = field.NewInt64(table, "user_type")
+	w.DeletedAt = field.NewField(table, "deleted_at")
+	w.DeviceID = field.NewString(table, "device_id")
+	w.Password = field.NewString(table, "password")
+	w.UserStatus = field.NewInt64(table, "user_status")
+	w.HeaderImg = field.NewString(table, "header_img")
+	w.RoleID = field.NewInt64(table, "role_id")
+	w.SecondaryRoleID = field.NewInt64(table, "secondary_role_id")
+	w.Level = field.NewInt64(table, "level")
+	w.Experience = field.NewInt64(table, "experience")
+	w.CreateTime = field.NewTime(table, "create_time")
+	w.InviteCode = field.NewString(table, "invite_code")
+	w.GameChannelID = field.NewInt64(table, "game_channel_id")
+	w.ReceiverAddress = field.NewString(table, "receiver_address")
+	w.PointsTotal = field.NewInt64(table, "points_total")
+	w.PointsFrozen = field.NewInt64(table, "points_frozen")
+	w.PointsAccumulated = field.NewInt64(table, "points_accumulated")
+	w.PointsVersion = field.NewInt64(table, "points_version")
+	w.AgentLevel = field.NewInt64(table, "agent_level")
+	w.ParentID = field.NewInt64(table, "parent_id")
+	w.ClientIP = field.NewString(table, "client_ip")
+	w.ChannelName = field.NewString(table, "channel_name")
+	w.GrowthValue = field.NewInt64(table, "growth_value")
+	w.Currency = field.NewString(table, "currency")
 
 	w.fillFieldMap()
 
@@ -241,7 +319,7 @@ func (w *winUser) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (w *winUser) fillFieldMap() {
-	w.fieldMap = make(map[string]field.Expr, 58)
+	w.fieldMap = make(map[string]field.Expr, 83)
 	w.fieldMap["id"] = w.ID
 	w.fieldMap["username"] = w.Username
 	w.fieldMap["merchant_id"] = w.MerchantID
@@ -257,6 +335,9 @@ func (w *winUser) fillFieldMap() {
 	w.fieldMap["birthday"] = w.Birthday
 	w.fieldMap["area_code"] = w.AreaCode
 	w.fieldMap["mobile"] = w.Mobile
+	w.fieldMap["phone"] = w.Phone
+	w.fieldMap["nickname"] = w.Nickname
+	w.fieldMap["area_num"] = w.AreaNum
 	w.fieldMap["email"] = w.Email
 	w.fieldMap["sex"] = w.Sex
 	w.fieldMap["bind_bank"] = w.BindBank
@@ -299,6 +380,29 @@ func (w *winUser) fillFieldMap() {
 	w.fieldMap["code_url"] = w.CodeURL
 	w.fieldMap["code_status"] = w.CodeStatus
 	w.fieldMap["user_type"] = w.UserType
+	w.fieldMap["deleted_at"] = w.DeletedAt
+	w.fieldMap["device_id"] = w.DeviceID
+	w.fieldMap["password"] = w.Password
+	w.fieldMap["user_status"] = w.UserStatus
+	w.fieldMap["header_img"] = w.HeaderImg
+	w.fieldMap["role_id"] = w.RoleID
+	w.fieldMap["secondary_role_id"] = w.SecondaryRoleID
+	w.fieldMap["level"] = w.Level
+	w.fieldMap["experience"] = w.Experience
+	w.fieldMap["create_time"] = w.CreateTime
+	w.fieldMap["invite_code"] = w.InviteCode
+	w.fieldMap["game_channel_id"] = w.GameChannelID
+	w.fieldMap["receiver_address"] = w.ReceiverAddress
+	w.fieldMap["points_total"] = w.PointsTotal
+	w.fieldMap["points_frozen"] = w.PointsFrozen
+	w.fieldMap["points_accumulated"] = w.PointsAccumulated
+	w.fieldMap["points_version"] = w.PointsVersion
+	w.fieldMap["agent_level"] = w.AgentLevel
+	w.fieldMap["parent_id"] = w.ParentID
+	w.fieldMap["client_ip"] = w.ClientIP
+	w.fieldMap["channel_name"] = w.ChannelName
+	w.fieldMap["growth_value"] = w.GrowthValue
+	w.fieldMap["currency"] = w.Currency
 }
 
 func (w winUser) clone(db *gorm.DB) winUser {
