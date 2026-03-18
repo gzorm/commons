@@ -32,7 +32,7 @@ type AdminTransferRequest struct {
 	Message      string  `protobuf:"bytes,5,opt,name=message,proto3" json:"message,omitempty"`
 	OperatorType string  `protobuf:"bytes,6,opt,name=operatorType,proto3" json:"operatorType,omitempty"`
 	Uid          int32   `protobuf:"varint,7,opt,name=uid,proto3" json:"uid,omitempty"`
-}CodeAmount
+}
 
 func (x *AdminTransferRequest) Reset() {
 	*x = AdminTransferRequest{}
