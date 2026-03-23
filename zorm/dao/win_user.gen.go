@@ -28,7 +28,6 @@ func newWinUser(db *gorm.DB, opts ...gen.DOOption) winUser {
 	tableName := _winUser.winUserDo.TableName()
 	_winUser.ALL = field.NewAsterisk(tableName)
 	_winUser.ID = field.NewInt64(tableName, "id")
-	_winUser.Username = field.NewString(tableName, "username")
 	_winUser.MerchantID = field.NewInt64(tableName, "merchant_id")
 	_winUser.Avatar = field.NewString(tableName, "avatar")
 	_winUser.Fcoin = field.NewField(tableName, "fcoin")
@@ -40,8 +39,6 @@ func newWinUser(db *gorm.DB, opts ...gen.DOOption) winUser {
 	_winUser.RealName = field.NewString(tableName, "real_name")
 	_winUser.Signature = field.NewString(tableName, "signature")
 	_winUser.Birthday = field.NewString(tableName, "birthday")
-	_winUser.AreaCode = field.NewString(tableName, "area_code")
-	_winUser.Mobile = field.NewString(tableName, "mobile")
 	_winUser.Phone = field.NewString(tableName, "phone")
 	_winUser.Nickname = field.NewString(tableName, "nickname")
 	_winUser.AreaNum = field.NewString(tableName, "area_num")
@@ -122,7 +119,6 @@ type winUser struct {
 
 	ALL               field.Asterisk
 	ID                field.Int64
-	Username          field.String // 用户名
 	MerchantID        field.Int64  // 商户id
 	Avatar            field.String // 头像
 	Fcoin             field.Field  // 冻结金额
@@ -134,8 +130,6 @@ type winUser struct {
 	RealName          field.String // 真实姓名
 	Signature         field.String // 个性签名
 	Birthday          field.String // 出生日期
-	AreaCode          field.String // 区号
-	Mobile            field.String // 手机号码
 	Phone             field.String // 手机
 	Nickname          field.String // 昵称
 	AreaNum           field.String // 国家区号
@@ -161,7 +155,7 @@ type winUser struct {
 	IP                field.String
 	ThirdLoginType    field.String
 	IPRegion          field.String
-	Status            field.Int64
+	Status            field.Int64  // 状态:10-正常 9-冻结 8-删除
 	LastLoginIP       field.String // 最后登陆ip
 	LastLoginIPRegion field.String // 最后登录IP归属地
 	LastLoginTime     field.Int64  // 上次登录时间
@@ -221,7 +215,6 @@ func (w winUser) As(alias string) *winUser {
 func (w *winUser) updateTableName(table string) *winUser {
 	w.ALL = field.NewAsterisk(table)
 	w.ID = field.NewInt64(table, "id")
-	w.Username = field.NewString(table, "username")
 	w.MerchantID = field.NewInt64(table, "merchant_id")
 	w.Avatar = field.NewString(table, "avatar")
 	w.Fcoin = field.NewField(table, "fcoin")
@@ -233,8 +226,6 @@ func (w *winUser) updateTableName(table string) *winUser {
 	w.RealName = field.NewString(table, "real_name")
 	w.Signature = field.NewString(table, "signature")
 	w.Birthday = field.NewString(table, "birthday")
-	w.AreaCode = field.NewString(table, "area_code")
-	w.Mobile = field.NewString(table, "mobile")
 	w.Phone = field.NewString(table, "phone")
 	w.Nickname = field.NewString(table, "nickname")
 	w.AreaNum = field.NewString(table, "area_num")
@@ -319,9 +310,8 @@ func (w *winUser) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (w *winUser) fillFieldMap() {
-	w.fieldMap = make(map[string]field.Expr, 83)
+	w.fieldMap = make(map[string]field.Expr, 80)
 	w.fieldMap["id"] = w.ID
-	w.fieldMap["username"] = w.Username
 	w.fieldMap["merchant_id"] = w.MerchantID
 	w.fieldMap["avatar"] = w.Avatar
 	w.fieldMap["fcoin"] = w.Fcoin
@@ -333,8 +323,6 @@ func (w *winUser) fillFieldMap() {
 	w.fieldMap["real_name"] = w.RealName
 	w.fieldMap["signature"] = w.Signature
 	w.fieldMap["birthday"] = w.Birthday
-	w.fieldMap["area_code"] = w.AreaCode
-	w.fieldMap["mobile"] = w.Mobile
 	w.fieldMap["phone"] = w.Phone
 	w.fieldMap["nickname"] = w.Nickname
 	w.fieldMap["area_num"] = w.AreaNum

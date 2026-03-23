@@ -16,7 +16,6 @@ const TableNameWinUser = "win_user"
 // WinUser 客户表
 type WinUser struct {
 	ID                int64           `gorm:"column:id;type:int;primaryKey;autoIncrement:true" json:"id,string"`
-	Username          string          `gorm:"column:username;type:varchar(60);not null;comment:用户名" json:"username"`                                   // 用户名
 	MerchantID        int64           `gorm:"column:merchant_id;type:int;not null;comment:商户id" json:"merchantId"`                                     // 商户id
 	Avatar            string          `gorm:"column:avatar;type:varchar(350);comment:头像" json:"avatar"`                                                // 头像
 	Fcoin             decimal.Decimal `gorm:"column:fcoin;type:decimal(15,4);not null;default:0.0000;comment:冻结金额" json:"fcoin"`                       // 冻结金额
@@ -28,8 +27,6 @@ type WinUser struct {
 	RealName          string          `gorm:"column:real_name;type:varchar(32);not null;comment:真实姓名" json:"realName"`                                 // 真实姓名
 	Signature         string          `gorm:"column:signature;type:varchar(128);not null;comment:个性签名" json:"signature"`                               // 个性签名
 	Birthday          string          `gorm:"column:birthday;type:varchar(64);not null;comment:出生日期" json:"birthday"`                                  // 出生日期
-	AreaCode          string          `gorm:"column:area_code;type:varchar(8);not null;comment:区号" json:"areaCode"`                                    // 区号
-	Mobile            string          `gorm:"column:mobile;type:varchar(16);not null;comment:手机号码" json:"mobile"`                                      // 手机号码
 	Phone             string          `gorm:"column:phone;type:varchar(20);comment:手机" json:"phone"`                                                   // 手机
 	Nickname          string          `gorm:"column:nickname;type:varchar(200);comment:昵称" json:"nickname"`                                            // 昵称
 	AreaNum           string          `gorm:"column:area_num;type:varchar(10);not null;comment:国家区号" json:"areaNum"`                                   // 国家区号
@@ -55,7 +52,7 @@ type WinUser struct {
 	IP                string          `gorm:"column:ip;type:longtext" json:"ip"`
 	ThirdLoginType    string          `gorm:"column:third_login_type;type:longtext" json:"thirdLoginType"`
 	IPRegion          string          `gorm:"column:ip_region;type:longtext" json:"ipRegion"`
-	Status            int64           `gorm:"column:status;type:tinyint" json:"status"`
+	Status            int64           `gorm:"column:status;type:tinyint;default:10;comment:状态:10-正常 9-冻结 8-删除" json:"status"`           // 状态:10-正常 9-冻结 8-删除
 	LastLoginIP       string          `gorm:"column:last_login_ip;type:varchar(128);comment:最后登陆ip" json:"lastLoginIp"`                 // 最后登陆ip
 	LastLoginIPRegion string          `gorm:"column:last_login_ip_region;type:varchar(255);comment:最后登录IP归属地" json:"lastLoginIpRegion"` // 最后登录IP归属地
 	LastLoginTime     int64           `gorm:"column:last_login_time;type:bigint;comment:上次登录时间" json:"lastLoginTime"`                   // 上次登录时间
