@@ -10,33 +10,46 @@ const TableNameWinCoinDepositRecord = "win_coin_deposit_record"
 
 // WinCoinDepositRecord 充值
 type WinCoinDepositRecord struct {
-	ID               int64           `gorm:"column:id;type:bigint;primaryKey;autoIncrement:true" json:"id,string"`
-	OrderID          string          `gorm:"column:order_id;type:varchar(255);comment:订单号(三方平台用)" json:"orderId"`                                           // 订单号(三方平台用)
-	PlatOrderID      string          `gorm:"column:plat_order_id;type:varchar(255);comment:三方平台订单号" json:"platOrderId"`                                     // 三方平台订单号
-	UID              int64           `gorm:"column:uid;type:int;comment:UID" json:"uid"`                                                                    // UID
-	Username         string          `gorm:"column:username;type:varchar(255);comment:用户名" json:"username"`                                                 // 用户名
-	MerchantID       int64           `gorm:"column:merchant_id;type:int;comment:门店ID" json:"merchantId"`                                                    // 门店ID
-	Code             string          `gorm:"column:code;type:varchar(255);comment:支付通道编码" json:"code"`                                                      // 支付通道编码
-	PlatType         int64           `gorm:"column:plat_type;type:tinyint;default:3;comment:通道类型 话费支付=1，银行卡支付=3，钱包支付=5" json:"platType"`                    // 通道类型 话费支付=1，银行卡支付=3，钱包支付=5
-	PlatName         string          `gorm:"column:plat_name;type:varchar(255);comment:平台名称" json:"platName"`                                               // 平台名称
-	PlatNickName     string          `gorm:"column:plat_nick_name;type:varchar(255);comment:平台自定义名称" json:"platNickName"`                                   // 平台自定义名称
-	CoinBefore       decimal.Decimal `gorm:"column:coin_before;type:decimal(19,4);comment:充值前金额" json:"coinBefore"`                                         // 充值前金额
-	PayAddress       string          `gorm:"column:pay_address;type:varchar(255);comment:加密地址" json:"payAddress"`                                           // 加密地址
-	PayAmount        decimal.Decimal `gorm:"column:pay_amount;type:decimal(19,4);comment:充值金额" json:"payAmount"`                                            // 充值金额
-	ExchangeRate     decimal.Decimal `gorm:"column:exchange_rate;type:decimal(19,4);comment:汇率" json:"exchangeRate"`                                        // 汇率
-	RealAmount       decimal.Decimal `gorm:"column:real_amount;type:decimal(19,4);comment:到账金额" json:"realAmount"`                                          // 到账金额
-	Currency         string          `gorm:"column:currency;type:varchar(255);comment:币种" json:"currency"`                                                  // 币种
-	DepStatus        int64           `gorm:"column:dep_status;type:int;comment:充值标识:1-首充 2-二充 9-其他" json:"depStatus"`                                       // 充值标识:1-首充 2-二充 9-其他
-	Category         int64           `gorm:"column:category;type:int;comment:类型:0-钱包充值 1-佣金钱包转账充值" json:"category"`                                         // 类型:0-钱包充值 1-佣金钱包转账充值
-	CategoryCurrency int64           `gorm:"column:category_currency;type:int;comment:货币类型:0-数字货币 1-法币" json:"categoryCurrency"`                            // 货币类型:0-数字货币 1-法币
-	CategoryTransfer int64           `gorm:"column:category_transfer;type:int;comment:转账类型:1-TRC-20 2-ERC-20 3-BANK 4-PIX 5-GCASH" json:"categoryTransfer"` // 转账类型:1-TRC-20 2-ERC-20 3-BANK 4-PIX 5-GCASH
-	AdminUID         int64           `gorm:"column:admin_uid;type:int;comment:审核ID" json:"adminUid"`                                                        // 审核ID
-	Mark             string          `gorm:"column:mark;type:text;comment:备注" json:"mark"`                                                                  // 备注
-	Status           int64           `gorm:"column:status;type:int;comment:状态: 0-申请中 1-成功 2-失败" json:"status"`                                              // 状态: 0-申请中 1-成功 2-失败
-	ActivityID       int64           `gorm:"column:activity_id;type:bigint;comment:参与活动ID" json:"activityId"`                                               // 参与活动ID
-	CreatedAt        int64           `gorm:"column:created_at;comment:创建时间" json:"createdAt"`
-	UpdatedAt        int64           `gorm:"column:updated_at;comment:更新时间" json:"updatedAt"`
-	IsCounted        int64           `gorm:"column:is_counted;type:tinyint(1);default:1;comment:是否统计过：1=否，3=是" json:"isCounted"` // 是否统计过：1=否，3=是
+	ID                    int64           `gorm:"column:id;type:bigint;primaryKey;autoIncrement:true" json:"id,string"`
+	OrderID               string          `gorm:"column:order_id;type:varchar(255);comment:订单号(三方平台用)" json:"orderId"`                                                                                                                       // 订单号(三方平台用)
+	PlatOrderID           string          `gorm:"column:plat_order_id;type:varchar(255);comment:三方平台订单号" json:"platOrderId"`                                                                                                                 // 三方平台订单号
+	UID                   int64           `gorm:"column:uid;type:int;comment:UID" json:"uid"`                                                                                                                                                // UID
+	Username              string          `gorm:"column:username;type:varchar(255);comment:用户名" json:"username"`                                                                                                                             // 用户名
+	MerchantID            int64           `gorm:"column:merchant_id;type:int;comment:门店ID" json:"merchantId"`                                                                                                                                // 门店ID
+	Code                  string          `gorm:"column:code;type:varchar(255);comment:支付通道编码" json:"code"`                                                                                                                                  // 支付通道编码
+	PlatType              int64           `gorm:"column:plat_type;type:tinyint;default:3;comment:通道类型 话费支付=1，银行卡支付=3，钱包支付=5" json:"platType"`                                                                                                // 通道类型 话费支付=1，银行卡支付=3，钱包支付=5
+	PlatName              string          `gorm:"column:plat_name;type:varchar(255);comment:平台名称" json:"platName"`                                                                                                                           // 平台名称
+	PlatNickName          string          `gorm:"column:plat_nick_name;type:varchar(255);comment:平台自定义名称" json:"platNickName"`                                                                                                               // 平台自定义名称
+	CoinBefore            decimal.Decimal `gorm:"column:coin_before;type:decimal(19,4);not null;default:0.0000;comment:充值前金额" json:"coinBefore"`                                                                                             // 充值前金额
+	PayAddress            string          `gorm:"column:pay_address;type:varchar(255);comment:加密地址" json:"payAddress"`                                                                                                                       // 加密地址
+	PayAmount             decimal.Decimal `gorm:"column:pay_amount;type:decimal(19,4);comment:充值金额" json:"payAmount"`                                                                                                                        // 充值金额
+	ExchangeRate          decimal.Decimal `gorm:"column:exchange_rate;type:decimal(19,4);comment:汇率" json:"exchangeRate"`                                                                                                                    // 汇率
+	RealAmount            decimal.Decimal `gorm:"column:real_amount;type:decimal(19,4);comment:到账金额" json:"realAmount"`                                                                                                                      // 到账金额
+	Currency              string          `gorm:"column:currency;type:varchar(255);comment:币种" json:"currency"`                                                                                                                              // 币种
+	DepStatus             int64           `gorm:"column:dep_status;type:int;comment:充值标识:1-首充 2-二充 9-其他" json:"depStatus"`                                                                                                                   // 充值标识:1-首充 2-二充 9-其他
+	Category              int64           `gorm:"column:category;type:int;not null;comment:类型:0=充值 1-存款 2-提款 3-投注 4-派彩 5-返水 6-佣金 7-活动(奖励) 8-系统调账 9-退款 10-佣金钱包转主账户余额 11-小费,12-提款退款,13-系统调账转出,14-系统调账转入,15-余额带出入游戏,16-游戏调整余额" json:"category"` // 类型:0=充值 1-存款 2-提款 3-投注 4-派彩 5-返水 6-佣金 7-活动(奖励) 8-系统调账 9-退款 10-佣金钱包转主账户余额 11-小费,12-提款退款,13-系统调账转出,14-系统调账转入,15-余额带出入游戏,16-游戏调整余额
+	CategoryCurrency      int64           `gorm:"column:category_currency;type:int;comment:货币类型:0-数字货币 1-法币" json:"categoryCurrency"`                                                                                                        // 货币类型:0-数字货币 1-法币
+	CategoryTransfer      int64           `gorm:"column:category_transfer;type:int;comment:转账类型:1-TRC-20 2-ERC-20 3-BANK 4-PIX 5-GCASH" json:"categoryTransfer"`                                                                             // 转账类型:1-TRC-20 2-ERC-20 3-BANK 4-PIX 5-GCASH
+	AdminUID              int64           `gorm:"column:admin_uid;type:int;comment:审核ID" json:"adminUid"`                                                                                                                                    // 审核ID
+	Mark                  string          `gorm:"column:mark;type:text;comment:备注" json:"mark"`                                                                                                                                              // 备注
+	Status                int64           `gorm:"column:status;type:tinyint;not null;comment:状态: 0-申请中 1-成功 2-失败" json:"status"`                                                                                                             // 状态: 0-申请中 1-成功 2-失败
+	ActivityID            int64           `gorm:"column:activity_id;type:bigint;comment:参与活动ID" json:"activityId"`                                                                                                                           // 参与活动ID
+	CreatedAt             int64           `gorm:"column:created_at;comment:创建时间" json:"createdAt"`                                                                                                                                           // 创建时间
+	UpdatedAt             int64           `gorm:"column:updated_at;comment:更新时间" json:"updatedAt"`                                                                                                                                           // 更新时间
+	IsCounted             int64           `gorm:"column:is_counted;type:tinyint(1);default:1;comment:是否统计过：1=否，3=是" json:"isCounted"`                                                                                                        // 是否统计过：1=否，3=是
+	AssetCode             string          `gorm:"column:asset_code;type:varchar(16);not null;default:USDT;comment:asset code" json:"assetCode"`                                                                                              // asset code
+	ChainCode             string          `gorm:"column:chain_code;type:varchar(16);not null;default:TRC20;comment:chain code" json:"chainCode"`                                                                                             // chain code
+	ApplyAmount           int64           `gorm:"column:apply_amount;type:bigint;not null;comment:apply amount micro-usdt" json:"applyAmount"`                                                                                               // apply amount micro-usdt
+	Txid                  string          `gorm:"column:txid;type:varchar(128);not null;comment:chain tx hash" json:"txid"`                                                                                                                  // chain tx hash
+	FromAddress           string          `gorm:"column:from_address;type:varchar(64);not null;comment:from address" json:"fromAddress"`                                                                                                     // from address
+	ToAddress             string          `gorm:"column:to_address;type:varchar(64);not null;comment:to address" json:"toAddress"`                                                                                                           // to address
+	Amount                int64           `gorm:"column:amount;type:bigint;not null;comment:onchain amount micro-usdt" json:"amount"`                                                                                                        // onchain amount micro-usdt
+	Confirmations         int64           `gorm:"column:confirmations;type:int;not null;comment:confirmations" json:"confirmations"`                                                                                                         // confirmations
+	RequiredConfirmations int64           `gorm:"column:required_confirmations;type:int;not null;default:20;comment:required confirmations" json:"requiredConfirmations"`                                                                    // required confirmations
+	ExpireAt              int64           `gorm:"column:expire_at;type:bigint;not null;comment:order expire unix seconds" json:"expireAt"`                                                                                                   // order expire unix seconds
+	MatchedAt             int64           `gorm:"column:matched_at;type:bigint;not null;comment:matched unix seconds" json:"matchedAt"`                                                                                                      // matched unix seconds
+	CreditTime            int64           `gorm:"column:credit_time;type:bigint;not null;comment:credited unix seconds" json:"creditTime"`                                                                                                   // credited unix seconds
+	FailReason            string          `gorm:"column:fail_reason;type:varchar(512);not null;comment:fail reason" json:"failReason"`                                                                                                       // fail reason
 }
 
 // TableName WinCoinDepositRecord's table name

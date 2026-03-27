@@ -54,6 +54,19 @@ func newWinCoinDepositRecord(db *gorm.DB, opts ...gen.DOOption) winCoinDepositRe
 	_winCoinDepositRecord.CreatedAt = field.NewInt64(tableName, "created_at")
 	_winCoinDepositRecord.UpdatedAt = field.NewInt64(tableName, "updated_at")
 	_winCoinDepositRecord.IsCounted = field.NewInt64(tableName, "is_counted")
+	_winCoinDepositRecord.AssetCode = field.NewString(tableName, "asset_code")
+	_winCoinDepositRecord.ChainCode = field.NewString(tableName, "chain_code")
+	_winCoinDepositRecord.ApplyAmount = field.NewInt64(tableName, "apply_amount")
+	_winCoinDepositRecord.Txid = field.NewString(tableName, "txid")
+	_winCoinDepositRecord.FromAddress = field.NewString(tableName, "from_address")
+	_winCoinDepositRecord.ToAddress = field.NewString(tableName, "to_address")
+	_winCoinDepositRecord.Amount = field.NewInt64(tableName, "amount")
+	_winCoinDepositRecord.Confirmations = field.NewInt64(tableName, "confirmations")
+	_winCoinDepositRecord.RequiredConfirmations = field.NewInt64(tableName, "required_confirmations")
+	_winCoinDepositRecord.ExpireAt = field.NewInt64(tableName, "expire_at")
+	_winCoinDepositRecord.MatchedAt = field.NewInt64(tableName, "matched_at")
+	_winCoinDepositRecord.CreditTime = field.NewInt64(tableName, "credit_time")
+	_winCoinDepositRecord.FailReason = field.NewString(tableName, "fail_reason")
 
 	_winCoinDepositRecord.fillFieldMap()
 
@@ -64,34 +77,47 @@ func newWinCoinDepositRecord(db *gorm.DB, opts ...gen.DOOption) winCoinDepositRe
 type winCoinDepositRecord struct {
 	winCoinDepositRecordDo
 
-	ALL              field.Asterisk
-	ID               field.Int64
-	OrderID          field.String // 订单号(三方平台用)
-	PlatOrderID      field.String // 三方平台订单号
-	UID              field.Int64  // UID
-	Username         field.String // 用户名
-	MerchantID       field.Int64  // 门店ID
-	Code             field.String // 支付通道编码
-	PlatType         field.Int64  // 通道类型 话费支付=1，银行卡支付=3，钱包支付=5
-	PlatName         field.String // 平台名称
-	PlatNickName     field.String // 平台自定义名称
-	CoinBefore       field.Field  // 充值前金额
-	PayAddress       field.String // 加密地址
-	PayAmount        field.Field  // 充值金额
-	ExchangeRate     field.Field  // 汇率
-	RealAmount       field.Field  // 到账金额
-	Currency         field.String // 币种
-	DepStatus        field.Int64  // 充值标识:1-首充 2-二充 9-其他
-	Category         field.Int64  // 类型:0-钱包充值 1-佣金钱包转账充值
-	CategoryCurrency field.Int64  // 货币类型:0-数字货币 1-法币
-	CategoryTransfer field.Int64  // 转账类型:1-TRC-20 2-ERC-20 3-BANK 4-PIX 5-GCASH
-	AdminUID         field.Int64  // 审核ID
-	Mark             field.String // 备注
-	Status           field.Int64  // 状态: 0-申请中 1-成功 2-失败
-	ActivityID       field.Int64  // 参与活动ID
-	CreatedAt        field.Int64
-	UpdatedAt        field.Int64
-	IsCounted        field.Int64 // 是否统计过：1=否，3=是
+	ALL                   field.Asterisk
+	ID                    field.Int64
+	OrderID               field.String // 订单号(三方平台用)
+	PlatOrderID           field.String // 三方平台订单号
+	UID                   field.Int64  // UID
+	Username              field.String // 用户名
+	MerchantID            field.Int64  // 门店ID
+	Code                  field.String // 支付通道编码
+	PlatType              field.Int64  // 通道类型 话费支付=1，银行卡支付=3，钱包支付=5
+	PlatName              field.String // 平台名称
+	PlatNickName          field.String // 平台自定义名称
+	CoinBefore            field.Field  // 充值前金额
+	PayAddress            field.String // 加密地址
+	PayAmount             field.Field  // 充值金额
+	ExchangeRate          field.Field  // 汇率
+	RealAmount            field.Field  // 到账金额
+	Currency              field.String // 币种
+	DepStatus             field.Int64  // 充值标识:1-首充 2-二充 9-其他
+	Category              field.Int64  // 类型:0=充值 1-存款 2-提款 3-投注 4-派彩 5-返水 6-佣金 7-活动(奖励) 8-系统调账 9-退款 10-佣金钱包转主账户余额 11-小费,12-提款退款,13-系统调账转出,14-系统调账转入,15-余额带出入游戏,16-游戏调整余额
+	CategoryCurrency      field.Int64  // 货币类型:0-数字货币 1-法币
+	CategoryTransfer      field.Int64  // 转账类型:1-TRC-20 2-ERC-20 3-BANK 4-PIX 5-GCASH
+	AdminUID              field.Int64  // 审核ID
+	Mark                  field.String // 备注
+	Status                field.Int64  // 状态: 0-申请中 1-成功 2-失败
+	ActivityID            field.Int64  // 参与活动ID
+	CreatedAt             field.Int64  // 创建时间
+	UpdatedAt             field.Int64  // 更新时间
+	IsCounted             field.Int64  // 是否统计过：1=否，3=是
+	AssetCode             field.String // asset code
+	ChainCode             field.String // chain code
+	ApplyAmount           field.Int64  // apply amount micro-usdt
+	Txid                  field.String // chain tx hash
+	FromAddress           field.String // from address
+	ToAddress             field.String // to address
+	Amount                field.Int64  // onchain amount micro-usdt
+	Confirmations         field.Int64  // confirmations
+	RequiredConfirmations field.Int64  // required confirmations
+	ExpireAt              field.Int64  // order expire unix seconds
+	MatchedAt             field.Int64  // matched unix seconds
+	CreditTime            field.Int64  // credited unix seconds
+	FailReason            field.String // fail reason
 
 	fieldMap map[string]field.Expr
 }
@@ -135,6 +161,19 @@ func (w *winCoinDepositRecord) updateTableName(table string) *winCoinDepositReco
 	w.CreatedAt = field.NewInt64(table, "created_at")
 	w.UpdatedAt = field.NewInt64(table, "updated_at")
 	w.IsCounted = field.NewInt64(table, "is_counted")
+	w.AssetCode = field.NewString(table, "asset_code")
+	w.ChainCode = field.NewString(table, "chain_code")
+	w.ApplyAmount = field.NewInt64(table, "apply_amount")
+	w.Txid = field.NewString(table, "txid")
+	w.FromAddress = field.NewString(table, "from_address")
+	w.ToAddress = field.NewString(table, "to_address")
+	w.Amount = field.NewInt64(table, "amount")
+	w.Confirmations = field.NewInt64(table, "confirmations")
+	w.RequiredConfirmations = field.NewInt64(table, "required_confirmations")
+	w.ExpireAt = field.NewInt64(table, "expire_at")
+	w.MatchedAt = field.NewInt64(table, "matched_at")
+	w.CreditTime = field.NewInt64(table, "credit_time")
+	w.FailReason = field.NewString(table, "fail_reason")
 
 	w.fillFieldMap()
 
@@ -151,7 +190,7 @@ func (w *winCoinDepositRecord) GetFieldByName(fieldName string) (field.OrderExpr
 }
 
 func (w *winCoinDepositRecord) fillFieldMap() {
-	w.fieldMap = make(map[string]field.Expr, 27)
+	w.fieldMap = make(map[string]field.Expr, 40)
 	w.fieldMap["id"] = w.ID
 	w.fieldMap["order_id"] = w.OrderID
 	w.fieldMap["plat_order_id"] = w.PlatOrderID
@@ -179,6 +218,19 @@ func (w *winCoinDepositRecord) fillFieldMap() {
 	w.fieldMap["created_at"] = w.CreatedAt
 	w.fieldMap["updated_at"] = w.UpdatedAt
 	w.fieldMap["is_counted"] = w.IsCounted
+	w.fieldMap["asset_code"] = w.AssetCode
+	w.fieldMap["chain_code"] = w.ChainCode
+	w.fieldMap["apply_amount"] = w.ApplyAmount
+	w.fieldMap["txid"] = w.Txid
+	w.fieldMap["from_address"] = w.FromAddress
+	w.fieldMap["to_address"] = w.ToAddress
+	w.fieldMap["amount"] = w.Amount
+	w.fieldMap["confirmations"] = w.Confirmations
+	w.fieldMap["required_confirmations"] = w.RequiredConfirmations
+	w.fieldMap["expire_at"] = w.ExpireAt
+	w.fieldMap["matched_at"] = w.MatchedAt
+	w.fieldMap["credit_time"] = w.CreditTime
+	w.fieldMap["fail_reason"] = w.FailReason
 }
 
 func (w winCoinDepositRecord) clone(db *gorm.DB) winCoinDepositRecord {
