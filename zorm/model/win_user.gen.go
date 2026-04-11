@@ -16,12 +16,14 @@ const TableNameWinUser = "win_user"
 // WinUser 客户表
 type WinUser struct {
 	ID                int64           `gorm:"column:id;type:int;primaryKey;autoIncrement:true" json:"id,string"`
+	PlatformUserID    int64           `gorm:"column:platform_user_id;type:bigint;not null;comment:游戏平台用户id" json:"platformUserId"`                     // 游戏平台用户id
+	SiteID            int64           `gorm:"column:site_id;type:bigint;not null;comment:游戏站点id" json:"siteId"`                                        // 游戏站点id
 	MerchantID        int64           `gorm:"column:merchant_id;type:int;not null;comment:商户id" json:"merchantId"`                                     // 商户id
 	Avatar            string          `gorm:"column:avatar;type:varchar(350);comment:头像" json:"avatar"`                                                // 头像
 	Fcoin             decimal.Decimal `gorm:"column:fcoin;type:decimal(15,4);not null;default:0.0000;comment:冻结金额" json:"fcoin"`                       // 冻结金额
 	CoinCommission    decimal.Decimal `gorm:"column:coin_commission;type:decimal(15,4);not null;default:0.0000;comment:佣金可提现金额" json:"coinCommission"` // 佣金可提现金额
 	LevelID           int64           `gorm:"column:level_id;type:tinyint;not null;default:1;comment:会员等级" json:"levelId"`                             // 会员等级
-	Role              int64           `gorm:"column:role;type:tinyint;not null;comment:角色 用户=0,代理=1" json:"role"`                                      // 角色 用户=0,代理=1
+	Role              int64           `gorm:"column:role;type:tinyint;not null;comment:角色" json:"role"`                                                // 角色
 	IsPromoter        int64           `gorm:"column:is_promoter;type:tinyint;not null;comment:是否推广" json:"isPromoter"`                                 // 是否推广
 	Flag              int64           `gorm:"column:flag;type:int;not null;comment:会员旗" json:"flag"`                                                   // 会员旗
 	RealName          string          `gorm:"column:real_name;type:varchar(32);not null;comment:真实姓名" json:"realName"`                                 // 真实姓名
@@ -52,26 +54,26 @@ type WinUser struct {
 	IP                string          `gorm:"column:ip;type:longtext" json:"ip"`
 	ThirdLoginType    string          `gorm:"column:third_login_type;type:longtext" json:"thirdLoginType"`
 	IPRegion          string          `gorm:"column:ip_region;type:longtext" json:"ipRegion"`
-	Status            int64           `gorm:"column:status;type:tinyint;default:10;comment:状态:10-正常 9-冻结 8-删除" json:"status"`           // 状态:10-正常 9-冻结 8-删除
-	LastLoginIP       string          `gorm:"column:last_login_ip;type:varchar(128);comment:最后登陆ip" json:"lastLoginIp"`                 // 最后登陆ip
-	LastLoginIPRegion string          `gorm:"column:last_login_ip_region;type:varchar(255);comment:最后登录IP归属地" json:"lastLoginIpRegion"` // 最后登录IP归属地
-	LastLoginTime     int64           `gorm:"column:last_login_time;type:bigint;comment:上次登录时间" json:"lastLoginTime"`                   // 上次登录时间
-	LastLoginDeviceID string          `gorm:"column:last_login_device_id;type:varchar(64);comment:最后登录设备id" json:"lastLoginDeviceId"`   // 最后登录设备id
+	Status            int64           `gorm:"column:status;type:tinyint;default:10;comment:状态:10-正常 9-冻结 8-删除" json:"status"` // 状态:10-正常 9-冻结 8-删除
+	LastLoginIP       string          `gorm:"column:last_login_ip;type:varchar(64)" json:"lastLoginIp"`
+	LastLoginIPRegion string          `gorm:"column:last_login_ip_region;type:varchar(64)" json:"lastLoginIpRegion"`
+	LastLoginTime     int64           `gorm:"column:last_login_time;type:bigint;comment:上次登录时间" json:"lastLoginTime"` // 上次登录时间
+	LastLoginDeviceID string          `gorm:"column:last_login_device_id;type:varchar(64)" json:"lastLoginDeviceId"`
 	CreatedAt         int64           `gorm:"column:created_at;comment:创建时间" json:"createdAt"`
 	UpdatedAt         int64           `gorm:"column:updated_at;comment:更新时间" json:"updatedAt"`
-	FreezeCause       string          `gorm:"column:freeze_cause;type:varchar(255);comment:冻结原因" json:"freezeCause"`   // 冻结原因
-	FreezeAt          int64           `gorm:"column:freeze_at;type:int;comment:冻结时间" json:"freezeAt"`                  // 冻结时间
-	OperatorName      string          `gorm:"column:operator_name;type:varchar(32);comment:操作人姓名" json:"operatorName"` // 操作人姓名
-	FbPid             string          `gorm:"column:fb_pid;type:varchar(350)" json:"fbPid"`
-	FbCid             string          `gorm:"column:fb_cid;type:varchar(350)" json:"fbCid"`
-	CreatedName       string          `gorm:"column:created_name;type:varchar(32);not null;comment:创建人" json:"createdName"`        // 创建人
-	MemberType        int64           `gorm:"column:memberType;type:tinyint;default:1;comment:会员类型1==直客 2==非直客" json:"memberType"` // 会员类型1==直客 2==非直客
-	GoogleSubID       string          `gorm:"column:google_sub_id;type:varchar(128)" json:"googleSubId"`
-	FacebookSubID     string          `gorm:"column:facebook_sub_id;type:varchar(128)" json:"facebookSubId"`
-	Secret            string          `gorm:"column:secret;type:varchar(100);not null;comment:Google密钥" json:"secret"`                         // Google密钥
-	CodeURL           string          `gorm:"column:code_url;type:varchar(255);comment:google二维码" json:"codeUrl"`                              // google二维码
-	CodeStatus        int64           `gorm:"column:code_status;type:tinyint(1);not null;comment:google绑定验证记录:0=未绑定 ,1=已绑定" json:"codeStatus"` // google绑定验证记录:0=未绑定 ,1=已绑定
-	UserType          int64           `gorm:"column:user_type;type:tinyint(1);default:1;comment:1==手机注册  3==whatsapp 5==邮箱" json:"userType"`   // 1==手机注册  3==whatsapp 5==邮箱
+	FreezeCause       string          `gorm:"column:freeze_cause;type:longtext" json:"freezeCause"`
+	FreezeAt          int64           `gorm:"column:freeze_at;type:bigint" json:"freezeAt"`
+	OperatorName      string          `gorm:"column:operator_name;type:longtext" json:"operatorName"`
+	FbPid             string          `gorm:"column:fb_pid;type:longtext" json:"fbPid"`
+	FbCid             string          `gorm:"column:fb_cid;type:longtext" json:"fbCid"`
+	CreatedName       string          `gorm:"column:created_name;type:longtext" json:"createdName"`
+	MemberType        int64           `gorm:"column:memberType;type:tinyint" json:"memberType"`
+	GoogleSubID       string          `gorm:"column:google_sub_id;type:longtext" json:"googleSubId"`
+	FacebookSubID     string          `gorm:"column:facebook_sub_id;type:longtext" json:"facebookSubId"`
+	Secret            string          `gorm:"column:secret;type:longtext" json:"secret"`
+	CodeURL           string          `gorm:"column:code_url;type:longtext" json:"codeUrl"`
+	CodeStatus        int64           `gorm:"column:code_status;type:tinyint" json:"codeStatus"`
+	UserType          int64           `gorm:"column:user_type;type:tinyint" json:"userType"`
 	DeletedAt         gorm.DeletedAt  `gorm:"column:deleted_at;type:datetime(3)" json:"-"`
 	DeviceID          string          `gorm:"column:device_id;type:varchar(64);not null;comment:设备号" json:"deviceId"`                                     // 设备号
 	Password          string          `gorm:"column:password;type:varchar(128);comment:密码" json:"password"`                                               // 密码
@@ -94,7 +96,7 @@ type WinUser struct {
 	ClientIP          string          `gorm:"column:client_ip;type:varchar(64);not null;comment:用户ip" json:"clientIp"`                                    // 用户ip
 	ChannelName       string          `gorm:"column:channel_name;type:varchar(512);not null;comment:渠道名称" json:"channelName"`                             // 渠道名称
 	GrowthValue       int64           `gorm:"column:growth_value;type:bigint;not null;comment:当前成长值" json:"growthValue"`                                  // 当前成长值
-	Currency          string          `gorm:"column:currency;type:varchar(10);not null;default:EGP;comment:货币类型(USDT:美元稳定币, EGP:埃及镑)" json:"currency"`    // 货币类型(USDT:美元稳定币, EGP:埃及镑)
+	Currency          string          `gorm:"column:currency;type:longtext;comment:状态:USDT:美元稳定币, EGP:埃及镑" json:"currency"`                               // 状态:USDT:美元稳定币, EGP:埃及镑
 }
 
 // TableName WinUser's table name

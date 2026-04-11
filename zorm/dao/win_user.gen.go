@@ -28,6 +28,8 @@ func newWinUser(db *gorm.DB, opts ...gen.DOOption) winUser {
 	tableName := _winUser.winUserDo.TableName()
 	_winUser.ALL = field.NewAsterisk(tableName)
 	_winUser.ID = field.NewInt64(tableName, "id")
+	_winUser.PlatformUserID = field.NewInt64(tableName, "platform_user_id")
+	_winUser.SiteID = field.NewInt64(tableName, "site_id")
 	_winUser.MerchantID = field.NewInt64(tableName, "merchant_id")
 	_winUser.Avatar = field.NewString(tableName, "avatar")
 	_winUser.Fcoin = field.NewField(tableName, "fcoin")
@@ -119,12 +121,14 @@ type winUser struct {
 
 	ALL               field.Asterisk
 	ID                field.Int64
+	PlatformUserID    field.Int64  // 游戏平台用户id
+	SiteID            field.Int64  // 游戏站点id
 	MerchantID        field.Int64  // 商户id
 	Avatar            field.String // 头像
 	Fcoin             field.Field  // 冻结金额
 	CoinCommission    field.Field  // 佣金可提现金额
 	LevelID           field.Int64  // 会员等级
-	Role              field.Int64  // 角色 用户=0,代理=1
+	Role              field.Int64  // 角色
 	IsPromoter        field.Int64  // 是否推广
 	Flag              field.Int64  // 会员旗
 	RealName          field.String // 真实姓名
@@ -155,26 +159,26 @@ type winUser struct {
 	IP                field.String
 	ThirdLoginType    field.String
 	IPRegion          field.String
-	Status            field.Int64  // 状态:10-正常 9-冻结 8-删除
-	LastLoginIP       field.String // 最后登陆ip
-	LastLoginIPRegion field.String // 最后登录IP归属地
-	LastLoginTime     field.Int64  // 上次登录时间
-	LastLoginDeviceID field.String // 最后登录设备id
+	Status            field.Int64 // 状态:10-正常 9-冻结 8-删除
+	LastLoginIP       field.String
+	LastLoginIPRegion field.String
+	LastLoginTime     field.Int64 // 上次登录时间
+	LastLoginDeviceID field.String
 	CreatedAt         field.Int64
 	UpdatedAt         field.Int64
-	FreezeCause       field.String // 冻结原因
-	FreezeAt          field.Int64  // 冻结时间
-	OperatorName      field.String // 操作人姓名
+	FreezeCause       field.String
+	FreezeAt          field.Int64
+	OperatorName      field.String
 	FbPid             field.String
 	FbCid             field.String
-	CreatedName       field.String // 创建人
-	MemberType        field.Int64  // 会员类型1==直客 2==非直客
+	CreatedName       field.String
+	MemberType        field.Int64
 	GoogleSubID       field.String
 	FacebookSubID     field.String
-	Secret            field.String // Google密钥
-	CodeURL           field.String // google二维码
-	CodeStatus        field.Int64  // google绑定验证记录:0=未绑定 ,1=已绑定
-	UserType          field.Int64  // 1==手机注册  3==whatsapp 5==邮箱
+	Secret            field.String
+	CodeURL           field.String
+	CodeStatus        field.Int64
+	UserType          field.Int64
 	DeletedAt         field.Field
 	DeviceID          field.String // 设备号
 	Password          field.String // 密码
@@ -197,7 +201,7 @@ type winUser struct {
 	ClientIP          field.String // 用户ip
 	ChannelName       field.String // 渠道名称
 	GrowthValue       field.Int64  // 当前成长值
-	Currency          field.String // 货币类型(USDT:美元稳定币, EGP:埃及镑)
+	Currency          field.String // 状态:USDT:美元稳定币, EGP:埃及镑
 
 	fieldMap map[string]field.Expr
 }
@@ -215,6 +219,8 @@ func (w winUser) As(alias string) *winUser {
 func (w *winUser) updateTableName(table string) *winUser {
 	w.ALL = field.NewAsterisk(table)
 	w.ID = field.NewInt64(table, "id")
+	w.PlatformUserID = field.NewInt64(table, "platform_user_id")
+	w.SiteID = field.NewInt64(table, "site_id")
 	w.MerchantID = field.NewInt64(table, "merchant_id")
 	w.Avatar = field.NewString(table, "avatar")
 	w.Fcoin = field.NewField(table, "fcoin")
@@ -310,8 +316,10 @@ func (w *winUser) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (w *winUser) fillFieldMap() {
-	w.fieldMap = make(map[string]field.Expr, 80)
+	w.fieldMap = make(map[string]field.Expr, 82)
 	w.fieldMap["id"] = w.ID
+	w.fieldMap["platform_user_id"] = w.PlatformUserID
+	w.fieldMap["site_id"] = w.SiteID
 	w.fieldMap["merchant_id"] = w.MerchantID
 	w.fieldMap["avatar"] = w.Avatar
 	w.fieldMap["fcoin"] = w.Fcoin
