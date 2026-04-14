@@ -35,6 +35,7 @@ const (
 	Payrpc_DepositByAPayCallBack_FullMethodName           = "/payrpc.payrpc/depositByAPayCallBack"
 	Payrpc_SportDepositByAPayCallBack_FullMethodName      = "/payrpc.payrpc/sportDepositByAPayCallBack"
 	Payrpc_DepositByALLPayCallBack_FullMethodName         = "/payrpc.payrpc/depositByALLPayCallBack"
+	Payrpc_DepositByFuturePayCallBack_FullMethodName      = "/payrpc.payrpc/depositByFuturePayCallBack"
 	Payrpc_DepositSearch_FullMethodName                   = "/payrpc.payrpc/depositSearch"
 	Payrpc_Withdraws_FullMethodName                       = "/payrpc.payrpc/withdraws"
 	Payrpc_WithdrawCallBack_FullMethodName                = "/payrpc.payrpc/withdrawCallBack"
@@ -46,6 +47,7 @@ const (
 	Payrpc_WithdrawByAiPayCallBack_FullMethodName         = "/payrpc.payrpc/withdrawByAiPayCallBack"
 	Payrpc_WithdrawByAPayCallBack_FullMethodName          = "/payrpc.payrpc/withdrawByAPayCallBack"
 	Payrpc_WithdrawByALLPayCallBack_FullMethodName        = "/payrpc.payrpc/withdrawByALLPayCallBack"
+	Payrpc_WithdrawByFuturePayCallBack_FullMethodName     = "/payrpc.payrpc/withdrawByFuturePayCallBack"
 	Payrpc_WithdrawSearch_FullMethodName                  = "/payrpc.payrpc/withdrawSearch"
 	Payrpc_FindMerchantBlance_FullMethodName              = "/payrpc.payrpc/findMerchantBlance"
 	Payrpc_RefundOrder_FullMethodName                     = "/payrpc.payrpc/refundOrder"
@@ -140,6 +142,8 @@ type PayrpcClient interface {
 	SportDepositByAPayCallBack(ctx context.Context, in *DepositByAPayCallBackReq, opts ...grpc.CallOption) (*DepositByAPayCallBackResp, error)
 	// group:pay
 	DepositByALLPayCallBack(ctx context.Context, in *DepositByALLPayCallBackReq, opts ...grpc.CallOption) (*DepositByALLPayCallBackResp, error)
+	// group:pay
+	DepositByFuturePayCallBack(ctx context.Context, in *DepositByFuturePayCallBackReq, opts ...grpc.CallOption) (*DepositByFuturePayCallBackResp, error)
 	// group: pay
 	DepositSearch(ctx context.Context, in *DepositSearchReq, opts ...grpc.CallOption) (*DepositSearchResp, error)
 	// group: pay
@@ -162,6 +166,8 @@ type PayrpcClient interface {
 	WithdrawByAPayCallBack(ctx context.Context, in *WithdrawByAPayCallBackReq, opts ...grpc.CallOption) (*WithdrawByAPayCallBackResp, error)
 	// group: pay
 	WithdrawByALLPayCallBack(ctx context.Context, in *WithdrawByALLPayCallBackReq, opts ...grpc.CallOption) (*WithdrawByALLPayCallBackResp, error)
+	// group: pay
+	WithdrawByFuturePayCallBack(ctx context.Context, in *WithdrawByFuturePayCallBackReq, opts ...grpc.CallOption) (*WithdrawByFuturePayCallBackResp, error)
 	// group: pay
 	WithdrawSearch(ctx context.Context, in *WithdrawSearchReq, opts ...grpc.CallOption) (*WithdrawSearchResp, error)
 	// group: pay
@@ -433,6 +439,16 @@ func (c *payrpcClient) DepositByALLPayCallBack(ctx context.Context, in *DepositB
 	return out, nil
 }
 
+func (c *payrpcClient) DepositByFuturePayCallBack(ctx context.Context, in *DepositByFuturePayCallBackReq, opts ...grpc.CallOption) (*DepositByFuturePayCallBackResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DepositByFuturePayCallBackResp)
+	err := c.cc.Invoke(ctx, Payrpc_DepositByFuturePayCallBack_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *payrpcClient) DepositSearch(ctx context.Context, in *DepositSearchReq, opts ...grpc.CallOption) (*DepositSearchResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DepositSearchResp)
@@ -537,6 +553,16 @@ func (c *payrpcClient) WithdrawByALLPayCallBack(ctx context.Context, in *Withdra
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(WithdrawByALLPayCallBackResp)
 	err := c.cc.Invoke(ctx, Payrpc_WithdrawByALLPayCallBack_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payrpcClient) WithdrawByFuturePayCallBack(ctx context.Context, in *WithdrawByFuturePayCallBackReq, opts ...grpc.CallOption) (*WithdrawByFuturePayCallBackResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WithdrawByFuturePayCallBackResp)
+	err := c.cc.Invoke(ctx, Payrpc_WithdrawByFuturePayCallBack_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1139,6 +1165,8 @@ type PayrpcServer interface {
 	SportDepositByAPayCallBack(context.Context, *DepositByAPayCallBackReq) (*DepositByAPayCallBackResp, error)
 	// group:pay
 	DepositByALLPayCallBack(context.Context, *DepositByALLPayCallBackReq) (*DepositByALLPayCallBackResp, error)
+	// group:pay
+	DepositByFuturePayCallBack(context.Context, *DepositByFuturePayCallBackReq) (*DepositByFuturePayCallBackResp, error)
 	// group: pay
 	DepositSearch(context.Context, *DepositSearchReq) (*DepositSearchResp, error)
 	// group: pay
@@ -1161,6 +1189,8 @@ type PayrpcServer interface {
 	WithdrawByAPayCallBack(context.Context, *WithdrawByAPayCallBackReq) (*WithdrawByAPayCallBackResp, error)
 	// group: pay
 	WithdrawByALLPayCallBack(context.Context, *WithdrawByALLPayCallBackReq) (*WithdrawByALLPayCallBackResp, error)
+	// group: pay
+	WithdrawByFuturePayCallBack(context.Context, *WithdrawByFuturePayCallBackReq) (*WithdrawByFuturePayCallBackResp, error)
 	// group: pay
 	WithdrawSearch(context.Context, *WithdrawSearchReq) (*WithdrawSearchResp, error)
 	// group: pay
@@ -1320,6 +1350,9 @@ func (UnimplementedPayrpcServer) SportDepositByAPayCallBack(context.Context, *De
 func (UnimplementedPayrpcServer) DepositByALLPayCallBack(context.Context, *DepositByALLPayCallBackReq) (*DepositByALLPayCallBackResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DepositByALLPayCallBack not implemented")
 }
+func (UnimplementedPayrpcServer) DepositByFuturePayCallBack(context.Context, *DepositByFuturePayCallBackReq) (*DepositByFuturePayCallBackResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DepositByFuturePayCallBack not implemented")
+}
 func (UnimplementedPayrpcServer) DepositSearch(context.Context, *DepositSearchReq) (*DepositSearchResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DepositSearch not implemented")
 }
@@ -1352,6 +1385,9 @@ func (UnimplementedPayrpcServer) WithdrawByAPayCallBack(context.Context, *Withdr
 }
 func (UnimplementedPayrpcServer) WithdrawByALLPayCallBack(context.Context, *WithdrawByALLPayCallBackReq) (*WithdrawByALLPayCallBackResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WithdrawByALLPayCallBack not implemented")
+}
+func (UnimplementedPayrpcServer) WithdrawByFuturePayCallBack(context.Context, *WithdrawByFuturePayCallBackReq) (*WithdrawByFuturePayCallBackResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WithdrawByFuturePayCallBack not implemented")
 }
 func (UnimplementedPayrpcServer) WithdrawSearch(context.Context, *WithdrawSearchReq) (*WithdrawSearchResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WithdrawSearch not implemented")
@@ -1830,6 +1866,24 @@ func _Payrpc_DepositByALLPayCallBack_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Payrpc_DepositByFuturePayCallBack_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DepositByFuturePayCallBackReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).DepositByFuturePayCallBack(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_DepositByFuturePayCallBack_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).DepositByFuturePayCallBack(ctx, req.(*DepositByFuturePayCallBackReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Payrpc_DepositSearch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DepositSearchReq)
 	if err := dec(in); err != nil {
@@ -2024,6 +2078,24 @@ func _Payrpc_WithdrawByALLPayCallBack_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PayrpcServer).WithdrawByALLPayCallBack(ctx, req.(*WithdrawByALLPayCallBackReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Payrpc_WithdrawByFuturePayCallBack_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WithdrawByFuturePayCallBackReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayrpcServer).WithdrawByFuturePayCallBack(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Payrpc_WithdrawByFuturePayCallBack_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayrpcServer).WithdrawByFuturePayCallBack(ctx, req.(*WithdrawByFuturePayCallBackReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3108,6 +3180,10 @@ var Payrpc_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Payrpc_DepositByALLPayCallBack_Handler,
 		},
 		{
+			MethodName: "depositByFuturePayCallBack",
+			Handler:    _Payrpc_DepositByFuturePayCallBack_Handler,
+		},
+		{
 			MethodName: "depositSearch",
 			Handler:    _Payrpc_DepositSearch_Handler,
 		},
@@ -3150,6 +3226,10 @@ var Payrpc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "withdrawByALLPayCallBack",
 			Handler:    _Payrpc_WithdrawByALLPayCallBack_Handler,
+		},
+		{
+			MethodName: "withdrawByFuturePayCallBack",
+			Handler:    _Payrpc_WithdrawByFuturePayCallBack_Handler,
 		},
 		{
 			MethodName: "withdrawSearch",
