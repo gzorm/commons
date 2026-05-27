@@ -255,6 +255,7 @@ type StartGameReq struct {
 	WebType               string                 `protobuf:"bytes,10,opt,name=web_type,json=webType,proto3" json:"web_type,omitempty"`
 	Origin                string                 `protobuf:"bytes,11,opt,name=origin,proto3" json:"origin,omitempty"`
 	GameProviderSubtypeId int64                  `protobuf:"varint,12,opt,name=gameProviderSubtypeId,proto3" json:"gameProviderSubtypeId,omitempty"`
+	Info                  string                 `protobuf:"bytes,13,opt,name=info,proto3" json:"info,omitempty"` // 比赛信息，用于Saba等平台拼接URL
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
@@ -371,6 +372,13 @@ func (x *StartGameReq) GetGameProviderSubtypeId() int64 {
 		return x.GameProviderSubtypeId
 	}
 	return 0
+}
+
+func (x *StartGameReq) GetInfo() string {
+	if x != nil {
+		return x.Info
+	}
+	return ""
 }
 
 type StartGameResp struct {
@@ -23383,7 +23391,7 @@ const file_zerogamerpc_proto_rawDesc = "" +
 	"\froundsPlayed\x18\t \x01(\x03R\froundsPlayed\"@\n" +
 	"\n" +
 	"BonusesRes\x122\n" +
-	"\aBonuses\x18\x01 \x03(\v2\x18.zerogamerpc.BonusesDataR\aBonuses\"\xd3\x02\n" +
+	"\aBonuses\x18\x01 \x03(\v2\x18.zerogamerpc.BonusesDataR\aBonuses\"\xe7\x02\n" +
 	"\fStartGameReq\x12\x17\n" +
 	"\agame_id\x18\x01 \x01(\tR\x06gameId\x12\x10\n" +
 	"\x03uid\x18\x02 \x01(\x05R\x03uid\x12\x1a\n" +
@@ -23397,7 +23405,8 @@ const file_zerogamerpc_proto_rawDesc = "" +
 	"\bweb_type\x18\n" +
 	" \x01(\tR\awebType\x12\x16\n" +
 	"\x06origin\x18\v \x01(\tR\x06origin\x124\n" +
-	"\x15gameProviderSubtypeId\x18\f \x01(\x03R\x15gameProviderSubtypeId\"P\n" +
+	"\x15gameProviderSubtypeId\x18\f \x01(\x03R\x15gameProviderSubtypeId\x12\x12\n" +
+	"\x04info\x18\r \x01(\tR\x04info\"P\n" +
 	"\rStartGameResp\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\x03R\x04code\x12\x10\n" +
 	"\x03msg\x18\x02 \x01(\tR\x03msg\x12\x19\n" +
