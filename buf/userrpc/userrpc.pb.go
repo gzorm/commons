@@ -3811,7 +3811,7 @@ type LoginData struct {
 	SupUidTop      int64  `protobuf:"varint,51,opt,name=supUidTop,proto3" json:"supUidTop,omitempty"`          // 顶级代理ID
 	SupUsernameTop string `protobuf:"bytes,52,opt,name=supUsernameTop,proto3" json:"supUsernameTop,omitempty"` // 顶级代理用户名
 	SupLevelTop    int64  `protobuf:"varint,53,opt,name=supLevelTop,proto3" json:"supLevelTop,omitempty"`      // 代理层级
-	IsNew          string `protobuf:"bytes,54,opt,name=isNew,proto3" json:"isNew,omitempty"`                   //0 是老用户 ， 1是新用户 ， 前端这边要上报谷歌统计
+	IsNew          int64  `protobuf:"varint,54,opt,name=isNew,proto3" json:"isNew,omitempty"`                  //0 是老用户 ， 1是新用户 ， 前端这边要上报谷歌统计
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -4217,11 +4217,11 @@ func (x *LoginData) GetSupLevelTop() int64 {
 	return 0
 }
 
-func (x *LoginData) GetIsNew() string {
+func (x *LoginData) GetIsNew() int64 {
 	if x != nil {
 		return x.IsNew
 	}
-	return ""
+	return 0
 }
 
 type RegisterReqDto struct {
@@ -17267,7 +17267,7 @@ const file_userrpc_proto_rawDesc = "" +
 	"\tsupUidTop\x183 \x01(\x03R\tsupUidTop\x12&\n" +
 	"\x0esupUsernameTop\x184 \x01(\tR\x0esupUsernameTop\x12 \n" +
 	"\vsupLevelTop\x185 \x01(\x03R\vsupLevelTop\x12\x14\n" +
-	"\x05isNew\x186 \x01(\tR\x05isNew\"\xbf\x04\n" +
+	"\x05isNew\x186 \x01(\x03R\x05isNew\"\xbf\x04\n" +
 	"\x0eRegisterReqDto\x12\x1a\n" +
 	"\busername\x18\x01 \x01(\tR\busername\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x14\n" +
