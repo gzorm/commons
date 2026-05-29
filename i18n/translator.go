@@ -145,7 +145,16 @@ func (l *Translator) Trans(ctx context.Context, msgId string) string {
 
 // TransError translates the error message
 func (l *Translator) TransError(ctx context.Context, err error) error {
+	// 安全获取 lang，避免 panic
 	lang := ctx.Value("lang").(string)
+	if lang == "" {
+		lang = "en"
+	}
+	if langVal := ctx.Value("lang"); langVal != nil {
+		if langStr, ok := langVal.(string); ok {
+			lang = langStr
+		}
+	}
 	if errcode.IsGrpcError(err) {
 		message, e := l.MatchLocalizer(lang).LocalizeMessage(&i18n.Message{ID: strings.Split(err.Error(), "desc = ")[1]})
 		if e != nil || message == "" {
