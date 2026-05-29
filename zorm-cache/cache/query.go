@@ -500,8 +500,10 @@ func visitForKeyMap(e sqlparser.Expr, vars []interface{}, index *int, keyMap map
 		if x, ok := be.X.(*sqlparser.QualifiedRef); ok {
 			be.X = x
 			e = be
-			keyMap[x.Column.String()] = vars[*index]
-			*index++
+			if *index < len(vars) {
+				keyMap[x.Column.String()] = vars[*index]
+				*index++
+			}
 		}
 		if x, ok := be.X.(*sqlparser.BinaryExpr); ok {
 			visitForKeyMap(x, vars, index, keyMap)
@@ -509,8 +511,10 @@ func visitForKeyMap(e sqlparser.Expr, vars []interface{}, index *int, keyMap map
 		if y, ok := be.Y.(*sqlparser.QualifiedRef); ok {
 			be.Y = y
 			e = be
-			keyMap[y.Column.String()] = vars[*index]
-			*index++
+			if *index < len(vars) {
+				keyMap[y.Column.String()] = vars[*index]
+				*index++
+			}
 		}
 		if y, ok := be.Y.(*sqlparser.BinaryExpr); ok {
 			visitForKeyMap(y, vars, index, keyMap)
