@@ -10,7 +10,7 @@ import (
 	"gorm.io/gorm"
 )
 
-const dsn = "root:root@(127.0.0.1:3306)/filbet_dev_main?charset=utf8mb4&parseTime=True&loc=Local"
+const dsn = "root:n8YB69DWWcG237Wq@(34.143.244.5:3306)/v99_main?charset=utf8mb4&parseTime=True&loc=Local"
 
 // Case2Camel 下划线转驼峰(大驼峰)
 func Case2Camel(name string) string {

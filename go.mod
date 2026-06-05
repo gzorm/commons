@@ -36,6 +36,7 @@ require (
 	github.com/letsfire/redigo/v2 v2.0.5
 	github.com/letsfire/redisc v1.1.3
 	github.com/lib/pq v1.10.9
+	github.com/lionsoul2014/ip2region/binding/golang v0.0.0-20260530042244-d638015592ac
 	github.com/longbridgeapp/assert v1.1.0
 	github.com/longbridgeapp/sqlparser v0.3.1
 	github.com/mattn/go-sqlite3 v1.14.16

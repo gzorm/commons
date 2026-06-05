@@ -19,37 +19,38 @@ import (
 	"github.com/gzorm/commons/zorm/model"
 )
 
-func newWinCodeRecord(db *gorm.DB, opts ...gen.DOOption) winCodeRecord {
-	_winCodeRecord := winCodeRecord{}
+func newWinCodeRecords(db *gorm.DB, opts ...gen.DOOption) winCodeRecords {
+	_winCodeRecords := winCodeRecords{}
 
-	_winCodeRecord.winCodeRecordDo.UseDB(db, opts...)
-	_winCodeRecord.winCodeRecordDo.UseModel(&model.WinCodeRecord{})
+	_winCodeRecords.winCodeRecordsDo.UseDB(db, opts...)
+	_winCodeRecords.winCodeRecordsDo.UseModel(&model.WinCodeRecords{})
 
-	tableName := _winCodeRecord.winCodeRecordDo.TableName()
-	_winCodeRecord.ALL = field.NewAsterisk(tableName)
-	_winCodeRecord.ID = field.NewInt64(tableName, "id")
-	_winCodeRecord.UID = field.NewInt64(tableName, "uid")
-	_winCodeRecord.Username = field.NewString(tableName, "username")
-	_winCodeRecord.Coin = field.NewField(tableName, "coin")
-	_winCodeRecord.CodeRequire = field.NewField(tableName, "code_require")
-	_winCodeRecord.FlowClaim = field.NewField(tableName, "flow_claim")
-	_winCodeRecord.RealCode = field.NewField(tableName, "real_code")
-	_winCodeRecord.Category = field.NewInt64(tableName, "category")
-	_winCodeRecord.ReferID = field.NewInt64(tableName, "refer_id")
-	_winCodeRecord.ReferWithdrawalID = field.NewInt64(tableName, "refer_withdrawal_id")
-	_winCodeRecord.Remarks = field.NewString(tableName, "remarks")
-	_winCodeRecord.Status = field.NewInt64(tableName, "status")
-	_winCodeRecord.CreatedAt = field.NewInt64(tableName, "created_at")
-	_winCodeRecord.UpdatedAt = field.NewInt64(tableName, "updated_at")
+	tableName := _winCodeRecords.winCodeRecordsDo.TableName()
+	_winCodeRecords.ALL = field.NewAsterisk(tableName)
+	_winCodeRecords.ID = field.NewInt64(tableName, "id")
+	_winCodeRecords.UID = field.NewInt64(tableName, "uid")
+	_winCodeRecords.Username = field.NewString(tableName, "username")
+	_winCodeRecords.Coin = field.NewField(tableName, "coin")
+	_winCodeRecords.CodeRequire = field.NewField(tableName, "code_require")
+	_winCodeRecords.FlowClaim = field.NewField(tableName, "flow_claim")
+	_winCodeRecords.RealCode = field.NewField(tableName, "real_code")
+	_winCodeRecords.Category = field.NewInt64(tableName, "category")
+	_winCodeRecords.CategoryWallet = field.NewInt64(tableName, "category_wallet")
+	_winCodeRecords.ReferID = field.NewInt64(tableName, "refer_id")
+	_winCodeRecords.ReferWithdrawalID = field.NewInt64(tableName, "refer_withdrawal_id")
+	_winCodeRecords.Remarks = field.NewString(tableName, "remarks")
+	_winCodeRecords.Status = field.NewInt64(tableName, "status")
+	_winCodeRecords.CreatedAt = field.NewInt64(tableName, "created_at")
+	_winCodeRecords.UpdatedAt = field.NewInt64(tableName, "updated_at")
 
-	_winCodeRecord.fillFieldMap()
+	_winCodeRecords.fillFieldMap()
 
-	return _winCodeRecord
+	return _winCodeRecords
 }
 
-// winCodeRecord 打码量记录表
-type winCodeRecord struct {
-	winCodeRecordDo
+// winCodeRecords 打码量记录表
+type winCodeRecords struct {
+	winCodeRecordsDo
 
 	ALL               field.Asterisk
 	ID                field.Int64
@@ -60,6 +61,7 @@ type winCodeRecord struct {
 	FlowClaim         field.Field  // 需求打码倍数
 	RealCode          field.Field  // 实际打码量
 	Category          field.Int64  // 类型:1-充值 2-签到活动 3- 系统调账 4注册活动 5充值活动
+	CategoryWallet    field.Int64  // 钱包类型:支付/游戏/活动/佣金
 	ReferID           field.Int64  // 关联ID
 	ReferWithdrawalID field.Int64  // 关联提款ID
 	Remarks           field.String // 备注
@@ -70,17 +72,17 @@ type winCodeRecord struct {
 	fieldMap map[string]field.Expr
 }
 
-func (w winCodeRecord) Table(newTableName string) *winCodeRecord {
-	w.winCodeRecordDo.UseTable(newTableName)
+func (w winCodeRecords) Table(newTableName string) *winCodeRecords {
+	w.winCodeRecordsDo.UseTable(newTableName)
 	return w.updateTableName(newTableName)
 }
 
-func (w winCodeRecord) As(alias string) *winCodeRecord {
-	w.winCodeRecordDo.DO = *(w.winCodeRecordDo.As(alias).(*gen.DO))
+func (w winCodeRecords) As(alias string) *winCodeRecords {
+	w.winCodeRecordsDo.DO = *(w.winCodeRecordsDo.As(alias).(*gen.DO))
 	return w.updateTableName(alias)
 }
 
-func (w *winCodeRecord) updateTableName(table string) *winCodeRecord {
+func (w *winCodeRecords) updateTableName(table string) *winCodeRecords {
 	w.ALL = field.NewAsterisk(table)
 	w.ID = field.NewInt64(table, "id")
 	w.UID = field.NewInt64(table, "uid")
@@ -90,6 +92,7 @@ func (w *winCodeRecord) updateTableName(table string) *winCodeRecord {
 	w.FlowClaim = field.NewField(table, "flow_claim")
 	w.RealCode = field.NewField(table, "real_code")
 	w.Category = field.NewInt64(table, "category")
+	w.CategoryWallet = field.NewInt64(table, "category_wallet")
 	w.ReferID = field.NewInt64(table, "refer_id")
 	w.ReferWithdrawalID = field.NewInt64(table, "refer_withdrawal_id")
 	w.Remarks = field.NewString(table, "remarks")
@@ -102,7 +105,7 @@ func (w *winCodeRecord) updateTableName(table string) *winCodeRecord {
 	return w
 }
 
-func (w *winCodeRecord) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
+func (w *winCodeRecords) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 	_f, ok := w.fieldMap[fieldName]
 	if !ok || _f == nil {
 		return nil, false
@@ -111,8 +114,8 @@ func (w *winCodeRecord) GetFieldByName(fieldName string) (field.OrderExpr, bool)
 	return _oe, ok
 }
 
-func (w *winCodeRecord) fillFieldMap() {
-	w.fieldMap = make(map[string]field.Expr, 14)
+func (w *winCodeRecords) fillFieldMap() {
+	w.fieldMap = make(map[string]field.Expr, 15)
 	w.fieldMap["id"] = w.ID
 	w.fieldMap["uid"] = w.UID
 	w.fieldMap["username"] = w.Username
@@ -121,6 +124,7 @@ func (w *winCodeRecord) fillFieldMap() {
 	w.fieldMap["flow_claim"] = w.FlowClaim
 	w.fieldMap["real_code"] = w.RealCode
 	w.fieldMap["category"] = w.Category
+	w.fieldMap["category_wallet"] = w.CategoryWallet
 	w.fieldMap["refer_id"] = w.ReferID
 	w.fieldMap["refer_withdrawal_id"] = w.ReferWithdrawalID
 	w.fieldMap["remarks"] = w.Remarks
@@ -129,58 +133,58 @@ func (w *winCodeRecord) fillFieldMap() {
 	w.fieldMap["updated_at"] = w.UpdatedAt
 }
 
-func (w winCodeRecord) clone(db *gorm.DB) winCodeRecord {
-	w.winCodeRecordDo.ReplaceConnPool(db.Statement.ConnPool)
+func (w winCodeRecords) clone(db *gorm.DB) winCodeRecords {
+	w.winCodeRecordsDo.ReplaceConnPool(db.Statement.ConnPool)
 	return w
 }
 
-func (w winCodeRecord) replaceDB(db *gorm.DB) winCodeRecord {
-	w.winCodeRecordDo.ReplaceDB(db)
+func (w winCodeRecords) replaceDB(db *gorm.DB) winCodeRecords {
+	w.winCodeRecordsDo.ReplaceDB(db)
 	return w
 }
 
-type winCodeRecordDo struct{ gen.DO }
+type winCodeRecordsDo struct{ gen.DO }
 
-type IWinCodeRecordDo interface {
+type IWinCodeRecordsDo interface {
 	gen.SubQuery
-	Debug() IWinCodeRecordDo
-	WithContext(ctx context.Context) IWinCodeRecordDo
+	Debug() IWinCodeRecordsDo
+	WithContext(ctx context.Context) IWinCodeRecordsDo
 	WithResult(fc func(tx gen.Dao)) gen.ResultInfo
 	ReplaceDB(db *gorm.DB)
-	ReadDB() IWinCodeRecordDo
-	WriteDB() IWinCodeRecordDo
+	ReadDB() IWinCodeRecordsDo
+	WriteDB() IWinCodeRecordsDo
 	As(alias string) gen.Dao
-	Session(config *gorm.Session) IWinCodeRecordDo
+	Session(config *gorm.Session) IWinCodeRecordsDo
 	Columns(cols ...field.Expr) gen.Columns
-	Clauses(conds ...clause.Expression) IWinCodeRecordDo
-	Not(conds ...gen.Condition) IWinCodeRecordDo
-	Or(conds ...gen.Condition) IWinCodeRecordDo
-	Select(conds ...field.Expr) IWinCodeRecordDo
-	Where(conds ...gen.Condition) IWinCodeRecordDo
-	Order(conds ...field.Expr) IWinCodeRecordDo
-	Distinct(cols ...field.Expr) IWinCodeRecordDo
-	Omit(cols ...field.Expr) IWinCodeRecordDo
-	Join(table schema.Tabler, on ...field.Expr) IWinCodeRecordDo
-	LeftJoin(table schema.Tabler, on ...field.Expr) IWinCodeRecordDo
-	RightJoin(table schema.Tabler, on ...field.Expr) IWinCodeRecordDo
-	Group(cols ...field.Expr) IWinCodeRecordDo
-	Having(conds ...gen.Condition) IWinCodeRecordDo
-	Limit(limit int) IWinCodeRecordDo
-	Offset(offset int) IWinCodeRecordDo
+	Clauses(conds ...clause.Expression) IWinCodeRecordsDo
+	Not(conds ...gen.Condition) IWinCodeRecordsDo
+	Or(conds ...gen.Condition) IWinCodeRecordsDo
+	Select(conds ...field.Expr) IWinCodeRecordsDo
+	Where(conds ...gen.Condition) IWinCodeRecordsDo
+	Order(conds ...field.Expr) IWinCodeRecordsDo
+	Distinct(cols ...field.Expr) IWinCodeRecordsDo
+	Omit(cols ...field.Expr) IWinCodeRecordsDo
+	Join(table schema.Tabler, on ...field.Expr) IWinCodeRecordsDo
+	LeftJoin(table schema.Tabler, on ...field.Expr) IWinCodeRecordsDo
+	RightJoin(table schema.Tabler, on ...field.Expr) IWinCodeRecordsDo
+	Group(cols ...field.Expr) IWinCodeRecordsDo
+	Having(conds ...gen.Condition) IWinCodeRecordsDo
+	Limit(limit int) IWinCodeRecordsDo
+	Offset(offset int) IWinCodeRecordsDo
 	Count() (count int64, err error)
-	Scopes(funcs ...func(gen.Dao) gen.Dao) IWinCodeRecordDo
-	Unscoped() IWinCodeRecordDo
-	Create(values ...*model.WinCodeRecord) error
-	CreateInBatches(values []*model.WinCodeRecord, batchSize int) error
-	Save(values ...*model.WinCodeRecord) error
-	First() (*model.WinCodeRecord, error)
-	Take() (*model.WinCodeRecord, error)
-	Last() (*model.WinCodeRecord, error)
-	Find() ([]*model.WinCodeRecord, error)
-	FindInBatch(batchSize int, fc func(tx gen.Dao, batch int) error) (results []*model.WinCodeRecord, err error)
-	FindInBatches(result *[]*model.WinCodeRecord, batchSize int, fc func(tx gen.Dao, batch int) error) error
+	Scopes(funcs ...func(gen.Dao) gen.Dao) IWinCodeRecordsDo
+	Unscoped() IWinCodeRecordsDo
+	Create(values ...*model.WinCodeRecords) error
+	CreateInBatches(values []*model.WinCodeRecords, batchSize int) error
+	Save(values ...*model.WinCodeRecords) error
+	First() (*model.WinCodeRecords, error)
+	Take() (*model.WinCodeRecords, error)
+	Last() (*model.WinCodeRecords, error)
+	Find() ([]*model.WinCodeRecords, error)
+	FindInBatch(batchSize int, fc func(tx gen.Dao, batch int) error) (results []*model.WinCodeRecords, err error)
+	FindInBatches(result *[]*model.WinCodeRecords, batchSize int, fc func(tx gen.Dao, batch int) error) error
 	Pluck(column field.Expr, dest interface{}) error
-	Delete(...*model.WinCodeRecord) (info gen.ResultInfo, err error)
+	Delete(...*model.WinCodeRecords) (info gen.ResultInfo, err error)
 	Update(column field.Expr, value interface{}) (info gen.ResultInfo, err error)
 	UpdateSimple(columns ...field.AssignExpr) (info gen.ResultInfo, err error)
 	Updates(value interface{}) (info gen.ResultInfo, err error)
@@ -188,163 +192,163 @@ type IWinCodeRecordDo interface {
 	UpdateColumnSimple(columns ...field.AssignExpr) (info gen.ResultInfo, err error)
 	UpdateColumns(value interface{}) (info gen.ResultInfo, err error)
 	UpdateFrom(q gen.SubQuery) gen.Dao
-	Attrs(attrs ...field.AssignExpr) IWinCodeRecordDo
-	Assign(attrs ...field.AssignExpr) IWinCodeRecordDo
-	Joins(fields ...field.RelationField) IWinCodeRecordDo
-	Preload(fields ...field.RelationField) IWinCodeRecordDo
-	FirstOrInit() (*model.WinCodeRecord, error)
-	FirstOrCreate() (*model.WinCodeRecord, error)
-	FindByPage(offset int, limit int) (result []*model.WinCodeRecord, count int64, err error)
+	Attrs(attrs ...field.AssignExpr) IWinCodeRecordsDo
+	Assign(attrs ...field.AssignExpr) IWinCodeRecordsDo
+	Joins(fields ...field.RelationField) IWinCodeRecordsDo
+	Preload(fields ...field.RelationField) IWinCodeRecordsDo
+	FirstOrInit() (*model.WinCodeRecords, error)
+	FirstOrCreate() (*model.WinCodeRecords, error)
+	FindByPage(offset int, limit int) (result []*model.WinCodeRecords, count int64, err error)
 	ScanByPage(result interface{}, offset int, limit int) (count int64, err error)
 	Scan(result interface{}) (err error)
-	Returning(value interface{}, columns ...string) IWinCodeRecordDo
+	Returning(value interface{}, columns ...string) IWinCodeRecordsDo
 	UnderlyingDB() *gorm.DB
 	schema.Tabler
 }
 
-func (w winCodeRecordDo) Debug() IWinCodeRecordDo {
+func (w winCodeRecordsDo) Debug() IWinCodeRecordsDo {
 	return w.withDO(w.DO.Debug())
 }
 
-func (w winCodeRecordDo) WithContext(ctx context.Context) IWinCodeRecordDo {
+func (w winCodeRecordsDo) WithContext(ctx context.Context) IWinCodeRecordsDo {
 	return w.withDO(w.DO.WithContext(ctx))
 }
 
-func (w winCodeRecordDo) ReadDB() IWinCodeRecordDo {
+func (w winCodeRecordsDo) ReadDB() IWinCodeRecordsDo {
 	return w.Clauses(dbresolver.Read)
 }
 
-func (w winCodeRecordDo) WriteDB() IWinCodeRecordDo {
+func (w winCodeRecordsDo) WriteDB() IWinCodeRecordsDo {
 	return w.Clauses(dbresolver.Write)
 }
 
-func (w winCodeRecordDo) Session(config *gorm.Session) IWinCodeRecordDo {
+func (w winCodeRecordsDo) Session(config *gorm.Session) IWinCodeRecordsDo {
 	return w.withDO(w.DO.Session(config))
 }
 
-func (w winCodeRecordDo) Clauses(conds ...clause.Expression) IWinCodeRecordDo {
+func (w winCodeRecordsDo) Clauses(conds ...clause.Expression) IWinCodeRecordsDo {
 	return w.withDO(w.DO.Clauses(conds...))
 }
 
-func (w winCodeRecordDo) Returning(value interface{}, columns ...string) IWinCodeRecordDo {
+func (w winCodeRecordsDo) Returning(value interface{}, columns ...string) IWinCodeRecordsDo {
 	return w.withDO(w.DO.Returning(value, columns...))
 }
 
-func (w winCodeRecordDo) Not(conds ...gen.Condition) IWinCodeRecordDo {
+func (w winCodeRecordsDo) Not(conds ...gen.Condition) IWinCodeRecordsDo {
 	return w.withDO(w.DO.Not(conds...))
 }
 
-func (w winCodeRecordDo) Or(conds ...gen.Condition) IWinCodeRecordDo {
+func (w winCodeRecordsDo) Or(conds ...gen.Condition) IWinCodeRecordsDo {
 	return w.withDO(w.DO.Or(conds...))
 }
 
-func (w winCodeRecordDo) Select(conds ...field.Expr) IWinCodeRecordDo {
+func (w winCodeRecordsDo) Select(conds ...field.Expr) IWinCodeRecordsDo {
 	return w.withDO(w.DO.Select(conds...))
 }
 
-func (w winCodeRecordDo) Where(conds ...gen.Condition) IWinCodeRecordDo {
+func (w winCodeRecordsDo) Where(conds ...gen.Condition) IWinCodeRecordsDo {
 	return w.withDO(w.DO.Where(conds...))
 }
 
-func (w winCodeRecordDo) Order(conds ...field.Expr) IWinCodeRecordDo {
+func (w winCodeRecordsDo) Order(conds ...field.Expr) IWinCodeRecordsDo {
 	return w.withDO(w.DO.Order(conds...))
 }
 
-func (w winCodeRecordDo) Distinct(cols ...field.Expr) IWinCodeRecordDo {
+func (w winCodeRecordsDo) Distinct(cols ...field.Expr) IWinCodeRecordsDo {
 	return w.withDO(w.DO.Distinct(cols...))
 }
 
-func (w winCodeRecordDo) Omit(cols ...field.Expr) IWinCodeRecordDo {
+func (w winCodeRecordsDo) Omit(cols ...field.Expr) IWinCodeRecordsDo {
 	return w.withDO(w.DO.Omit(cols...))
 }
 
-func (w winCodeRecordDo) Join(table schema.Tabler, on ...field.Expr) IWinCodeRecordDo {
+func (w winCodeRecordsDo) Join(table schema.Tabler, on ...field.Expr) IWinCodeRecordsDo {
 	return w.withDO(w.DO.Join(table, on...))
 }
 
-func (w winCodeRecordDo) LeftJoin(table schema.Tabler, on ...field.Expr) IWinCodeRecordDo {
+func (w winCodeRecordsDo) LeftJoin(table schema.Tabler, on ...field.Expr) IWinCodeRecordsDo {
 	return w.withDO(w.DO.LeftJoin(table, on...))
 }
 
-func (w winCodeRecordDo) RightJoin(table schema.Tabler, on ...field.Expr) IWinCodeRecordDo {
+func (w winCodeRecordsDo) RightJoin(table schema.Tabler, on ...field.Expr) IWinCodeRecordsDo {
 	return w.withDO(w.DO.RightJoin(table, on...))
 }
 
-func (w winCodeRecordDo) Group(cols ...field.Expr) IWinCodeRecordDo {
+func (w winCodeRecordsDo) Group(cols ...field.Expr) IWinCodeRecordsDo {
 	return w.withDO(w.DO.Group(cols...))
 }
 
-func (w winCodeRecordDo) Having(conds ...gen.Condition) IWinCodeRecordDo {
+func (w winCodeRecordsDo) Having(conds ...gen.Condition) IWinCodeRecordsDo {
 	return w.withDO(w.DO.Having(conds...))
 }
 
-func (w winCodeRecordDo) Limit(limit int) IWinCodeRecordDo {
+func (w winCodeRecordsDo) Limit(limit int) IWinCodeRecordsDo {
 	return w.withDO(w.DO.Limit(limit))
 }
 
-func (w winCodeRecordDo) Offset(offset int) IWinCodeRecordDo {
+func (w winCodeRecordsDo) Offset(offset int) IWinCodeRecordsDo {
 	return w.withDO(w.DO.Offset(offset))
 }
 
-func (w winCodeRecordDo) Scopes(funcs ...func(gen.Dao) gen.Dao) IWinCodeRecordDo {
+func (w winCodeRecordsDo) Scopes(funcs ...func(gen.Dao) gen.Dao) IWinCodeRecordsDo {
 	return w.withDO(w.DO.Scopes(funcs...))
 }
 
-func (w winCodeRecordDo) Unscoped() IWinCodeRecordDo {
+func (w winCodeRecordsDo) Unscoped() IWinCodeRecordsDo {
 	return w.withDO(w.DO.Unscoped())
 }
 
-func (w winCodeRecordDo) Create(values ...*model.WinCodeRecord) error {
+func (w winCodeRecordsDo) Create(values ...*model.WinCodeRecords) error {
 	if len(values) == 0 {
 		return nil
 	}
 	return w.DO.Create(values)
 }
 
-func (w winCodeRecordDo) CreateInBatches(values []*model.WinCodeRecord, batchSize int) error {
+func (w winCodeRecordsDo) CreateInBatches(values []*model.WinCodeRecords, batchSize int) error {
 	return w.DO.CreateInBatches(values, batchSize)
 }
 
 // Save : !!! underlying implementation is different with GORM
 // The method is equivalent to executing the statement: db.Clauses(clause.OnConflict{UpdateAll: true}).Create(values)
-func (w winCodeRecordDo) Save(values ...*model.WinCodeRecord) error {
+func (w winCodeRecordsDo) Save(values ...*model.WinCodeRecords) error {
 	if len(values) == 0 {
 		return nil
 	}
 	return w.DO.Save(values)
 }
 
-func (w winCodeRecordDo) First() (*model.WinCodeRecord, error) {
+func (w winCodeRecordsDo) First() (*model.WinCodeRecords, error) {
 	if result, err := w.DO.First(); err != nil {
 		return nil, err
 	} else {
-		return result.(*model.WinCodeRecord), nil
+		return result.(*model.WinCodeRecords), nil
 	}
 }
 
-func (w winCodeRecordDo) Take() (*model.WinCodeRecord, error) {
+func (w winCodeRecordsDo) Take() (*model.WinCodeRecords, error) {
 	if result, err := w.DO.Take(); err != nil {
 		return nil, err
 	} else {
-		return result.(*model.WinCodeRecord), nil
+		return result.(*model.WinCodeRecords), nil
 	}
 }
 
-func (w winCodeRecordDo) Last() (*model.WinCodeRecord, error) {
+func (w winCodeRecordsDo) Last() (*model.WinCodeRecords, error) {
 	if result, err := w.DO.Last(); err != nil {
 		return nil, err
 	} else {
-		return result.(*model.WinCodeRecord), nil
+		return result.(*model.WinCodeRecords), nil
 	}
 }
 
-func (w winCodeRecordDo) Find() ([]*model.WinCodeRecord, error) {
+func (w winCodeRecordsDo) Find() ([]*model.WinCodeRecords, error) {
 	result, err := w.DO.Find()
-	return result.([]*model.WinCodeRecord), err
+	return result.([]*model.WinCodeRecords), err
 }
 
-func (w winCodeRecordDo) FindInBatch(batchSize int, fc func(tx gen.Dao, batch int) error) (results []*model.WinCodeRecord, err error) {
-	buf := make([]*model.WinCodeRecord, 0, batchSize)
+func (w winCodeRecordsDo) FindInBatch(batchSize int, fc func(tx gen.Dao, batch int) error) (results []*model.WinCodeRecords, err error) {
+	buf := make([]*model.WinCodeRecords, 0, batchSize)
 	err = w.DO.FindInBatches(&buf, batchSize, func(tx gen.Dao, batch int) error {
 		defer func() { results = append(results, buf...) }()
 		return fc(tx, batch)
@@ -352,49 +356,49 @@ func (w winCodeRecordDo) FindInBatch(batchSize int, fc func(tx gen.Dao, batch in
 	return results, err
 }
 
-func (w winCodeRecordDo) FindInBatches(result *[]*model.WinCodeRecord, batchSize int, fc func(tx gen.Dao, batch int) error) error {
+func (w winCodeRecordsDo) FindInBatches(result *[]*model.WinCodeRecords, batchSize int, fc func(tx gen.Dao, batch int) error) error {
 	return w.DO.FindInBatches(result, batchSize, fc)
 }
 
-func (w winCodeRecordDo) Attrs(attrs ...field.AssignExpr) IWinCodeRecordDo {
+func (w winCodeRecordsDo) Attrs(attrs ...field.AssignExpr) IWinCodeRecordsDo {
 	return w.withDO(w.DO.Attrs(attrs...))
 }
 
-func (w winCodeRecordDo) Assign(attrs ...field.AssignExpr) IWinCodeRecordDo {
+func (w winCodeRecordsDo) Assign(attrs ...field.AssignExpr) IWinCodeRecordsDo {
 	return w.withDO(w.DO.Assign(attrs...))
 }
 
-func (w winCodeRecordDo) Joins(fields ...field.RelationField) IWinCodeRecordDo {
+func (w winCodeRecordsDo) Joins(fields ...field.RelationField) IWinCodeRecordsDo {
 	for _, _f := range fields {
 		w = *w.withDO(w.DO.Joins(_f))
 	}
 	return &w
 }
 
-func (w winCodeRecordDo) Preload(fields ...field.RelationField) IWinCodeRecordDo {
+func (w winCodeRecordsDo) Preload(fields ...field.RelationField) IWinCodeRecordsDo {
 	for _, _f := range fields {
 		w = *w.withDO(w.DO.Preload(_f))
 	}
 	return &w
 }
 
-func (w winCodeRecordDo) FirstOrInit() (*model.WinCodeRecord, error) {
+func (w winCodeRecordsDo) FirstOrInit() (*model.WinCodeRecords, error) {
 	if result, err := w.DO.FirstOrInit(); err != nil {
 		return nil, err
 	} else {
-		return result.(*model.WinCodeRecord), nil
+		return result.(*model.WinCodeRecords), nil
 	}
 }
 
-func (w winCodeRecordDo) FirstOrCreate() (*model.WinCodeRecord, error) {
+func (w winCodeRecordsDo) FirstOrCreate() (*model.WinCodeRecords, error) {
 	if result, err := w.DO.FirstOrCreate(); err != nil {
 		return nil, err
 	} else {
-		return result.(*model.WinCodeRecord), nil
+		return result.(*model.WinCodeRecords), nil
 	}
 }
 
-func (w winCodeRecordDo) FindByPage(offset int, limit int) (result []*model.WinCodeRecord, count int64, err error) {
+func (w winCodeRecordsDo) FindByPage(offset int, limit int) (result []*model.WinCodeRecords, count int64, err error) {
 	result, err = w.Offset(offset).Limit(limit).Find()
 	if err != nil {
 		return
@@ -409,7 +413,7 @@ func (w winCodeRecordDo) FindByPage(offset int, limit int) (result []*model.WinC
 	return
 }
 
-func (w winCodeRecordDo) ScanByPage(result interface{}, offset int, limit int) (count int64, err error) {
+func (w winCodeRecordsDo) ScanByPage(result interface{}, offset int, limit int) (count int64, err error) {
 	count, err = w.Count()
 	if err != nil {
 		return
@@ -419,15 +423,15 @@ func (w winCodeRecordDo) ScanByPage(result interface{}, offset int, limit int) (
 	return
 }
 
-func (w winCodeRecordDo) Scan(result interface{}) (err error) {
+func (w winCodeRecordsDo) Scan(result interface{}) (err error) {
 	return w.DO.Scan(result)
 }
 
-func (w winCodeRecordDo) Delete(models ...*model.WinCodeRecord) (result gen.ResultInfo, err error) {
+func (w winCodeRecordsDo) Delete(models ...*model.WinCodeRecords) (result gen.ResultInfo, err error) {
 	return w.DO.Delete(models)
 }
 
-func (w *winCodeRecordDo) withDO(do gen.Dao) *winCodeRecordDo {
+func (w *winCodeRecordsDo) withDO(do gen.Dao) *winCodeRecordsDo {
 	w.DO = *do.(*gen.DO)
 	return w
 }
