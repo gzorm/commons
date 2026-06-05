@@ -651,7 +651,7 @@ type Query struct {
 	WinCheckInRule                        winCheckInRule
 	WinCityItem                           winCityItem
 	WinCodeAudit                          winCodeAudit
-	WinCodeRecord                         winCodeRecord
+	WinCodeRecord                         winCodeRecords
 	WinCoinAdminTransferM2                winCoinAdminTransferM2
 	WinCoinCommission                     winCoinCommission
 	WinCoinCommissionLog                  winCoinCommissionLog
