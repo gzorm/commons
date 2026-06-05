@@ -123,7 +123,7 @@ var (
 	WinCheckInRule                        *winCheckInRule
 	WinCityItem                           *winCityItem
 	WinCodeAudit                          *winCodeAudit
-	WinCodeRecord                         *winCodeRecord
+	WinCodeRecords                        *winCodeRecords
 	WinCoinAdminTransferM2                *winCoinAdminTransferM2
 	WinCoinCommission                     *winCoinCommission
 	WinCoinCommissionLog                  *winCoinCommissionLog
@@ -298,7 +298,7 @@ func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	WinCheckInRule = &Q.WinCheckInRule
 	WinCityItem = &Q.WinCityItem
 	WinCodeAudit = &Q.WinCodeAudit
-	WinCodeRecord = &Q.WinCodeRecord
+	WinCodeRecords = &Q.WinCodeRecords
 	WinCoinAdminTransferM2 = &Q.WinCoinAdminTransferM2
 	WinCoinCommission = &Q.WinCoinCommission
 	WinCoinCommissionLog = &Q.WinCoinCommissionLog
@@ -475,7 +475,7 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 		WinCheckInRule:                        newWinCheckInRule(db, opts...),
 		WinCityItem:                           newWinCityItem(db, opts...),
 		WinCodeAudit:                          newWinCodeAudit(db, opts...),
-		WinCodeRecord:                         newWinCodeRecord(db, opts...),
+		WinCodeRecords:                        newWinCodeRecords(db, opts...),
 		WinCoinAdminTransferM2:                newWinCoinAdminTransferM2(db, opts...),
 		WinCoinCommission:                     newWinCoinCommission(db, opts...),
 		WinCoinCommissionLog:                  newWinCoinCommissionLog(db, opts...),
@@ -651,7 +651,7 @@ type Query struct {
 	WinCheckInRule                        winCheckInRule
 	WinCityItem                           winCityItem
 	WinCodeAudit                          winCodeAudit
-	WinCodeRecord                         winCodeRecords
+	WinCodeRecords                        winCodeRecords
 	WinCoinAdminTransferM2                winCoinAdminTransferM2
 	WinCoinCommission                     winCoinCommission
 	WinCoinCommissionLog                  winCoinCommissionLog
@@ -829,7 +829,7 @@ func (q *Query) clone(db *gorm.DB) *Query {
 		WinCheckInRule:                        q.WinCheckInRule.clone(db),
 		WinCityItem:                           q.WinCityItem.clone(db),
 		WinCodeAudit:                          q.WinCodeAudit.clone(db),
-		WinCodeRecord:                         q.WinCodeRecord.clone(db),
+		WinCodeRecords:                        q.WinCodeRecords.clone(db),
 		WinCoinAdminTransferM2:                q.WinCoinAdminTransferM2.clone(db),
 		WinCoinCommission:                     q.WinCoinCommission.clone(db),
 		WinCoinCommissionLog:                  q.WinCoinCommissionLog.clone(db),
@@ -1014,7 +1014,7 @@ func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 		WinCheckInRule:                        q.WinCheckInRule.replaceDB(db),
 		WinCityItem:                           q.WinCityItem.replaceDB(db),
 		WinCodeAudit:                          q.WinCodeAudit.replaceDB(db),
-		WinCodeRecord:                         q.WinCodeRecord.replaceDB(db),
+		WinCodeRecords:                        q.WinCodeRecords.replaceDB(db),
 		WinCoinAdminTransferM2:                q.WinCoinAdminTransferM2.replaceDB(db),
 		WinCoinCommission:                     q.WinCoinCommission.replaceDB(db),
 		WinCoinCommissionLog:                  q.WinCoinCommissionLog.replaceDB(db),
@@ -1189,7 +1189,7 @@ type queryCtx struct {
 	WinCheckInRule                        IWinCheckInRuleDo
 	WinCityItem                           IWinCityItemDo
 	WinCodeAudit                          IWinCodeAuditDo
-	WinCodeRecord                         IWinCodeRecordDo
+	WinCodeRecords                        IWinCodeRecordsDo
 	WinCoinCommission                     IWinCoinCommissionDo
 	WinCoinCommissionLog                  IWinCoinCommissionLogDo
 	WinCoinAdminTransferM2                IWinCoinAdminTransferM2Do
@@ -1364,7 +1364,7 @@ func (q *Query) WithContext(ctx context.Context) *queryCtx {
 		WinCheckInRule:                        q.WinCheckInRule.WithContext(ctx),
 		WinCityItem:                           q.WinCityItem.WithContext(ctx),
 		WinCodeAudit:                          q.WinCodeAudit.WithContext(ctx),
-		WinCodeRecord:                         q.WinCodeRecord.WithContext(ctx),
+		WinCodeRecords:                        q.WinCodeRecords.WithContext(ctx),
 		WinCoinAdminTransferM2:                q.WinCoinAdminTransferM2.WithContext(ctx),
 		WinCoinCommission:                     q.WinCoinCommission.WithContext(ctx),
 		WinCoinCommissionLog:                  q.WinCoinCommissionLog.WithContext(ctx),
