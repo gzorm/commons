@@ -18,6 +18,7 @@ import (
 
 var (
 	Q                                     = new(Query)
+	WinAgentDailyStatistics               *winAgentDailyStatistics
 	LiveGame                              *liveGame
 	EventReports                          *eventReports
 	LiveRoomCallback                      *liveRoomCallback
@@ -193,6 +194,7 @@ var (
 
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	*Q = *Use(db, opts...)
+	WinAgentDailyStatistics = &Q.WinAgentDailyStatistics
 	LiveGame = &Q.LiveGame
 	EventReports = &Q.EventReports
 	LiveRoomCallback = &Q.LiveRoomCallback
@@ -370,6 +372,7 @@ func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 	return &Query{
 		db:                                    db,
+		WinAgentDailyStatistics:               newWinAgentDailyStatistics(db, opts...),
 		LiveGame:                              newLiveGame(db, opts...),
 		EventReports:                          newEventReports(db, opts...),
 		LiveRoomCallback:                      newLiveRoomCallback(db, opts...),
@@ -546,6 +549,7 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 
 type Query struct {
 	db                                    *gorm.DB
+	WinAgentDailyStatistics               winAgentDailyStatistics
 	LiveGame                              liveGame
 	EventReports                          eventReports
 	LiveRoomCallback                      liveRoomCallback
@@ -724,6 +728,7 @@ func (q *Query) Available() bool { return q.db != nil }
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
 		db:                                    db,
+		WinAgentDailyStatistics:               q.WinAgentDailyStatistics.clone(db),
 		LiveGame:                              q.LiveGame.clone(db),
 		EventReports:                          q.EventReports.clone(db),
 		LiveRoomCallback:                      q.LiveRoomCallback.clone(db),
@@ -909,6 +914,7 @@ func (q *Query) WriteDB() *Query {
 func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 	return &Query{
 		db:                                    db,
+		WinAgentDailyStatistics:               q.WinAgentDailyStatistics.replaceDB(db),
 		LiveGame:                              q.LiveGame.replaceDB(db),
 		EventReports:                          q.EventReports.replaceDB(db),
 		LiveRoomCallback:                      q.LiveRoomCallback.replaceDB(db),
@@ -1084,6 +1090,7 @@ func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 }
 
 type queryCtx struct {
+	WinAgentDailyStatistics               IWinAgentDailyStatisticsDo
 	LiveGame                              ILiveGameDo
 	EventReports                          IEventReportsDo
 	LiveRoomCallback                      ILiveRoomCallbackDo
@@ -1259,6 +1266,7 @@ type queryCtx struct {
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
+		WinAgentDailyStatistics:               q.WinAgentDailyStatistics.WithContext(ctx),
 		LiveGame:                              q.LiveGame.WithContext(ctx),
 		EventReports:                          q.EventReports.WithContext(ctx),
 		LiveRoomCallback:                      q.LiveRoomCallback.WithContext(ctx),

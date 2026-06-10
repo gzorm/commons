@@ -88,7 +88,7 @@ func NewClient(config *DBConfig) *gorm.DB {
 }
 
 func getConn(config SchemaConfig, mode string) *gorm.DB {
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local&timeout=20s",
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local&timeout=10s&readTimeout=10s&writeTimeout=10s",
 		config.Username, config.Password, config.Host,
 		config.Port, config.DBName,
 	)
@@ -102,8 +102,16 @@ func getConn(config SchemaConfig, mode string) *gorm.DB {
 
 	db.SetMaxIdleConns(config.MaxIdelConn)
 	db.SetMaxOpenConns(config.MaxOpenConn)
-	db.SetConnMaxLifetime(5 * time.Minute) // 设置连接的最大存活时间
-	db.SetConnMaxIdleTime(5 * time.Minute) // 设置连接的最大空闲时间
+	connMaxLifetime := 3
+	if config.ConnMaxLifetime > 0 {
+		connMaxLifetime = config.ConnMaxLifetime
+	}
+	connMaxIdleTime := 2
+	if config.ConnMaxIdleTime > 0 {
+		connMaxIdleTime = config.ConnMaxIdleTime
+	}
+	db.SetConnMaxLifetime(time.Duration(connMaxLifetime) * time.Minute)
+	db.SetConnMaxIdleTime(time.Duration(connMaxIdleTime) * time.Minute)
 
 	if err != nil {
 		panic(err)
