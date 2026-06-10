@@ -78,6 +78,7 @@ func newWinUser(db *gorm.DB, opts ...gen.DOOption) winUser {
 	_winUser.OperatorName = field.NewString(tableName, "operator_name")
 	_winUser.FbPid = field.NewString(tableName, "fb_pid")
 	_winUser.FbCid = field.NewString(tableName, "fb_cid")
+	_winUser.Source = field.NewInt64(tableName, "source")
 	_winUser.CreatedName = field.NewString(tableName, "created_name")
 	_winUser.MemberType = field.NewInt64(tableName, "memberType")
 	_winUser.GoogleSubID = field.NewString(tableName, "google_sub_id")
@@ -109,6 +110,13 @@ func newWinUser(db *gorm.DB, opts ...gen.DOOption) winUser {
 	_winUser.ChannelName = field.NewString(tableName, "channel_name")
 	_winUser.GrowthValue = field.NewInt64(tableName, "growth_value")
 	_winUser.Currency = field.NewString(tableName, "currency")
+	_winUser.IsTouristKey = field.NewString(tableName, "is_tourist_key")
+	_winUser.VipLevel = field.NewInt64(tableName, "vip_level")
+	_winUser.VipExpireTime = field.NewInt64(tableName, "vip_expire_time")
+	_winUser.FollowerCount = field.NewInt64(tableName, "follower_count")
+	_winUser.FollowingCount = field.NewInt64(tableName, "following_count")
+	_winUser.LikeCount = field.NewInt64(tableName, "like_count")
+	_winUser.VideoCount = field.NewInt64(tableName, "video_count")
 
 	_winUser.fillFieldMap()
 
@@ -128,7 +136,7 @@ type winUser struct {
 	Fcoin             field.Field  // 冻结金额
 	CoinCommission    field.Field  // 佣金可提现金额
 	LevelID           field.Int64  // 会员等级
-	Role              field.Int64  // 角色
+	Role              field.Int64  // 角色 0=普通用户, 1=代理, 4=测试账号
 	IsPromoter        field.Int64  // 是否推广
 	Flag              field.Int64  // 会员旗
 	RealName          field.String // 真实姓名
@@ -154,28 +162,29 @@ type winUser struct {
 	SupUIDTop         field.Int64
 	SupUsernameTop    field.String
 	SupLevelTop       field.Int64
-	PasswordHash      field.String
-	PasswordCoin      field.String
-	IP                field.String
-	ThirdLoginType    field.String
-	IPRegion          field.String
-	Status            field.Int64 // 状态:10-正常 9-冻结 8-删除
+	PasswordHash      field.String // 密码哈希
+	PasswordCoin      field.String // 佣金密码
+	IP                field.String // 注册IP
+	ThirdLoginType    field.String // 第三方登录类型
+	IPRegion          field.String // IP归属地
+	Status            field.Int64  // 状态:10-正常 9-冻结 8-删除
 	LastLoginIP       field.String
 	LastLoginIPRegion field.String
 	LastLoginTime     field.Int64 // 上次登录时间
 	LastLoginDeviceID field.String
 	CreatedAt         field.Int64
 	UpdatedAt         field.Int64
-	FreezeCause       field.String
+	FreezeCause       field.String // 冻结原因
 	FreezeAt          field.Int64
-	OperatorName      field.String
+	OperatorName      field.String // 操作员名称
 	FbPid             field.String
 	FbCid             field.String
-	CreatedName       field.String
+	Source            field.Int64  // 推广来源 fb=1,tk=2
+	CreatedName       field.String // 创建人名称
 	MemberType        field.Int64
 	GoogleSubID       field.String
 	FacebookSubID     field.String
-	Secret            field.String
+	Secret            field.String // 密钥
 	CodeURL           field.String
 	CodeStatus        field.Int64
 	UserType          field.Int64
@@ -201,7 +210,14 @@ type winUser struct {
 	ClientIP          field.String // 用户ip
 	ChannelName       field.String // 渠道名称
 	GrowthValue       field.Int64  // 当前成长值
-	Currency          field.String // 状态:USDT:美元稳定币, EGP:埃及镑
+	Currency          field.String // 币种:EGP,USDT
+	IsTouristKey      field.String // 游客账户唯一键
+	VipLevel          field.Int64  // 用户vip等级
+	VipExpireTime     field.Int64  // 用户vip到期时间戳
+	FollowerCount     field.Int64  // 粉丝数
+	FollowingCount    field.Int64  // 关注数
+	LikeCount         field.Int64  // 点赞数
+	VideoCount        field.Int64  // 视频数量
 
 	fieldMap map[string]field.Expr
 }
@@ -269,6 +285,7 @@ func (w *winUser) updateTableName(table string) *winUser {
 	w.OperatorName = field.NewString(table, "operator_name")
 	w.FbPid = field.NewString(table, "fb_pid")
 	w.FbCid = field.NewString(table, "fb_cid")
+	w.Source = field.NewInt64(table, "source")
 	w.CreatedName = field.NewString(table, "created_name")
 	w.MemberType = field.NewInt64(table, "memberType")
 	w.GoogleSubID = field.NewString(table, "google_sub_id")
@@ -300,6 +317,13 @@ func (w *winUser) updateTableName(table string) *winUser {
 	w.ChannelName = field.NewString(table, "channel_name")
 	w.GrowthValue = field.NewInt64(table, "growth_value")
 	w.Currency = field.NewString(table, "currency")
+	w.IsTouristKey = field.NewString(table, "is_tourist_key")
+	w.VipLevel = field.NewInt64(table, "vip_level")
+	w.VipExpireTime = field.NewInt64(table, "vip_expire_time")
+	w.FollowerCount = field.NewInt64(table, "follower_count")
+	w.FollowingCount = field.NewInt64(table, "following_count")
+	w.LikeCount = field.NewInt64(table, "like_count")
+	w.VideoCount = field.NewInt64(table, "video_count")
 
 	w.fillFieldMap()
 
@@ -316,7 +340,7 @@ func (w *winUser) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (w *winUser) fillFieldMap() {
-	w.fieldMap = make(map[string]field.Expr, 82)
+	w.fieldMap = make(map[string]field.Expr, 90)
 	w.fieldMap["id"] = w.ID
 	w.fieldMap["platform_user_id"] = w.PlatformUserID
 	w.fieldMap["site_id"] = w.SiteID
@@ -368,6 +392,7 @@ func (w *winUser) fillFieldMap() {
 	w.fieldMap["operator_name"] = w.OperatorName
 	w.fieldMap["fb_pid"] = w.FbPid
 	w.fieldMap["fb_cid"] = w.FbCid
+	w.fieldMap["source"] = w.Source
 	w.fieldMap["created_name"] = w.CreatedName
 	w.fieldMap["memberType"] = w.MemberType
 	w.fieldMap["google_sub_id"] = w.GoogleSubID
@@ -399,6 +424,13 @@ func (w *winUser) fillFieldMap() {
 	w.fieldMap["channel_name"] = w.ChannelName
 	w.fieldMap["growth_value"] = w.GrowthValue
 	w.fieldMap["currency"] = w.Currency
+	w.fieldMap["is_tourist_key"] = w.IsTouristKey
+	w.fieldMap["vip_level"] = w.VipLevel
+	w.fieldMap["vip_expire_time"] = w.VipExpireTime
+	w.fieldMap["follower_count"] = w.FollowerCount
+	w.fieldMap["following_count"] = w.FollowingCount
+	w.fieldMap["like_count"] = w.LikeCount
+	w.fieldMap["video_count"] = w.VideoCount
 }
 
 func (w winUser) clone(db *gorm.DB) winUser {
