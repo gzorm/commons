@@ -43,6 +43,11 @@ func newWinUserBankList(db *gorm.DB, opts ...gen.DOOption) winUserBankList {
 	_winUserBankList.UpdatedBy = field.NewString(tableName, "updated_by")
 	_winUserBankList.OperatorName = field.NewString(tableName, "operator_name")
 	_winUserBankList.BlockchainAddress = field.NewString(tableName, "blockchain_address")
+	_winUserBankList.Province = field.NewString(tableName, "province")
+	_winUserBankList.City = field.NewString(tableName, "city")
+	_winUserBankList.ZipCode = field.NewString(tableName, "zip_code")
+	_winUserBankList.FirstName = field.NewString(tableName, "first_name")
+	_winUserBankList.LastName = field.NewString(tableName, "last_name")
 
 	_winUserBankList.fillFieldMap()
 
@@ -70,6 +75,11 @@ type winUserBankList struct {
 	UpdatedBy         field.String // 后台修改人
 	OperatorName      field.String // 操作人姓名
 	BlockchainAddress field.String // 虚拟币钱包地址
+	Province          field.String // 省份（美国支付必填）
+	City              field.String // 城市（美国支付必填）
+	ZipCode           field.String // 邮编（美国支付必填）
+	FirstName         field.String // 付款人名字（美国支付必填）
+	LastName          field.String // 付款人姓氏（美国支付必填）
 
 	fieldMap map[string]field.Expr
 }
@@ -102,6 +112,11 @@ func (w *winUserBankList) updateTableName(table string) *winUserBankList {
 	w.UpdatedBy = field.NewString(table, "updated_by")
 	w.OperatorName = field.NewString(table, "operator_name")
 	w.BlockchainAddress = field.NewString(table, "blockchain_address")
+	w.Province = field.NewString(table, "province")
+	w.City = field.NewString(table, "city")
+	w.ZipCode = field.NewString(table, "zip_code")
+	w.FirstName = field.NewString(table, "first_name")
+	w.LastName = field.NewString(table, "last_name")
 
 	w.fillFieldMap()
 
@@ -118,7 +133,7 @@ func (w *winUserBankList) GetFieldByName(fieldName string) (field.OrderExpr, boo
 }
 
 func (w *winUserBankList) fillFieldMap() {
-	w.fieldMap = make(map[string]field.Expr, 16)
+	w.fieldMap = make(map[string]field.Expr, 21)
 	w.fieldMap["id"] = w.ID
 	w.fieldMap["uid"] = w.UID
 	w.fieldMap["username"] = w.Username
@@ -135,6 +150,11 @@ func (w *winUserBankList) fillFieldMap() {
 	w.fieldMap["updated_by"] = w.UpdatedBy
 	w.fieldMap["operator_name"] = w.OperatorName
 	w.fieldMap["blockchain_address"] = w.BlockchainAddress
+	w.fieldMap["province"] = w.Province
+	w.fieldMap["city"] = w.City
+	w.fieldMap["zip_code"] = w.ZipCode
+	w.fieldMap["first_name"] = w.FirstName
+	w.fieldMap["last_name"] = w.LastName
 }
 
 func (w winUserBankList) clone(db *gorm.DB) winUserBankList {
