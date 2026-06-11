@@ -18,7 +18,8 @@ type WinCheckInRule struct {
 	AwardAmountUsdt         decimal.Decimal `gorm:"column:award_amount_usdt;type:decimal(15,4);default:0.0000;comment:未充值签到奖励(USDT)" json:"awardAmountUsdt"`                 // 未充值签到奖励(USDT)
 	RechargeAwardAmount     decimal.Decimal `gorm:"column:recharge_award_amount;type:decimal(15,4);default:0.0000;comment:充值签到奖励(EGP)" json:"rechargeAwardAmount"`           // 充值签到奖励(EGP)
 	RechargeAwardAmountUsdt decimal.Decimal `gorm:"column:recharge_award_amount_usdt;type:decimal(15,4);default:0.0000;comment:充值签到奖励(USDT)" json:"rechargeAwardAmountUsdt"` // 充值签到奖励(USDT)
-	AuditTimes              int64           `gorm:"column:audit_times;type:tinyint;not null;comment:稽核倍数" json:"auditTimes"`                                                 // 稽核倍数
+	AuditTimes              int64           `gorm:"column:audit_times;type:tinyint;not null;default:1;comment:稽核倍数(EGP)" json:"auditTimes"`                                  // 稽核倍数(EGP)
+	AuditTimesUsdt          int64           `gorm:"column:audit_times_usdt;type:tinyint;default:1;comment:稽核倍数(USDT)" json:"auditTimesUsdt"`                                 // 稽核倍数(USDT)
 	CreatedAt               int64           `gorm:"column:created_at;comment:创建时间" json:"createdAt"`                                                                         // 创建时间
 }
 

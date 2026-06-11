@@ -36,6 +36,7 @@ func newWinCheckInRule(db *gorm.DB, opts ...gen.DOOption) winCheckInRule {
 	_winCheckInRule.RechargeAwardAmount = field.NewField(tableName, "recharge_award_amount")
 	_winCheckInRule.RechargeAwardAmountUsdt = field.NewField(tableName, "recharge_award_amount_usdt")
 	_winCheckInRule.AuditTimes = field.NewInt64(tableName, "audit_times")
+	_winCheckInRule.AuditTimesUsdt = field.NewInt64(tableName, "audit_times_usdt")
 	_winCheckInRule.CreatedAt = field.NewInt64(tableName, "created_at")
 
 	_winCheckInRule.fillFieldMap()
@@ -56,7 +57,8 @@ type winCheckInRule struct {
 	AwardAmountUsdt         field.Field  // 未充值签到奖励(USDT)
 	RechargeAwardAmount     field.Field  // 充值签到奖励(EGP)
 	RechargeAwardAmountUsdt field.Field  // 充值签到奖励(USDT)
-	AuditTimes              field.Int64  // 稽核倍数
+	AuditTimes              field.Int64  // 稽核倍数(EGP)
+	AuditTimesUsdt          field.Int64  // 稽核倍数(USDT)
 	CreatedAt               field.Int64  // 创建时间
 
 	fieldMap map[string]field.Expr
@@ -83,6 +85,7 @@ func (w *winCheckInRule) updateTableName(table string) *winCheckInRule {
 	w.RechargeAwardAmount = field.NewField(table, "recharge_award_amount")
 	w.RechargeAwardAmountUsdt = field.NewField(table, "recharge_award_amount_usdt")
 	w.AuditTimes = field.NewInt64(table, "audit_times")
+	w.AuditTimesUsdt = field.NewInt64(table, "audit_times_usdt")
 	w.CreatedAt = field.NewInt64(table, "created_at")
 
 	w.fillFieldMap()
@@ -100,7 +103,7 @@ func (w *winCheckInRule) GetFieldByName(fieldName string) (field.OrderExpr, bool
 }
 
 func (w *winCheckInRule) fillFieldMap() {
-	w.fieldMap = make(map[string]field.Expr, 10)
+	w.fieldMap = make(map[string]field.Expr, 11)
 	w.fieldMap["id"] = w.ID
 	w.fieldMap["promotion_id"] = w.PromotionID
 	w.fieldMap["days"] = w.Days
@@ -110,6 +113,7 @@ func (w *winCheckInRule) fillFieldMap() {
 	w.fieldMap["recharge_award_amount"] = w.RechargeAwardAmount
 	w.fieldMap["recharge_award_amount_usdt"] = w.RechargeAwardAmountUsdt
 	w.fieldMap["audit_times"] = w.AuditTimes
+	w.fieldMap["audit_times_usdt"] = w.AuditTimesUsdt
 	w.fieldMap["created_at"] = w.CreatedAt
 }
 
