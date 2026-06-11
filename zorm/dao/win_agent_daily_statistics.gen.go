@@ -29,6 +29,7 @@ func newWinAgentDailyStatistics(db *gorm.DB, opts ...gen.DOOption) winAgentDaily
 	_winAgentDailyStatistics.ALL = field.NewAsterisk(tableName)
 	_winAgentDailyStatistics.ID = field.NewInt64(tableName, "id")
 	_winAgentDailyStatistics.StatDate = field.NewTime(tableName, "stat_date")
+	_winAgentDailyStatistics.StatDateTime = field.NewInt64(tableName, "stat_date_time")
 	_winAgentDailyStatistics.AgentUID = field.NewInt64(tableName, "agent_uid")
 	_winAgentDailyStatistics.AgentName = field.NewString(tableName, "agent_name")
 	_winAgentDailyStatistics.RegisterCount = field.NewInt64(tableName, "register_count")
@@ -80,6 +81,7 @@ type winAgentDailyStatistics struct {
 	ALL                     field.Asterisk
 	ID                      field.Int64  // 自增主键
 	StatDate                field.Time   // 统计日期（格式：YYYY-MM-DD）
+	StatDateTime            field.Int64  // 统计日期 时间戳
 	AgentUID                field.Int64  // 代理UID
 	AgentName               field.String // 代理名称
 	RegisterCount           field.Int64  // 注册人数 - 当天通过该代理链接注册的用户数
@@ -136,6 +138,7 @@ func (w *winAgentDailyStatistics) updateTableName(table string) *winAgentDailySt
 	w.ALL = field.NewAsterisk(table)
 	w.ID = field.NewInt64(table, "id")
 	w.StatDate = field.NewTime(table, "stat_date")
+	w.StatDateTime = field.NewInt64(table, "stat_date_time")
 	w.AgentUID = field.NewInt64(table, "agent_uid")
 	w.AgentName = field.NewString(table, "agent_name")
 	w.RegisterCount = field.NewInt64(table, "register_count")
@@ -190,9 +193,10 @@ func (w *winAgentDailyStatistics) GetFieldByName(fieldName string) (field.OrderE
 }
 
 func (w *winAgentDailyStatistics) fillFieldMap() {
-	w.fieldMap = make(map[string]field.Expr, 40)
+	w.fieldMap = make(map[string]field.Expr, 41)
 	w.fieldMap["id"] = w.ID
 	w.fieldMap["stat_date"] = w.StatDate
+	w.fieldMap["stat_date_time"] = w.StatDateTime
 	w.fieldMap["agent_uid"] = w.AgentUID
 	w.fieldMap["agent_name"] = w.AgentName
 	w.fieldMap["register_count"] = w.RegisterCount

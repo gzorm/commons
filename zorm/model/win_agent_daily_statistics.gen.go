@@ -16,6 +16,7 @@ const TableNameWinAgentDailyStatistics = "win_agent_daily_statistics"
 type WinAgentDailyStatistics struct {
 	ID                      int64           `gorm:"column:id;type:bigint unsigned;primaryKey;autoIncrement:true;comment:自增主键" json:"id,string"`                                               // 自增主键
 	StatDate                time.Time       `gorm:"column:stat_date;type:date;not null;comment:统计日期（格式：YYYY-MM-DD）" json:"statDate"`                                                          // 统计日期（格式：YYYY-MM-DD）
+	StatDateTime            int64           `gorm:"column:stat_date_time;type:bigint;comment:统计日期 时间戳" json:"statDateTime"`                                                                   // 统计日期 时间戳
 	AgentUID                int64           `gorm:"column:agent_uid;type:bigint unsigned;not null;comment:代理UID" json:"agentUid"`                                                             // 代理UID
 	AgentName               string          `gorm:"column:agent_name;type:varchar(100);not null;comment:代理名称" json:"agentName"`                                                               // 代理名称
 	RegisterCount           int64           `gorm:"column:register_count;type:int unsigned;comment:注册人数 - 当天通过该代理链接注册的用户数" json:"registerCount"`                                              // 注册人数 - 当天通过该代理链接注册的用户数
