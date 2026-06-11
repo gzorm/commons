@@ -18,6 +18,7 @@ import (
 
 var (
 	Q                                     = new(Query)
+	WinUserInvite                         *winUserInvite
 	WinAgentDailyStatistics               *winAgentDailyStatistics
 	LiveGame                              *liveGame
 	EventReports                          *eventReports
@@ -194,6 +195,7 @@ var (
 
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	*Q = *Use(db, opts...)
+	WinUserInvite = &Q.WinUserInvite
 	WinAgentDailyStatistics = &Q.WinAgentDailyStatistics
 	LiveGame = &Q.LiveGame
 	EventReports = &Q.EventReports
@@ -372,6 +374,7 @@ func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 	return &Query{
 		db:                                    db,
+		WinUserInvite:                         newWinUserInvite(db, opts...),
 		WinAgentDailyStatistics:               newWinAgentDailyStatistics(db, opts...),
 		LiveGame:                              newLiveGame(db, opts...),
 		EventReports:                          newEventReports(db, opts...),
@@ -549,6 +552,7 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 
 type Query struct {
 	db                                    *gorm.DB
+	WinUserInvite                         winUserInvite
 	WinAgentDailyStatistics               winAgentDailyStatistics
 	LiveGame                              liveGame
 	EventReports                          eventReports
@@ -728,6 +732,7 @@ func (q *Query) Available() bool { return q.db != nil }
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
 		db:                                    db,
+		WinUserInvite:                         q.WinUserInvite.clone(db),
 		WinAgentDailyStatistics:               q.WinAgentDailyStatistics.clone(db),
 		LiveGame:                              q.LiveGame.clone(db),
 		EventReports:                          q.EventReports.clone(db),
@@ -914,6 +919,7 @@ func (q *Query) WriteDB() *Query {
 func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 	return &Query{
 		db:                                    db,
+		WinUserInvite:                         q.WinUserInvite.replaceDB(db),
 		WinAgentDailyStatistics:               q.WinAgentDailyStatistics.replaceDB(db),
 		LiveGame:                              q.LiveGame.replaceDB(db),
 		EventReports:                          q.EventReports.replaceDB(db),
@@ -1090,6 +1096,7 @@ func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 }
 
 type queryCtx struct {
+	WinUserInvite                         IWinUserInviteDo
 	WinAgentDailyStatistics               IWinAgentDailyStatisticsDo
 	LiveGame                              ILiveGameDo
 	EventReports                          IEventReportsDo
@@ -1266,6 +1273,7 @@ type queryCtx struct {
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
+		WinUserInvite:                         q.WinUserInvite.WithContext(ctx),
 		WinAgentDailyStatistics:               q.WinAgentDailyStatistics.WithContext(ctx),
 		LiveGame:                              q.LiveGame.WithContext(ctx),
 		EventReports:                          q.EventReports.WithContext(ctx),
