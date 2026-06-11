@@ -32,6 +32,9 @@ func newWinCheckInRule(db *gorm.DB, opts ...gen.DOOption) winCheckInRule {
 	_winCheckInRule.Days = field.NewInt64(tableName, "days")
 	_winCheckInRule.IconImg = field.NewString(tableName, "icon_img")
 	_winCheckInRule.AwardAmount = field.NewField(tableName, "award_amount")
+	_winCheckInRule.AwardAmountUsdt = field.NewField(tableName, "award_amount_usdt")
+	_winCheckInRule.RechargeAwardAmount = field.NewField(tableName, "recharge_award_amount")
+	_winCheckInRule.RechargeAwardAmountUsdt = field.NewField(tableName, "recharge_award_amount_usdt")
 	_winCheckInRule.AuditTimes = field.NewInt64(tableName, "audit_times")
 	_winCheckInRule.CreatedAt = field.NewInt64(tableName, "created_at")
 
@@ -44,14 +47,17 @@ func newWinCheckInRule(db *gorm.DB, opts ...gen.DOOption) winCheckInRule {
 type winCheckInRule struct {
 	winCheckInRuleDo
 
-	ALL         field.Asterisk
-	ID          field.Int64  // 主键
-	PromotionID field.Int64  // 签到活动ID
-	Days        field.Int64  // 连续签到天数
-	IconImg     field.String // 签到图标
-	AwardAmount field.Field  // 签到奖励
-	AuditTimes  field.Int64  // 稽核倍数
-	CreatedAt   field.Int64  // 创建时间
+	ALL                     field.Asterisk
+	ID                      field.Int64  // 主键
+	PromotionID             field.Int64  // 签到活动ID
+	Days                    field.Int64  // 连续签到天数
+	IconImg                 field.String // 签到图标
+	AwardAmount             field.Field  // 未充值签到奖励(EGP)
+	AwardAmountUsdt         field.Field  // 未充值签到奖励(USDT)
+	RechargeAwardAmount     field.Field  // 充值签到奖励(EGP)
+	RechargeAwardAmountUsdt field.Field  // 充值签到奖励(USDT)
+	AuditTimes              field.Int64  // 稽核倍数
+	CreatedAt               field.Int64  // 创建时间
 
 	fieldMap map[string]field.Expr
 }
@@ -73,6 +79,9 @@ func (w *winCheckInRule) updateTableName(table string) *winCheckInRule {
 	w.Days = field.NewInt64(table, "days")
 	w.IconImg = field.NewString(table, "icon_img")
 	w.AwardAmount = field.NewField(table, "award_amount")
+	w.AwardAmountUsdt = field.NewField(table, "award_amount_usdt")
+	w.RechargeAwardAmount = field.NewField(table, "recharge_award_amount")
+	w.RechargeAwardAmountUsdt = field.NewField(table, "recharge_award_amount_usdt")
 	w.AuditTimes = field.NewInt64(table, "audit_times")
 	w.CreatedAt = field.NewInt64(table, "created_at")
 
@@ -91,12 +100,15 @@ func (w *winCheckInRule) GetFieldByName(fieldName string) (field.OrderExpr, bool
 }
 
 func (w *winCheckInRule) fillFieldMap() {
-	w.fieldMap = make(map[string]field.Expr, 7)
+	w.fieldMap = make(map[string]field.Expr, 10)
 	w.fieldMap["id"] = w.ID
 	w.fieldMap["promotion_id"] = w.PromotionID
 	w.fieldMap["days"] = w.Days
 	w.fieldMap["icon_img"] = w.IconImg
 	w.fieldMap["award_amount"] = w.AwardAmount
+	w.fieldMap["award_amount_usdt"] = w.AwardAmountUsdt
+	w.fieldMap["recharge_award_amount"] = w.RechargeAwardAmount
+	w.fieldMap["recharge_award_amount_usdt"] = w.RechargeAwardAmountUsdt
 	w.fieldMap["audit_times"] = w.AuditTimes
 	w.fieldMap["created_at"] = w.CreatedAt
 }

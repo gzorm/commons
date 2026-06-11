@@ -10,13 +10,16 @@ const TableNameWinCheckInRule = "win_check_in_rule"
 
 // WinCheckInRule 签到规则
 type WinCheckInRule struct {
-	ID          int64           `gorm:"column:id;type:int;primaryKey;autoIncrement:true;comment:主键" json:"id,string"`    // 主键
-	PromotionID int64           `gorm:"column:promotion_id;type:int;not null;comment:签到活动ID" json:"promotionId"`         // 签到活动ID
-	Days        int64           `gorm:"column:days;type:smallint;not null;comment:连续签到天数" json:"days"`                   // 连续签到天数
-	IconImg     string          `gorm:"column:icon_img;type:varchar(1024);not null;comment:签到图标" json:"iconImg"`         // 签到图标
-	AwardAmount decimal.Decimal `gorm:"column:award_amount;type:decimal(15,4);not null;comment:签到奖励" json:"awardAmount"` // 签到奖励
-	AuditTimes  int64           `gorm:"column:audit_times;type:tinyint;not null;comment:稽核倍数" json:"auditTimes"`         // 稽核倍数
-	CreatedAt   int64           `gorm:"column:created_at;comment:创建时间" json:"createdAt"`                                 // 创建时间
+	ID                      int64           `gorm:"column:id;type:int;primaryKey;autoIncrement:true;comment:主键" json:"id,string"`                                            // 主键
+	PromotionID             int64           `gorm:"column:promotion_id;type:int;not null;comment:签到活动ID" json:"promotionId"`                                                 // 签到活动ID
+	Days                    int64           `gorm:"column:days;type:smallint;not null;comment:连续签到天数" json:"days"`                                                           // 连续签到天数
+	IconImg                 string          `gorm:"column:icon_img;type:varchar(1024);not null;comment:签到图标" json:"iconImg"`                                                 // 签到图标
+	AwardAmount             decimal.Decimal `gorm:"column:award_amount;type:decimal(15,4);not null;default:0.0000;comment:未充值签到奖励(EGP)" json:"awardAmount"`                  // 未充值签到奖励(EGP)
+	AwardAmountUsdt         decimal.Decimal `gorm:"column:award_amount_usdt;type:decimal(15,4);default:0.0000;comment:未充值签到奖励(USDT)" json:"awardAmountUsdt"`                 // 未充值签到奖励(USDT)
+	RechargeAwardAmount     decimal.Decimal `gorm:"column:recharge_award_amount;type:decimal(15,4);default:0.0000;comment:充值签到奖励(EGP)" json:"rechargeAwardAmount"`           // 充值签到奖励(EGP)
+	RechargeAwardAmountUsdt decimal.Decimal `gorm:"column:recharge_award_amount_usdt;type:decimal(15,4);default:0.0000;comment:充值签到奖励(USDT)" json:"rechargeAwardAmountUsdt"` // 充值签到奖励(USDT)
+	AuditTimes              int64           `gorm:"column:audit_times;type:tinyint;not null;comment:稽核倍数" json:"auditTimes"`                                                 // 稽核倍数
+	CreatedAt               int64           `gorm:"column:created_at;comment:创建时间" json:"createdAt"`                                                                         // 创建时间
 }
 
 // TableName WinCheckInRule's table name
