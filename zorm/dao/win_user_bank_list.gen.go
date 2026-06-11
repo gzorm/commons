@@ -45,6 +45,7 @@ func newWinUserBankList(db *gorm.DB, opts ...gen.DOOption) winUserBankList {
 	_winUserBankList.BlockchainAddress = field.NewString(tableName, "blockchain_address")
 	_winUserBankList.Province = field.NewString(tableName, "province")
 	_winUserBankList.City = field.NewString(tableName, "city")
+	_winUserBankList.StreetAddress = field.NewString(tableName, "street_address")
 	_winUserBankList.ZipCode = field.NewString(tableName, "zip_code")
 	_winUserBankList.FirstName = field.NewString(tableName, "first_name")
 	_winUserBankList.LastName = field.NewString(tableName, "last_name")
@@ -77,6 +78,7 @@ type winUserBankList struct {
 	BlockchainAddress field.String // 虚拟币钱包地址
 	Province          field.String // 省份（美国支付必填）
 	City              field.String // 城市（美国支付必填）
+	StreetAddress     field.String // 详细地址（美国支付必填）
 	ZipCode           field.String // 邮编（美国支付必填）
 	FirstName         field.String // 付款人名字（美国支付必填）
 	LastName          field.String // 付款人姓氏（美国支付必填）
@@ -114,6 +116,7 @@ func (w *winUserBankList) updateTableName(table string) *winUserBankList {
 	w.BlockchainAddress = field.NewString(table, "blockchain_address")
 	w.Province = field.NewString(table, "province")
 	w.City = field.NewString(table, "city")
+	w.StreetAddress = field.NewString(table, "street_address")
 	w.ZipCode = field.NewString(table, "zip_code")
 	w.FirstName = field.NewString(table, "first_name")
 	w.LastName = field.NewString(table, "last_name")
@@ -133,7 +136,7 @@ func (w *winUserBankList) GetFieldByName(fieldName string) (field.OrderExpr, boo
 }
 
 func (w *winUserBankList) fillFieldMap() {
-	w.fieldMap = make(map[string]field.Expr, 21)
+	w.fieldMap = make(map[string]field.Expr, 22)
 	w.fieldMap["id"] = w.ID
 	w.fieldMap["uid"] = w.UID
 	w.fieldMap["username"] = w.Username
@@ -152,6 +155,7 @@ func (w *winUserBankList) fillFieldMap() {
 	w.fieldMap["blockchain_address"] = w.BlockchainAddress
 	w.fieldMap["province"] = w.Province
 	w.fieldMap["city"] = w.City
+	w.fieldMap["street_address"] = w.StreetAddress
 	w.fieldMap["zip_code"] = w.ZipCode
 	w.fieldMap["first_name"] = w.FirstName
 	w.fieldMap["last_name"] = w.LastName

@@ -26,6 +26,7 @@ type WinUserBankList struct {
 	BlockchainAddress string `gorm:"column:blockchain_address;type:varchar(255);comment:虚拟币钱包地址" json:"blockchainAddress"` // 虚拟币钱包地址
 	Province          string `gorm:"column:province;type:varchar(64);comment:省份（美国支付必填）" json:"province"`                  // 省份（美国支付必填）
 	City              string `gorm:"column:city;type:varchar(64);comment:城市（美国支付必填）" json:"city"`                          // 城市（美国支付必填）
+	StreetAddress     string `gorm:"column:street_address;type:varchar(255);comment:详细地址（美国支付必填）" json:"streetAddress"`    // 详细地址（美国支付必填）
 	ZipCode           string `gorm:"column:zip_code;type:varchar(20);comment:邮编（美国支付必填）" json:"zipCode"`                   // 邮编（美国支付必填）
 	FirstName         string `gorm:"column:first_name;type:varchar(64);comment:付款人名字（美国支付必填）" json:"firstName"`            // 付款人名字（美国支付必填）
 	LastName          string `gorm:"column:last_name;type:varchar(64);comment:付款人姓氏（美国支付必填）" json:"lastName"`              // 付款人姓氏（美国支付必填）
