@@ -18,6 +18,7 @@ import (
 
 var (
 	Q                                     = new(Query)
+	WinPixelConfig                        *winPixelConfig
 	WinUserInvite                         *winUserInvite
 	WinAgentDailyStatistics               *winAgentDailyStatistics
 	LiveGame                              *liveGame
@@ -195,6 +196,7 @@ var (
 
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	*Q = *Use(db, opts...)
+	WinPixelConfig = &Q.WinPixelConfig
 	WinUserInvite = &Q.WinUserInvite
 	WinAgentDailyStatistics = &Q.WinAgentDailyStatistics
 	LiveGame = &Q.LiveGame
@@ -374,6 +376,7 @@ func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 	return &Query{
 		db:                                    db,
+		WinPixelConfig:                        newWinPixelConfig(db, opts...),
 		WinUserInvite:                         newWinUserInvite(db, opts...),
 		WinAgentDailyStatistics:               newWinAgentDailyStatistics(db, opts...),
 		LiveGame:                              newLiveGame(db, opts...),
@@ -552,6 +555,7 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 
 type Query struct {
 	db                                    *gorm.DB
+	WinPixelConfig                        winPixelConfig
 	WinUserInvite                         winUserInvite
 	WinAgentDailyStatistics               winAgentDailyStatistics
 	LiveGame                              liveGame
@@ -732,6 +736,7 @@ func (q *Query) Available() bool { return q.db != nil }
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
 		db:                                    db,
+		WinPixelConfig:                        q.WinPixelConfig.clone(db),
 		WinUserInvite:                         q.WinUserInvite.clone(db),
 		WinAgentDailyStatistics:               q.WinAgentDailyStatistics.clone(db),
 		LiveGame:                              q.LiveGame.clone(db),
@@ -919,6 +924,7 @@ func (q *Query) WriteDB() *Query {
 func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 	return &Query{
 		db:                                    db,
+		WinPixelConfig:                        q.WinPixelConfig.replaceDB(db),
 		WinUserInvite:                         q.WinUserInvite.replaceDB(db),
 		WinAgentDailyStatistics:               q.WinAgentDailyStatistics.replaceDB(db),
 		LiveGame:                              q.LiveGame.replaceDB(db),
@@ -1096,6 +1102,7 @@ func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 }
 
 type queryCtx struct {
+	WinPixelConfig                        IWinPixelConfigDo
 	WinUserInvite                         IWinUserInviteDo
 	WinAgentDailyStatistics               IWinAgentDailyStatisticsDo
 	LiveGame                              ILiveGameDo
@@ -1273,6 +1280,7 @@ type queryCtx struct {
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
+		WinPixelConfig:                        q.WinPixelConfig.WithContext(ctx),
 		WinUserInvite:                         q.WinUserInvite.WithContext(ctx),
 		WinAgentDailyStatistics:               q.WinAgentDailyStatistics.WithContext(ctx),
 		LiveGame:                              q.LiveGame.WithContext(ctx),
