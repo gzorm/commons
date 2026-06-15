@@ -38,8 +38,8 @@ func newWinPayChannel(db *gorm.DB, opts ...gen.DOOption) winPayChannel {
 	_winPayChannel.Category = field.NewInt64(tableName, "category")
 	_winPayChannel.CategoryTransfer = field.NewInt64(tableName, "category_transfer")
 	_winPayChannel.CategoryCurrency = field.NewInt64(tableName, "category_currency")
-	_winPayChannel.MinCoin = field.NewInt64(tableName, "min_coin")
-	_winPayChannel.MaxCoin = field.NewInt64(tableName, "max_coin")
+	_winPayChannel.MinCoin = field.NewField(tableName, "min_coin")
+	_winPayChannel.MaxCoin = field.NewField(tableName, "max_coin")
 	_winPayChannel.Status = field.NewInt64(tableName, "status")
 	_winPayChannel.RequestURL = field.NewString(tableName, "request_url")
 	_winPayChannel.NotifyURL = field.NewString(tableName, "notify_url")
@@ -75,8 +75,8 @@ type winPayChannel struct {
 	Category           field.Int64  // 支付类型；1:代收 2:代付
 	CategoryTransfer   field.Int64  // 转账类型：1-TRC,2-ERC,3-BANK,4-PIX,5-GCASH
 	CategoryCurrency   field.Int64  // 提款货币类型:0-数字货币 1-法币方式;1:USDT 2:Bank Card
-	MinCoin            field.Int64  // 最小金额
-	MaxCoin            field.Int64  // 最大金额
+	MinCoin            field.Field
+	MaxCoin            field.Field
 	Status             field.Int64  // 状态;0:关闭 1:开启
 	RequestURL         field.String // 请求三方支付地址
 	NotifyURL          field.String // 回调地址
@@ -118,8 +118,8 @@ func (w *winPayChannel) updateTableName(table string) *winPayChannel {
 	w.Category = field.NewInt64(table, "category")
 	w.CategoryTransfer = field.NewInt64(table, "category_transfer")
 	w.CategoryCurrency = field.NewInt64(table, "category_currency")
-	w.MinCoin = field.NewInt64(table, "min_coin")
-	w.MaxCoin = field.NewInt64(table, "max_coin")
+	w.MinCoin = field.NewField(table, "min_coin")
+	w.MaxCoin = field.NewField(table, "max_coin")
 	w.Status = field.NewInt64(table, "status")
 	w.RequestURL = field.NewString(table, "request_url")
 	w.NotifyURL = field.NewString(table, "notify_url")
