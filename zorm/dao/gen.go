@@ -19,6 +19,7 @@ import (
 var (
 	Q                                     = new(Query)
 	WinUserAdjustConfig                   *winUserAdjustConfig
+	WinAgentUserReportUsdt                *winAgentUserReportUsdt
 	WinRankingUser                        *winRankingUser
 	TWorldCupVideo                        *tWorldCupVideo
 	WinPixelConfig                        *winPixelConfig
@@ -200,6 +201,7 @@ var (
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	*Q = *Use(db, opts...)
 	WinUserAdjustConfig = &Q.WinUserAdjustConfig
+	WinAgentUserReportUsdt = &Q.WinAgentUserReportUsdt
 	WinRankingUser = &Q.WinRankingUser
 	TWorldCupVideo = &Q.TWorldCupVideo
 	WinPixelConfig = &Q.WinPixelConfig
@@ -383,6 +385,7 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 	return &Query{
 		db:                                    db,
 		WinUserAdjustConfig:                   newWinUserAdjustConfig(db, opts...),
+		WinAgentUserReportUsdt:                newWinAgentUserReportUsdt(db, opts...),
 		WinRankingUser:                        newWinRankingUser(db, opts...),
 		TWorldCupVideo:                        newTWorldCupVideo(db, opts...),
 		WinPixelConfig:                        newWinPixelConfig(db, opts...),
@@ -565,6 +568,7 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 type Query struct {
 	db                                    *gorm.DB
 	WinUserAdjustConfig                   winUserAdjustConfig
+	WinAgentUserReportUsdt                winAgentUserReportUsdt
 	WinRankingUser                        winRankingUser
 	TWorldCupVideo                        tWorldCupVideo
 	WinPixelConfig                        winPixelConfig
@@ -749,6 +753,7 @@ func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
 		db:                                    db,
 		WinUserAdjustConfig:                   q.WinUserAdjustConfig.clone(db),
+		WinAgentUserReportUsdt:                q.WinAgentUserReportUsdt.clone(db),
 		WinRankingUser:                        q.WinRankingUser.clone(db),
 		TWorldCupVideo:                        q.TWorldCupVideo.clone(db),
 		WinPixelConfig:                        q.WinPixelConfig.clone(db),
@@ -940,6 +945,7 @@ func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 	return &Query{
 		db:                                    db,
 		WinUserAdjustConfig:                   q.WinUserAdjustConfig.replaceDB(db),
+		WinAgentUserReportUsdt:                q.WinAgentUserReportUsdt.replaceDB(db),
 		WinRankingUser:                        q.WinRankingUser.replaceDB(db),
 		TWorldCupVideo:                        q.TWorldCupVideo.replaceDB(db),
 		WinPixelConfig:                        q.WinPixelConfig.replaceDB(db),
@@ -1121,6 +1127,7 @@ func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 
 type queryCtx struct {
 	WinUserAdjustConfig                   IWinUserAdjustConfigDo
+	WinAgentUserReportUsdt                IWinAgentUserReportUsdtDo
 	WinRankingUser                        IWinRankingUserDo
 	TWorldCupVideo                        ITWorldCupVideoDo
 	WinPixelConfig                        IWinPixelConfigDo
@@ -1302,6 +1309,7 @@ type queryCtx struct {
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
 		WinUserAdjustConfig:                   q.WinUserAdjustConfig.WithContext(ctx),
+		WinAgentUserReportUsdt:                q.WinAgentUserReportUsdt.WithContext(ctx),
 		WinRankingUser:                        q.WinRankingUser.WithContext(ctx),
 		TWorldCupVideo:                        q.TWorldCupVideo.WithContext(ctx),
 		WinPixelConfig:                        q.WinPixelConfig.WithContext(ctx),
