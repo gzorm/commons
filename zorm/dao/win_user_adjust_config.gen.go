@@ -30,11 +30,14 @@ func newWinUserAdjustConfig(db *gorm.DB, opts ...gen.DOOption) winUserAdjustConf
 	_winUserAdjustConfig.ID = field.NewInt64(tableName, "id")
 	_winUserAdjustConfig.PackageName = field.NewString(tableName, "package_name")
 	_winUserAdjustConfig.AppToken = field.NewString(tableName, "app_token")
+	_winUserAdjustConfig.InstallEvent = field.NewString(tableName, "install_event")
 	_winUserAdjustConfig.LoginEvent = field.NewString(tableName, "login_event")
 	_winUserAdjustConfig.RegisterEvent = field.NewString(tableName, "register_event")
 	_winUserAdjustConfig.AddCartEvent = field.NewString(tableName, "add_cart_event")
 	_winUserAdjustConfig.PurchaseEvent = field.NewString(tableName, "purchase_event")
+	_winUserAdjustConfig.FirstPayEvent = field.NewString(tableName, "first_pay_event")
 	_winUserAdjustConfig.Status = field.NewInt64(tableName, "status")
+	_winUserAdjustConfig.Remark = field.NewString(tableName, "remark")
 	_winUserAdjustConfig.CreateTime = field.NewInt64(tableName, "create_time")
 	_winUserAdjustConfig.UpdateTime = field.NewInt64(tableName, "update_time")
 
@@ -51,11 +54,14 @@ type winUserAdjustConfig struct {
 	ID            field.Int64  // 主键ID
 	PackageName   field.String // 包名，唯一标识一个应用
 	AppToken      field.String // Adjust App Token
+	InstallEvent  field.String // 安装事件token
 	LoginEvent    field.String // 登录事件token
 	RegisterEvent field.String // 注册事件token
 	AddCartEvent  field.String // 加购事件token
 	PurchaseEvent field.String // 充值/购买成功事件token
+	FirstPayEvent field.String // 首充事件token
 	Status        field.Int64  // 状态:1启用 0禁用
+	Remark        field.String // 备注
 	CreateTime    field.Int64  // 创建时间
 	UpdateTime    field.Int64  // 更新时间
 
@@ -77,11 +83,14 @@ func (w *winUserAdjustConfig) updateTableName(table string) *winUserAdjustConfig
 	w.ID = field.NewInt64(table, "id")
 	w.PackageName = field.NewString(table, "package_name")
 	w.AppToken = field.NewString(table, "app_token")
+	w.InstallEvent = field.NewString(table, "install_event")
 	w.LoginEvent = field.NewString(table, "login_event")
 	w.RegisterEvent = field.NewString(table, "register_event")
 	w.AddCartEvent = field.NewString(table, "add_cart_event")
 	w.PurchaseEvent = field.NewString(table, "purchase_event")
+	w.FirstPayEvent = field.NewString(table, "first_pay_event")
 	w.Status = field.NewInt64(table, "status")
+	w.Remark = field.NewString(table, "remark")
 	w.CreateTime = field.NewInt64(table, "create_time")
 	w.UpdateTime = field.NewInt64(table, "update_time")
 
@@ -100,15 +109,18 @@ func (w *winUserAdjustConfig) GetFieldByName(fieldName string) (field.OrderExpr,
 }
 
 func (w *winUserAdjustConfig) fillFieldMap() {
-	w.fieldMap = make(map[string]field.Expr, 10)
+	w.fieldMap = make(map[string]field.Expr, 13)
 	w.fieldMap["id"] = w.ID
 	w.fieldMap["package_name"] = w.PackageName
 	w.fieldMap["app_token"] = w.AppToken
+	w.fieldMap["install_event"] = w.InstallEvent
 	w.fieldMap["login_event"] = w.LoginEvent
 	w.fieldMap["register_event"] = w.RegisterEvent
 	w.fieldMap["add_cart_event"] = w.AddCartEvent
 	w.fieldMap["purchase_event"] = w.PurchaseEvent
+	w.fieldMap["first_pay_event"] = w.FirstPayEvent
 	w.fieldMap["status"] = w.Status
+	w.fieldMap["remark"] = w.Remark
 	w.fieldMap["create_time"] = w.CreateTime
 	w.fieldMap["update_time"] = w.UpdateTime
 }

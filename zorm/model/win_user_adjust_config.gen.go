@@ -11,11 +11,14 @@ type WinUserAdjustConfig struct {
 	ID            int64  `gorm:"column:id;type:bigint;primaryKey;autoIncrement:true;comment:主键ID" json:"id,string"`           // 主键ID
 	PackageName   string `gorm:"column:package_name;type:varchar(128);not null;comment:包名，唯一标识一个应用" json:"packageName"`       // 包名，唯一标识一个应用
 	AppToken      string `gorm:"column:app_token;type:varchar(64);not null;comment:Adjust App Token" json:"appToken"`         // Adjust App Token
+	InstallEvent  string `gorm:"column:install_event;type:varchar(64);not null;comment:安装事件token" json:"installEvent"`        // 安装事件token
 	LoginEvent    string `gorm:"column:login_event;type:varchar(64);not null;comment:登录事件token" json:"loginEvent"`            // 登录事件token
 	RegisterEvent string `gorm:"column:register_event;type:varchar(64);not null;comment:注册事件token" json:"registerEvent"`      // 注册事件token
 	AddCartEvent  string `gorm:"column:add_cart_event;type:varchar(64);not null;comment:加购事件token" json:"addCartEvent"`       // 加购事件token
 	PurchaseEvent string `gorm:"column:purchase_event;type:varchar(64);not null;comment:充值/购买成功事件token" json:"purchaseEvent"` // 充值/购买成功事件token
+	FirstPayEvent string `gorm:"column:first_pay_event;type:varchar(64);not null;comment:首充事件token" json:"firstPayEvent"`     // 首充事件token
 	Status        int64  `gorm:"column:status;type:tinyint;not null;default:1;comment:状态:1启用 0禁用" json:"status"`              // 状态:1启用 0禁用
+	Remark        string `gorm:"column:remark;type:varchar(255);not null;comment:备注" json:"remark"`                           // 备注
 	CreateTime    int64  `gorm:"column:create_time;type:bigint;not null;comment:创建时间" json:"createTime"`                      // 创建时间
 	UpdateTime    int64  `gorm:"column:update_time;type:bigint;not null;comment:更新时间" json:"updateTime"`                      // 更新时间
 }
