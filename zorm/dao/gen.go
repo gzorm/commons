@@ -196,6 +196,16 @@ var (
 	CompetitionRankingRewards             *competitionRankingRewards
 	PointsRewards                         *pointsRewards
 	PointsCollectionRecord                *pointsCollectionRecord
+	WinLuckyConfig                        *winLuckyConfig
+	WinLuckyConfigHistory                 *winLuckyConfigHistory
+	WinLuckyPeriod                        *winLuckyPeriod
+	WinLuckyPrizeConfig                   *winLuckyPrizeConfig
+	WinLuckyPushLog                       *winLuckyPushLog
+	WinLuckyPushTemplate                  *winLuckyPushTemplate
+	WinLuckyRiskLog                       *winLuckyRiskLog
+	WinLuckyUserDailyStat                 *winLuckyUserDailyStat
+	WinLuckyUserTotalStat                 *winLuckyUserTotalStat
+	WinLuckyWinner                        *winLuckyWinner
 )
 
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
@@ -378,6 +388,16 @@ func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	CompetitionRankingRewards = &Q.CompetitionRankingRewards
 	PointsRewards = &Q.PointsRewards
 	PointsCollectionRecord = &Q.PointsCollectionRecord
+	WinLuckyConfig = &Q.WinLuckyConfig
+	WinLuckyConfigHistory = &Q.WinLuckyConfigHistory
+	WinLuckyPeriod = &Q.WinLuckyPeriod
+	WinLuckyPrizeConfig = &Q.WinLuckyPrizeConfig
+	WinLuckyPushLog = &Q.WinLuckyPushLog
+	WinLuckyPushTemplate = &Q.WinLuckyPushTemplate
+	WinLuckyRiskLog = &Q.WinLuckyRiskLog
+	WinLuckyUserDailyStat = &Q.WinLuckyUserDailyStat
+	WinLuckyUserTotalStat = &Q.WinLuckyUserTotalStat
+	WinLuckyWinner = &Q.WinLuckyWinner
 
 }
 
@@ -562,6 +582,16 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 		CompetitionRankingRewards:             newCompetitionRankingRewards(db, opts...),
 		PointsRewards:                         newPointsRewards(db, opts...),
 		PointsCollectionRecord:                newPointsCollectionRecord(db, opts...),
+		WinLuckyConfig:                        newWinLuckyConfig(db, opts...),
+		WinLuckyConfigHistory:                 newWinLuckyConfigHistory(db, opts...),
+		WinLuckyPeriod:                        newWinLuckyPeriod(db, opts...),
+		WinLuckyPrizeConfig:                   newWinLuckyPrizeConfig(db, opts...),
+		WinLuckyPushLog:                       newWinLuckyPushLog(db, opts...),
+		WinLuckyPushTemplate:                  newWinLuckyPushTemplate(db, opts...),
+		WinLuckyRiskLog:                       newWinLuckyRiskLog(db, opts...),
+		WinLuckyUserDailyStat:                 newWinLuckyUserDailyStat(db, opts...),
+		WinLuckyUserTotalStat:                 newWinLuckyUserTotalStat(db, opts...),
+		WinLuckyWinner:                        newWinLuckyWinner(db, opts...),
 	}
 }
 
@@ -745,6 +775,16 @@ type Query struct {
 	CompetitionRankingRewards             competitionRankingRewards
 	PointsRewards                         pointsRewards
 	PointsCollectionRecord                pointsCollectionRecord
+	WinLuckyConfig                        winLuckyConfig
+	WinLuckyConfigHistory                 winLuckyConfigHistory
+	WinLuckyPeriod                        winLuckyPeriod
+	WinLuckyPrizeConfig                   winLuckyPrizeConfig
+	WinLuckyPushLog                       winLuckyPushLog
+	WinLuckyPushTemplate                  winLuckyPushTemplate
+	WinLuckyRiskLog                       winLuckyRiskLog
+	WinLuckyUserDailyStat                 winLuckyUserDailyStat
+	WinLuckyUserTotalStat                 winLuckyUserTotalStat
+	WinLuckyWinner                        winLuckyWinner
 }
 
 func (q *Query) Available() bool { return q.db != nil }
@@ -930,6 +970,16 @@ func (q *Query) clone(db *gorm.DB) *Query {
 		CompetitionRankingRewards:             q.CompetitionRankingRewards.clone(db),
 		PointsRewards:                         q.PointsRewards.clone(db),
 		PointsCollectionRecord:                q.PointsCollectionRecord.clone(db),
+		WinLuckyConfig:                        q.WinLuckyConfig.clone(db),
+		WinLuckyConfigHistory:                 q.WinLuckyConfigHistory.clone(db),
+		WinLuckyPeriod:                        q.WinLuckyPeriod.clone(db),
+		WinLuckyPrizeConfig:                   q.WinLuckyPrizeConfig.clone(db),
+		WinLuckyPushLog:                       q.WinLuckyPushLog.clone(db),
+		WinLuckyPushTemplate:                  q.WinLuckyPushTemplate.clone(db),
+		WinLuckyRiskLog:                       q.WinLuckyRiskLog.clone(db),
+		WinLuckyUserDailyStat:                 q.WinLuckyUserDailyStat.clone(db),
+		WinLuckyUserTotalStat:                 q.WinLuckyUserTotalStat.clone(db),
+		WinLuckyWinner:                        q.WinLuckyWinner.clone(db),
 	}
 }
 
@@ -1122,6 +1172,16 @@ func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 		CompetitionRankingRewards:             q.CompetitionRankingRewards.replaceDB(db),
 		PointsRewards:                         q.PointsRewards.replaceDB(db),
 		PointsCollectionRecord:                q.PointsCollectionRecord.replaceDB(db),
+		WinLuckyConfig:                        q.WinLuckyConfig.replaceDB(db),
+		WinLuckyConfigHistory:                 q.WinLuckyConfigHistory.replaceDB(db),
+		WinLuckyPeriod:                        q.WinLuckyPeriod.replaceDB(db),
+		WinLuckyPrizeConfig:                   q.WinLuckyPrizeConfig.replaceDB(db),
+		WinLuckyPushLog:                       q.WinLuckyPushLog.replaceDB(db),
+		WinLuckyPushTemplate:                  q.WinLuckyPushTemplate.replaceDB(db),
+		WinLuckyRiskLog:                       q.WinLuckyRiskLog.replaceDB(db),
+		WinLuckyUserDailyStat:                 q.WinLuckyUserDailyStat.replaceDB(db),
+		WinLuckyUserTotalStat:                 q.WinLuckyUserTotalStat.replaceDB(db),
+		WinLuckyWinner:                        q.WinLuckyWinner.replaceDB(db),
 	}
 }
 
@@ -1304,6 +1364,16 @@ type queryCtx struct {
 	CompetitionRankingRewards             ICompetitionRankingRewardsDo
 	PointsRewards                         IPointsRewardsDo
 	PointsCollectionRecord                IPointsCollectionRecordDo
+	WinLuckyConfig                        IWinLuckyConfigDo
+	WinLuckyConfigHistory                 IWinLuckyConfigHistoryDo
+	WinLuckyPeriod                        IWinLuckyPeriodDo
+	WinLuckyPrizeConfig                   IWinLuckyPrizeConfigDo
+	WinLuckyPushLog                       IWinLuckyPushLogDo
+	WinLuckyPushTemplate                  IWinLuckyPushTemplateDo
+	WinLuckyRiskLog                       IWinLuckyRiskLogDo
+	WinLuckyUserDailyStat                 IWinLuckyUserDailyStatDo
+	WinLuckyUserTotalStat                 IWinLuckyUserTotalStatDo
+	WinLuckyWinner                        IWinLuckyWinnerDo
 }
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
@@ -1486,6 +1556,16 @@ func (q *Query) WithContext(ctx context.Context) *queryCtx {
 		CompetitionRankingRewards:             q.CompetitionRankingRewards.WithContext(ctx),
 		PointsRewards:                         q.PointsRewards.WithContext(ctx),
 		PointsCollectionRecord:                q.PointsCollectionRecord.WithContext(ctx),
+		WinLuckyConfig:                        q.WinLuckyConfig.WithContext(ctx),
+		WinLuckyConfigHistory:                 q.WinLuckyConfigHistory.WithContext(ctx),
+		WinLuckyPeriod:                        q.WinLuckyPeriod.WithContext(ctx),
+		WinLuckyPrizeConfig:                   q.WinLuckyPrizeConfig.WithContext(ctx),
+		WinLuckyPushLog:                       q.WinLuckyPushLog.WithContext(ctx),
+		WinLuckyPushTemplate:                  q.WinLuckyPushTemplate.WithContext(ctx),
+		WinLuckyRiskLog:                       q.WinLuckyRiskLog.WithContext(ctx),
+		WinLuckyUserDailyStat:                 q.WinLuckyUserDailyStat.WithContext(ctx),
+		WinLuckyUserTotalStat:                 q.WinLuckyUserTotalStat.WithContext(ctx),
+		WinLuckyWinner:                        q.WinLuckyWinner.WithContext(ctx),
 	}
 }
 
