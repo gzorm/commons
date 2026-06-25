@@ -29,6 +29,7 @@ func newWinLuckyConfig(db *gorm.DB, opts ...gen.DOOption) winLuckyConfig {
 	_winLuckyConfig.ALL = field.NewAsterisk(tableName)
 	_winLuckyConfig.ID = field.NewInt64(tableName, "id")
 	_winLuckyConfig.PromotionID = field.NewInt64(tableName, "promotion_id")
+	_winLuckyConfig.DoingsID = field.NewInt64(tableName, "doings_id")
 	_winLuckyConfig.SiteCode = field.NewString(tableName, "site_code")
 	_winLuckyConfig.ActivityCode = field.NewString(tableName, "activity_code")
 	_winLuckyConfig.ActivityName = field.NewString(tableName, "activity_name")
@@ -99,6 +100,7 @@ type winLuckyConfig struct {
 	ALL                       field.Asterisk
 	ID                        field.Int64  // 主键ID
 	PromotionID               field.Int64  // 促销活动ID
+	DoingsID                  field.Int64  // 关联t_doings.id
 	SiteCode                  field.String // 站点编码
 	ActivityCode              field.String // 活动编码
 	ActivityName              field.String // 活动名称
@@ -174,6 +176,7 @@ func (w *winLuckyConfig) updateTableName(table string) *winLuckyConfig {
 	w.ALL = field.NewAsterisk(table)
 	w.ID = field.NewInt64(table, "id")
 	w.PromotionID = field.NewInt64(table, "promotion_id")
+	w.DoingsID = field.NewInt64(table, "doings_id")
 	w.SiteCode = field.NewString(table, "site_code")
 	w.ActivityCode = field.NewString(table, "activity_code")
 	w.ActivityName = field.NewString(table, "activity_name")
@@ -247,9 +250,10 @@ func (w *winLuckyConfig) GetFieldByName(fieldName string) (field.OrderExpr, bool
 }
 
 func (w *winLuckyConfig) fillFieldMap() {
-	w.fieldMap = make(map[string]field.Expr, 59)
+	w.fieldMap = make(map[string]field.Expr, 60)
 	w.fieldMap["id"] = w.ID
 	w.fieldMap["promotion_id"] = w.PromotionID
+	w.fieldMap["doings_id"] = w.DoingsID
 	w.fieldMap["site_code"] = w.SiteCode
 	w.fieldMap["activity_code"] = w.ActivityCode
 	w.fieldMap["activity_name"] = w.ActivityName

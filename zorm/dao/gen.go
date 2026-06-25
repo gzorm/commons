@@ -18,6 +18,7 @@ import (
 
 var (
 	Q                                     = new(Query)
+	TDoings                               *tDoings
 	WinUserAdjustConfig                   *winUserAdjustConfig
 	WinAgentUserReportUsdt                *winAgentUserReportUsdt
 	WinRankingUser                        *winRankingUser
@@ -210,6 +211,7 @@ var (
 
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	*Q = *Use(db, opts...)
+	TDoings = &Q.TDoings
 	WinUserAdjustConfig = &Q.WinUserAdjustConfig
 	WinAgentUserReportUsdt = &Q.WinAgentUserReportUsdt
 	WinRankingUser = &Q.WinRankingUser
@@ -404,6 +406,7 @@ func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 	return &Query{
 		db:                                    db,
+		TDoings:                               newTDoings(db, opts...),
 		WinUserAdjustConfig:                   newWinUserAdjustConfig(db, opts...),
 		WinAgentUserReportUsdt:                newWinAgentUserReportUsdt(db, opts...),
 		WinRankingUser:                        newWinRankingUser(db, opts...),
@@ -597,6 +600,7 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 
 type Query struct {
 	db                                    *gorm.DB
+	TDoings                               tDoings
 	WinUserAdjustConfig                   winUserAdjustConfig
 	WinAgentUserReportUsdt                winAgentUserReportUsdt
 	WinRankingUser                        winRankingUser
@@ -792,6 +796,7 @@ func (q *Query) Available() bool { return q.db != nil }
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
 		db:                                    db,
+		TDoings:                               q.TDoings.clone(db),
 		WinUserAdjustConfig:                   q.WinUserAdjustConfig.clone(db),
 		WinAgentUserReportUsdt:                q.WinAgentUserReportUsdt.clone(db),
 		WinRankingUser:                        q.WinRankingUser.clone(db),
@@ -994,6 +999,7 @@ func (q *Query) WriteDB() *Query {
 func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 	return &Query{
 		db:                                    db,
+		TDoings:                               q.TDoings.replaceDB(db),
 		WinUserAdjustConfig:                   q.WinUserAdjustConfig.replaceDB(db),
 		WinAgentUserReportUsdt:                q.WinAgentUserReportUsdt.replaceDB(db),
 		WinRankingUser:                        q.WinRankingUser.replaceDB(db),
@@ -1186,6 +1192,7 @@ func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 }
 
 type queryCtx struct {
+	TDoings                               ITDoingsDo
 	WinUserAdjustConfig                   IWinUserAdjustConfigDo
 	WinAgentUserReportUsdt                IWinAgentUserReportUsdtDo
 	WinRankingUser                        IWinRankingUserDo
@@ -1378,6 +1385,7 @@ type queryCtx struct {
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
+		TDoings:                               q.TDoings.WithContext(ctx),
 		WinUserAdjustConfig:                   q.WinUserAdjustConfig.WithContext(ctx),
 		WinAgentUserReportUsdt:                q.WinAgentUserReportUsdt.WithContext(ctx),
 		WinRankingUser:                        q.WinRankingUser.WithContext(ctx),

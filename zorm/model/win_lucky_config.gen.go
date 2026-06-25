@@ -12,6 +12,7 @@ const TableNameWinLuckyConfig = "win_lucky_config"
 type WinLuckyConfig struct {
 	ID                        int64           `gorm:"column:id;type:bigint unsigned;primaryKey;autoIncrement:true;comment:主键ID" json:"id,string"`                         // 主键ID
 	PromotionID               int64           `gorm:"column:promotion_id;type:bigint unsigned;not null;comment:促销活动ID" json:"promotionId"`                                // 促销活动ID
+	DoingsID                  int64           `gorm:"column:doings_id;type:bigint unsigned;not null;comment:关联t_doings.id" json:"doingsId"`                               // 关联t_doings.id
 	SiteCode                  string          `gorm:"column:site_code;type:varchar(32);not null;comment:站点编码" json:"siteCode"`                                            // 站点编码
 	ActivityCode              string          `gorm:"column:activity_code;type:varchar(64);not null;comment:活动编码" json:"activityCode"`                                    // 活动编码
 	ActivityName              string          `gorm:"column:activity_name;type:varchar(128);not null;comment:活动名称" json:"activityName"`                                   // 活动名称
