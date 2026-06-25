@@ -66,8 +66,8 @@ type WinUser struct {
 	OperatorName      string          `gorm:"column:operator_name;type:text;comment:操作员名称" json:"operatorName"` // 操作员名称
 	FbPid             string          `gorm:"column:fb_pid;type:text" json:"fbPid"`
 	FbCid             string          `gorm:"column:fb_cid;type:text" json:"fbCid"`
-	Source            int64           `gorm:"column:source;type:tinyint;default:1;comment:推广来源 fb=1,tk=2" json:"source"` // 推广来源 fb=1,tk=2
-	CreatedName       string          `gorm:"column:created_name;type:text;comment:创建人名称" json:"createdName"`            // 创建人名称
+	Source            int64           `gorm:"column:source;type:tinyint;default:1;comment:推广来源 1=facebookar1,2=tiktok,3=facebookus1,4=instagram,5=x,6=twitter,7=youtube,8=other" json:"source"` // 推广来源 1=facebookar1,2=tiktok,3=facebookus1,4=instagram,5=x,6=twitter,7=youtube,8=other
+	CreatedName       string          `gorm:"column:created_name;type:text;comment:创建人名称" json:"createdName"`                                                                                   // 创建人名称
 	MemberType        int64           `gorm:"column:memberType;type:tinyint" json:"memberType"`
 	GoogleSubID       string          `gorm:"column:google_sub_id;type:text" json:"googleSubId"`
 	FacebookSubID     string          `gorm:"column:facebook_sub_id;type:text" json:"facebookSubId"`
@@ -80,7 +80,7 @@ type WinUser struct {
 	Password          string          `gorm:"column:password;type:varchar(128);comment:密码" json:"password"`                                               // 密码
 	UserStatus        int64           `gorm:"column:user_status;type:tinyint;comment:用户状态(0:正常,1:禁言)" json:"userStatus"`                                  // 用户状态(0:正常,1:禁言)
 	HeaderImg         string          `gorm:"column:header_img;type:varchar(200);not null;comment:图像" json:"headerImg"`                                   // 图像
-	RoleID            int64           `gorm:"column:role_id;type:tinyint;not null;default:1;comment:角色:1=游客,8=普通用户,16=超管用户,20=代理" json:"roleId"`          // 角色:1=游客,8=普通用户,16=超管用户,20=代理
+	RoleID            int64           `gorm:"column:role_id;type:tinyint;not null;default:1;comment:角色:1=游客,8=普通用户,12=主播,16=超管用户,20=代理" json:"roleId"`    // 角色:1=游客,8=普通用户,12=主播,16=超管用户,20=代理
 	SecondaryRoleID   int64           `gorm:"column:secondary_role_id;type:bigint unsigned;not null;default:1;comment:二级角色id:1球迷" json:"secondaryRoleId"` // 二级角色id:1球迷
 	Level             int64           `gorm:"column:level;type:bigint;not null;default:1;comment:用户等级" json:"level"`                                      // 用户等级
 	Experience        int64           `gorm:"column:experience;type:bigint;not null;comment:经验值" json:"experience"`                                       // 经验值
@@ -105,6 +105,9 @@ type WinUser struct {
 	FollowingCount    int64           `gorm:"column:following_count;type:bigint;not null;comment:关注数" json:"followingCount"`                              // 关注数
 	LikeCount         int64           `gorm:"column:like_count;type:int unsigned;not null;comment:点赞数" json:"likeCount"`                                  // 点赞数
 	VideoCount        int64           `gorm:"column:video_count;type:int unsigned;not null;comment:视频数量" json:"videoCount"`                               // 视频数量
+	PackageName       string          `gorm:"column:package_name;type:varchar(128)" json:"packageName"`
+	GpsAdid           string          `gorm:"column:gps_adid;type:varchar(128)" json:"gpsAdid"`
+	AdjustAdid        string          `gorm:"column:adjust_adid;type:varchar(128)" json:"adjustAdid"`
 }
 
 // TableName WinUser's table name
