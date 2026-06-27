@@ -35,6 +35,8 @@ func newWinCodeRecords(db *gorm.DB, opts ...gen.DOOption) winCodeRecords {
 	_winCodeRecords.FlowClaim = field.NewField(tableName, "flow_claim")
 	_winCodeRecords.RealCode = field.NewField(tableName, "real_code")
 	_winCodeRecords.Category = field.NewInt64(tableName, "category")
+	_winCodeRecords.ActivityCode = field.NewString(tableName, "activity_code")
+	_winCodeRecords.Type = field.NewInt64(tableName, "type")
 	_winCodeRecords.CategoryWallet = field.NewInt64(tableName, "category_wallet")
 	_winCodeRecords.ReferID = field.NewInt64(tableName, "refer_id")
 	_winCodeRecords.ReferWithdrawalID = field.NewInt64(tableName, "refer_withdrawal_id")
@@ -60,7 +62,9 @@ type winCodeRecords struct {
 	CodeRequire       field.Field  // 需求打码量
 	FlowClaim         field.Field  // 需求打码倍数
 	RealCode          field.Field  // 实际打码量
-	Category          field.Int64  // 类型:1-充值 2-签到活动 3- 系统调账 4注册活动 5充值活动
+	Category          field.Int64  // 类型:1-充值 2-签到活动 3-系统调账 4-注册活动 5-充值活动 6-提现 7-月度减少打码量 8-充值低余额清除用户打码量 9-邀请注册奖励 10-邀请首充奖励 11-邀请充值返水 12-红包奖励 13-游戏奖励 14-用户授权app权限奖励
+	ActivityCode      field.String // 活动唯一标识
+	Type              field.Int64  // 收支类型:1-收入 2-支出
 	CategoryWallet    field.Int64  // 钱包类型:支付/游戏/活动/佣金
 	ReferID           field.Int64  // 关联ID
 	ReferWithdrawalID field.Int64  // 关联提款ID
@@ -92,6 +96,8 @@ func (w *winCodeRecords) updateTableName(table string) *winCodeRecords {
 	w.FlowClaim = field.NewField(table, "flow_claim")
 	w.RealCode = field.NewField(table, "real_code")
 	w.Category = field.NewInt64(table, "category")
+	w.ActivityCode = field.NewString(table, "activity_code")
+	w.Type = field.NewInt64(table, "type")
 	w.CategoryWallet = field.NewInt64(table, "category_wallet")
 	w.ReferID = field.NewInt64(table, "refer_id")
 	w.ReferWithdrawalID = field.NewInt64(table, "refer_withdrawal_id")
@@ -115,7 +121,7 @@ func (w *winCodeRecords) GetFieldByName(fieldName string) (field.OrderExpr, bool
 }
 
 func (w *winCodeRecords) fillFieldMap() {
-	w.fieldMap = make(map[string]field.Expr, 15)
+	w.fieldMap = make(map[string]field.Expr, 17)
 	w.fieldMap["id"] = w.ID
 	w.fieldMap["uid"] = w.UID
 	w.fieldMap["username"] = w.Username
@@ -124,6 +130,8 @@ func (w *winCodeRecords) fillFieldMap() {
 	w.fieldMap["flow_claim"] = w.FlowClaim
 	w.fieldMap["real_code"] = w.RealCode
 	w.fieldMap["category"] = w.Category
+	w.fieldMap["activity_code"] = w.ActivityCode
+	w.fieldMap["type"] = w.Type
 	w.fieldMap["category_wallet"] = w.CategoryWallet
 	w.fieldMap["refer_id"] = w.ReferID
 	w.fieldMap["refer_withdrawal_id"] = w.ReferWithdrawalID

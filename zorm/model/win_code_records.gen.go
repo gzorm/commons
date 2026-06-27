@@ -11,18 +11,20 @@ const TableNameWinCodeRecords = "win_code_records"
 // WinCodeRecords 打码量记录表
 type WinCodeRecords struct {
 	ID                int64           `gorm:"column:id;type:int;primaryKey;autoIncrement:true" json:"id,string"`
-	UID               int64           `gorm:"column:uid;type:int;not null;comment:UID" json:"uid"`                                                   // UID
-	Username          string          `gorm:"column:username;type:varchar(32);not null;comment:用户名" json:"username"`                                 // 用户名
-	Coin              decimal.Decimal `gorm:"column:coin;type:decimal(15,4);not null;comment:金额" json:"coin"`                                        // 金额
-	CodeRequire       decimal.Decimal `gorm:"column:code_require;type:decimal(15,4);not null;comment:需求打码量" json:"codeRequire"`                      // 需求打码量
-	FlowClaim         decimal.Decimal `gorm:"column:flow_claim;type:decimal(8,4);comment:需求打码倍数" json:"flowClaim"`                                   // 需求打码倍数
-	RealCode          decimal.Decimal `gorm:"column:real_code;type:decimal(15,4);comment:实际打码量" json:"realCode"`                                     // 实际打码量
-	Category          int64           `gorm:"column:category;type:tinyint;not null;comment:类型:1-充值 2-签到活动 3- 系统调账 4注册活动 5充值活动" json:"category"`      // 类型:1-充值 2-签到活动 3- 系统调账 4注册活动 5充值活动
-	CategoryWallet    int64           `gorm:"column:category_wallet;type:tinyint;not null;default:1;comment:钱包类型:支付/游戏/活动/佣金" json:"categoryWallet"` // 钱包类型:支付/游戏/活动/佣金
-	ReferID           int64           `gorm:"column:refer_id;type:bigint;not null;comment:关联ID" json:"referId"`                                      // 关联ID
-	ReferWithdrawalID int64           `gorm:"column:refer_withdrawal_id;type:bigint;comment:关联提款ID" json:"referWithdrawalId"`                        // 关联提款ID
-	Remarks           string          `gorm:"column:remarks;type:varchar(255);not null;comment:备注" json:"remarks"`                                   // 备注
-	Status            int64           `gorm:"column:status;type:tinyint;not null;comment:状态:0-未结算 1-结算" json:"status"`                               // 状态:0-未结算 1-结算
+	UID               int64           `gorm:"column:uid;type:int;not null;comment:UID" json:"uid"`                                                                                                                                         // UID
+	Username          string          `gorm:"column:username;type:varchar(32);not null;comment:用户名" json:"username"`                                                                                                                       // 用户名
+	Coin              decimal.Decimal `gorm:"column:coin;type:decimal(15,4);not null;comment:金额" json:"coin"`                                                                                                                              // 金额
+	CodeRequire       decimal.Decimal `gorm:"column:code_require;type:decimal(15,4);not null;comment:需求打码量" json:"codeRequire"`                                                                                                            // 需求打码量
+	FlowClaim         decimal.Decimal `gorm:"column:flow_claim;type:decimal(8,4);comment:需求打码倍数" json:"flowClaim"`                                                                                                                         // 需求打码倍数
+	RealCode          decimal.Decimal `gorm:"column:real_code;type:decimal(15,4);comment:实际打码量" json:"realCode"`                                                                                                                           // 实际打码量
+	Category          int64           `gorm:"column:category;type:tinyint;not null;comment:类型:1-充值 2-签到活动 3-系统调账 4-注册活动 5-充值活动 6-提现 7-月度减少打码量 8-充值低余额清除用户打码量 9-邀请注册奖励 10-邀请首充奖励 11-邀请充值返水 12-红包奖励 13-游戏奖励 14-用户授权app权限奖励" json:"category"` // 类型:1-充值 2-签到活动 3-系统调账 4-注册活动 5-充值活动 6-提现 7-月度减少打码量 8-充值低余额清除用户打码量 9-邀请注册奖励 10-邀请首充奖励 11-邀请充值返水 12-红包奖励 13-游戏奖励 14-用户授权app权限奖励
+	ActivityCode      string          `gorm:"column:activity_code;type:varchar(64);not null;comment:活动唯一标识" json:"activityCode"`                                                                                                           // 活动唯一标识
+	Type              int64           `gorm:"column:type;type:tinyint;not null;default:1;comment:收支类型:1-收入 2-支出" json:"type"`                                                                                                              // 收支类型:1-收入 2-支出
+	CategoryWallet    int64           `gorm:"column:category_wallet;type:tinyint;not null;default:1;comment:钱包类型:支付/游戏/活动/佣金" json:"categoryWallet"`                                                                                       // 钱包类型:支付/游戏/活动/佣金
+	ReferID           int64           `gorm:"column:refer_id;type:bigint;not null;comment:关联ID" json:"referId"`                                                                                                                            // 关联ID
+	ReferWithdrawalID int64           `gorm:"column:refer_withdrawal_id;type:bigint;comment:关联提款ID" json:"referWithdrawalId"`                                                                                                              // 关联提款ID
+	Remarks           string          `gorm:"column:remarks;type:varchar(255);not null;comment:备注" json:"remarks"`                                                                                                                         // 备注
+	Status            int64           `gorm:"column:status;type:tinyint;not null;comment:状态:0-未结算 1-结算" json:"status"`                                                                                                                     // 状态:0-未结算 1-结算
 	CreatedAt         int64           `gorm:"column:created_at;comment:创建时间" json:"createdAt"`
 	UpdatedAt         int64           `gorm:"column:updated_at;comment:更新时间" json:"updatedAt"`
 }
