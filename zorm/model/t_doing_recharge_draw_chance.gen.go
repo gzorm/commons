@@ -24,6 +24,15 @@ type TDoingRechargeDrawChance struct {
 	Status         int64           `gorm:"column:status;type:tinyint;not null;default:1;comment:状态:1待抽奖2已抽奖3已过期" json:"status"`                  // 状态:1待抽奖2已抽奖3已过期
 	ExpiredAt      int64           `gorm:"column:expired_at;type:bigint;not null;comment:抽奖过期时间" json:"expiredAt"`                               // 抽奖过期时间
 	DrawAt         int64           `gorm:"column:draw_at;type:bigint;not null;comment:抽奖时间" json:"drawAt"`                                       // 抽奖时间
+	RewardCode     string          `gorm:"column:reward_code;type:varchar(64);not null;comment:奖项编码" json:"rewardCode"`                          // 奖项编码
+	RewardNameEn   string          `gorm:"column:reward_name_en;type:varchar(128);not null;comment:英文奖项名称" json:"rewardNameEn"`                  // 英文奖项名称
+	RewardNameAr   string          `gorm:"column:reward_name_ar;type:varchar(128);not null;comment:阿语奖项名称" json:"rewardNameAr"`                  // 阿语奖项名称
+	RewardAmount   decimal.Decimal `gorm:"column:reward_amount;type:decimal(20,4);not null;default:0.0000;comment:奖励金额" json:"rewardAmount"`     // 奖励金额
+	FlowMultiple   decimal.Decimal `gorm:"column:flow_multiple;type:decimal(10,4);not null;default:0.0000;comment:打码量倍数" json:"flowMultiple"`    // 打码量倍数
+	FlowAmount     decimal.Decimal `gorm:"column:flow_amount;type:decimal(20,4);not null;default:0.0000;comment:打码量" json:"flowAmount"`          // 打码量
+	WalletRecordID int64           `gorm:"column:wallet_record_id;type:bigint unsigned;not null;comment:钱包发放记录ID" json:"walletRecordId"`         // 钱包发放记录ID
+	RewardStatus   int64           `gorm:"column:reward_status;type:tinyint;not null;comment:奖励状态:0未发放1发放中2发放成功3发放失败" json:"rewardStatus"`       // 奖励状态:0未发放1发放中2发放成功3发放失败
+	RewardRemark   string          `gorm:"column:reward_remark;type:varchar(255);not null;comment:奖励备注" json:"rewardRemark"`                     // 奖励备注
 	CreatedAt      int64           `gorm:"column:created_at;comment:创建时间" json:"createdAt"`
 	UpdatedAt      int64           `gorm:"column:updated_at;comment:更新时间" json:"updatedAt"`
 }

@@ -41,6 +41,15 @@ func newTDoingRechargeDrawChance(db *gorm.DB, opts ...gen.DOOption) tDoingRechar
 	_tDoingRechargeDrawChance.Status = field.NewInt64(tableName, "status")
 	_tDoingRechargeDrawChance.ExpiredAt = field.NewInt64(tableName, "expired_at")
 	_tDoingRechargeDrawChance.DrawAt = field.NewInt64(tableName, "draw_at")
+	_tDoingRechargeDrawChance.RewardCode = field.NewString(tableName, "reward_code")
+	_tDoingRechargeDrawChance.RewardNameEn = field.NewString(tableName, "reward_name_en")
+	_tDoingRechargeDrawChance.RewardNameAr = field.NewString(tableName, "reward_name_ar")
+	_tDoingRechargeDrawChance.RewardAmount = field.NewField(tableName, "reward_amount")
+	_tDoingRechargeDrawChance.FlowMultiple = field.NewField(tableName, "flow_multiple")
+	_tDoingRechargeDrawChance.FlowAmount = field.NewField(tableName, "flow_amount")
+	_tDoingRechargeDrawChance.WalletRecordID = field.NewInt64(tableName, "wallet_record_id")
+	_tDoingRechargeDrawChance.RewardStatus = field.NewInt64(tableName, "reward_status")
+	_tDoingRechargeDrawChance.RewardRemark = field.NewString(tableName, "reward_remark")
 	_tDoingRechargeDrawChance.CreatedAt = field.NewInt64(tableName, "created_at")
 	_tDoingRechargeDrawChance.UpdatedAt = field.NewInt64(tableName, "updated_at")
 
@@ -68,6 +77,15 @@ type tDoingRechargeDrawChance struct {
 	Status         field.Int64  // 状态:1待抽奖2已抽奖3已过期
 	ExpiredAt      field.Int64  // 抽奖过期时间
 	DrawAt         field.Int64  // 抽奖时间
+	RewardCode     field.String // 奖项编码
+	RewardNameEn   field.String // 英文奖项名称
+	RewardNameAr   field.String // 阿语奖项名称
+	RewardAmount   field.Field  // 奖励金额
+	FlowMultiple   field.Field  // 打码量倍数
+	FlowAmount     field.Field  // 打码量
+	WalletRecordID field.Int64  // 钱包发放记录ID
+	RewardStatus   field.Int64  // 奖励状态:0未发放1发放中2发放成功3发放失败
+	RewardRemark   field.String // 奖励备注
 	CreatedAt      field.Int64
 	UpdatedAt      field.Int64
 
@@ -100,6 +118,15 @@ func (t *tDoingRechargeDrawChance) updateTableName(table string) *tDoingRecharge
 	t.Status = field.NewInt64(table, "status")
 	t.ExpiredAt = field.NewInt64(table, "expired_at")
 	t.DrawAt = field.NewInt64(table, "draw_at")
+	t.RewardCode = field.NewString(table, "reward_code")
+	t.RewardNameEn = field.NewString(table, "reward_name_en")
+	t.RewardNameAr = field.NewString(table, "reward_name_ar")
+	t.RewardAmount = field.NewField(table, "reward_amount")
+	t.FlowMultiple = field.NewField(table, "flow_multiple")
+	t.FlowAmount = field.NewField(table, "flow_amount")
+	t.WalletRecordID = field.NewInt64(table, "wallet_record_id")
+	t.RewardStatus = field.NewInt64(table, "reward_status")
+	t.RewardRemark = field.NewString(table, "reward_remark")
 	t.CreatedAt = field.NewInt64(table, "created_at")
 	t.UpdatedAt = field.NewInt64(table, "updated_at")
 
@@ -118,7 +145,7 @@ func (t *tDoingRechargeDrawChance) GetFieldByName(fieldName string) (field.Order
 }
 
 func (t *tDoingRechargeDrawChance) fillFieldMap() {
-	t.fieldMap = make(map[string]field.Expr, 16)
+	t.fieldMap = make(map[string]field.Expr, 25)
 	t.fieldMap["id"] = t.ID
 	t.fieldMap["activity_code"] = t.ActivityCode
 	t.fieldMap["doing_id"] = t.DoingID
@@ -133,6 +160,15 @@ func (t *tDoingRechargeDrawChance) fillFieldMap() {
 	t.fieldMap["status"] = t.Status
 	t.fieldMap["expired_at"] = t.ExpiredAt
 	t.fieldMap["draw_at"] = t.DrawAt
+	t.fieldMap["reward_code"] = t.RewardCode
+	t.fieldMap["reward_name_en"] = t.RewardNameEn
+	t.fieldMap["reward_name_ar"] = t.RewardNameAr
+	t.fieldMap["reward_amount"] = t.RewardAmount
+	t.fieldMap["flow_multiple"] = t.FlowMultiple
+	t.fieldMap["flow_amount"] = t.FlowAmount
+	t.fieldMap["wallet_record_id"] = t.WalletRecordID
+	t.fieldMap["reward_status"] = t.RewardStatus
+	t.fieldMap["reward_remark"] = t.RewardRemark
 	t.fieldMap["created_at"] = t.CreatedAt
 	t.fieldMap["updated_at"] = t.UpdatedAt
 }
