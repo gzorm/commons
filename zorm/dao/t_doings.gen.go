@@ -28,6 +28,7 @@ func newTDoings(db *gorm.DB, opts ...gen.DOOption) tDoings {
 	tableName := _tDoings.tDoingsDo.TableName()
 	_tDoings.ALL = field.NewAsterisk(tableName)
 	_tDoings.ID = field.NewInt64(tableName, "id")
+	_tDoings.Code = field.NewString(tableName, "code")
 	_tDoings.CreatedAt = field.NewInt64(tableName, "created_at")
 	_tDoings.UpdatedAt = field.NewInt64(tableName, "updated_at")
 	_tDoings.DeletedAt = field.NewField(tableName, "deleted_at")
@@ -39,6 +40,16 @@ func newTDoings(db *gorm.DB, opts ...gen.DOOption) tDoings {
 	_tDoings.DetailAr = field.NewString(tableName, "detail_ar")
 	_tDoings.ContentEn = field.NewString(tableName, "content_en")
 	_tDoings.ContentAr = field.NewString(tableName, "content_ar")
+	_tDoings.StartedAt = field.NewInt64(tableName, "started_at")
+	_tDoings.EndedAt = field.NewInt64(tableName, "ended_at")
+	_tDoings.TimeEn = field.NewString(tableName, "time_en")
+	_tDoings.TimeAr = field.NewString(tableName, "time_ar")
+	_tDoings.RewardTextEn = field.NewString(tableName, "reward_text_en")
+	_tDoings.RewardTextAr = field.NewString(tableName, "reward_text_ar")
+	_tDoings.RewardRuleJSON = field.NewString(tableName, "reward_rule_json")
+	_tDoings.RewardValue = field.NewField(tableName, "reward_value")
+	_tDoings.RuleTextEn = field.NewString(tableName, "rule_text_en")
+	_tDoings.RuleTextAr = field.NewString(tableName, "rule_text_ar")
 	_tDoings.ActivityCategory = field.NewInt64(tableName, "activity_category")
 	_tDoings.Sort = field.NewInt64(tableName, "sort")
 	_tDoings.Status = field.NewInt64(tableName, "status")
@@ -54,6 +65,7 @@ type tDoings struct {
 
 	ALL              field.Asterisk
 	ID               field.Int64
+	Code             field.String // 活动唯一标识
 	CreatedAt        field.Int64
 	UpdatedAt        field.Int64
 	DeletedAt        field.Field
@@ -65,6 +77,16 @@ type tDoings struct {
 	DetailAr         field.String // 阿语详情
 	ContentEn        field.String // 英文更新内容
 	ContentAr        field.String // 阿语更新内容
+	StartedAt        field.Int64  // 活动开始时间
+	EndedAt          field.Int64  // 活动结束时间
+	TimeEn           field.String // 英文活动时间
+	TimeAr           field.String // 阿语活动时间
+	RewardTextEn     field.String // 英文活动奖励
+	RewardTextAr     field.String // 阿语活动奖励
+	RewardRuleJSON   field.String // 用户奖励规则配置JSON
+	RewardValue      field.Field  // 奖励数值配置，如注册赠送10EGP
+	RuleTextEn       field.String // 英文中奖规则
+	RuleTextAr       field.String // 阿语中奖规则
 	ActivityCategory field.Int64  // 类型:1福利2公告3活动
 	Sort             field.Int64  // 排序
 	Status           field.Int64  // 状态:1未开始2进行中3已结束
@@ -85,6 +107,7 @@ func (t tDoings) As(alias string) *tDoings {
 func (t *tDoings) updateTableName(table string) *tDoings {
 	t.ALL = field.NewAsterisk(table)
 	t.ID = field.NewInt64(table, "id")
+	t.Code = field.NewString(table, "code")
 	t.CreatedAt = field.NewInt64(table, "created_at")
 	t.UpdatedAt = field.NewInt64(table, "updated_at")
 	t.DeletedAt = field.NewField(table, "deleted_at")
@@ -96,6 +119,16 @@ func (t *tDoings) updateTableName(table string) *tDoings {
 	t.DetailAr = field.NewString(table, "detail_ar")
 	t.ContentEn = field.NewString(table, "content_en")
 	t.ContentAr = field.NewString(table, "content_ar")
+	t.StartedAt = field.NewInt64(table, "started_at")
+	t.EndedAt = field.NewInt64(table, "ended_at")
+	t.TimeEn = field.NewString(table, "time_en")
+	t.TimeAr = field.NewString(table, "time_ar")
+	t.RewardTextEn = field.NewString(table, "reward_text_en")
+	t.RewardTextAr = field.NewString(table, "reward_text_ar")
+	t.RewardRuleJSON = field.NewString(table, "reward_rule_json")
+	t.RewardValue = field.NewField(table, "reward_value")
+	t.RuleTextEn = field.NewString(table, "rule_text_en")
+	t.RuleTextAr = field.NewString(table, "rule_text_ar")
 	t.ActivityCategory = field.NewInt64(table, "activity_category")
 	t.Sort = field.NewInt64(table, "sort")
 	t.Status = field.NewInt64(table, "status")
@@ -115,8 +148,9 @@ func (t *tDoings) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (t *tDoings) fillFieldMap() {
-	t.fieldMap = make(map[string]field.Expr, 15)
+	t.fieldMap = make(map[string]field.Expr, 26)
 	t.fieldMap["id"] = t.ID
+	t.fieldMap["code"] = t.Code
 	t.fieldMap["created_at"] = t.CreatedAt
 	t.fieldMap["updated_at"] = t.UpdatedAt
 	t.fieldMap["deleted_at"] = t.DeletedAt
@@ -128,6 +162,16 @@ func (t *tDoings) fillFieldMap() {
 	t.fieldMap["detail_ar"] = t.DetailAr
 	t.fieldMap["content_en"] = t.ContentEn
 	t.fieldMap["content_ar"] = t.ContentAr
+	t.fieldMap["started_at"] = t.StartedAt
+	t.fieldMap["ended_at"] = t.EndedAt
+	t.fieldMap["time_en"] = t.TimeEn
+	t.fieldMap["time_ar"] = t.TimeAr
+	t.fieldMap["reward_text_en"] = t.RewardTextEn
+	t.fieldMap["reward_text_ar"] = t.RewardTextAr
+	t.fieldMap["reward_rule_json"] = t.RewardRuleJSON
+	t.fieldMap["reward_value"] = t.RewardValue
+	t.fieldMap["rule_text_en"] = t.RuleTextEn
+	t.fieldMap["rule_text_ar"] = t.RuleTextAr
 	t.fieldMap["activity_category"] = t.ActivityCategory
 	t.fieldMap["sort"] = t.Sort
 	t.fieldMap["status"] = t.Status

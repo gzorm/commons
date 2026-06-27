@@ -5,6 +5,7 @@
 package model
 
 import (
+	"github.com/shopspring/decimal"
 	"gorm.io/gorm"
 )
 
@@ -12,21 +13,32 @@ const TableNameTDoings = "t_doings"
 
 // TDoings 活动配置单表
 type TDoings struct {
-	ID               int64          `gorm:"column:id;type:bigint unsigned;primaryKey;autoIncrement:true" json:"id,string"`
-	CreatedAt        int64          `gorm:"column:created_at;comment:创建时间" json:"createdAt"`
-	UpdatedAt        int64          `gorm:"column:updated_at;comment:更新时间" json:"updatedAt"`
-	DeletedAt        gorm.DeletedAt `gorm:"column:deleted_at;type:datetime(3)" json:"-"`
-	ImageURLEn       string         `gorm:"column:image_url_en;type:varchar(256);not null;comment:en图片" json:"imageUrlEn"`                       // en图片
-	ImageURLAr       string         `gorm:"column:image_url_ar;type:varchar(256);not null;comment:ar图片" json:"imageUrlAr"`                       // ar图片
-	TitleEn          string         `gorm:"column:title_en;type:varchar(64);not null;comment:英文标题" json:"titleEn"`                               // 英文标题
-	TitleAr          string         `gorm:"column:title_ar;type:varchar(64);not null;comment:阿语标题" json:"titleAr"`                               // 阿语标题
-	DetailEn         string         `gorm:"column:detail_en;type:varchar(256);not null;comment:英文详情" json:"detailEn"`                            // 英文详情
-	DetailAr         string         `gorm:"column:detail_ar;type:varchar(256);not null;comment:阿语详情" json:"detailAr"`                            // 阿语详情
-	ContentEn        string         `gorm:"column:content_en;type:text;comment:英文更新内容" json:"contentEn"`                                         // 英文更新内容
-	ContentAr        string         `gorm:"column:content_ar;type:text;comment:阿语更新内容" json:"contentAr"`                                         // 阿语更新内容
-	ActivityCategory int64          `gorm:"column:activity_category;type:bigint unsigned;not null;comment:类型:1福利2公告3活动" json:"activityCategory"` // 类型:1福利2公告3活动
-	Sort             int64          `gorm:"column:sort;type:bigint;not null;comment:排序" json:"sort"`                                             // 排序
-	Status           int64          `gorm:"column:status;type:tinyint;not null;default:1;comment:状态:1未开始2进行中3已结束" json:"status"`                 // 状态:1未开始2进行中3已结束
+	ID               int64           `gorm:"column:id;type:bigint unsigned;primaryKey;autoIncrement:true" json:"id,string"`
+	Code             string          `gorm:"column:code;type:varchar(64);not null;comment:活动唯一标识" json:"code"` // 活动唯一标识
+	CreatedAt        int64           `gorm:"column:created_at;comment:创建时间" json:"createdAt"`
+	UpdatedAt        int64           `gorm:"column:updated_at;comment:更新时间" json:"updatedAt"`
+	DeletedAt        gorm.DeletedAt  `gorm:"column:deleted_at;type:datetime(3)" json:"-"`
+	ImageURLEn       string          `gorm:"column:image_url_en;type:varchar(256);not null;comment:en图片" json:"imageUrlEn"`                               // en图片
+	ImageURLAr       string          `gorm:"column:image_url_ar;type:varchar(256);not null;comment:ar图片" json:"imageUrlAr"`                               // ar图片
+	TitleEn          string          `gorm:"column:title_en;type:varchar(64);not null;comment:英文标题" json:"titleEn"`                                       // 英文标题
+	TitleAr          string          `gorm:"column:title_ar;type:varchar(64);not null;comment:阿语标题" json:"titleAr"`                                       // 阿语标题
+	DetailEn         string          `gorm:"column:detail_en;type:varchar(256);not null;comment:英文详情" json:"detailEn"`                                    // 英文详情
+	DetailAr         string          `gorm:"column:detail_ar;type:varchar(256);not null;comment:阿语详情" json:"detailAr"`                                    // 阿语详情
+	ContentEn        string          `gorm:"column:content_en;type:text;comment:英文更新内容" json:"contentEn"`                                                 // 英文更新内容
+	ContentAr        string          `gorm:"column:content_ar;type:text;comment:阿语更新内容" json:"contentAr"`                                                 // 阿语更新内容
+	StartedAt        int64           `gorm:"column:started_at;type:bigint;not null;comment:活动开始时间" json:"startedAt"`                                      // 活动开始时间
+	EndedAt          int64           `gorm:"column:ended_at;type:bigint;not null;comment:活动结束时间" json:"endedAt"`                                          // 活动结束时间
+	TimeEn           string          `gorm:"column:time_en;type:text;comment:英文活动时间" json:"timeEn"`                                                       // 英文活动时间
+	TimeAr           string          `gorm:"column:time_ar;type:text;comment:阿语活动时间" json:"timeAr"`                                                       // 阿语活动时间
+	RewardTextEn     string          `gorm:"column:reward_text_en;type:text;comment:英文活动奖励" json:"rewardTextEn"`                                          // 英文活动奖励
+	RewardTextAr     string          `gorm:"column:reward_text_ar;type:text;comment:阿语活动奖励" json:"rewardTextAr"`                                          // 阿语活动奖励
+	RewardRuleJSON   string          `gorm:"column:reward_rule_json;type:json;comment:用户奖励规则配置JSON" json:"rewardRuleJson"`                                // 用户奖励规则配置JSON
+	RewardValue      decimal.Decimal `gorm:"column:reward_value;type:decimal(18,4);not null;default:0.0000;comment:奖励数值配置，如注册赠送10EGP" json:"rewardValue"` // 奖励数值配置，如注册赠送10EGP
+	RuleTextEn       string          `gorm:"column:rule_text_en;type:text;comment:英文中奖规则" json:"ruleTextEn"`                                              // 英文中奖规则
+	RuleTextAr       string          `gorm:"column:rule_text_ar;type:text;comment:阿语中奖规则" json:"ruleTextAr"`                                              // 阿语中奖规则
+	ActivityCategory int64           `gorm:"column:activity_category;type:bigint unsigned;not null;comment:类型:1福利2公告3活动" json:"activityCategory"`         // 类型:1福利2公告3活动
+	Sort             int64           `gorm:"column:sort;type:bigint;not null;comment:排序" json:"sort"`                                                     // 排序
+	Status           int64           `gorm:"column:status;type:tinyint;not null;default:1;comment:状态:1未开始2进行中3已结束" json:"status"`                         // 状态:1未开始2进行中3已结束
 }
 
 // TableName TDoings's table name
