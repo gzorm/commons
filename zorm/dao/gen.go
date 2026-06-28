@@ -18,6 +18,7 @@ import (
 
 var (
 	Q                                     = new(Query)
+	TRankingFakeRecord                    *tRankingFakeRecord
 	TDoingRedPacketRainTask               *tDoingRedPacketRainTask
 	TDoingRedPacketRainRecord             *tDoingRedPacketRainRecord
 	TDoingRechargeDrawChance              *tDoingRechargeDrawChance
@@ -215,6 +216,7 @@ var (
 
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	*Q = *Use(db, opts...)
+	TRankingFakeRecord = &Q.TRankingFakeRecord
 	TDoingRedPacketRainTask = &Q.TDoingRedPacketRainTask
 	TDoingRedPacketRainRecord = &Q.TDoingRedPacketRainRecord
 	TDoingRechargeDrawChance = &Q.TDoingRechargeDrawChance
@@ -414,6 +416,7 @@ func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 	return &Query{
 		db:                                    db,
+		TRankingFakeRecord:                    newTRankingFakeRecord(db, opts...),
 		TDoingRedPacketRainTask:               newTDoingRedPacketRainTask(db, opts...),
 		TDoingRedPacketRainRecord:             newTDoingRedPacketRainRecord(db, opts...),
 		TDoingRechargeDrawChance:              newTDoingRechargeDrawChance(db, opts...),
@@ -612,6 +615,7 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 
 type Query struct {
 	db                                    *gorm.DB
+	TRankingFakeRecord                    tRankingFakeRecord
 	TDoingRedPacketRainTask               tDoingRedPacketRainTask
 	TDoingRedPacketRainRecord             tDoingRedPacketRainRecord
 	TDoingRechargeDrawChance              tDoingRechargeDrawChance
@@ -812,6 +816,7 @@ func (q *Query) Available() bool { return q.db != nil }
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
 		db:                                    db,
+		TRankingFakeRecord:                    q.TRankingFakeRecord.clone(db),
 		TDoingRedPacketRainTask:               q.TDoingRedPacketRainTask.clone(db),
 		TDoingRedPacketRainRecord:             q.TDoingRedPacketRainRecord.clone(db),
 		TDoingRechargeDrawChance:              q.TDoingRechargeDrawChance.clone(db),
@@ -1019,6 +1024,7 @@ func (q *Query) WriteDB() *Query {
 func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 	return &Query{
 		db:                                    db,
+		TRankingFakeRecord:                    q.TRankingFakeRecord.replaceDB(db),
 		TDoingRedPacketRainTask:               q.TDoingRedPacketRainTask.replaceDB(db),
 		TDoingRedPacketRainRecord:             q.TDoingRedPacketRainRecord.replaceDB(db),
 		TDoingRechargeDrawChance:              q.TDoingRechargeDrawChance.replaceDB(db),
@@ -1216,6 +1222,7 @@ func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 }
 
 type queryCtx struct {
+	TRankingFakeRecord                    ITRankingFakeRecordDo
 	TDoingRedPacketRainTask               ITDoingRedPacketRainTaskDo
 	TDoingRedPacketRainRecord             ITDoingRedPacketRainRecordDo
 	TDoingRechargeDrawChance              ITDoingRechargeDrawChanceDo
@@ -1413,6 +1420,7 @@ type queryCtx struct {
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
+		TRankingFakeRecord:                    q.TRankingFakeRecord.WithContext(ctx),
 		TDoingRedPacketRainTask:               q.TDoingRedPacketRainTask.WithContext(ctx),
 		TDoingRedPacketRainRecord:             q.TDoingRedPacketRainRecord.WithContext(ctx),
 		TDoingRechargeDrawChance:              q.TDoingRechargeDrawChance.WithContext(ctx),
