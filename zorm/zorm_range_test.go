@@ -1,8 +1,9 @@
 package zorm
 
 import (
-	"github.com/gzorm/commons/zorm/dao"
 	"testing"
+
+	"github.com/gzorm/commons/zorm/dao"
 )
 
 func TestNewRangeClient(t *testing.T) {

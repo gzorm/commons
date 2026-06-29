@@ -60,6 +60,7 @@ func newWinCoinWithdrawalRecord(db *gorm.DB, opts ...gen.DOOption) winCoinWithdr
 	_winCoinWithdrawalRecord.FinanceOperatorAt = field.NewInt64(tableName, "finance_operator_at")
 	_winCoinWithdrawalRecord.WithdrawName = field.NewString(tableName, "withdraw_name")
 	_winCoinWithdrawalRecord.WithdrawBankName = field.NewString(tableName, "withdraw_bank_name")
+	_winCoinWithdrawalRecord.ThirdReason = field.NewString(tableName, "third_reason")
 
 	_winCoinWithdrawalRecord.fillFieldMap()
 
@@ -88,8 +89,8 @@ type winCoinWithdrawalRecord struct {
 	PlatNetfees             field.Field  // 平台手续费
 	MainNetFees             field.Field  // 主网费
 	Currency                field.String // 币种
-	PayType                 field.Int64  // 话费支付=1，银行卡支付=3，钱包支付=5
-	Category                field.Int64  // 提现类型 1==正常提现  4==佣金提现
+	PayType                 field.Int64  // 话费支付=1，银行卡支付=3，钱包支付=5  USDT=6
+	Category                field.Int64  // 提现类型 1==正常提现  4==佣金提现 6=USDT
 	CategoryCurrency        field.Int64  // 货币类型:0-数字货币 1-法币
 	CategoryTransfer        field.Int64  // 转账类型:1-TRC-20 2-ERC-20 3-BANK 4-PIX 5-GCASH
 	Status                  field.Int64  // 状态: 0-申请中，1-提款成功，2-提款失败，3-稽核成功 4-代付种
@@ -104,6 +105,7 @@ type winCoinWithdrawalRecord struct {
 	FinanceOperatorAt       field.Int64  // 财务操作时间
 	WithdrawName            field.String // 提现姓名
 	WithdrawBankName        field.String // 提现银行名称
+	ThirdReason             field.String // 第三方返回失败原因
 
 	fieldMap map[string]field.Expr
 }
@@ -153,6 +155,7 @@ func (w *winCoinWithdrawalRecord) updateTableName(table string) *winCoinWithdraw
 	w.FinanceOperatorAt = field.NewInt64(table, "finance_operator_at")
 	w.WithdrawName = field.NewString(table, "withdraw_name")
 	w.WithdrawBankName = field.NewString(table, "withdraw_bank_name")
+	w.ThirdReason = field.NewString(table, "third_reason")
 
 	w.fillFieldMap()
 
@@ -169,7 +172,7 @@ func (w *winCoinWithdrawalRecord) GetFieldByName(fieldName string) (field.OrderE
 }
 
 func (w *winCoinWithdrawalRecord) fillFieldMap() {
-	w.fieldMap = make(map[string]field.Expr, 33)
+	w.fieldMap = make(map[string]field.Expr, 34)
 	w.fieldMap["id"] = w.ID
 	w.fieldMap["order_id"] = w.OrderID
 	w.fieldMap["plat_order_id"] = w.PlatOrderID
@@ -203,6 +206,7 @@ func (w *winCoinWithdrawalRecord) fillFieldMap() {
 	w.fieldMap["finance_operator_at"] = w.FinanceOperatorAt
 	w.fieldMap["withdraw_name"] = w.WithdrawName
 	w.fieldMap["withdraw_bank_name"] = w.WithdrawBankName
+	w.fieldMap["third_reason"] = w.ThirdReason
 }
 
 func (w winCoinWithdrawalRecord) clone(db *gorm.DB) winCoinWithdrawalRecord {

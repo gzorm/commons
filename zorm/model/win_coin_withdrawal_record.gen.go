@@ -21,14 +21,14 @@ type WinCoinWithdrawalRecord struct {
 	PlatNickName            string          `gorm:"column:plat_nick_name;type:varchar(100);comment:平台自定义名称" json:"platNickName"`                                                          // 平台自定义名称
 	WithdrawalAddress       string          `gorm:"column:withdrawal_address;type:mediumtext;not null;comment:加密地址" json:"withdrawalAddress"`                                             // 加密地址
 	WithdrawalAmount        decimal.Decimal `gorm:"column:withdrawal_amount;type:decimal(15,4);not null;default:0.0000;comment:提款金额" json:"withdrawalAmount"`                             // 提款金额
-	ExchangeRate            decimal.Decimal `gorm:"column:exchange_rate;type:decimal(15,8);not null;default:0.0000;comment:汇率" json:"exchangeRate"`                                       // 汇率
+	ExchangeRate            decimal.Decimal `gorm:"column:exchange_rate;type:decimal(15,8);comment:汇率" json:"exchangeRate"`                                                               // 汇率
 	RealAmount              decimal.Decimal `gorm:"column:real_amount;type:decimal(15,4);not null;default:0.0000;comment:到账金额" json:"realAmount"`                                         // 到账金额
 	CoinBefore              decimal.Decimal `gorm:"column:coin_before;type:decimal(15,4);not null;default:0.0000;comment:提款前用户金额" json:"coinBefore"`                                      // 提款前用户金额
 	PlatNetfees             decimal.Decimal `gorm:"column:plat_netfees;type:decimal(15,4);default:0.0000;comment:平台手续费" json:"platNetfees"`                                               // 平台手续费
 	MainNetFees             decimal.Decimal `gorm:"column:main_net_fees;type:decimal(15,4);not null;default:0.0000;comment:主网费" json:"mainNetFees"`                                       // 主网费
 	Currency                string          `gorm:"column:currency;type:varchar(50);not null;comment:币种" json:"currency"`                                                                 // 币种
-	PayType                 int64           `gorm:"column:pay_type;type:tinyint;default:1;comment:话费支付=1，银行卡支付=3，钱包支付=5" json:"payType"`                                                  // 话费支付=1，银行卡支付=3，钱包支付=5
-	Category                int64           `gorm:"column:category;type:tinyint;default:1;comment:提现类型 1==正常提现  4==佣金提现" json:"category"`                                                 // 提现类型 1==正常提现  4==佣金提现
+	PayType                 int64           `gorm:"column:pay_type;type:tinyint;default:1;comment:话费支付=1，银行卡支付=3，钱包支付=5  USDT=6" json:"payType"`                                          // 话费支付=1，银行卡支付=3，钱包支付=5  USDT=6
+	Category                int64           `gorm:"column:category;type:tinyint;default:1;comment:提现类型 1==正常提现  4==佣金提现 6=USDT" json:"category"`                                          // 提现类型 1==正常提现  4==佣金提现 6=USDT
 	CategoryCurrency        int64           `gorm:"column:category_currency;type:tinyint;not null;default:1;comment:货币类型:0-数字货币 1-法币" json:"categoryCurrency"`                            // 货币类型:0-数字货币 1-法币
 	CategoryTransfer        int64           `gorm:"column:category_transfer;type:tinyint;not null;default:3;comment:转账类型:1-TRC-20 2-ERC-20 3-BANK 4-PIX 5-GCASH" json:"categoryTransfer"` // 转账类型:1-TRC-20 2-ERC-20 3-BANK 4-PIX 5-GCASH
 	Status                  int64           `gorm:"column:status;type:tinyint;not null;comment:状态: 0-申请中，1-提款成功，2-提款失败，3-稽核成功 4-代付种" json:"status"`                                       // 状态: 0-申请中，1-提款成功，2-提款失败，3-稽核成功 4-代付种
@@ -43,6 +43,7 @@ type WinCoinWithdrawalRecord struct {
 	FinanceOperatorAt       int64           `gorm:"column:finance_operator_at;type:int;comment:财务操作时间" json:"financeOperatorAt"`        // 财务操作时间
 	WithdrawName            string          `gorm:"column:withdraw_name;type:varchar(64);comment:提现姓名" json:"withdrawName"`             // 提现姓名
 	WithdrawBankName        string          `gorm:"column:withdraw_bank_name;type:varchar(255);comment:提现银行名称" json:"withdrawBankName"` // 提现银行名称
+	ThirdReason             string          `gorm:"column:third_reason;type:text;comment:第三方返回失败原因" json:"thirdReason"`                 // 第三方返回失败原因
 }
 
 // TableName WinCoinWithdrawalRecord's table name
