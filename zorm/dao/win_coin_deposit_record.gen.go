@@ -69,6 +69,7 @@ func newWinCoinDepositRecord(db *gorm.DB, opts ...gen.DOOption) winCoinDepositRe
 	_winCoinDepositRecord.FailReason = field.NewString(tableName, "fail_reason")
 	_winCoinDepositRecord.Domain = field.NewString(tableName, "domain")
 	_winCoinDepositRecord.AdjustAdid = field.NewString(tableName, "adjust_adid")
+	_winCoinDepositRecord.PackageName = field.NewString(tableName, "package_name")
 
 	_winCoinDepositRecord.fillFieldMap()
 
@@ -122,6 +123,7 @@ type winCoinDepositRecord struct {
 	FailReason            field.String // fail reason
 	Domain                field.String // 请求域名(从header :authority获取)
 	AdjustAdid            field.String
+	PackageName           field.String
 
 	fieldMap map[string]field.Expr
 }
@@ -180,6 +182,7 @@ func (w *winCoinDepositRecord) updateTableName(table string) *winCoinDepositReco
 	w.FailReason = field.NewString(table, "fail_reason")
 	w.Domain = field.NewString(table, "domain")
 	w.AdjustAdid = field.NewString(table, "adjust_adid")
+	w.PackageName = field.NewString(table, "package_name")
 
 	w.fillFieldMap()
 
@@ -196,7 +199,7 @@ func (w *winCoinDepositRecord) GetFieldByName(fieldName string) (field.OrderExpr
 }
 
 func (w *winCoinDepositRecord) fillFieldMap() {
-	w.fieldMap = make(map[string]field.Expr, 42)
+	w.fieldMap = make(map[string]field.Expr, 43)
 	w.fieldMap["id"] = w.ID
 	w.fieldMap["order_id"] = w.OrderID
 	w.fieldMap["plat_order_id"] = w.PlatOrderID
@@ -239,6 +242,7 @@ func (w *winCoinDepositRecord) fillFieldMap() {
 	w.fieldMap["fail_reason"] = w.FailReason
 	w.fieldMap["domain"] = w.Domain
 	w.fieldMap["adjust_adid"] = w.AdjustAdid
+	w.fieldMap["package_name"] = w.PackageName
 }
 
 func (w winCoinDepositRecord) clone(db *gorm.DB) winCoinDepositRecord {

@@ -52,6 +52,7 @@ type WinCoinDepositRecord struct {
 	FailReason            string          `gorm:"column:fail_reason;type:varchar(512);not null;comment:fail reason" json:"failReason"`                                                                                                       // fail reason
 	Domain                string          `gorm:"column:domain;type:varchar(255);comment:请求域名(从header :authority获取)" json:"domain"`                                                                                                          // 请求域名(从header :authority获取)
 	AdjustAdid            string          `gorm:"column:adjust_adid;type:varchar(255)" json:"adjustAdid"`
+	PackageName           string          `gorm:"column:package_name;type:varchar(255)" json:"packageName"`
 }
 
 // TableName WinCoinDepositRecord's table name
